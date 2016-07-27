@@ -19,6 +19,8 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 
 @property (nonatomic, assign)enum YPPhotosCellType cellType;
 
+@property (weak, nonatomic)YPPhotosCell * weakSelf;
+
 @end
 
 @implementation YPPhotosCell
@@ -35,10 +37,34 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
     self.cellType = CellTypeDeseleted;
 }
 
+-(instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
+        [self photosCellWillLoad];
+    }
+    
+    return self;
+}
+
 -(void)awakeFromNib
 {
-    _chooseImageView.layer.cornerRadius = _chooseImageView.bounds.size.width / 2.0f;
-    _chooseImageView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    [self photosCellWillLoad];
+
+}
+
+
+- (void)photosCellWillLoad
+{
+    _weakSelf = self;
+    
+    //add subviews
+    [self addSubImageView];
+    [self addSubMessageView];
+    [self addSubMessageImageView];
+    [self addSubMessageLabel];
+    [self addSubChooseImageView];
+
 }
 
 
@@ -108,6 +134,95 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 }
 
 
+#pragma mark - CreateSubviews
+
+- (void)addSubImageView
+{
+    //添加imageView
+    _imageView = [[UIImageView alloc]init];
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    [self.contentView addSubview:_imageView];
+    
+    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.edges.equalTo(_weakSelf.contentView);
+    }];
+}
+
+
+- (void)addSubMessageView
+{
+    _messageView = [[UIView alloc]init];
+    
+    [self.contentView addSubview:_messageView];
+    
+    [_messageView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.and.bottom.equalTo(_weakSelf.contentView);
+        make.height.equalTo(@(20));
+        
+    }];
+    _messageView.backgroundColor = [UIColor blackColor];
+    _messageView.hidden = true;
+}
+
+
+- (void)addSubMessageImageView
+{
+    _messageImageView = [[UIImageView alloc]init];
+    
+    [_messageView addSubview:_messageImageView];
+    
+    [_messageImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(@(5));
+        make.bottom.equalTo(_weakSelf.messageView);
+        make.size.mas_equalTo(CGSizeMake(30, 20));
+    }];
+}
+
+
+- (void)addSubMessageLabel
+{
+    _messageLabel = [[UILabel alloc]init];
+    
+    [_messageView addSubview:_messageLabel];
+    
+    [_messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(_weakSelf.messageImageView.mas_right);
+        make.right.equalTo(_weakSelf.contentView).offset(-3);
+        make.bottom.equalTo(_weakSelf.messageImageView);
+        make.height.mas_equalTo(20);
+        
+    }];
+    
+    _messageLabel.font = [UIFont systemFontOfSize:11];
+    _messageLabel.textAlignment = NSTextAlignmentRight;
+    _messageLabel.textColor = [UIColor whiteColor];
+    _messageLabel.text = @"00:25";
+}
+
+
+- (void)addSubChooseImageView
+{
+    _chooseImageView = [[UIButton alloc]init];
+    
+    [self.contentView addSubview:_chooseImageView];
+    
+    [_chooseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.size.mas_equalTo(CGSizeMake(25, 25));
+        make.right.and.bottom.mas_equalTo(-3);
+        
+    }];
+    
+    _chooseImageView.layer.cornerRadius = 25 / 2.0f;
+    _chooseImageView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    [_chooseImageView setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+    [_chooseImageView addTarget:self action:@selector(chooseButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
+}
 
 
 @end

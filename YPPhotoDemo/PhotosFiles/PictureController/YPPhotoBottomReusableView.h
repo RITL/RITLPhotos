@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable ,nonatomic, copy)NSString * customText;
 
 /// @brief show the title with the number if asset,default text is 共有375张照片
-@property (weak, nonatomic) IBOutlet UILabel * assetCountLabel;
+@property (strong, nonatomic) IBOutlet UILabel * assetCountLabel;
 
 @end
 

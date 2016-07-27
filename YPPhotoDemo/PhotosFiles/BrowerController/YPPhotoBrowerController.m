@@ -50,7 +50,7 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 @property (nonatomic, strong)UIButton * selectButtonItem;
 
 /// @brief 底部的tabBar
-@property (nonatomic, strong)UITabBar * bottomBar;
+@property (nonatomic, strong) UITabBar * bottomBar;
 /// @brief 高清图的响应Control
 @property (strong, nonatomic) IBOutlet UIControl * highQualityControl;
 /// @brief 选中圆圈
@@ -320,6 +320,7 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
                 [self.didSelectAssetStatus addObject:[NSNumber numberWithUnsignedInteger:2]];
                 //修改UI
                 [self buttonDidSelect];//选中
+                [self setNumbersForSelectAssets:self.didSelectAssets.count];
             }
 
         }
@@ -335,8 +336,6 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
             [self.didSelectAssetStatus replaceObjectAtIndex:[self.didSelectAssets indexOfObject:self.currentAsset] withObject:[NSNumber numberWithUnsignedInteger:0]];
         }
     }
-    
-    [self setNumbersForSelectAssets:self.didSelectAssets.count];
 }
 
 
@@ -601,16 +600,21 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 }
 
 #pragma mark - 设置numberOfLabel的数目
+/** 设置当前选择后的资源数量 */
 - (void)setNumbersForSelectAssets:(NSUInteger)number
 {
     if (number == 0) {_numberOfLabel.hidden = true; return;}
     
+    _numberOfLabel.hidden = false;
     _numberOfLabel.text = [NSString stringWithFormat:@"%@",@(number)];
+    _numberOfLabel.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
     
     //设置动画
-//    [UIView ];
-    
-//    _numberOfLabel.hidden = false;
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        _numberOfLabel.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    }];
+
 }
 
 

@@ -57,6 +57,8 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 
 
 #pragma mark - 相册组
+
+/** 获取最基本的智能分组 */
 -(void)fetchBasePhotosGroup:(void(^)( PHFetchResult * _Nullable  result))completeBlock
 {
 //    switch ([PHPhotoLibrary authorizationStatus])
@@ -84,15 +86,18 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 }
 
 
+/** 获取智能分组相册并按照数组的形式传出 */
 - (void)fetchPhotosGroup:(void (^)(NSArray<PHAssetCollection *> * _Nonnull))groups
 {
+    __weak typeof(self) weakSelf = self;
+    
     [self fetchBasePhotosGroup:^(PHFetchResult * _Nullable result) {
        
         if (result == nil) return;
         
         [result transToArrayComplete:^(NSArray<PHAssetCollection *> * _Nonnull group) {
             
-            groups(group);
+            groups([weakSelf handleAssetCollection:group]);
             
         }];
         
@@ -101,6 +106,8 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 }
 
 
+
+//获取配置的智能分组
 -(void)fetchDefaultPhotosGroup:(void (^)(NSArray<PHAssetCollection *> * _Nonnull))groups
 {
     
@@ -112,7 +119,7 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
         
         [weakSelf preparationWithFetchResult:result complete:^(NSArray<PHAssetCollection *> * _Nonnull defalutGroup) {
            
-            groups(defalutGroup);
+            groups([weakSelf handleAssetCollection:defalutGroup]);
             
         }];
         
@@ -120,6 +127,8 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 }
 
 
+
+//获取配置的智能分组外加系统应用添加的相册组
 -(void)fetchDefaultAllPhotosGroup:(void (^)(NSArray<PHAssetCollection *> * _Nonnull))groups
 {
     __block NSMutableArray <PHAssetCollection *> * defaultAllGroups = [NSMutableArray arrayWithCapacity:0];
@@ -142,6 +151,35 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
     }];
     
 }
+
+
+
+/** 将assetCollections 中的胶卷相册排到第一位 */
+-(NSArray <PHAssetCollection *> *)handleAssetCollection:(NSArray <PHCollection *> *)assetCollections
+{
+    NSMutableArray <PHAssetCollection *> * collections = [NSMutableArray arrayWithArray:assetCollections];
+    
+    //针对部分顺序问题将胶卷相册拍到第一位
+    for (NSUInteger i = 0 ;i < collections.count; i++)
+    {
+        //获取当前的相册组
+        PHAssetCollection * collection = collections[i];
+        
+        if ([collection.localizedTitle isEqualToString:NSLocalizedString(ConfigurationCameraRoll, @"")])
+        {
+            //移除该相册
+            [collections removeObject:collection];
+            
+            //添加至第一位
+            [collections insertObject:collection atIndex:0];
+            
+            break;
+        }
+    }
+    
+    return [collections mutableCopy];
+}
+
 
 
 #pragma mark - 处理照片

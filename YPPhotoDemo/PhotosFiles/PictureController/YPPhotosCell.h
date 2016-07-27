@@ -17,19 +17,19 @@ typedef void(^YPPhotosCellOperationBlock)(YPPhotosCell * __nullable cell);
 @interface YPPhotosCell : UICollectionViewCell
 
 //display backgroundImage
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 //default hidden is true
-@property (weak, nonatomic) IBOutlet UIView *messageView;
+@property (strong, nonatomic) IBOutlet UIView *messageView;
 
 //imageView in messageView to show the kind of asset
-@property (weak, nonatomic) IBOutlet UIImageView *messageImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *messageImageView;
 
 //label in messageVie to show the information
-@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (strong, nonatomic) IBOutlet UILabel *messageLabel;
 
 //button in order to display the selected image
-@property (weak, nonatomic) IBOutlet UIButton *chooseImageView;
+@property (strong, nonatomic) IBOutlet UIButton *chooseImageView;
 
 //evoked when the chooseImageView clicked
 @property (nullable, copy, nonatomic)YPPhotosCellOperationBlock imageSelectedBlock;

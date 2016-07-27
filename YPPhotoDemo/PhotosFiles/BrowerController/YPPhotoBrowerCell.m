@@ -117,7 +117,7 @@
         self.bottomScrollView.backgroundColor = [UIColor blackColor];
         self.bottomScrollView.delegate = self;
         self.bottomScrollView.minimumZoomScale = self.minScaleZoome;
-        self.bottomScrollView.maximumZoomScale = self.,maxScaleZoome;
+        self.bottomScrollView.maximumZoomScale = self.maxScaleZoome;
         [self.contentView addSubview:self.bottomScrollView];
         
         

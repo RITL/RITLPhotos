@@ -28,9 +28,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r5h-0h-VdE">
-                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                        </imageView>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCI-3B-4cs">
                                             <rect key="frame" x="0.0" y="60" width="80" height="20"/>
                                             <subviews>
@@ -70,9 +67,6 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="6"/>
                                             <state key="normal" image="未选中"/>
                                             <state key="selected" image="选中"/>
-                                            <connections>
-                                                <action selector="chooseButtonDidTap:" destination="oGV-ax-icX" eventType="touchUpInside" id="Ija-Nd-hxU"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -82,15 +76,11 @@
                                     <constraint firstAttribute="trailing" secondItem="fCI-3B-4cs" secondAttribute="trailing" id="94f-Jw-8B5"/>
                                     <constraint firstItem="Ief-qX-Z86" firstAttribute="top" secondItem="oGV-ax-icX" secondAttribute="top" constant="1" id="9eN-4K-Zgp"/>
                                     <constraint firstItem="fCI-3B-4cs" firstAttribute="leading" secondItem="oGV-ax-icX" secondAttribute="leading" id="JjU-GO-GsC"/>
-                                    <constraint firstItem="r5h-0h-VdE" firstAttribute="leading" secondItem="oGV-ax-icX" secondAttribute="leading" id="QPc-eL-ev2"/>
-                                    <constraint firstItem="r5h-0h-VdE" firstAttribute="top" secondItem="oGV-ax-icX" secondAttribute="top" id="Wvl-yp-qka"/>
                                     <constraint firstAttribute="bottom" secondItem="Ief-qX-Z86" secondAttribute="bottom" constant="3" id="XKy-2e-8Qr"/>
                                     <constraint firstAttribute="bottom" secondItem="fCI-3B-4cs" secondAttribute="bottom" id="b6Q-mF-7Lq"/>
                                     <constraint firstItem="fCI-3B-4cs" firstAttribute="top" secondItem="Ief-qX-Z86" secondAttribute="bottom" constant="1" id="dff-J9-wW3"/>
-                                    <constraint firstAttribute="bottom" secondItem="r5h-0h-VdE" secondAttribute="bottom" id="dtn-7l-fGm"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="fCI-3B-4cs" secondAttribute="trailing" id="mwV-3a-yti"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="fCI-3B-4cs" secondAttribute="bottom" id="oL9-uu-yah"/>
-                                    <constraint firstAttribute="trailing" secondItem="r5h-0h-VdE" secondAttribute="trailing" id="ou4-3J-9bn"/>
                                     <constraint firstItem="fCI-3B-4cs" firstAttribute="leading" secondItem="oGV-ax-icX" secondAttribute="leadingMargin" id="vDY-Hy-by2"/>
                                 </constraints>
                                 <size key="customSize" width="80" height="80"/>
@@ -103,13 +93,6 @@
                                         <exclude reference="9eN-4K-Zgp"/>
                                     </mask>
                                 </variation>
-                                <connections>
-                                    <outlet property="chooseImageView" destination="Ief-qX-Z86" id="GIF-sA-jDk"/>
-                                    <outlet property="imageView" destination="r5h-0h-VdE" id="s0h-ta-jqc"/>
-                                    <outlet property="messageImageView" destination="4Je-tJ-dNe" id="Mgw-gp-zSb"/>
-                                    <outlet property="messageLabel" destination="wtk-nw-e8b" id="GFq-rf-YxB"/>
-                                    <outlet property="messageView" destination="fCI-3B-4cs" id="8Pi-mo-DIW"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="YPPhotoBottomReusableView" id="vja-Fp-RYB" customClass="YPPhotoBottomReusableView">

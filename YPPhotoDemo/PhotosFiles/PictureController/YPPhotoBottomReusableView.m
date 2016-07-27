@@ -17,6 +17,26 @@
     _assetCountLabel.text = @"共有375张照片";
 }
 
+-(instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
+        [self photoBottomReusableViewWillLoad];
+    }
+    
+    return self;
+}
+
+-(void)awakeFromNib
+{
+    [self photoBottomReusableViewWillLoad];
+}
+
+- (void)photoBottomReusableViewWillLoad
+{
+    
+}
+
 
 -(void)setCustomText:(NSString *)customText
 {
@@ -28,6 +48,23 @@
 {
     _numberOfAsset = numberOfAsset;
     _assetCountLabel.text = [NSString stringWithFormat:@"共有%@张照片",@(numberOfAsset)];
+}
+
+- (void)addSubAssetCountLabel
+{
+    __weak typeof(self) weakSelf = self;
+    
+    _assetCountLabel = [[UILabel alloc]init];
+    
+    [self addSubview:_assetCountLabel];
+    
+    [_assetCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.edges.equalTo(weakSelf);
+        
+    }];
+    
+    _assetCountLabel.font = [UIFont systemFontOfSize:14];
 }
 
 

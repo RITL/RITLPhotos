@@ -144,9 +144,6 @@ static NSString * hignSizeArray;
 
 -(void)sizeOfHignQualityWithSize:(CGSize)size complete:(void (^)(NSString * _Nonnull))completeBlock
 {
-    
-    CGFloat scale = [UIScreen mainScreen].scale;
-//    CGSize newSize = CGSizeMake(300 * scale, 300 * scale);
     CGSize newSize = size;
     
     if (!self.highQualityArray)
@@ -294,6 +291,13 @@ static NSString * hignSizeArray;
 -(void)transToArrayComplete:(void (^)(NSArray<PHAssetCollection *> * _Nonnull))arrayObject
 {
     NSMutableArray *  array = [NSMutableArray arrayWithCapacity:0];
+    
+    if (self.count == 0)
+    {
+        arrayObject([[NSMutableArray arrayWithCapacity:0] mutableCopy]);
+        return;
+    }
+    
     
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
