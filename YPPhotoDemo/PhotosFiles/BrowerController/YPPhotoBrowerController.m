@@ -12,8 +12,8 @@
 #import "YPPhotoDemo-Swift.h"
 
 
-
 static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
+
 
 @interface YPPhotoBrowerController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -606,7 +606,11 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
     if (number == 0) {_numberOfLabel.hidden = true; return;}
     
     _numberOfLabel.text = [NSString stringWithFormat:@"%@",@(number)];
-    _numberOfLabel.hidden = false;
+    
+    //设置动画
+//    [UIView ];
+    
+//    _numberOfLabel.hidden = false;
 }
 
 

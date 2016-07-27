@@ -45,8 +45,8 @@
 
 - (void)browerCellLoad
 {
-    self.minScaleZoome = 1.0;
-    self.maxScaleZoome = 3.0;
+    self.minScaleZoome = 1.0f;
+    self.maxScaleZoome = 3.0f;
     
     [self createBottomScrollView];
     [self createImageView];
@@ -89,7 +89,7 @@
         CGFloat width = self.frame.size.width;
         
         //触及范围
-        CGFloat scale = width / 3.0f;
+        CGFloat scale = width / self.maxScaleZoome;
         
         //获取当前的触摸点
         CGPoint point = [touch locationInView:self.imageView];
@@ -116,8 +116,8 @@
         self.bottomScrollView = [[UIScrollView alloc]init];
         self.bottomScrollView.backgroundColor = [UIColor blackColor];
         self.bottomScrollView.delegate = self;
-        self.bottomScrollView.minimumZoomScale = 1.0f;
-        self.bottomScrollView.maximumZoomScale = 2.0f;
+        self.bottomScrollView.minimumZoomScale = self.minScaleZoome;
+        self.bottomScrollView.maximumZoomScale = self.,maxScaleZoome;
         [self.contentView addSubview:self.bottomScrollView];
         
         
