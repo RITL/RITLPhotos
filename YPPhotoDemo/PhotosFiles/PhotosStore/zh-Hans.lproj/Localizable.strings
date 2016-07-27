@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  YPPhotoDemo
+
+  Created by YueWen on 16/7/13.
+  Copyright © 2016年 YueWen. All rights reserved.
+*/
+
+"Camera Roll" = "相机胶卷";
+"Hidden" = "隐藏";
+"Slo-mo" = "慢动作";
+"Screenshots" = "屏幕快照";
+"Videos" = "视频";
+"Panoramas" = "全景照片";
+"Time-lapse" = "定时拍照";
+"Recently Added" = "最近添加";
+"Recently Deleted" = "最近删除";
+"Bursts" = "连拍快照";
+"Favorite" = "喜爱";
+"Selfies" = "自拍";

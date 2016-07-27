@@ -6,16 +6,33 @@
 //  Copyright © 2016年 YueWen. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "YPPhotosAppDelegate.h"
 
-@interface AppDelegate ()
+@interface YPPhotosAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation YPPhotosAppDelegate
+
+void uncaughtExceptionHandler(NSException * exception)
+{
+    //获取崩溃栈
+    //    NSArray * exceptions = [exception callStackSymbols];
+    
+    NSString * result = [exception reason];
+    NSString * name = [exception name];
+    
+    NSLog(@"result = %@,name = %@",result,name);
+}
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    
+    //捕捉异常
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    
     // Override point for customization after application launch.
     return YES;
 }
