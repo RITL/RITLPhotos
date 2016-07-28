@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-NS_AVAILABLE_IOS(8_0) @interface YPPhotosController : UICollectionViewController<UICollectionViewDelegateFlowLayout>
+NS_AVAILABLE_IOS(8_0) @interface YPPhotosController : UIViewController
 
 @property (nullable, nonatomic, weak)id <YPPhotosControllerDelegate> delegate;
 

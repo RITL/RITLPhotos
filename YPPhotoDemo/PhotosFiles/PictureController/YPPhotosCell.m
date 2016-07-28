@@ -57,13 +57,15 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 - (void)photosCellWillLoad
 {
     _weakSelf = self;
+    self.backgroundColor = [UIColor cyanColor];
     
     //add subviews
     [self addSubImageView];
+    [self addSubChooseImageView];
     [self addSubMessageView];
     [self addSubMessageImageView];
     [self addSubMessageLabel];
-    [self addSubChooseImageView];
+
 
 }
 
@@ -140,20 +142,30 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 {
     //添加imageView
     _imageView = [[UIImageView alloc]init];
+    _imageView.translatesAutoresizingMaskIntoConstraints = false;
+    _imageView.clipsToBounds = true;
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    _imageView.backgroundColor = [UIColor redColor];
+    
     
     [self.contentView addSubview:_imageView];
     
     [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+    
         make.edges.equalTo(_weakSelf.contentView);
+        
     }];
+    
+    //等价
+//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_imageView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_imageView)]];
+//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_imageView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_imageView)]];
 }
 
 
 - (void)addSubMessageView
 {
     _messageView = [[UIView alloc]init];
+    _messageView.translatesAutoresizingMaskIntoConstraints = false;
     
     [self.contentView addSubview:_messageView];
     
@@ -163,6 +175,12 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
         make.height.equalTo(@(20));
         
     }];
+    
+    //等价
+//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_messageView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messageView)]];
+//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_messageView(20)]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messageView)]];
+    
+    
     _messageView.backgroundColor = [UIColor blackColor];
     _messageView.hidden = true;
 }
@@ -171,6 +189,7 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 - (void)addSubMessageImageView
 {
     _messageImageView = [[UIImageView alloc]init];
+    _messageImageView.translatesAutoresizingMaskIntoConstraints = false;
     
     [_messageView addSubview:_messageImageView];
     
@@ -180,23 +199,33 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
         make.bottom.equalTo(_weakSelf.messageView);
         make.size.mas_equalTo(CGSizeMake(30, 20));
     }];
+
+//    [_messageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[_messageImageView(30)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messageImageView)]];
+//    [_messageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_messageImageView(20)]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messageImageView)]];
+
 }
 
 
 - (void)addSubMessageLabel
 {
     _messageLabel = [[UILabel alloc]init];
+    _messageLabel.translatesAutoresizingMaskIntoConstraints = false;
     
     [_messageView addSubview:_messageLabel];
     
     [_messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(_weakSelf.messageImageView.mas_right);
-        make.right.equalTo(_weakSelf.contentView).offset(-3);
-        make.bottom.equalTo(_weakSelf.messageImageView);
+        make.right.equalTo(_weakSelf.messageView).offset(-3);
+        make.bottom.equalTo(_weakSelf.messageView);
         make.height.mas_equalTo(20);
         
     }];
+    
+//    
+//    [_messageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_messageImageView]-0-[_messageLabel]-3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messageImageView,_messageLabel)]];
+//    [_messageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_messageLabel(20)]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messageLabel)]];
+    
     
     _messageLabel.font = [UIFont systemFontOfSize:11];
     _messageLabel.textAlignment = NSTextAlignmentRight;
@@ -208,7 +237,7 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 - (void)addSubChooseImageView
 {
     _chooseImageView = [[UIButton alloc]init];
-    
+    _chooseImageView.translatesAutoresizingMaskIntoConstraints = false;
     [self.contentView addSubview:_chooseImageView];
     
     [_chooseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -217,6 +246,9 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
         make.right.and.bottom.mas_equalTo(-3);
         
     }];
+    
+//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_chooseImageView(25)]-3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chooseImageView)]];
+//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_chooseImageView(25)]-3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chooseImageView)]];
     
     _chooseImageView.layer.cornerRadius = 25 / 2.0f;
     _chooseImageView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];

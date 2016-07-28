@@ -34,7 +34,7 @@
 
 - (void)photoBottomReusableViewWillLoad
 {
-    
+    [self addSubAssetCountLabel];
 }
 
 
@@ -65,6 +65,8 @@
     }];
     
     _assetCountLabel.font = [UIFont systemFontOfSize:14];
+    _assetCountLabel.textAlignment = NSTextAlignmentCenter;
+    _assetCountLabel.textColor = UIColorFromRGB(0x6F7179);
 }
 
 

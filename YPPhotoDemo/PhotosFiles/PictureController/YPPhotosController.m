@@ -13,18 +13,24 @@
 #import "YPPhotoBrowerController.h"
 
 #ifdef __IPHONE_9_0
-@interface YPPhotosController ()<UIViewControllerPreviewingDelegate,YPPhotoBrowerControllerDelegate>
+@interface YPPhotosController ()<UIViewControllerPreviewingDelegate,YPPhotoBrowerControllerDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 #else
-@interface YPPhotosController ()
+@interface YPPhotosController ()<YPPhotoBrowerControllerDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 #endif
 
+/// @brief 显示的集合视图
+@property (nonatomic, strong) UICollectionView * collectionView;
+/// @brief cell‘s size
 @property (nonatomic, assign) CGSize assetSize;
+/// @brief 所有的照片资源
 @property (nonatomic, strong) PHFetchResult * assets;
+/// @brief 导航标题
 @property (nonatomic, copy) NSString * itemTitle;
 /// @brief 对应浏览控制器进行图片控制
 @property (nonatomic, strong)NSMutableArray <PHAsset *> * selectAssets;
+/// @brief 对应选中图片的状态
 @property (nonatomic, strong)NSMutableArray <NSNumber *> * selectAssetStatus;//存储选择的类型:高清还是原图
-
+/// @brief 最大允许的选择数目
 @property (nonatomic, strong) NSNumber * maxNumberOfSelectImages;
 
 @end
@@ -41,8 +47,10 @@
     
     //设置navigationItem
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(chooseImagesComplete)];
-    
 
+    [self.view addSubview:self.collectionView];
+
+    
     CGFloat sizeHeight = (self.collectionView.frame.size.width - 3) / 4;
     _assetSize = CGSizeMake(sizeHeight, sizeHeight);
     
@@ -54,6 +62,7 @@
         //重置偏移量
         [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentOffset.y + 64)];
     }
+ 
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,6 +74,8 @@
 {
     self.assets = nil;
     self.selectAssets = nil;
+    self.collectionView.delegate = nil;
+    self.collectionView.dataSource = nil;
     NSLog(@"YPPhotosController Dealloc");
 }
 
@@ -76,6 +87,7 @@
     {
         [self.delegate photosController:self photosSelected:[_selectAssets mutableCopy] Status:[_selectAssetStatus mutableCopy]];;
         _selectAssets = nil;
+        _selectAssetStatus = nil;
     }
 }
 
@@ -190,6 +202,11 @@
     return self.assetSize;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+    return CGSizeMake(collectionView.bounds.size.width, 44);
+}
+
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     return 1.0f;
@@ -282,6 +299,29 @@
 {
     //执行发送回调
     [self chooseImagesComplete];
+}
+
+
+#pragma mark - Getter Function
+-(UICollectionView *)collectionView
+{
+    if(_collectionView == nil)
+    {
+        _collectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:[[UICollectionViewFlowLayout alloc]init]];
+        
+        //protocol
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        
+        //property
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        
+        //register View
+        [_collectionView registerClass:[YPPhotosCell class] forCellWithReuseIdentifier:@"YPPhotosCell"];
+        [_collectionView registerClass:[YPPhotoBottomReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"YPPhotoBottomReusableView"];
+    }
+    
+    return _collectionView;
 }
 
 

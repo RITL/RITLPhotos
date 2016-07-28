@@ -41,7 +41,6 @@
 		DBC3E4DC1D4845F9002FD0C7 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC3E4DB1D4845F9002FD0C7 /* Photos.framework */; };
 		DBE173821D37273D00BDCD6A /* YPPhotosController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE173811D37273D00BDCD6A /* YPPhotosController.m */; };
 		DBE173851D37275400BDCD6A /* YPPhotosCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE173841D37275400BDCD6A /* YPPhotosCell.m */; };
-		DBE173871D37276700BDCD6A /* YPPhotos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBE173861D37276700BDCD6A /* YPPhotos.storyboard */; };
 		DBE1738A1D373AC700BDCD6A /* PHObject+SupportCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE173891D373AC700BDCD6A /* PHObject+SupportCategory.m */; };
 		DBE1738C1D37622B00BDCD6A /* YPPhotos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBE1738B1D37622B00BDCD6A /* YPPhotos.xcassets */; };
 		DBE1738F1D3771CC00BDCD6A /* YPPhotoBottomReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE1738E1D3771CC00BDCD6A /* YPPhotoBottomReusableView.m */; };
@@ -140,7 +139,6 @@
 		DBE173811D37273D00BDCD6A /* YPPhotosController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPPhotosController.m; sourceTree = "<group>"; };
 		DBE173831D37275400BDCD6A /* YPPhotosCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotosCell.h; sourceTree = "<group>"; };
 		DBE173841D37275400BDCD6A /* YPPhotosCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPPhotosCell.m; sourceTree = "<group>"; };
-		DBE173861D37276700BDCD6A /* YPPhotos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = YPPhotos.storyboard; sourceTree = "<group>"; };
 		DBE173881D373AC700BDCD6A /* PHObject+SupportCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHObject+SupportCategory.h"; sourceTree = "<group>"; };
 		DBE173891D373AC700BDCD6A /* PHObject+SupportCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHObject+SupportCategory.m"; sourceTree = "<group>"; };
 		DBE1738B1D37622B00BDCD6A /* YPPhotos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = YPPhotos.xcassets; sourceTree = "<group>"; };
@@ -341,7 +339,6 @@
 				DBE1738E1D3771CC00BDCD6A /* YPPhotoBottomReusableView.m */,
 				DBE173801D37273D00BDCD6A /* YPPhotosController.h */,
 				DBE173811D37273D00BDCD6A /* YPPhotosController.m */,
-				DBE173861D37276700BDCD6A /* YPPhotos.storyboard */,
 			);
 			path = PictureController;
 			sourceTree = "<group>";
@@ -475,7 +472,6 @@
 				DBE1738C1D37622B00BDCD6A /* YPPhotos.xcassets in Resources */,
 				DB19EF8F1D45BD2400891ACF /* Info.plist in Resources */,
 				DB302F3B1D35E3C7007B42C3 /* LaunchScreen.storyboard in Resources */,
-				DBE173871D37276700BDCD6A /* YPPhotos.storyboard in Resources */,
 				DB8BDEED1D484CA70029BA9D /* Main.storyboard in Resources */,
 				DB302F381D35E3C7007B42C3 /* Assets.xcassets in Resources */,
 				DB302F711D35E8E8007B42C3 /* YPPhotoGroup.storyboard in Resources */,

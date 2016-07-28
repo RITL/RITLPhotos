@@ -108,7 +108,7 @@
 #pragma mark - push photosviewcontroller
 - (void)pushPhotosViewController:(NSIndexPath *)indexPath Animate:(BOOL)animate
 {
-    YPPhotosController * collectionViewController = [[UIStoryboard storyboardWithName:@"YPPhotos" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+    YPPhotosController * collectionViewController = [[YPPhotosController alloc]init];
     
     //传递组对象
     [collectionViewController setValue:[self.photoStore fetchPhotos:self.groups[indexPath.row]] forKey:@"assets"];
