@@ -22,6 +22,8 @@
     [super viewDidLoad];
     if (self.maxNumberOfSelectImages ==0) self.maxNumberOfSelectImages = 9;
     
+    self.viewControllers = @[[[YPPhotoGroupController alloc]init]];
+    
     //设置rootViewController
     YPPhotoGroupController * rootViewController = self.viewControllers.firstObject;
     
@@ -43,7 +45,9 @@
 
 -(void)dealloc
 {
+#ifdef YDEBUG
     NSLog(@"YPPhotoNavgationController Dealloc");
+#endif
 }
 
 

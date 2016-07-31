@@ -24,7 +24,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableView.tableFooterView = [[UIView alloc]init];
+    [self.tableView registerClass:[YPPhotoGroupCell class] forCellReuseIdentifier:@"YPPhotoGroupCell"];
+    
+    //Navigation
+    self.navigationItem.title = @"相册";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancle" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemDidTap)];
+    
     
     __weak typeof(self)copy_self = self;
     
@@ -55,7 +62,17 @@
 -(void)dealloc
 {
     self.groups = nil;
+#ifdef YDEBUG
     NSLog(@"YPPhotoGroupController Dealloc");
+#endif
+}
+
+
+- (void)rightBarButtonItemDidTap
+{
+    [self dismissViewControllerAnimated:true completion:^{
+        
+    }];
 }
 
 #pragma mark - Table view data source
@@ -98,10 +115,20 @@
     [self pushPhotosViewController:indexPath Animate:true];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
 #pragma mark - <YPPhotosControllerDelegate>
 -(void)photosController:(YPPhotosController *)viewController photosSelected:(nonnull NSArray<PHAsset *> *)assets Status:(nonnull NSArray<NSNumber *> *)status
 {
     self.photosDidSelectBlock(assets,status);
+}
+
+-(void)photosControllerShouldBack:(YPPhotosController *)viewController
+{
+    [self dismissViewControllerAnimated:true completion:^{}];
 }
 
 

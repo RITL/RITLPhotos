@@ -23,10 +23,16 @@
 @property (nonatomic, assign) CGFloat minScaleZoome;
 @property (nonatomic, assign) CGFloat maxScaleZoome;
 
-
 @end
 
 @implementation YPPhotoBrowerCell
+
+-(void)dealloc
+{
+#ifdef YDEBUG
+    NSLog(@"YPPhotoBrowerCell Dealloc");
+#endif
+}
 
 -(instancetype)initWithFrame:(CGRect)frame
 {

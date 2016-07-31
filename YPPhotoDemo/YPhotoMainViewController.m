@@ -47,7 +47,8 @@
 - (IBAction)photosItemDidTap:(id)sender
 {
     
-    YPPhotoNavgationController * photoViewControlelr = [[UIStoryboard storyboardWithName:@"YPPhotoGroup" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+//    YPPhotoNavgationController * photoViewControlelr = [[UIStoryboard storyboardWithName:@"YPPhotoGroup" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+    YPPhotoNavgationController * photoViewControlelr = [[YPPhotoNavgationController alloc]init];
     
 //    __weak typeof(self)weakSelf = self;
     

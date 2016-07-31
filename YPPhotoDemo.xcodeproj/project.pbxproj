@@ -29,7 +29,6 @@
 		DB302F641D35E5AE007B42C3 /* YPPhotoStore.m in Sources */ = {isa = PBXBuildFile; fileRef = DB302F631D35E5AE007B42C3 /* YPPhotoStore.m */; };
 		DB302F6B1D35E81C007B42C3 /* YPPhotoGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB302F691D35E81C007B42C3 /* YPPhotoGroupCell.m */; };
 		DB302F6F1D35E8CF007B42C3 /* YPPhotoGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB302F6E1D35E8CF007B42C3 /* YPPhotoGroupController.m */; };
-		DB302F711D35E8E8007B42C3 /* YPPhotoGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB302F701D35E8E8007B42C3 /* YPPhotoGroup.storyboard */; };
 		DB302F761D361E75007B42C3 /* YPPhotoStoreConfiguraion.m in Sources */ = {isa = PBXBuildFile; fileRef = DB302F751D361E75007B42C3 /* YPPhotoStoreConfiguraion.m */; };
 		DB302F791D361F36007B42C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB302F7B1D361F36007B42C3 /* Localizable.strings */; };
 		DB41D2061D488BB100B21B01 /* UITabBarCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41D2051D488BB100B21B01 /* UITabBarCategory.swift */; };
@@ -117,7 +116,6 @@
 		DB302F691D35E81C007B42C3 /* YPPhotoGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPPhotoGroupCell.m; sourceTree = "<group>"; };
 		DB302F6D1D35E8CF007B42C3 /* YPPhotoGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotoGroupController.h; sourceTree = "<group>"; };
 		DB302F6E1D35E8CF007B42C3 /* YPPhotoGroupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPPhotoGroupController.m; sourceTree = "<group>"; };
-		DB302F701D35E8E8007B42C3 /* YPPhotoGroup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = YPPhotoGroup.storyboard; sourceTree = "<group>"; };
 		DB302F741D361E75007B42C3 /* YPPhotoStoreConfiguraion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotoStoreConfiguraion.h; sourceTree = "<group>"; };
 		DB302F751D361E75007B42C3 /* YPPhotoStoreConfiguraion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPPhotoStoreConfiguraion.m; sourceTree = "<group>"; };
 		DB302F7C1D361F3C007B42C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -298,7 +296,6 @@
 				DB302F6E1D35E8CF007B42C3 /* YPPhotoGroupController.m */,
 				DBE173961D3785E000BDCD6A /* YPPhotoNavgationController.h */,
 				DBE173971D3785E000BDCD6A /* YPPhotoNavgationController.m */,
-				DB302F701D35E8E8007B42C3 /* YPPhotoGroup.storyboard */,
 			);
 			path = GroupController;
 			sourceTree = "<group>";
@@ -474,7 +471,6 @@
 				DB302F3B1D35E3C7007B42C3 /* LaunchScreen.storyboard in Resources */,
 				DB8BDEED1D484CA70029BA9D /* Main.storyboard in Resources */,
 				DB302F381D35E3C7007B42C3 /* Assets.xcassets in Resources */,
-				DB302F711D35E8E8007B42C3 /* YPPhotoGroup.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

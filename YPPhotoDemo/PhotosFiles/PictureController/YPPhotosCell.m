@@ -25,6 +25,13 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 
 @implementation YPPhotosCell
 
+-(void)dealloc
+{
+#ifdef YDEBUG
+    NSLog(@"YPPhotosCell Dealloc");
+#endif
+}
+
 -(void)prepareForReuse
 {
     //重置所有数据
@@ -142,7 +149,6 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 {
     //添加imageView
     _imageView = [[UIImageView alloc]init];
-    _imageView.translatesAutoresizingMaskIntoConstraints = false;
     _imageView.clipsToBounds = true;
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
     _imageView.backgroundColor = [UIColor redColor];
@@ -157,6 +163,7 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
     }];
     
     //等价
+//    _imageView.translatesAutoresizingMaskIntoConstraints = false;
 //    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_imageView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_imageView)]];
 //    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_imageView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_imageView)]];
 }
@@ -165,7 +172,6 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 - (void)addSubMessageView
 {
     _messageView = [[UIView alloc]init];
-    _messageView.translatesAutoresizingMaskIntoConstraints = false;
     
     [self.contentView addSubview:_messageView];
     
@@ -177,6 +183,7 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
     }];
     
     //等价
+//    _messageView.translatesAutoresizingMaskIntoConstraints = false;
 //    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_messageView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messageView)]];
 //    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_messageView(20)]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messageView)]];
     
@@ -189,7 +196,6 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 - (void)addSubMessageImageView
 {
     _messageImageView = [[UIImageView alloc]init];
-    _messageImageView.translatesAutoresizingMaskIntoConstraints = false;
     
     [_messageView addSubview:_messageImageView];
     
@@ -200,6 +206,7 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
         make.size.mas_equalTo(CGSizeMake(30, 20));
     }];
 
+//    _messageImageView.translatesAutoresizingMaskIntoConstraints = false;
 //    [_messageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[_messageImageView(30)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messageImageView)]];
 //    [_messageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_messageImageView(20)]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messageImageView)]];
 
@@ -209,7 +216,6 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 - (void)addSubMessageLabel
 {
     _messageLabel = [[UILabel alloc]init];
-    _messageLabel.translatesAutoresizingMaskIntoConstraints = false;
     
     [_messageView addSubview:_messageLabel];
     
@@ -222,7 +228,7 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
         
     }];
     
-//    
+//    _messageLabel.translatesAutoresizingMaskIntoConstraints = false;
 //    [_messageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_messageImageView]-0-[_messageLabel]-3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messageImageView,_messageLabel)]];
 //    [_messageView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_messageLabel(20)]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_messageLabel)]];
     
@@ -237,7 +243,7 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 - (void)addSubChooseImageView
 {
     _chooseImageView = [[UIButton alloc]init];
-    _chooseImageView.translatesAutoresizingMaskIntoConstraints = false;
+    
     [self.contentView addSubview:_chooseImageView];
     
     [_chooseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -247,6 +253,7 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
         
     }];
     
+//     _chooseImageView.translatesAutoresizingMaskIntoConstraints = false;
 //    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_chooseImageView(25)]-3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chooseImageView)]];
 //    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_chooseImageView(25)]-3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chooseImageView)]];
     

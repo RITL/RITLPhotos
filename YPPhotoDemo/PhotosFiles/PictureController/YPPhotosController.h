@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
+/** 点击右侧取消执行的回调 */
+- (void)photosControllerShouldBack:(YPPhotosController *)viewController;
+
 /** 点击完成进行的回调 */
 - (void)photosController:(YPPhotosController *)viewController photosSelected:(NSArray <PHAsset *> *)assets Status:(NSArray <NSNumber *> *)status;
 

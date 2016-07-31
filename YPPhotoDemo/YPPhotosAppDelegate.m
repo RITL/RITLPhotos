@@ -7,6 +7,7 @@
 //
 
 #import "YPPhotosAppDelegate.h"
+#import "YPPhotoNavgationController.h"
 
 @interface YPPhotosAppDelegate ()
 
@@ -32,6 +33,13 @@ void uncaughtExceptionHandler(NSException * exception)
     
     //捕捉异常
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    
+//    YPPhotoNavgationController * rootViewController = [[YPPhotoNavgationController alloc]init];
+//    
+//    self.window.rootViewController = rootViewController;
+//    
+//    [self.window makeKeyWindow];
+
     
     // Override point for customization after application launch.
     return YES;

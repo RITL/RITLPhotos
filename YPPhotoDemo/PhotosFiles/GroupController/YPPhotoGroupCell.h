@@ -12,11 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YPPhotoGroupCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UIImageView * imageView;
+@property (strong, nonatomic) IBOutlet UILabel * titleLabel;
 
-/// @brief 种类类别的ImageView
-@property (weak, nonatomic) IBOutlet UIImageView *categoryImageView;
+/// @brief 种类类别的ImageView,暂时无用
+@property (strong, nonatomic) IBOutlet UIImageView * categoryImageView;
 
 @end
 

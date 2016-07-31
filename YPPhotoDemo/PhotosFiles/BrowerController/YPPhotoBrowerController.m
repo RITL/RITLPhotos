@@ -138,17 +138,31 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 
 
 #pragma mark - Setter
--(void)setAssets:(PHFetchResult *)assets
+-(void)setAssets:(id)assets
 {
     _assets = assets;
     
-    __weak typeof(self) weakSelf = self;
+//    NSLog(@"%@",NSStringFromClass([assets class]));
     
-    [_assets preparationWithType:PHAssetMediaTypeImage Complete:^(NSArray<PHAsset *> * _Nullable shouldBowerAssets) {
-       
-        weakSelf.browerAssets = shouldBowerAssets;
+    //如果是点击相片进入
+    if ([assets isMemberOfClass:[PHFetchResult class]])
+    {
+        __weak typeof(self) weakSelf = self;
         
-    }];
+        [_assets preparationWithType:PHAssetMediaTypeImage Complete:^(NSArray<PHAsset *> * _Nullable shouldBowerAssets) {
+            
+            weakSelf.browerAssets = shouldBowerAssets;
+            
+        }];
+    }
+    
+    //如果是点击预览进入
+    else if([NSStringFromClass([assets class]) isEqualToString:@"__NSArrayM"])
+    {
+        _browerAssets = assets;
+    }
+    
+
     
 }
 

@@ -11,6 +11,7 @@
 #import "PHObject+SupportCategory.h"
 #import "YPPhotoBottomReusableView.h"
 #import "YPPhotoBrowerController.h"
+#import "YPPhotoDemo-Swift.h"
 
 #ifdef __IPHONE_9_0
 @interface YPPhotosController ()<UIViewControllerPreviewingDelegate,YPPhotoBrowerControllerDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
@@ -28,10 +29,18 @@
 @property (nonatomic, copy) NSString * itemTitle;
 /// @brief 对应浏览控制器进行图片控制
 @property (nonatomic, strong)NSMutableArray <PHAsset *> * selectAssets;
-/// @brief 对应选中图片的状态
-@property (nonatomic, strong)NSMutableArray <NSNumber *> * selectAssetStatus;//存储选择的类型:高清还是原图
+/// @brief 对应选中图片的状态，高清还是原图
+@property (nonatomic, strong)NSMutableArray <NSNumber *> * selectAssetStatus;
 /// @brief 最大允许的选择数目
 @property (nonatomic, strong) NSNumber * maxNumberOfSelectImages;
+/// @brief 底部的tabBar
+@property (nonatomic, strong) UITabBar * bottomBar;
+/// @brief 发送按钮
+@property (strong, nonatomic) UIButton * sendButton;
+/// @brief 显示数目
+@property (strong, nonatomic) UILabel * numberOfLabel;
+/// @brief 预览按钮
+@property (strong, nonatomic) UIButton * bowerButton;
 
 @end
 
@@ -46,10 +55,11 @@
     _selectAssetStatus = [NSMutableArray arrayWithCapacity:0];
     
     //设置navigationItem
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(chooseImagesComplete)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancleButtonDidTap)];
 
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
-
+    [self.view addSubview:self.bottomBar];
     
     CGFloat sizeHeight = (self.collectionView.frame.size.width - 3) / 4;
     _assetSize = CGSizeMake(sizeHeight, sizeHeight);
@@ -64,6 +74,7 @@
     }
  
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -80,6 +91,15 @@
 }
 
 
+- (void)cancleButtonDidTap//cancle button did tap
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(photosControllerShouldBack:)])
+    {
+        [self.delegate photosControllerShouldBack:self];
+    }
+}
+
+
 - (void)chooseImagesComplete//click finish buttonItem
 {
  
@@ -89,6 +109,25 @@
         _selectAssets = nil;
         _selectAssetStatus = nil;
     }
+}
+
+
+- (void)bowerButtonDidTap//预览按钮被点击
+{
+    NSLog(@"预览啦!");
+    //跳转
+    YPPhotoBrowerController * viewController = [[YPPhotoBrowerController alloc]init];
+    
+    //设置
+    [viewController setValue:[self.selectAssets mutableCopy] forKey:@"assets"];
+    [viewController setValue:[self.selectAssets firstObject]forKey:@"currentAsset"];
+    [viewController setValue:self.selectAssets forKey:@"didSelectAssets"];
+    [viewController setValue:self.maxNumberOfSelectImages forKey:@"maxNumberOfSelectImages"];
+    [viewController setValue:self.selectAssetStatus forKey:@"didSelectAssetStatus"];
+    
+    viewController.delegate = self;
+    
+    [self.navigationController pushViewController:viewController animated:true];
 }
 
 
@@ -167,6 +206,8 @@
             [copy_self.selectAssetStatus addObject:[NSNumber numberWithUnsignedInteger:0]];
         }
         
+        [copy_self setNumbersForSelectAssets:copy_self.selectAssets.count];
+        
     };
     
     cell.imageDeselectedBlock = ^(YPPhotosCell * cell){
@@ -177,6 +218,8 @@
         [copy_self.selectAssetStatus removeObjectAtIndex:[copy_self.selectAssets indexOfObject:deleteAsset]];
         
         [copy_self.selectAssets removeObject:deleteAsset];
+        
+        [copy_self setNumbersForSelectAssets:copy_self.selectAssets.count];
         
     };
     
@@ -291,6 +334,7 @@
 /** 返回按钮执行的block,用于colletionView更新 */
 - (void)photoBrowerControllerShouldBack:(YPPhotoBrowerController *)viewController
 {
+    [self setNumbersForSelectAssets:self.selectAssets.count];
     [self.collectionView reloadData];
 }
 
@@ -307,7 +351,7 @@
 {
     if(_collectionView == nil)
     {
-        _collectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:[[UICollectionViewFlowLayout alloc]init]];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height - 44) collectionViewLayout:[[UICollectionViewFlowLayout alloc]init]];
         
         //protocol
         _collectionView.delegate = self;
@@ -322,6 +366,119 @@
     }
     
     return _collectionView;
+}
+
+-(UITabBar *)bottomBar
+{
+    if (_bottomBar == nil)
+    {
+        _bottomBar = [[UITabBar alloc]initWithFrame:CGRectMake(0, self.height - 44, self.width, 44)];
+        
+        //add subviews
+        [_bottomBar addSubview:self.sendButton];
+        [_bottomBar addSubview:self.numberOfLabel];
+        [_bottomBar addSubview:self.bowerButton];
+    }
+    
+    return _bottomBar;
+}
+
+-(UIButton *)bowerButton
+{
+    if (_bowerButton == nil)
+    {
+        _bowerButton = [[UIButton alloc]initWithFrame:CGRectMake(5, 5, 60, 30)];
+        
+        [_bowerButton setTitle:@"预览" forState:UIControlStateNormal];
+        [_bowerButton setTitle:@"预览" forState:UIControlStateDisabled];
+        
+        [_bowerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_bowerButton setTitleColor:[[UIColor blackColor] colorWithAlphaComponent:0.25] forState:UIControlStateDisabled];
+        
+        [_bowerButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [_bowerButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        
+        //默认不可点击
+        _bowerButton.enabled = false;
+        
+        [_bowerButton addTarget:self action:@selector(bowerButtonDidTap) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    
+    return _bowerButton;
+}
+
+
+
+
+-(UIButton *)sendButton
+{
+    if (_sendButton == nil)
+    {
+        _sendButton = [[UIButton alloc]initWithFrame:CGRectMake(_bottomBar.width - 50 - 5, 0, 50, 40)];
+        _sendButton.center = CGPointMake(_sendButton.center.x, _bottomBar.center.y - _bottomBar.originY);
+        
+        [_sendButton setTitle:@"发送" forState:UIControlStateNormal];
+        [_sendButton setTitle:@"发送" forState:UIControlStateDisabled];
+        
+        [_sendButton setTitleColor:UIColorFromRGB(0x2dd58a) forState:UIControlStateNormal];
+        [_sendButton setTitleColor:[UIColorFromRGB(0x2DD58A) colorWithAlphaComponent:0.25] forState:UIControlStateDisabled];
+        
+        [_sendButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [_sendButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        
+        //默认为不可点击
+        _sendButton.enabled = false;
+        
+        [_sendButton addTarget:self action:@selector(chooseImagesComplete) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _sendButton;
+}
+
+-(UILabel *)numberOfLabel
+{
+    if (_numberOfLabel == nil)
+    {
+        _numberOfLabel = [[UILabel alloc]initWithFrame:CGRectMake(_sendButton.originX - 20, 0, 20, 20)];
+        _numberOfLabel.center = CGPointMake(_numberOfLabel.center.x, _sendButton.center.y);
+        _numberOfLabel.backgroundColor = UIColorFromRGB(0x2dd58a);
+        _numberOfLabel.textAlignment = NSTextAlignmentCenter;
+        _numberOfLabel.font = [UIFont boldSystemFontOfSize:14];
+        _numberOfLabel.text = @"";
+        _numberOfLabel.hidden = true;
+        _numberOfLabel.textColor = [UIColor whiteColor];
+        _numberOfLabel.layer.cornerRadius = _numberOfLabel.width / 2.0;
+        _numberOfLabel.clipsToBounds = true;
+    }
+    
+    return _numberOfLabel;
+}
+
+#pragma mark - 设置numberOfLabel的数目
+/** 设置当前选择后的资源数量 */
+- (void)setNumbersForSelectAssets:(NSUInteger)number
+{
+    if (number == 0)
+    {
+        _numberOfLabel.hidden = true;
+        _bowerButton.enabled = false;
+        _sendButton.enabled = false;
+        return;
+    }
+    
+    _numberOfLabel.hidden = false;
+    _bowerButton.enabled = true;
+    _sendButton.enabled = true;
+    _numberOfLabel.text = [NSString stringWithFormat:@"%@",@(number)];
+    _numberOfLabel.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+    
+    //设置动画
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        _numberOfLabel.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    }];
+    
 }
 
 

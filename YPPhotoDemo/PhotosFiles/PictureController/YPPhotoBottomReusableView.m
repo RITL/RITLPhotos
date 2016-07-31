@@ -10,6 +10,11 @@
 
 @implementation YPPhotoBottomReusableView
 
+-(void)dealloc
+{
+    NSLog(@"YPPhotoBottomReusableView Dealloc");
+}
+
 -(void)prepareForReuse
 {
     _numberOfAsset = 375;
