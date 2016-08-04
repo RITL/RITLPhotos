@@ -171,7 +171,7 @@ static NSString * hignSizeArray;
     
     [[PHCachingImageManager defaultManager]requestImageDataForAsset:self options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
         
-        NSString * imageSize = [NSData sizeStringWithLength:imageData.length];
+        NSString * imageSize = sizeWithLength(imageData.length);
         
         //数组进行缓存
         [weakSelf.hignSizeArray addObject:imageSize];
@@ -288,13 +288,15 @@ static NSString * hignSizeArray;
 
 @implementation PHFetchResult (NSArray)
 
--(void)transToArrayComplete:(void (^)(NSArray<PHAssetCollection *> * _Nonnull))arrayObject
+-(void)transToArrayComplete:(void (^)(NSArray<PHAssetCollection *> * _Nonnull, PHFetchResult * _Nonnull))arrayObject
 {
+    __weak typeof(self) weakSelf = self;
+    
     NSMutableArray *  array = [NSMutableArray arrayWithCapacity:0];
     
     if (self.count == 0)
     {
-        arrayObject([[NSMutableArray arrayWithCapacity:0] mutableCopy]);
+        arrayObject([array mutableCopy],weakSelf);
         return;
     }
     
@@ -305,7 +307,7 @@ static NSString * hignSizeArray;
         
         if (idx == self.count - 1)
         {
-            arrayObject([NSArray arrayWithArray:array]);
+            arrayObject([array mutableCopy],weakSelf);
         }
     }];
 }

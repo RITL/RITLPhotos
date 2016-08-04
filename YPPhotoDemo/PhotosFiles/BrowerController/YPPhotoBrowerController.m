@@ -9,8 +9,7 @@
 #import "YPPhotoBrowerController.h"
 #import "YPPhotoBrowerCell.h"
 #import "PHObject+SupportCategory.h"
-#import "YPPhotoDemo-Swift.h"
-
+#import "UIKit+YPPhotoDemo.h"
 
 static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 
@@ -299,13 +298,11 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 
 - (void)buttonDidSelect
 {
-//    [self.selectButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
     [self.selectButtonItem setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
 }
 
 - (void)buttonDidDeselect
 {
-//    [self.selectButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
     [self.selectButtonItem setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
 }
 

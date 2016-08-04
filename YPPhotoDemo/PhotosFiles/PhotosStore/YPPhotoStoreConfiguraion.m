@@ -54,6 +54,23 @@ static NSArray <NSString *>*  groupNames;
     [self localizeHandle];
 }
 
+//初始化方法
+-(instancetype)initWithGroupNames:(NSArray<NSString *> *)groupNames
+{
+    if (self = [super init])
+    {
+        [self setGroupNames:groupNames];
+    }
+    
+    return self;
+}
+
+
++(instancetype)storeConfigWithGroupNames:(NSArray<NSString *> *)groupNames
+{
+    return [[self alloc]initWithGroupNames:groupNames];
+}
+
 
 
 /** 本地化语言处理 */

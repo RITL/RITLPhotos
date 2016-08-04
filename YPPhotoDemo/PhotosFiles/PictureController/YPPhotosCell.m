@@ -56,6 +56,7 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 
 -(void)awakeFromNib
 {
+    [super awakeFromNib];
     [self photosCellWillLoad];
 
 }

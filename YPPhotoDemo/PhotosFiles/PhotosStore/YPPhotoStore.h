@@ -25,21 +25,35 @@ NS_AVAILABLE_IOS(8_0) @interface YPPhotoStore : NSObject<PHPhotoLibraryChangeObs
 
 
 #pragma mark - 相册组
-/** 获取所有的智能分类相册组 */
+
+/** 获取photos提供的所有的智能分类相册组，与config属性无关 */
 - (void)fetchPhotosGroup:(void(^)(NSArray <PHAssetCollection *> *)) groups;
 
-/** 获取默认的智能分类相册组 */
+
+/** 
+ *  根据photos提供的智能分类相册组
+ *  根据config中的groupNamesConfig属性进行筛别
+ */
 - (void)fetchDefaultPhotosGroup:(void(^)(NSArray <PHAssetCollection *> *)) groups;
 
-/** 获取默认的所有相册组 */
-- (void)fetchDefaultAllPhotosGroup:(void(^)(NSArray <PHAssetCollection *> *)) groups;
+
+/** 
+ *  根据photos提供的智能分类相册组
+ *  根据config中的groupNamesConfig属性进行筛别 并添加上其他在手机中创建的相册 
+ */
+- (void)fetchDefaultAllPhotosGroup:(void(^)(NSArray <PHAssetCollection *> * , PHFetchResult *)) groups;
+
 
 #pragma mark - 处理相册的方法
-/** 对存放PHAssetCollection对象的PHFetchResult进行相册名的筛选 */
-- (void)preparationWithFetchResult:(PHFetchResult <PHAssetCollection *> *)fetchResult complete:(void(^)(NSArray <PHAssetCollection *> *)) groups;
 
-/** 获取某个相册的所有照片 */
+/** 获取某个相册的所有照片的简便方法 */
 - (PHFetchResult *)fetchPhotos:(PHAssetCollection *)group;
+
+
+#pragma mark - 发生变化的Block
+
+/// @brief 相册发生变化进行的回调block
+@property (nullable, nonatomic, copy)void(^photoStoreHasChanged)(PHChange * changeInstance);
 
 @end
 

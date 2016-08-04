@@ -37,12 +37,16 @@ YPPHOTO_EXTERN NSString * ConfigurationFavorite;
 YPPHOTO_EXTERN NSString * ConfigurationSelfies;
 
 
-
-
-
 NS_AVAILABLE_IOS(8_0) @interface YPPhotoStoreConfiguraion : NSObject
 
+
 @property (nonatomic, strong, readonly)NSArray * groupNamesConfig;
+
+
+//初始化方法
+- (instancetype)initWithGroupNames:(NSArray <NSString *> *) groupNames;
++ (instancetype)storeConfigWithGroupNames:(NSArray <NSString *> *)groupNames;
+
 
 /** 设置获取的相册名 */
 - (void)setGroupNames:(NSArray <NSString *> *)newGroupNames;

@@ -32,19 +32,17 @@
     self.navigationItem.title = @"相册";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancle" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemDidTap)];
     
-    
     __weak typeof(self)copy_self = self;
-    
-    self.photoStore = [[YPPhotoStore alloc]init];
-    
-    //获取默认的相片组
-    [self.photoStore fetchDefaultAllPhotosGroup:^(NSArray<PHAssetCollection *> * _Nonnull groups) {
 
+    //获取默认的相片组
+    [self.photoStore fetchDefaultAllPhotosGroup:^(NSArray<PHAssetCollection *> * _Nonnull groups , PHFetchResult * _Nonnull fetchResult){
+      
         copy_self.groups = groups;
-        [copy_self pushPhotosViewController:[NSIndexPath indexPathForRow:0 inSection:0] Animate:false];
         [copy_self.tableView reloadData];
+        [copy_self pushPhotosViewController:[NSIndexPath indexPathForRow:0 inSection:0] Animate:false];
         
     }];
+
 }
 
 - (IBAction)cancleItemButtonDidTap:(id)sender
@@ -143,9 +141,67 @@
     [collectionViewController setValue:self.maxNumberOfSelectImages forKey:@"maxNumberOfSelectImages"];
     
     collectionViewController.delegate = self;
-    
+
     [self.navigationController pushViewController:collectionViewController animated:animate];
 }
+
+
+#pragma mark - Getter
+//-(YPPhotoStore *)photoStore
+//{
+//    if (_photoStore == nil)
+//    {
+//        _photoStore = [[YPPhotoStore alloc]init];
+//        
+//        __weak typeof(self) weakSelf = self;
+//        
+//        //注册变化
+//        _photoStore.photoStoreHasChanged = ^(PHChange * changeInstance){
+//            
+//            BOOL isChanged = false;
+//          
+//            NSLog(@"相册变化啦!");
+//            
+//            //获取组的对象数组
+//            NSMutableArray <PHAssetCollection *> * copyCollections = [weakSelf.groups mutableCopy];
+//            
+//            //遍历
+//            for (PHAssetCollection * collection in weakSelf.groups)
+//            {
+//                PHObjectChangeDetails * detail = [changeInstance changeDetailsForObject:collection];
+//                
+//                if (detail != nil)//说明发生了变化
+//                {
+//                    NSLog(@"相册发生变化！");
+//                    //获取index
+//                    NSUInteger index = [weakSelf.groups indexOfObject:collection];
+//                    
+//                    //替换数据
+//                    [copyCollections replaceObjectAtIndex:index withObject:[detail objectAfterChanges]];
+//                    
+//                    isChanged = true;
+//                }
+//                
+//                else
+//                {
+//                    NSLog(@"%@没有发生变化!",collection.localizedTitle);
+//                }
+//            }
+//            
+//            if (isChanged)
+//            {
+//                //刷新吧!
+//                NSLog(@"刷新吧!");
+//                weakSelf.groups = copyCollections;
+//                [weakSelf.tableView reloadData];
+//            }
+//        };
+//        
+//        
+//    }
+//    
+//    return _photoStore;
+//}
 
 
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB16C50F1D5332C5003CD751 /* UIKit+YPPhotoDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = DB16C50E1D5332C5003CD751 /* UIKit+YPPhotoDemo.m */; };
 		DB19EF8F1D45BD2400891ACF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB19EF751D45BD2400891ACF /* Info.plist */; };
 		DB19EF901D45BD2400891ACF /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = DB19EF771D45BD2400891ACF /* MASCompositeConstraint.m */; };
 		DB19EF911D45BD2400891ACF /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = DB19EF7A1D45BD2400891ACF /* MASConstraint.m */; };
@@ -18,7 +19,10 @@
 		DB19EF971D45BD2400891ACF /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DB19EF891D45BD2400891ACF /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		DB19EF981D45BD2400891ACF /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DB19EF8B1D45BD2400891ACF /* View+MASAdditions.m */; };
 		DB19EF991D45BD2400891ACF /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DB19EF8E1D45BD2400891ACF /* ViewController+MASAdditions.m */; };
-		DB22DE691D420E0B00986E00 /* RITLAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = DB22DE681D420E0B00986E00 /* RITLAsset.m */; };
+		DB2587F11D50848800C72D6B /* PHObject+SupportCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2587E71D50848800C72D6B /* PHObject+SupportCategory.m */; };
+		DB2587F31D50848800C72D6B /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2587EA1D50848800C72D6B /* UIView+Category.m */; };
+		DB2587F41D50848800C72D6B /* UIViewController+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2587EC1D50848800C72D6B /* UIViewController+Frame.m */; };
+		DB2587F51D50848800C72D6B /* YPPhotos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB2587EE1D50848800C72D6B /* YPPhotos.xcassets */; };
 		DB302F2D1D35E3C7007B42C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB302F2C1D35E3C7007B42C3 /* main.m */; };
 		DB302F301D35E3C7007B42C3 /* YPPhotosAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB302F2F1D35E3C7007B42C3 /* YPPhotosAppDelegate.m */; };
 		DB302F331D35E3C7007B42C3 /* YPhotoMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB302F321D35E3C7007B42C3 /* YPhotoMainViewController.m */; };
@@ -31,17 +35,10 @@
 		DB302F6F1D35E8CF007B42C3 /* YPPhotoGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB302F6E1D35E8CF007B42C3 /* YPPhotoGroupController.m */; };
 		DB302F761D361E75007B42C3 /* YPPhotoStoreConfiguraion.m in Sources */ = {isa = PBXBuildFile; fileRef = DB302F751D361E75007B42C3 /* YPPhotoStoreConfiguraion.m */; };
 		DB302F791D361F36007B42C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB302F7B1D361F36007B42C3 /* Localizable.strings */; };
-		DB41D2061D488BB100B21B01 /* UITabBarCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41D2051D488BB100B21B01 /* UITabBarCategory.swift */; };
-		DB482F231D45938E00074C6D /* NSData+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = DB482F221D45938E00074C6D /* NSData+Size.m */; };
-		DB6D4F981D4881AC0089D685 /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6D4F951D4881AC0089D685 /* UIView+Category.m */; };
-		DB6D4F991D4881AC0089D685 /* UIViewController+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6D4F971D4881AC0089D685 /* UIViewController+Frame.m */; };
-		DB6D4F9C1D4883CC0089D685 /* NaviationCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6D4F9B1D4883CC0089D685 /* NaviationCategory.swift */; };
 		DB8BDEED1D484CA70029BA9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB8BDEEC1D484CA70029BA9D /* Main.storyboard */; };
 		DBC3E4DC1D4845F9002FD0C7 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC3E4DB1D4845F9002FD0C7 /* Photos.framework */; };
 		DBE173821D37273D00BDCD6A /* YPPhotosController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE173811D37273D00BDCD6A /* YPPhotosController.m */; };
 		DBE173851D37275400BDCD6A /* YPPhotosCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE173841D37275400BDCD6A /* YPPhotosCell.m */; };
-		DBE1738A1D373AC700BDCD6A /* PHObject+SupportCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE173891D373AC700BDCD6A /* PHObject+SupportCategory.m */; };
-		DBE1738C1D37622B00BDCD6A /* YPPhotos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBE1738B1D37622B00BDCD6A /* YPPhotos.xcassets */; };
 		DBE1738F1D3771CC00BDCD6A /* YPPhotoBottomReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE1738E1D3771CC00BDCD6A /* YPPhotoBottomReusableView.m */; };
 		DBE173951D3779D000BDCD6A /* YPPhotoBrowerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE173941D3779D000BDCD6A /* YPPhotoBrowerController.m */; };
 		DBE173981D3785E000BDCD6A /* YPPhotoNavgationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE173971D3785E000BDCD6A /* YPPhotoNavgationController.m */; };
@@ -66,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB16C50D1D5332C5003CD751 /* UIKit+YPPhotoDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+YPPhotoDemo.h"; sourceTree = "<group>"; };
+		DB16C50E1D5332C5003CD751 /* UIKit+YPPhotoDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIKit+YPPhotoDemo.m"; sourceTree = "<group>"; };
 		DB19EF751D45BD2400891ACF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB19EF761D45BD2400891ACF /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		DB19EF771D45BD2400891ACF /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
@@ -92,8 +91,14 @@
 		DB19EF8C1D45BD2400891ACF /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		DB19EF8D1D45BD2400891ACF /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		DB19EF8E1D45BD2400891ACF /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
-		DB22DE671D420E0B00986E00 /* RITLAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLAsset.h; sourceTree = "<group>"; };
-		DB22DE681D420E0B00986E00 /* RITLAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLAsset.m; sourceTree = "<group>"; };
+		DB2587E61D50848800C72D6B /* PHObject+SupportCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHObject+SupportCategory.h"; sourceTree = "<group>"; };
+		DB2587E71D50848800C72D6B /* PHObject+SupportCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHObject+SupportCategory.m"; sourceTree = "<group>"; };
+		DB2587E91D50848800C72D6B /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
+		DB2587EA1D50848800C72D6B /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
+		DB2587EB1D50848800C72D6B /* UIViewController+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Frame.h"; sourceTree = "<group>"; };
+		DB2587EC1D50848800C72D6B /* UIViewController+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Frame.m"; sourceTree = "<group>"; };
+		DB2587ED1D50848800C72D6B /* YPPhotoDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotoDefines.h; sourceTree = "<group>"; };
+		DB2587EE1D50848800C72D6B /* YPPhotos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = YPPhotos.xcassets; sourceTree = "<group>"; };
 		DB302F281D35E3C7007B42C3 /* YPPhotoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YPPhotoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB302F2C1D35E3C7007B42C3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB302F2E1D35E3C7007B42C3 /* YPPhotosAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YPPhotosAppDelegate.h; sourceTree = "<group>"; };
@@ -121,25 +126,12 @@
 		DB302F7C1D361F3C007B42C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DB302F7E1D361F6C007B42C3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		DB302F7F1D361F6C007B42C3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		DB302FCA1D363A07007B42C3 /* YPPhotoDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YPPhotoDefines.h; sourceTree = "<group>"; };
-		DB41D2051D488BB100B21B01 /* UITabBarCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITabBarCategory.swift; sourceTree = "<group>"; };
-		DB482F211D45938E00074C6D /* NSData+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Size.h"; sourceTree = "<group>"; };
-		DB482F221D45938E00074C6D /* NSData+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Size.m"; sourceTree = "<group>"; };
-		DB6D4F941D4881AC0089D685 /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
-		DB6D4F951D4881AC0089D685 /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
-		DB6D4F961D4881AC0089D685 /* UIViewController+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Frame.h"; sourceTree = "<group>"; };
-		DB6D4F971D4881AC0089D685 /* UIViewController+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Frame.m"; sourceTree = "<group>"; };
-		DB6D4F9B1D4883CC0089D685 /* NaviationCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaviationCategory.swift; sourceTree = "<group>"; };
-		DB6D4F9F1D4884710089D685 /* YPPhotoDemo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YPPhotoDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		DB8BDEEC1D484CA70029BA9D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DBC3E4DB1D4845F9002FD0C7 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		DBE173801D37273D00BDCD6A /* YPPhotosController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotosController.h; sourceTree = "<group>"; };
 		DBE173811D37273D00BDCD6A /* YPPhotosController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPPhotosController.m; sourceTree = "<group>"; };
 		DBE173831D37275400BDCD6A /* YPPhotosCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotosCell.h; sourceTree = "<group>"; };
 		DBE173841D37275400BDCD6A /* YPPhotosCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPPhotosCell.m; sourceTree = "<group>"; };
-		DBE173881D373AC700BDCD6A /* PHObject+SupportCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHObject+SupportCategory.h"; sourceTree = "<group>"; };
-		DBE173891D373AC700BDCD6A /* PHObject+SupportCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHObject+SupportCategory.m"; sourceTree = "<group>"; };
-		DBE1738B1D37622B00BDCD6A /* YPPhotos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = YPPhotos.xcassets; sourceTree = "<group>"; };
 		DBE1738D1D3771CC00BDCD6A /* YPPhotoBottomReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotoBottomReusableView.h; sourceTree = "<group>"; };
 		DBE1738E1D3771CC00BDCD6A /* YPPhotoBottomReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPPhotoBottomReusableView.m; sourceTree = "<group>"; };
 		DBE173931D3779D000BDCD6A /* YPPhotoBrowerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotoBrowerController.h; sourceTree = "<group>"; };
@@ -210,6 +202,23 @@
 			path = YPPhotoDemo/Masonry;
 			sourceTree = SOURCE_ROOT;
 		};
+		DB2587E21D50848800C72D6B /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				DB2587ED1D50848800C72D6B /* YPPhotoDefines.h */,
+				DB2587E61D50848800C72D6B /* PHObject+SupportCategory.h */,
+				DB2587E71D50848800C72D6B /* PHObject+SupportCategory.m */,
+				DB2587E91D50848800C72D6B /* UIView+Category.h */,
+				DB2587EA1D50848800C72D6B /* UIView+Category.m */,
+				DB2587EB1D50848800C72D6B /* UIViewController+Frame.h */,
+				DB2587EC1D50848800C72D6B /* UIViewController+Frame.m */,
+				DB2587EE1D50848800C72D6B /* YPPhotos.xcassets */,
+				DB16C50D1D5332C5003CD751 /* UIKit+YPPhotoDemo.h */,
+				DB16C50E1D5332C5003CD751 /* UIKit+YPPhotoDemo.m */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
 		DB302F1F1D35E3C7007B42C3 = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +287,7 @@
 		DB302F5E1D35E3E2007B42C3 /* PhotosFiles */ = {
 			isa = PBXGroup;
 			children = (
+				DB2587E21D50848800C72D6B /* Supporting */,
 				DB19EF741D45BD2400891ACF /* Masonry */,
 				DBE173901D37794200BDCD6A /* BrowerController */,
 				DB302F601D35E595007B42C3 /* PhotosStore */,
@@ -303,26 +313,11 @@
 		DB302F601D35E595007B42C3 /* PhotosStore */ = {
 			isa = PBXGroup;
 			children = (
-				DB6D4F9F1D4884710089D685 /* YPPhotoDemo-Bridging-Header.h */,
-				DB6D4F9B1D4883CC0089D685 /* NaviationCategory.swift */,
-				DB41D2051D488BB100B21B01 /* UITabBarCategory.swift */,
-				DB6D4F941D4881AC0089D685 /* UIView+Category.h */,
-				DB6D4F951D4881AC0089D685 /* UIView+Category.m */,
-				DB6D4F961D4881AC0089D685 /* UIViewController+Frame.h */,
-				DB6D4F971D4881AC0089D685 /* UIViewController+Frame.m */,
-				DB22DE671D420E0B00986E00 /* RITLAsset.h */,
-				DB22DE681D420E0B00986E00 /* RITLAsset.m */,
-				DB302FCA1D363A07007B42C3 /* YPPhotoDefines.h */,
 				DB302F621D35E5AE007B42C3 /* YPPhotoStore.h */,
 				DB302F631D35E5AE007B42C3 /* YPPhotoStore.m */,
 				DB302F741D361E75007B42C3 /* YPPhotoStoreConfiguraion.h */,
 				DB302F751D361E75007B42C3 /* YPPhotoStoreConfiguraion.m */,
 				DB302F7B1D361F36007B42C3 /* Localizable.strings */,
-				DBE173881D373AC700BDCD6A /* PHObject+SupportCategory.h */,
-				DBE173891D373AC700BDCD6A /* PHObject+SupportCategory.m */,
-				DBE1738B1D37622B00BDCD6A /* YPPhotos.xcassets */,
-				DB482F211D45938E00074C6D /* NSData+Size.h */,
-				DB482F221D45938E00074C6D /* NSData+Size.m */,
 			);
 			path = PhotosStore;
 			sourceTree = "<group>";
@@ -427,7 +422,6 @@
 				TargetAttributes = {
 					DB302F271D35E3C7007B42C3 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 8S4NWFZC5J;
 					};
 					DB302F401D35E3C7007B42C3 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -466,7 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB302F791D361F36007B42C3 /* Localizable.strings in Resources */,
-				DBE1738C1D37622B00BDCD6A /* YPPhotos.xcassets in Resources */,
+				DB2587F51D50848800C72D6B /* YPPhotos.xcassets in Resources */,
 				DB19EF8F1D45BD2400891ACF /* Info.plist in Resources */,
 				DB302F3B1D35E3C7007B42C3 /* LaunchScreen.storyboard in Resources */,
 				DB8BDEED1D484CA70029BA9D /* Main.storyboard in Resources */,
@@ -495,35 +489,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB2587F31D50848800C72D6B /* UIView+Category.m in Sources */,
 				DBE1738F1D3771CC00BDCD6A /* YPPhotoBottomReusableView.m in Sources */,
 				DB19EF951D45BD2400891ACF /* MASViewConstraint.m in Sources */,
-				DB482F231D45938E00074C6D /* NSData+Size.m in Sources */,
 				DB19EF911D45BD2400891ACF /* MASConstraint.m in Sources */,
-				DBE1738A1D373AC700BDCD6A /* PHObject+SupportCategory.m in Sources */,
-				DB6D4F9C1D4883CC0089D685 /* NaviationCategory.swift in Sources */,
 				DB302F6B1D35E81C007B42C3 /* YPPhotoGroupCell.m in Sources */,
+				DB2587F41D50848800C72D6B /* UIViewController+Frame.m in Sources */,
 				DBE173821D37273D00BDCD6A /* YPPhotosController.m in Sources */,
 				DB302F331D35E3C7007B42C3 /* YPhotoMainViewController.m in Sources */,
 				DB19EF991D45BD2400891ACF /* ViewController+MASAdditions.m in Sources */,
+				DB2587F11D50848800C72D6B /* PHObject+SupportCategory.m in Sources */,
 				DB19EF981D45BD2400891ACF /* View+MASAdditions.m in Sources */,
 				DB302F641D35E5AE007B42C3 /* YPPhotoStore.m in Sources */,
 				DB19EF941D45BD2400891ACF /* MASViewAttribute.m in Sources */,
-				DB41D2061D488BB100B21B01 /* UITabBarCategory.swift in Sources */,
 				DBE3FBDC1D38705A00F4E7B8 /* YPPhotoBrowerCell.m in Sources */,
 				DBE173851D37275400BDCD6A /* YPPhotosCell.m in Sources */,
-				DB22DE691D420E0B00986E00 /* RITLAsset.m in Sources */,
 				DB19EF901D45BD2400891ACF /* MASCompositeConstraint.m in Sources */,
 				DB19EF931D45BD2400891ACF /* MASLayoutConstraint.m in Sources */,
 				DB302F6F1D35E8CF007B42C3 /* YPPhotoGroupController.m in Sources */,
 				DBE173951D3779D000BDCD6A /* YPPhotoBrowerController.m in Sources */,
-				DB6D4F981D4881AC0089D685 /* UIView+Category.m in Sources */,
 				DB19EF921D45BD2400891ACF /* MASConstraintMaker.m in Sources */,
 				DB19EF961D45BD2400891ACF /* NSArray+MASAdditions.m in Sources */,
-				DB6D4F991D4881AC0089D685 /* UIViewController+Frame.m in Sources */,
 				DB302F301D35E3C7007B42C3 /* YPPhotosAppDelegate.m in Sources */,
 				DB302F761D361E75007B42C3 /* YPPhotoStoreConfiguraion.m in Sources */,
 				DB302F2D1D35E3C7007B42C3 /* main.m in Sources */,
 				DBE173981D3785E000BDCD6A /* YPPhotoNavgationController.m in Sources */,
+				DB16C50F1D5332C5003CD751 /* UIKit+YPPhotoDemo.m in Sources */,
 				DB19EF971D45BD2400891ACF /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

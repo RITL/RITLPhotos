@@ -11,7 +11,7 @@
 #import "PHObject+SupportCategory.h"
 #import "YPPhotoBottomReusableView.h"
 #import "YPPhotoBrowerController.h"
-#import "YPPhotoDemo-Swift.h"
+#import "UIKit+YPPhotoDemo.h"
 
 #ifdef __IPHONE_9_0
 @interface YPPhotosController ()<UIViewControllerPreviewingDelegate,YPPhotoBrowerControllerDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>

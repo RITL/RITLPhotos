@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PHFetchResult (NSArray)
 
 /** 将PHFetchResult对象转成NSArray对象 */
-- (void)transToArrayComplete:(void(^)(NSArray <PHAssetCollection *> *)) arrayObject;
+- (void)transToArrayComplete:(void(^)(NSArray <PHAssetCollection *> *, PHFetchResult *)) arrayObject;
 
 @end
 
