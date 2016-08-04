@@ -13,5 +13,85 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YPPhotoDemo/PhotosFiles/PhotosStore/YPPhotoStore.m"
+            timestampString = "491993974.031478"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-fetchDefaultAllPhotosGroup:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YPPhotoDemo/PhotosFiles/PhotosStore/YPPhotoStore.h"
+            timestampString = "491993988.435778"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-fetchDefaultAllPhotosGroup:"
+            landmarkType = "4">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[YPPhotoStore photoStoreHasChanged]"
+                  moduleName = "YPPhotoDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuewen/Desktop/InterfaceBuilder/YPPhotoDemo%20/YPPhotoDemo/PhotosFiles/PhotosStore/YPPhotoStore.h"
+                  timestampString = "491994214.754477"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[YPPhotoStore setPhotoStoreHasChanged:]"
+                  moduleName = "YPPhotoDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuewen/Desktop/InterfaceBuilder/YPPhotoDemo%20/YPPhotoDemo/PhotosFiles/PhotosStore/YPPhotoStore.h"
+                  timestampString = "491994214.754607"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YPPhotoDemo/PhotosFiles/PhotosStore/YPPhotoStore.m"
+            timestampString = "491994221.209472"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-fetchDefaultAllPhotosGroup:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

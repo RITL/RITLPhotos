@@ -25,6 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.photoStore = [[YPPhotoStore alloc]init];
+    
     self.tableView.tableFooterView = [[UIView alloc]init];
     [self.tableView registerClass:[YPPhotoGroupCell class] forCellReuseIdentifier:@"YPPhotoGroupCell"];
     
