@@ -24,6 +24,9 @@
 #pragma mark - *************** View中心
 @property (nonatomic, assign, readonly)CGPoint center;
 
+//---------------新增centerX 以及 centerY - Yue - 2016-08-05
+@property (nonatomic, readonly, assign)CGFloat centerX;
+@property (nonatomic, readonly, assign)CGFloat centerY;
 
 #pragma mark - *************** View的bounds
 @property (nonatomic, assign, readonly)CGRect bounds;

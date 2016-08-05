@@ -58,7 +58,9 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 -(void)dealloc
 {
     [self.photoLibaray unregisterChangeObserver:self];
+    NSLog(@"%@ Dealloc",NSStringFromClass([self class]));
 }
+
 
 
 

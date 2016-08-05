@@ -50,7 +50,6 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 
 
 
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

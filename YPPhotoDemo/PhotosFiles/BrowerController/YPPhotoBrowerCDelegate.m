@@ -98,8 +98,8 @@
         //设置图片
         [_viewController.browerDatasource.currentAsset representationImageWithSize:cell.frame.size complete:^(UIImage * _Nullable image, PHAsset * _Nonnull asset) {
             
-            cell.imageView.image = image;
-            
+                cell.imageView.image = image;
+
         }];
     
         //清除显示的大小

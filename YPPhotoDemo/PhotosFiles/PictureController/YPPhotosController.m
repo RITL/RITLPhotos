@@ -12,6 +12,7 @@
 #import "YPPhotoBottomReusableView.h"
 #import "YPPhotoBrowerController.h"
 #import "UIKit+YPPhotoDemo.h"
+#import "YPPhotoPreviewController.h"
 
 #ifdef __IPHONE_9_0
 @interface YPPhotosController ()<UIViewControllerPreviewingDelegate,YPPhotoBrowerControllerDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
@@ -147,7 +148,7 @@
     
     
 #ifdef __IPHONE_9_0
-    
+//    
 //    BOOL isPhoto = (((PHAsset *)[self.assets objectAtIndex:indexPath.row]).mediaType == PHAssetMediaTypeImage);
 //    
 //    //确定为图片
@@ -289,13 +290,23 @@
     //获取当前cell的indexPath
     NSIndexPath * indexPath = [self.collectionView indexPathForCell:(YPPhotosCell *)previewingContext.sourceView];
     
-    return [self createBrowerController:indexPath];
+    //获得当前的资源
+    PHAsset * asset = (PHAsset *)[_assets objectAtIndex:indexPath.item];
+    
+    YPPhotoPreviewController * viewController = [YPPhotoPreviewController previewWithShowAsset:asset];
+    
+//    viewController.assetSize = _assetSize;
+    
+    return viewController;
 }
 
 
 - (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit
 {
-    [self showViewController:viewControllerToCommit sender:self];
+    //获取当前cell的indexPath
+    NSIndexPath * indexPath = [self.collectionView indexPathForCell:(YPPhotosCell *)previewingContext.sourceView];
+    
+    [self showViewController:[self createBrowerController:indexPath] sender:self];
 }
 #endif
 

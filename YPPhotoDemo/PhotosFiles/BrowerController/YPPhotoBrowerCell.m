@@ -16,6 +16,7 @@
 /// @brief 底部负责滚动的滚动视图
 @property (strong, nonatomic) IBOutlet UIScrollView *bottomScrollView;
 
+//手势
 @property (nonatomic, strong) UITapGestureRecognizer * simpleTapGesture;
 @property (nonatomic, strong) UITapGestureRecognizer * doubleTapGesture;
 

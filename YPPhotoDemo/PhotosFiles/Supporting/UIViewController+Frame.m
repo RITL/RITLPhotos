@@ -35,6 +35,16 @@
     return self.view.center;
 }
 
+-(CGFloat)centerX
+{
+    return self.center.x;
+}
+
+-(CGFloat)centerY
+{
+    return self.center.y;
+}
+
 -(CGRect)bounds
 {
     return self.view.bounds;

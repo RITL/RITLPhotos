@@ -182,21 +182,6 @@ static NSString * hignSizeArray;
         
     }];
     
-//    
-//    [[PHCachingImageManager defaultManager]requestImageForAsset:self targetSize:newSize contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-//        
-//        NSData * imageData = UIImageJPEGRepresentation(result, 0.01f);//压缩至百分之0.1
-//        
-//        NSString * imageSize = [NSData sizeStringWithLength:imageData.length * 100];
-//        
-//        //数组进行缓存
-//        [weakSelf.hignSizeArray addObject:imageSize];
-//        
-//        //将大小传出，默认为btye
-//        completeBlock(imageSize);
-//        
-//    }];
-    
     if (![self.highQualityArray containsObject:[NSValue valueWithCGSize:newSize]])
     {
         //进行大小缓存

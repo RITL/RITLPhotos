@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YPPhotoBrowerDataSource : NSObject <UICollectionViewDataSource>
+NS_CLASS_AVAILABLE_IOS(8_0) @interface YPPhotoBrowerDataSource : NSObject <UICollectionViewDataSource>
 
 /// @brief 最大的选择数量
 @property (nonatomic, strong) NSNumber * maxNumberOfSelectImages;

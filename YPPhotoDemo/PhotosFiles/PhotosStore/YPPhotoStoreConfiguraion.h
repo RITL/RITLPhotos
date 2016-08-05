@@ -37,7 +37,7 @@ YPPHOTO_EXTERN NSString * ConfigurationFavorite;
 YPPHOTO_EXTERN NSString * ConfigurationSelfies;
 
 
-NS_AVAILABLE_IOS(8_0) @interface YPPhotoStoreConfiguraion : NSObject
+@interface YPPhotoStoreConfiguraion : NSObject
 
 
 @property (nonatomic, strong, readonly)NSArray * groupNamesConfig;
