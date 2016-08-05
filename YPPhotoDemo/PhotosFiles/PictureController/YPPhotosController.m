@@ -119,11 +119,8 @@
     YPPhotoBrowerController * viewController = [[YPPhotoBrowerController alloc]init];
     
     //设置
-    [viewController setValue:[self.selectAssets mutableCopy] forKey:@"assets"];
-    [viewController setValue:[self.selectAssets firstObject]forKey:@"currentAsset"];
-    [viewController setValue:self.selectAssets forKey:@"didSelectAssets"];
-    [viewController setValue:self.maxNumberOfSelectImages forKey:@"maxNumberOfSelectImages"];
-    [viewController setValue:self.selectAssetStatus forKey:@"didSelectAssetStatus"];
+    [viewController setBrowerDataSource:_selectAssets currentAsset:_selectAssets.firstObject didSelectAssets:_selectAssets status:_selectAssetStatus maxNumberOfSelectImages:_maxNumberOfSelectImages];
+    
     
     viewController.delegate = self;
     
@@ -312,16 +309,6 @@
     //设置
     [viewController setBrowerDataSource:_assets currentAsset:((PHAsset *)[_assets objectAtIndex:indexPath.row]) didSelectAssets:_selectAssets status:_selectAssetStatus maxNumberOfSelectImages:_maxNumberOfSelectImages];
     
-    
-//    [viewController setBrowerDataSource:self.selectAssets status:self.selectAssetStatus];
-//    [viewController setBrowerDelegate:self.assets currentAsset:((PHAsset *)[self.assets objectAtIndex:indexPath.row])];
-    
-//    [viewController setValue:self.assets forKey:@"assets"];
-//    [viewController setValue:(PHAsset *)[self.assets objectAtIndex:indexPath.row] forKey:@"currentAsset"];
-//    [viewController setValue:self.selectAssets forKey:@"didSelectAssets"];
-//    [viewController setValue:self.maxNumberOfSelectImages forKey:@"maxNumberOfSelectImages"];
-//    [viewController setValue:self.selectAssetStatus forKey:@"didSelectAssetStatus"];
-    
     viewController.delegate = self;
 
     return viewController;
@@ -400,9 +387,7 @@
         _bowerButton.enabled = false;
         
         [_bowerButton addTarget:self action:@selector(bowerButtonDidTap) forControlEvents:UIControlEventTouchUpInside];
-        
     }
-    
     return _bowerButton;
 }
 

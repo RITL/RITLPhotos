@@ -14,26 +14,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_CLASS_AVAILABLE_IOS(8_0) @interface YPPhotoBrowerCDelegate : NSObject <UICollectionViewDelegateFlowLayout>
 
-
 /// @brief 链接的viewController
 @property (nonatomic, readonly, weak) YPPhotoBrowerController * viewController;
-
 
 /// 便利初始化方法
 - (instancetype)initWithLinkViewController:(YPPhotoBrowerController *)viewController;
 
-
-
 /// 便利构造器
 + (instancetype)borwerDelegateWithLinkViewController:(YPPhotoBrowerController *)viewController;
-
-
 
 #pragma mark - public function
 
 /// 滚动结束调用
 - (void)scrollViewEndDecelerating:(UIScrollView *)scrollView;
-
 
 @end
 

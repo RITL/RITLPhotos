@@ -61,21 +61,26 @@ NS_CLASS_AVAILABLE_IOS(8_0) @interface YPPhotoBrowerController : UIViewControlle
 - (void)buttonDidSelect;
 /// 消除选择按钮的状态
 - (void)buttonDidDeselect;
-
 /// 转变为高清图状态
 - (void)changeHightQualityStatus;
 /// 转变为非高清图状态
 - (void)changeDehightQualityStatus;
-
 /// 设置选择的资源数
 - (void)setNumbersForSelectAssets;
-
 /// 显示当前资源的大小
 - (void)showHighQualityData;
 
 
 //Data
-/// 设置浏览数据源对象的资源
+/**
+ *  设置浏览数据源对象的资源
+ *
+ *  @param assets          传入浏览的对象，可以为Array类型或者PHFetchResult对象
+ *  @param currentAsset    当前第一个占位的资源对象
+ *  @param didSelectAssets 已经选择的资源对象数组
+ *  @param status          已经选择资源对象的状态数组
+ *  @param maxNumber       最多支持的数量
+ */
 - (void)setBrowerDataSource:(id)assets currentAsset:(PHAsset *)currentAsset didSelectAssets:(NSMutableArray <PHAsset *> *)didSelectAssets status:(NSMutableArray <NSNumber *> *)status maxNumberOfSelectImages:(NSNumber *)maxNumber;
 
 

@@ -34,14 +34,31 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, weak) YPPhotoBrowerController * viewController;
 
 
-/// 便利初始化方法
+/**
+ *  便利初始化方法
+ *
+ *  @param currentAsset         当前的资源对象
+ *  @param browerAssets         需要浏览的资源数组
+ *  @param selectAssets         已经选择的资源数组
+ *  @param didSelectAssetStatus 已经选择的资源状态数组
+ *  @param viewController       连接的YPPhotoBrowerController对象
+ */
 - (instancetype)initWithCurrentAsset:(PHAsset *)currentAsset
                         BrowerAssets:(NSArray <PHAsset *> *)browerAssets
                         selectAssets:(NSMutableArray <PHAsset *> * )selectAssets
                               status:(NSMutableArray <NSNumber *> *)didSelectAssetStatus
                 browerViewController:(YPPhotoBrowerController *)viewController;
 
-/// 便利构造器
+
+/**
+ *  便利构造器
+ *
+ *  @param currentAsset         当前的资源对象
+ *  @param browerAssets         需要浏览的资源数组
+ *  @param selectAssets         已经选择的资源数组
+ *  @param didSelectAssetStatus 已经选择的资源状态数组
+ *  @param viewController       连接的YPPhotoBrowerController对象
+ */
 + (instancetype)browerDataSourceWithCurrentAsset:(PHAsset *)currentAsset
                                     BrowerAssets:(NSArray <PHAsset *> *)browerAssets
                                     selectAssets:(NSMutableArray <PHAsset *> * )selectAssets

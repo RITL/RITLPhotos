@@ -27,26 +27,9 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 @property (nonatomic, strong) UIColor * selectedColor;//仅表示选中的圆圈的颜色
 @property (nonatomic, strong) UIColor * deselectedColor;
 
-//弱引用，适用于Block
-@property (nonatomic, weak)YPPhotoBrowerController * weakSelf;
-
-
-
 @end
 
 @implementation YPPhotoBrowerController
-
--(instancetype)init
-{
-    if (self = [super init])
-    {
-        _weakSelf = self;
-    }
-    
-    return self;
-}
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
