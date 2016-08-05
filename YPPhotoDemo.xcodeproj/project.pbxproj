@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DB16C50F1D5332C5003CD751 /* UIKit+YPPhotoDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = DB16C50E1D5332C5003CD751 /* UIKit+YPPhotoDemo.m */; };
+		DB16C5121D533E08003CD751 /* YPPhotoBrowerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DB16C5111D533E08003CD751 /* YPPhotoBrowerDataSource.m */; };
+		DB16C5151D533E37003CD751 /* YPPhotoBrowerCDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB16C5141D533E37003CD751 /* YPPhotoBrowerCDelegate.m */; };
 		DB19EF8F1D45BD2400891ACF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB19EF751D45BD2400891ACF /* Info.plist */; };
 		DB19EF901D45BD2400891ACF /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = DB19EF771D45BD2400891ACF /* MASCompositeConstraint.m */; };
 		DB19EF911D45BD2400891ACF /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = DB19EF7A1D45BD2400891ACF /* MASConstraint.m */; };
@@ -65,6 +67,10 @@
 /* Begin PBXFileReference section */
 		DB16C50D1D5332C5003CD751 /* UIKit+YPPhotoDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+YPPhotoDemo.h"; sourceTree = "<group>"; };
 		DB16C50E1D5332C5003CD751 /* UIKit+YPPhotoDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIKit+YPPhotoDemo.m"; sourceTree = "<group>"; };
+		DB16C5101D533E08003CD751 /* YPPhotoBrowerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotoBrowerDataSource.h; sourceTree = "<group>"; };
+		DB16C5111D533E08003CD751 /* YPPhotoBrowerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPPhotoBrowerDataSource.m; sourceTree = "<group>"; };
+		DB16C5131D533E37003CD751 /* YPPhotoBrowerCDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotoBrowerCDelegate.h; sourceTree = "<group>"; };
+		DB16C5141D533E37003CD751 /* YPPhotoBrowerCDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPPhotoBrowerCDelegate.m; sourceTree = "<group>"; };
 		DB19EF751D45BD2400891ACF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB19EF761D45BD2400891ACF /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		DB19EF771D45BD2400891ACF /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
@@ -346,6 +352,10 @@
 		DBE173901D37794200BDCD6A /* BrowerController */ = {
 			isa = PBXGroup;
 			children = (
+				DB16C5131D533E37003CD751 /* YPPhotoBrowerCDelegate.h */,
+				DB16C5141D533E37003CD751 /* YPPhotoBrowerCDelegate.m */,
+				DB16C5101D533E08003CD751 /* YPPhotoBrowerDataSource.h */,
+				DB16C5111D533E08003CD751 /* YPPhotoBrowerDataSource.m */,
 				DBE3FBDA1D38705A00F4E7B8 /* YPPhotoBrowerCell.h */,
 				DBE3FBDB1D38705A00F4E7B8 /* YPPhotoBrowerCell.m */,
 				DBE173931D3779D000BDCD6A /* YPPhotoBrowerController.h */,
@@ -422,6 +432,7 @@
 				TargetAttributes = {
 					DB302F271D35E3C7007B42C3 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 8S4NWFZC5J;
 					};
 					DB302F401D35E3C7007B42C3 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -504,6 +515,7 @@
 				DB19EF941D45BD2400891ACF /* MASViewAttribute.m in Sources */,
 				DBE3FBDC1D38705A00F4E7B8 /* YPPhotoBrowerCell.m in Sources */,
 				DBE173851D37275400BDCD6A /* YPPhotosCell.m in Sources */,
+				DB16C5121D533E08003CD751 /* YPPhotoBrowerDataSource.m in Sources */,
 				DB19EF901D45BD2400891ACF /* MASCompositeConstraint.m in Sources */,
 				DB19EF931D45BD2400891ACF /* MASLayoutConstraint.m in Sources */,
 				DB302F6F1D35E8CF007B42C3 /* YPPhotoGroupController.m in Sources */,
@@ -514,6 +526,7 @@
 				DB302F761D361E75007B42C3 /* YPPhotoStoreConfiguraion.m in Sources */,
 				DB302F2D1D35E3C7007B42C3 /* main.m in Sources */,
 				DBE173981D3785E000BDCD6A /* YPPhotoNavgationController.m in Sources */,
+				DB16C5151D533E37003CD751 /* YPPhotoBrowerCDelegate.m in Sources */,
 				DB16C50F1D5332C5003CD751 /* UIKit+YPPhotoDemo.m in Sources */,
 				DB19EF971D45BD2400891ACF /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 			);

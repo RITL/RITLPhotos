@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YPPhotoBrowerCDelegate.h"
+#import "YPPhotoBrowerDataSource.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,7 +31,52 @@ typedef void(^YPPhotoBrowerBackBlock)(void);
 
 NS_CLASS_AVAILABLE_IOS(8_0) @interface YPPhotoBrowerController : UIViewController
 
+/// @brief 返回
+@property (nonatomic, strong)UIButton * backButtonItem;
+/// @brief 选择
+@property (nonatomic, strong)UIButton * selectButtonItem;
+
+/// @brief 高清图的响应Control
+@property (strong, nonatomic) IBOutlet UIControl * highQualityControl;
+/// @brief 选中圆圈
+@property (strong, nonatomic) IBOutlet UIImageView * hignSignImageView;
+/// @brief 原图:
+@property (strong, nonatomic) IBOutlet UILabel * originPhotoLabel;
+/// @brief 等待风火轮
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView * activityIndicatorView;
+/// @brief 照片大小
+@property (strong, nonatomic) IBOutlet UILabel *photoSizeLabel;
+/// @brief 发送按钮
+@property (strong, nonatomic) UIButton * sendButton;
+/// @brief 显示数目
+@property (strong, nonatomic) UILabel * numberOfLabel;
+
 @property (nullable, nonatomic, weak)id <YPPhotoBrowerControllerDelegate> delegate;
+
+@property (nonatomic, readonly, strong)YPPhotoBrowerCDelegate * browerDelegate;
+@property (nonatomic, readonly, strong)YPPhotoBrowerDataSource * browerDatasource;
+
+
+/// 选择按钮被点击
+- (void)buttonDidSelect;
+/// 消除选择按钮的状态
+- (void)buttonDidDeselect;
+
+/// 转变为高清图状态
+- (void)changeHightQualityStatus;
+/// 转变为非高清图状态
+- (void)changeDehightQualityStatus;
+
+/// 设置选择的资源数
+- (void)setNumbersForSelectAssets;
+
+/// 显示当前资源的大小
+- (void)showHighQualityData;
+
+
+//Data
+/// 设置浏览数据源对象的资源
+- (void)setBrowerDataSource:(id)assets currentAsset:(PHAsset *)currentAsset didSelectAssets:(NSMutableArray <PHAsset *> *)didSelectAssets status:(NSMutableArray <NSNumber *> *)status maxNumberOfSelectImages:(NSNumber *)maxNumber;
 
 
 @end

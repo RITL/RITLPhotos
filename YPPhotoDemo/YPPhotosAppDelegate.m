@@ -15,32 +15,9 @@
 
 @implementation YPPhotosAppDelegate
 
-void uncaughtExceptionHandler(NSException * exception)
-{
-    //获取崩溃栈
-    //    NSArray * exceptions = [exception callStackSymbols];
-    
-    NSString * result = [exception reason];
-    NSString * name = [exception name];
-    
-    NSLog(@"result = %@,name = %@",result,name);
-}
-
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    //捕捉异常
-    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-    
-//    YPPhotoNavgationController * rootViewController = [[YPPhotoNavgationController alloc]init];
-//    
-//    self.window.rootViewController = rootViewController;
-//    
-//    [self.window makeKeyWindow];
-
-    
     // Override point for customization after application launch.
     return YES;
 }
@@ -64,6 +41,9 @@ void uncaughtExceptionHandler(NSException * exception)
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    
+    NSLog(@"1");
+    
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

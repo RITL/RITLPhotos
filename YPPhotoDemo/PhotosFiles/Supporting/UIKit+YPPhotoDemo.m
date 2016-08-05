@@ -66,7 +66,7 @@ static NSString * key;
     [self setShadowImage:[UIImage new]];
     
     //设置图层的frame
-    UIView * view = [UIView viewWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].width, CGRectGetHeight(self.frame) + 20)];
+    UIView * view = [UIView viewWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].width, CGRectGetHeight(self.frame))];
     
     //人机不交互
     view.userInteractionEnabled = false;
@@ -134,7 +134,7 @@ static NSString * tabkey;
     [self setShadowImage:[UIImage new]];
     
     //设置图层的frame
-    UIView * view = [UIView viewWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].width, CGRectGetHeight(self.frame) + 20)];
+    UIView * view = [UIView viewWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].width, CGRectGetHeight(self.frame))];
     
     //人机不交互
     view.userInteractionEnabled = false;

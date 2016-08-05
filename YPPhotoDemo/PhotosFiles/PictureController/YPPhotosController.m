@@ -280,15 +280,7 @@
 
 
 
-#pragma mark - UIAlertController
-- (void)alertControllerShouldPresent
-{
-    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"你最多只能选择%@张照片",@(_maxNumberOfSelectImages.unsignedIntegerValue)] message:nil preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleDefault handler:nil]];
-    
-    [self presentViewController:alertController animated:true completion:nil];
-}
+
 
 
 #pragma mark - <UIViewControllerPreviewingDelegate>
@@ -318,11 +310,17 @@
     YPPhotoBrowerController * viewController = [[YPPhotoBrowerController alloc]init];
     
     //设置
-    [viewController setValue:self.assets forKey:@"assets"];
-    [viewController setValue:(PHAsset *)[self.assets objectAtIndex:indexPath.row] forKey:@"currentAsset"];
-    [viewController setValue:self.selectAssets forKey:@"didSelectAssets"];
-    [viewController setValue:self.maxNumberOfSelectImages forKey:@"maxNumberOfSelectImages"];
-    [viewController setValue:self.selectAssetStatus forKey:@"didSelectAssetStatus"];
+    [viewController setBrowerDataSource:_assets currentAsset:((PHAsset *)[_assets objectAtIndex:indexPath.row]) didSelectAssets:_selectAssets status:_selectAssetStatus maxNumberOfSelectImages:_maxNumberOfSelectImages];
+    
+    
+//    [viewController setBrowerDataSource:self.selectAssets status:self.selectAssetStatus];
+//    [viewController setBrowerDelegate:self.assets currentAsset:((PHAsset *)[self.assets objectAtIndex:indexPath.row])];
+    
+//    [viewController setValue:self.assets forKey:@"assets"];
+//    [viewController setValue:(PHAsset *)[self.assets objectAtIndex:indexPath.row] forKey:@"currentAsset"];
+//    [viewController setValue:self.selectAssets forKey:@"didSelectAssets"];
+//    [viewController setValue:self.maxNumberOfSelectImages forKey:@"maxNumberOfSelectImages"];
+//    [viewController setValue:self.selectAssetStatus forKey:@"didSelectAssetStatus"];
     
     viewController.delegate = self;
 
@@ -480,6 +478,17 @@
     }];
     
 }
+
+#pragma mark - UIAlertController
+- (void)alertControllerShouldPresent
+{
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"你最多只能选择%@张照片",@(_maxNumberOfSelectImages.unsignedIntegerValue)] message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleDefault handler:nil]];
+    
+    [self presentViewController:alertController animated:true completion:nil];
+}
+
 
 
 

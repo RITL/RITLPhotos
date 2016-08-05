@@ -14,60 +14,39 @@
 static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 
 
-@interface YPPhotoBrowerController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
-{
-    //标志第一次进入
-    NSUInteger index;
-}
+@interface YPPhotoBrowerController ()
 
+/// @brief 展示图片的collectionView
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+/// @brief 底部的tabBar
+@property (nonatomic, strong) UITabBar * bottomBar;
+/// @brief 顶部的bar
+@property (nonatomic, strong)UINavigationBar * topBar;
 
 /* Config */
 @property (nonatomic, strong) UIColor * selectedColor;//仅表示选中的圆圈的颜色
 @property (nonatomic, strong) UIColor * deselectedColor;
-@property (nonatomic, assign) BOOL isHighQuality;
-@property (nonatomic, strong) NSNumber * maxNumberOfSelectImages;
+
+//弱引用，适用于Block
+@property (nonatomic, weak)YPPhotoBrowerController * weakSelf;
 
 
-/* Data */
-/// @brief 当前的资源对象
-@property (nonatomic, strong) PHAsset * currentAsset;
-/// @brief 存放所有的资源
-@property (nonatomic, strong) PHFetchResult * assets;
-/// @brief 存放可以游览的资源数组
-@property (nonatomic, copy)NSArray <PHAsset *> * browerAssets;
-/// @brief 存储之前已经选择的资源
-@property (nonatomic, strong)NSMutableArray <PHAsset *> * didSelectAssets;
-@property (nonatomic, strong)NSMutableArray <NSNumber *> * didSelectAssetStatus;
-
-/* View */
-/// @brief 顶部的bar
-@property (nonatomic, strong)UINavigationBar * topBar;
-/// @brief 返回
-@property (nonatomic, strong)UIButton * backButtonItem;
-/// @brief 选择
-@property (nonatomic, strong)UIButton * selectButtonItem;
-
-/// @brief 底部的tabBar
-@property (nonatomic, strong) UITabBar * bottomBar;
-/// @brief 高清图的响应Control
-@property (strong, nonatomic) IBOutlet UIControl * highQualityControl;
-/// @brief 选中圆圈
-@property (strong, nonatomic) IBOutlet UIImageView * hignSignImageView;
-/// @brief 原图:
-@property (strong, nonatomic) IBOutlet UILabel * originPhotoLabel;
-/// @brief 等待风火轮
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView * activityIndicatorView;
-/// @brief 照片大小
-@property (strong, nonatomic) IBOutlet UILabel *photoSizeLabel;
-/// @brief 发送按钮
-@property (strong, nonatomic) UIButton * sendButton;
-/// @brief 显示数目
-@property (strong, nonatomic) UILabel * numberOfLabel;
 
 @end
 
 @implementation YPPhotoBrowerController
+
+-(instancetype)init
+{
+    if (self = [super init])
+    {
+        _weakSelf = self;
+    }
+    
+    return self;
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -81,10 +60,12 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
     [self.view addSubview:self.topBar];
     [self.view addSubview:self.bottomBar];
     
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:[self.browerAssets indexOfObject:self.currentAsset] inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:false];
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:[_browerDatasource.browerAssets indexOfObject:_browerDatasource.currentAsset] inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:false];
     
-    [self setNumbersForSelectAssets:_didSelectAssets.count];
+    [self setNumbersForSelectAssets];
 }
+
+
 
 
 -(void)viewWillAppear:(BOOL)animated
@@ -93,11 +74,15 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
     if (self.navigationController != nil)  self.navigationController.navigationBarHidden = true;
 }
 
+
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self scrollViewDidEndDecelerating:self.collectionView];
+    [_browerDelegate scrollViewEndDecelerating:_collectionView];
 }
+
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -105,10 +90,14 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
     if (self.navigationController != nil) self.navigationController.navigationBarHidden = false;
 }
 
+
+
 -(BOOL)prefersStatusBarHidden
 {
     return true;
 }
+
+
 
 -(void)dealloc
 {
@@ -118,10 +107,14 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
     
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 
 - (IBAction)backItemDidTap:(id)sender
@@ -137,288 +130,53 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 
 
 #pragma mark - Setter
--(void)setAssets:(id)assets
+-(void)setBrowerDataSource:(id)assets currentAsset:(PHAsset *)currentAsset didSelectAssets:(NSMutableArray<PHAsset *> *)didSelectAssets status:(NSMutableArray<NSNumber *> *)status maxNumberOfSelectImages:(NSNumber *)maxNumber;
 {
-    _assets = assets;
+    //设置delegate
+    _browerDelegate = [YPPhotoBrowerCDelegate borwerDelegateWithLinkViewController:self];
     
-//    NSLog(@"%@",NSStringFromClass([assets class]));
-    
-    //如果是点击相片进入
+    //如果是集合对象
     if ([assets isMemberOfClass:[PHFetchResult class]])
     {
-        __weak typeof(self) weakSelf = self;
-        
-        [_assets preparationWithType:PHAssetMediaTypeImage Complete:^(NSArray<PHAsset *> * _Nullable shouldBowerAssets) {
+        //进行遍历
+        [assets preparationWithType:PHAssetMediaTypeImage Complete:^(NSArray<PHAsset *> * _Nullable browerAssets) {
+
+            //进行初始化
+            _browerDatasource = [YPPhotoBrowerDataSource browerDataSourceWithCurrentAsset:currentAsset BrowerAssets:browerAssets selectAssets:didSelectAssets status:status browerViewController:self];
             
-            weakSelf.browerAssets = shouldBowerAssets;
-            
+            _browerDatasource.maxNumberOfSelectImages = maxNumber;
+
         }];
     }
-    
+
     //如果是点击预览进入
     else if([NSStringFromClass([assets class]) isEqualToString:@"__NSArrayM"])
     {
-        _browerAssets = assets;
-    }
-    
-
-    
-}
-
-#pragma mark - <UICollectionViewDataSource>
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.browerAssets.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    YPPhotoBrowerCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([YPPhotoBrowerCell class]) forIndexPath:indexPath];
-    
-    //config the cell
-    [self.browerAssets[indexPath.item] representationImageWithSize:CGSizeMake(60, 60) complete:^(UIImage * _Nullable image, PHAsset * _Nonnull asset) {
-       
-        cell.imageView.image = image;
+        _browerDatasource = [YPPhotoBrowerDataSource browerDataSourceWithCurrentAsset:currentAsset BrowerAssets:assets selectAssets:didSelectAssets status:status browerViewController:self];
         
-    }];
-    
-    
-    //更新标志位
-    if ([self.didSelectAssets containsObject:self.browerAssets[indexPath.item]]) [self buttonDidSelect];
-    
-    else [self buttonDidDeselect];
-    
-    return cell;
-}
-
-
-#pragma mark - UICollectionViewDelegateFlowLayout
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGRect screenBounds = [UIScreen mainScreen].bounds;
-    
-    return CGSizeMake(screenBounds.size.width + 10, screenBounds.size.height);
-}
-
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 0.0f;
-}
-
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 0.0f;
-}
-
-
-
-#pragma mark - <UIScrollViewDelegate>
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    UICollectionView * collectionView = (UICollectionView *)scrollView;
-    
-    //获得偏移量
-    CGFloat contentOffSet = collectionView.contentOffset.x;
-    
-    //计算偏移量的倍数
-    NSUInteger indexSet = contentOffSet / (collectionView.bounds.size.width);
-    
-    //获取当前资源
-    PHAsset * asset = self.browerAssets[indexSet];
-    
-    //获得当前Cell
-    YPPhotoBrowerCell * cell = (YPPhotoBrowerCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:indexSet inSection:0]];
-    
-    if (![self.currentAsset isEqual:asset] || index == 0)
-    {
-        //设置当前asset
-        self.currentAsset = asset;
-        
-        //设置图片
-        [self.currentAsset representationImageWithSize:cell.frame.size complete:^(UIImage * _Nullable image, PHAsset * _Nonnull asset) {
-            
-            cell.imageView.image = image;
-            
-        }];
-        
-        //清除显示的大小
-        self.photoSizeLabel.text = @"";
-        [self showHighQualityData];
-        
-        index++;
+        _browerDatasource.maxNumberOfSelectImages = maxNumber;
     }
 }
 
 
-#pragma mark - Action
-- (IBAction)selectButtonDidTap:(id)sender
-{
-    if ([self.didSelectAssets containsObject:self.currentAsset])//表示已经选过,应该取消
-    {
-        //移除标志位
-        [self.didSelectAssetStatus removeObjectAtIndex:[self.didSelectAssets indexOfObject:self.currentAsset]];
-        //移除数据
-        [self.didSelectAssets removeObject:self.currentAsset];
-        //更新UI
-        [self buttonDidDeselect];
-    }
-    
-    else//表示选择
-    {
-        if (self.didSelectAssets.count >= self.maxNumberOfSelectImages.unsignedIntegerValue)
-        {
-            [self alertControllerShouldPresent];
-        }
-        
-        else{
-            
-            [self.didSelectAssets addObject:self.currentAsset];
-            
-            //如果是高清图模式
-            if (self.isHighQuality) [self.didSelectAssetStatus addObject:[NSNumber numberWithUnsignedInteger:2]];
-            else [self.didSelectAssetStatus addObject:[NSNumber numberWithUnsignedInteger:0]];
-            
-            //updateUI
-            [self buttonDidSelect];
-        }
-
-    }
-    
-    [self setNumbersForSelectAssets:self.didSelectAssets.count];
-}
-
-
-- (void)buttonDidSelect
-{
-    [self.selectButtonItem setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
-}
-
-- (void)buttonDidDeselect
-{
-    [self.selectButtonItem setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
-}
-
-
-- (void)controlAction:(UIControl *)sender
-{
-    self.isHighQuality = !self.isHighQuality;
-    
-    if (self.isHighQuality)//是高清
-    {
-        [self changeHightQualityStatus];
-        [self showHighQualityData];
-        
-        //如果含有此时的照片
-        if ([self.didSelectAssets containsObject:self.currentAsset])//标志位进行替换
-        {
-            [self.didSelectAssetStatus replaceObjectAtIndex:[self.didSelectAssets indexOfObject:self.currentAsset] withObject:[NSNumber numberWithUnsignedInteger:2]];//更新标志位
-        }
-        
-        else//如果不含有此照片
-        {
-            if (!(self.didSelectAssets.count >= self.maxNumberOfSelectImages.unsignedIntegerValue))//没有达到选择上限
-            {
-                //进行添加
-                [self.didSelectAssets addObject:self.currentAsset];
-                [self.didSelectAssetStatus addObject:[NSNumber numberWithUnsignedInteger:2]];
-                //修改UI
-                [self buttonDidSelect];//选中
-                [self setNumbersForSelectAssets:self.didSelectAssets.count];
-            }
-
-        }
-    }
-    
-    else//变成不是高清图
-    {
-        [self changeDehightQualityStatus];
-        //如果含有照片
-        if ([self.didSelectAssets containsObject:self.currentAsset])
-        {
-            //替换标志位
-            [self.didSelectAssetStatus replaceObjectAtIndex:[self.didSelectAssets indexOfObject:self.currentAsset] withObject:[NSNumber numberWithUnsignedInteger:0]];
-        }
-    }
-}
-
-
-/** 显示高清信息 */
-- (void)showHighQualityData
-{
-    if (!_isHighQuality) return;
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [self.activityIndicatorView startAnimating];
-    
-    //需要计算当前高清的大小
-    [self.currentAsset sizeOfHignQualityWithSize:CGSizeMake(self.currentAsset.pixelWidth,self.currentAsset.pixelHeight) complete:^(NSString * size) {
-        
-        weakSelf.photoSizeLabel.text = size;
-        [weakSelf.activityIndicatorView stopAnimating];
-    }];
-}
-
-
-/** 转变为高清图状态 */
-- (void)changeHightQualityStatus
-{
-    self.hignSignImageView.backgroundColor = self.selectedColor;
-    self.originPhotoLabel.textColor = [UIColor whiteColor];
-    self.photoSizeLabel.textColor = [UIColor whiteColor];
-    [self.activityIndicatorView startAnimating];
-    NSLog(@"高清图!");
-}
-
-
-/** 转变为非高清图状态 */
-- (void)changeDehightQualityStatus
-{
-    self.hignSignImageView.backgroundColor = self.deselectedColor;
-    self.originPhotoLabel.textColor = self.deselectedColor;
-    self.photoSizeLabel.textColor = self.deselectedColor;
-    [self.activityIndicatorView stopAnimating];
-    self.photoSizeLabel.text = @"";
-    
-}
 
 
 - (IBAction)sendButtonDidTap:(id)sender
 {
     //如果没有选，默认为当前的照片 -  微信就是那么干的0.0 --
-    if (self.didSelectAssets.count == 0)
+    if (_browerDatasource.didSelectAssets.count == 0)
     {
-        [self.didSelectAssets addObject:self.currentAsset];
-        NSUInteger statusInteger = (self.isHighQuality ? 2 : 0);
-        [self.didSelectAssetStatus addObject:[NSNumber numberWithUnsignedInteger:statusInteger]];
+        [_browerDatasource.didSelectAssets addObject:_browerDatasource.currentAsset];
+        NSUInteger statusInteger = (_browerDatasource.isHighQuality ? 2 : 0);
+        [_browerDatasource.didSelectAssetStatus addObject:[NSNumber numberWithUnsignedInteger:statusInteger]];
     }
     
    //执行回调
     if (self.delegate != nil && [self.delegate respondsToSelector:@selector(photoBrowerController:photosSelected:Status:)])
     {
-        [self.delegate photoBrowerController:self photosSelected:[self.didSelectAssets mutableCopy] Status:[self.didSelectAssetStatus mutableCopy]];
+        [self.delegate photoBrowerController:self photosSelected:[_browerDatasource.didSelectAssets mutableCopy] Status:[_browerDatasource.didSelectAssetStatus mutableCopy]];
     }
 }
-
-
-#pragma mark - Alert
-- (void)alertControllerShouldPresent
-{
-    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"你最多只能选择%@张照片",@(_maxNumberOfSelectImages.unsignedIntegerValue)] message:nil preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleDefault handler:nil]];
-    
-    [self presentViewController:alertController animated:true completion:nil];
-}
-
 
 
 #pragma mark - Create Views
@@ -431,9 +189,9 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
         
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.width + 10, self.height) collectionViewLayout:flowLayout];
         //初始化collectionView属性
-        _collectionView.dataSource = self;
-        _collectionView.delegate = self;
-        _collectionView.pagingEnabled = true;
+        _collectionView.dataSource = _browerDatasource;
+        _collectionView.delegate = _browerDelegate;
+        _collectionView.pagingEnabled = _browerDatasource;
         _collectionView.showsHorizontalScrollIndicator = false;
         [_collectionView registerClass:[YPPhotoBrowerCell class] forCellWithReuseIdentifier:reuserIdentifier];
     }
@@ -481,7 +239,8 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
         _selectButtonItem = [[UIButton alloc]initWithFrame:CGRectMake(_topBar.width - 35, 0, 25, 25)];
         _selectButtonItem.center = CGPointMake(_selectButtonItem.center.x, _topBar.center.y + 4);
         [_selectButtonItem setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
-        [_selectButtonItem addTarget:self action:@selector(selectButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_selectButtonItem addTarget:_browerDelegate action:NSSelectorFromString(@"selectButtonDidTap:") forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _selectButtonItem;
@@ -508,12 +267,12 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
     if (_highQualityControl == nil)
     {
         _highQualityControl = [[UIControl alloc]initWithFrame:CGRectMake(0, 0, 150, _bottomBar.height)];
-        [_highQualityControl addTarget:self action:@selector(controlAction:) forControlEvents:UIControlEventTouchUpInside];
-        
         [_highQualityControl addSubview:self.hignSignImageView];
         [_highQualityControl addSubview:self.originPhotoLabel];
         [_highQualityControl addSubview:self.activityIndicatorView];
         [_highQualityControl addSubview:self.photoSizeLabel];
+        
+        [_highQualityControl addTarget:_browerDelegate action:NSSelectorFromString(@"controlAction:") forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _highQualityControl;
@@ -612,8 +371,10 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 
 #pragma mark - 设置numberOfLabel的数目
 /** 设置当前选择后的资源数量 */
-- (void)setNumbersForSelectAssets:(NSUInteger)number
+- (void)setNumbersForSelectAssets
 {
+    NSUInteger number = _browerDatasource.didSelectAssets.count;
+    
     if (number == 0) {_numberOfLabel.hidden = true; return;}
     
     _numberOfLabel.hidden = false;
@@ -628,5 +389,55 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 
 }
 
+
+/** 显示高清信息 */
+- (void)showHighQualityData
+{
+    if (!_browerDatasource.isHighQuality) return;
+    
+    [_activityIndicatorView startAnimating];
+    
+    //获取当前的资源对象
+    PHAsset * currentAsset = _browerDatasource.currentAsset;
+    
+    //需要计算当前高清的大小
+    [currentAsset sizeOfHignQualityWithSize:CGSizeMake(currentAsset.pixelWidth,currentAsset.pixelHeight) complete:^(NSString * size) {
+        
+        _photoSizeLabel.text = size;
+        [_activityIndicatorView stopAnimating];
+    }];
+}
+
+/** 转变为高清图状态 */
+- (void)changeHightQualityStatus
+{
+    self.hignSignImageView.backgroundColor = self.selectedColor;
+    self.originPhotoLabel.textColor = [UIColor whiteColor];
+    self.photoSizeLabel.textColor = [UIColor whiteColor];
+    [self.activityIndicatorView startAnimating];
+    NSLog(@"高清图!");
+}
+
+
+/** 转变为非高清图状态 */
+- (void)changeDehightQualityStatus
+{
+    self.hignSignImageView.backgroundColor = self.deselectedColor;
+    self.originPhotoLabel.textColor = self.deselectedColor;
+    self.photoSizeLabel.textColor = self.deselectedColor;
+    [self.activityIndicatorView stopAnimating];
+    self.photoSizeLabel.text = @"";
+    
+}
+
+- (void)buttonDidSelect
+{
+    [self.selectButtonItem setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
+}
+
+- (void)buttonDidDeselect
+{
+    [self.selectButtonItem setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+}
 
 @end
