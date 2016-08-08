@@ -94,6 +94,7 @@ NS_CLASS_AVAILABLE_IOS(8_0) @interface YPPhotoStoreHandleClass : NSObject
 /// 将图片对象写入对应相册
 - (void)addCustomAsset:(UIImage *)image collection:(PHAssetCollection *)collection completionHandler:(void(^)(void)) successBlock failture:(void(^)(NSString * error)) failtureBlock;
 
+
 /// 将图片路径写入对应相册
 - (void)addCustomAssetPath:(NSString *)imagePath collection:(PHAssetCollection *)collection completionHandler:(void(^)(void)) successBlock failture:(void(^)(NSString * error)) failtureBlock;
 

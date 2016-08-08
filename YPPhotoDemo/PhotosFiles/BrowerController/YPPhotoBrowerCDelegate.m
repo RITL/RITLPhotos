@@ -110,6 +110,19 @@
         
         index++;
     }
+    
+    if (![_viewController.browerDatasource.didSelectAssets containsObject:asset])//表示没有选择
+    {
+        [_viewController buttonDidDeselect];
+    }
+    
+    else{
+        [_viewController buttonDidSelect];
+    }
+    
+    
+    
+    
 }
 
 #pragma mark - Action

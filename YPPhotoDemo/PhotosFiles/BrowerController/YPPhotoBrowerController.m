@@ -146,6 +146,8 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 
 
 
+
+
 - (IBAction)sendButtonDidTap:(id)sender
 {
     //如果没有选，默认为当前的照片 -  微信就是那么干的0.0 --

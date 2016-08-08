@@ -33,7 +33,7 @@
                     <view key="view" contentMode="scaleToFill" id="5Dd-nX-WwV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="1" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="cwZ-XM-yxi">
                         <rightBarButtonItems>
@@ -52,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5DH-z7-unP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="675" y="152"/>
+            <point key="canvasLocation" x="576" y="118"/>
         </scene>
     </scenes>
 </document>

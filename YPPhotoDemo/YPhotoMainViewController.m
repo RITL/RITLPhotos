@@ -145,7 +145,7 @@
         _collectionView = [[UICollectionView alloc]initWithFrame:self.view.bounds collectionViewLayout:[UICollectionViewFlowLayout new]];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.backgroundColor = UIColorFromRGB(0xF6FFB7);
         
         [_collectionView registerClass:[YPPhotosCell class] forCellWithReuseIdentifier:@"Cell"];
     }
