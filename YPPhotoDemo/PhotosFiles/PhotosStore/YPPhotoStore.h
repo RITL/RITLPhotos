@@ -52,7 +52,7 @@ NS_AVAILABLE_IOS(8_0) @interface YPPhotoStore : NSObject<PHPhotoLibraryChangeObs
 
 #pragma mark - 发生变化的Block
 
-/// @brief 相册发生变化进行的回调block
+/// @brief 相册发生变化进行的回调block - 目前还未想到如何实现 = =
 @property (nullable, nonatomic, copy)void(^photoStoreHasChanged)(PHChange * changeInstance);
 
 @end

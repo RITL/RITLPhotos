@@ -27,7 +27,7 @@
     [super viewDidLoad];
     
     
-    CGFloat sizeHeight = (self.view.frame.size.width - 3) / 4;
+    CGFloat sizeHeight = (self.collectionView.frame.size.width - 3) / 4;
     _assetSize = CGSizeMake(sizeHeight, sizeHeight);
     
     [self.view addSubview:self.collectionView];

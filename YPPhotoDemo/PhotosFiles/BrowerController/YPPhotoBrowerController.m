@@ -134,7 +134,10 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
     //如果是点击预览进入
     else if([NSStringFromClass([assets class]) isEqualToString:@"__NSArrayM"])
     {
-        _browerDatasource = [YPPhotoBrowerDataSource browerDataSourceWithCurrentAsset:currentAsset BrowerAssets:assets selectAssets:didSelectAssets status:status browerViewController:self];
+        //获得浏览的数据
+        NSArray <PHAsset *> * browerAssets = [assets mutableCopy];
+        
+        _browerDatasource = [YPPhotoBrowerDataSource browerDataSourceWithCurrentAsset:currentAsset BrowerAssets:browerAssets selectAssets:didSelectAssets status:status browerViewController:self];
         
         _browerDatasource.maxNumberOfSelectImages = maxNumber;
     }
@@ -173,7 +176,7 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
         //初始化collectionView属性
         _collectionView.dataSource = _browerDatasource;
         _collectionView.delegate = _browerDelegate;
-        _collectionView.pagingEnabled = _browerDatasource;
+        _collectionView.pagingEnabled = true;
         _collectionView.showsHorizontalScrollIndicator = false;
         [_collectionView registerClass:[YPPhotoBrowerCell class] forCellWithReuseIdentifier:reuserIdentifier];
     }
