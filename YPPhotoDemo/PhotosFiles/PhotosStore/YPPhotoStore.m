@@ -296,5 +296,131 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 @end
 
 
+@implementation YPPhotoStore (Group)
+
+-(void)addCustomGroupWithTitle:(NSString *)title completionHandler:(void (^)(void))successBlock failture:(void (^)(NSString * _Nonnull))failtureBlock
+{
+    [self.photoLibaray performChanges:^{
+        
+        //执行创建请求
+        [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:title];
+        
+    }completionHandler:^(BOOL success, NSError * _Nullable error) {
+        
+        if (success == true)
+        {
+            successBlock();return ;
+        }
+        
+        failtureBlock(error.localizedDescription);
+    
+    }];
+}
+
+
+
+-(void)addCustomGroupWithTitle:(NSString *)title assets:(NSArray<PHAsset *> *)assets completionHandler:(void (^)(void))successBlock failture:(void (^)(NSString * _Nonnull))failtureBlock
+{
+    [self.photoLibaray performChanges:^{
+        
+        //创建一个请求
+        PHAssetCollectionChangeRequest * addRequest = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:title];
+        
+        //添加资源
+        [addRequest addAssets:assets];
+        
+    }completionHandler:^(BOOL success, NSError * _Nullable error) {
+        
+        if (success == true)
+        {
+            successBlock();return;
+        }
+        
+        failtureBlock(error.localizedDescription);
+        
+    }];
+}
+
+
+-(void)checkGroupExist:(NSString *)title result:(nonnull void (^)(BOOL, PHAssetCollection * _Nullable))resultBlock
+{
+    //获得当前所有的Top相册
+    [[PHCollection fetchTopLevelUserCollectionsWithOptions:[[PHFetchOptions alloc]init]] transToArrayComplete:^(NSArray<PHAssetCollection *> * _Nonnull topLevelArray, PHFetchResult * _Nonnull result) {
+        
+        BOOL isExist = false;
+        PHAssetCollection * isExistCollection = nil;
+        
+        //开始遍历
+        for (PHAssetCollection * collection in topLevelArray)
+        {
+            if ([collection.localizedTitle isEqualToString:title])
+            {
+                isExist = true;
+                isExistCollection = collection;
+                break;
+            }
+        }
+        
+        resultBlock(isExist,isExistCollection);
+        
+    }];
+}
+
+
+@end
+
+
+
+@implementation YPPhotoStore (Asset)
+
+-(void)addCustomAsset:(UIImage *)image collection:(PHAssetCollection *)collection completionHandler:(void (^)(void))successBlock failture:(void (^)(NSString * _Nonnull))failtureBlock
+{
+    //执行变化请求
+    [self.photoLibaray performChanges:^{
+        
+        //判断组是否允许操作
+        if([collection canPerformEditOperation:PHCollectionEditOperationAddContent])
+        {
+            //创建资源变化对象
+            PHAssetChangeRequest * assetChangeRequest = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+            
+            //创建组的变化
+            PHAssetCollectionChangeRequest * groupChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:collection];
+            
+            [groupChangeRequest addAssets:@[assetChangeRequest.placeholderForCreatedAsset]];
+        
+        }
+        
+    }completionHandler:^(BOOL success, NSError * _Nullable error) {
+        
+        if (success == true)
+        {
+            successBlock();return;
+        }
+        
+        failtureBlock(error.localizedDescription);
+        
+    }];
+}
+
+
+-(void)addCustomAssetPath:(NSString *)imagePath collection:(PHAssetCollection *)collection completionHandler:(void (^)(void))successBlock failture:(void (^)(NSString * _Nonnull))failtureBlock
+{
+    //获得image
+    UIImage * image = [UIImage imageWithContentsOfFile:imagePath];
+    
+    [self addCustomAsset:image collection:collection completionHandler:^{
+        
+        successBlock();
+        
+    } failture:^(NSString * _Nonnull error) {
+        
+        failtureBlock(error);
+    }];
+}
+
+@end
+
+
 
 

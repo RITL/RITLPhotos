@@ -26,10 +26,22 @@
 {
     [super viewDidLoad];
     
+    
     CGFloat sizeHeight = (self.view.frame.size.width - 3) / 4;
     _assetSize = CGSizeMake(sizeHeight, sizeHeight);
     
     [self.view addSubview:self.collectionView];
+    
+    //检测是否存在new的相册
+    YPPhotoStore * store = [YPPhotoStore new];
+    
+    [store checkGroupExist:@"new" result:^(BOOL isExist, PHAssetCollection * _Nullable collection) {
+       
+        if (isExist)  NSLog(@"exist!");
+        
+        else NSLog(@"not exist!");
+        
+    }];
     
 }
 
@@ -140,6 +152,54 @@
     
     return _collectionView;
 }
+
+
+
+#pragma mark - Action
+- (IBAction)addGroupDidTap:(id)sender
+{
+    //弹出AlertController
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"新建相册" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+        textField.placeholder = @"新建相册名字";
+    
+    }];
+    
+    
+    __weak typeof(alertController) weakAlert = alertController;
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        //获得textFiled
+        UITextField * textField = weakAlert.textFields.firstObject;
+        
+        if (textField.text.length == 0) {
+            return ;
+        }
+        
+        
+        //创建新的相册
+        YPPhotoStore * photoStore = [YPPhotoStore new];
+        
+        [photoStore addCustomGroupWithTitle:textField.text completionHandler:^{
+            ;
+        } failture:^(NSString * _Nonnull error) {
+            ;
+        }];
+        
+    }]];
+    
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"改变主意了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:alertController animated:true completion:^{}];
+    
+}
+
 
 
 @end

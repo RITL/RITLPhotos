@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -35,16 +36,23 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="cwZ-XM-yxi">
-                        <barButtonItem key="rightBarButtonItem" title="photo" id="Wb3-1Z-qYg">
-                            <connections>
-                                <action selector="photosItemDidTap:" destination="NYz-XA-RDm" id="NVb-nR-kRz"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="photo" id="Wb3-1Z-qYg">
+                                <connections>
+                                    <action selector="photosItemDidTap:" destination="NYz-XA-RDm" id="NVb-nR-kRz"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="add" id="8Uw-1k-b9L">
+                                <connections>
+                                    <action selector="addGroupDidTap:" destination="NYz-XA-RDm" id="NB6-oY-png"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5DH-z7-unP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="356" y="230"/>
+            <point key="canvasLocation" x="464" y="213"/>
         </scene>
     </scenes>
 </document>

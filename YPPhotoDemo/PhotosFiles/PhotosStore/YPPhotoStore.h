@@ -67,4 +67,33 @@ NS_CLASS_AVAILABLE_IOS(8_0) @interface YPPhotoStoreHandleClass : NSObject
 @end
 
 
+/// 操作相册组类目
+@interface YPPhotoStore (Group)
+
+/// 新增一个title的相册
+- (void)addCustomGroupWithTitle:(NSString *)title completionHandler:(void(^)(void)) successBlock failture:(void(^)(NSString * error)) failtureBlock;
+
+
+/// 新增一个title的相册，并添加资源对象
+- (void)addCustomGroupWithTitle:(NSString *)title assets:(NSArray <PHAsset *> *)assets completionHandler:(void (^)(void))successBlock failture:(void (^)(NSString *))failtureBlock;
+
+
+/// 检测是否存在同名相册,如果存在返回第一个同名相册
+- (void)checkGroupExist:(NSString *)title result:(void(^)(BOOL isExist,PHAssetCollection * __nullable)) resultBlock;
+
+@end
+
+
+/// 操作资源对象类目
+@interface YPPhotoStore (Asset)
+
+/// 将图片对象写入对应相册
+- (void)addCustomAsset:(UIImage *)image collection:(PHAssetCollection *)collection completionHandler:(void(^)(void)) successBlock failture:(void(^)(NSString * error)) failtureBlock;
+
+/// 将图片路径写入对应相册
+- (void)addCustomAssetPath:(NSString *)imagePath collection:(PHAssetCollection *)collection completionHandler:(void(^)(void)) successBlock failture:(void(^)(NSString * error)) failtureBlock;
+
+@end
+
+
 NS_ASSUME_NONNULL_END
