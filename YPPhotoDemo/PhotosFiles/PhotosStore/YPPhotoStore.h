@@ -64,6 +64,10 @@ NS_CLASS_AVAILABLE_IOS(8_0) @interface YPPhotoStoreHandleClass : NSObject
 /// 根据size以及图片状态获取资源转化后的图片对象数组
 + (void)imagesWithAssets:(NSArray <PHAsset *> *)assets status:(NSArray <NSNumber *> *)status Size:(CGSize)size complete:(void (^)(NSArray <UIImage *> *))imagesBlock;
 
+
+/// 根据资源以及状态获取资源转化后的data
++ (void)dataWithAssets:(NSArray <PHAsset *> *)assets status:(NSArray <NSNumber *> *)status complete:(void (^)(NSArray <NSData *> *))dataBlock;
+
 @end
 
 

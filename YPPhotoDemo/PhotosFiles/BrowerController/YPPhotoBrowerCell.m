@@ -53,7 +53,7 @@
 - (void)browerCellLoad
 {
     self.minScaleZoome = 1.0f;
-    self.maxScaleZoome = 3.0f;
+    self.maxScaleZoome = 4.0f;
     
     [self createBottomScrollView];
     [self createImageView];

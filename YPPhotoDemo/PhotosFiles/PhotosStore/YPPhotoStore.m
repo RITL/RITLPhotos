@@ -265,7 +265,7 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 
 +(void)imagesWithAssets:(NSArray<PHAsset *> *)assets status:(NSArray<NSNumber *> *)status Size:(CGSize)size complete:(nonnull void (^)(NSArray<UIImage *> * _Nonnull))imagesBlock
 {
-    NSMutableArray <UIImage *> * images = [NSMutableArray arrayWithCapacity:assets.count];
+    __block NSMutableArray <UIImage *> * images = [NSMutableArray arrayWithCapacity:assets.count];
     
     for (NSUInteger i = 0; i < assets.count; i++)
     {
@@ -287,10 +287,45 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
             {
                 //回调
                 imagesBlock([images mutableCopy]);
+                
+                images = nil;
             }
         }];
     }
 
+}
+
++(void)dataWithAssets:(NSArray<PHAsset *> *)assets status:(NSArray<NSNumber *> *)status complete:(void (^)(NSArray<NSData *> * _Nonnull))dataBlock
+{
+    __block NSMutableArray <NSData *> * datas = [NSMutableArray arrayWithCapacity:assets.count];
+    
+    for (NSUInteger i = 0; i < assets.count; i++)
+    {
+        //获取资源
+        PHAsset * asset = assets[i];
+        
+        //获取图片类型
+        PHImageRequestOptionsDeliveryMode mode = status[i].integerValue;
+        
+        PHImageRequestOptions * option = [PHImageRequestOptions imageRequestOptionsWithDeliveryMode:mode];
+        option.synchronous = true;
+        
+        //请求数据
+        [[PHImageManager defaultManager]requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+            
+            [datas addObject:imageData];
+            
+            if (datas.count == assets.count)
+            {
+                //回调
+                dataBlock([datas mutableCopy]);
+                
+                datas = nil;
+            }
+            
+        }];
+        
+    }
 }
 
 @end
