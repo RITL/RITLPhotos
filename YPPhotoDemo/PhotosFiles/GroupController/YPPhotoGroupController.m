@@ -92,6 +92,9 @@
 {
     YPPhotoGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([YPPhotoGroupCell class]) forIndexPath:indexPath];
     
+    //避免cell强引用
+    __weak typeof(cell) weakCell = cell;
+    
     // Configure the cell...
     PHAssetCollection * collection = [self.groups objectAtIndex:indexPath.row];
 
@@ -99,8 +102,8 @@
        
         NSString * localTitle = NSLocalizedString(title, @"");
         
-        cell.titleLabel.text = [NSString stringWithFormat:@"%@(%@)",localTitle,@(estimatedCount)];
-        cell.imageView.image = image;
+        weakCell.titleLabel.text = [NSString stringWithFormat:@"%@(%@)",localTitle,@(estimatedCount)];
+        weakCell.imageView.image = image;
         
     }];
     

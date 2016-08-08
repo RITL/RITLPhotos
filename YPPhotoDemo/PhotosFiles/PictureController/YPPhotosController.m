@@ -97,6 +97,8 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(photosControllerShouldBack:)])
     {
         [self.delegate photosControllerShouldBack:self];
+        [self.navigationController popViewControllerAnimated:false];
+
     }
 }
 
@@ -109,6 +111,7 @@
         [self.delegate photosController:self photosSelected:[_selectAssets mutableCopy] Status:[_selectAssetStatus mutableCopy]];;
         _selectAssets = nil;
         _selectAssetStatus = nil;
+        [self.navigationController popViewControllerAnimated:false];
     }
 }
 
@@ -285,6 +288,7 @@
 
 #ifdef __IPHONE_9_0
 
+#warning 会出现内存泄露，临时不使用
 - (nullable UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 {
     //获取当前cell的indexPath

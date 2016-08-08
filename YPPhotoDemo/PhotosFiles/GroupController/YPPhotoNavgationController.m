@@ -8,6 +8,7 @@
 
 #import "YPPhotoNavgationController.h"
 #import "YPPhotoGroupController.h"
+#import "YPPhotoStore.h"
 
 @interface YPPhotoNavgationController ()
 
@@ -38,8 +39,23 @@
             weakSelf.photosDidSelectBlock(assets,status);
         }
         
-        [weakSelf dismissViewControllerAnimated:true completion:^{}];
+        if (weakSelf.photoImageSelectBlock != nil)
+        {
+            //开始请求图片对象
+            [YPPhotoStoreHandleClass imagesWithAssets:assets status:status Size:weakSelf.imageSize complete:^(NSArray<UIImage *> * _Nonnull images) {
+            
+                weakSelf.photoImageSelectBlock(images);
+            
+                //dismiss掉
+                [weakSelf dismissViewControllerAnimated:true completion:^{}];
+                
+            }];
+        }
         
+        if (weakSelf.photoImageSelectBlock == nil)
+        {
+           [weakSelf dismissViewControllerAnimated:true completion:^{}];
+        }
     };
 }
 

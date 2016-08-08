@@ -28,7 +28,7 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 -(void)dealloc
 {
 #ifdef YDEBUG
-    NSLog(@"YPPhotosCell Dealloc");
+//    NSLog(@"YPPhotosCell Dealloc");
 #endif
 }
 
@@ -65,7 +65,7 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 - (void)photosCellWillLoad
 {
     _weakSelf = self;
-    self.backgroundColor = [UIColor cyanColor];
+    self.backgroundColor = [UIColor whiteColor];
     
     //add subviews
     [self addSubImageView];
@@ -152,7 +152,7 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
     _imageView = [[UIImageView alloc]init];
     _imageView.clipsToBounds = true;
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
-    _imageView.backgroundColor = [UIColor redColor];
+    _imageView.backgroundColor = [UIColor whiteColor];
     
     
     [self.contentView addSubview:_imageView];

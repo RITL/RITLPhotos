@@ -261,5 +261,40 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 @end
 
 
+@implementation YPPhotoStoreHandleClass
+
++(void)imagesWithAssets:(NSArray<PHAsset *> *)assets status:(NSArray<NSNumber *> *)status Size:(CGSize)size complete:(nonnull void (^)(NSArray<UIImage *> * _Nonnull))imagesBlock
+{
+    NSMutableArray <UIImage *> * images = [NSMutableArray arrayWithCapacity:assets.count];
+    
+    for (NSUInteger i = 0; i < assets.count; i++)
+    {
+        //获取资源
+        PHAsset * asset = assets[i];
+    
+        //获取图片类型
+        PHImageRequestOptionsDeliveryMode mode = status[i].integerValue;
+        
+        PHImageRequestOptions * option = [PHImageRequestOptions imageRequestOptionsWithDeliveryMode:mode];
+        option.synchronous = true;
+        
+        //请求图片
+        [[PHImageManager defaultManager]requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            
+            [images addObject:result];
+            
+            if (images.count == assets.count)//表示已经添加完毕
+            {
+                //回调
+                imagesBlock([images mutableCopy]);
+            }
+        }];
+    }
+
+}
+
+@end
+
+
 
 
