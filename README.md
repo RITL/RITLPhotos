@@ -21,12 +21,14 @@ Photos.framework是iOS8后苹果推出的一套替代AssetsLibrary.framework获�
 - PHCollectionList 是一个资源集合列表对象。刚接触时以为它是存放PHCollection对象的集合，后来才知道，如果想要通过地点以及时间分组的话，请使用这个类替代PHAssetCollection吧，用法与PHAssetCollection类似，同样是继承自PHCollection.
 - PHAsset 是一个独立的资源对象。可以通过`类方法`对PHCollection对象进行遍历，获得存放Asset对象的结果集，可以直接获得资源的规格数据，若想获得图片以及原图等资源，需要配合PHImageManager对象，继承自PHObject.
 <br>
+
 ##工具类
 - PHFetchOptions 一个遍历配置类。一般情况下，当存在遍历方法的时候就存在这个类型的参数，里面含有谓词、遍历顺序等属性，可以通过设置这些属性，完成不同的遍历.
 - PHImageManager 是一个负责渲染资源的类。比如获得PHAsset对象的原图等操作需要使用该类.
 -  PHCachingImageManager 继承自PHImageManager，可以对请求的资源对象进行缓存，这样再次获取时就不需要重新渲染，在加快获取速度的同时也降低了CPU的压力，这里最好对缓存的PHImageRequestID进行一下记录，防止同一资源被无限缓存的尴尬.
 - PHImageRequestOptions 是一个资源请求的配置类。通常在使用PHImageManager对某个资源进行请求时都会存在此类型的参数，可以在请求资源时对该对象进行设置，获得想要的结果，比如原图..
 <br>
+
 ##请求类
 - 请求类不能独立使用，要想发挥作用，需要与PHPhotoLibrary对象配合使用.
 - PHAssetCollectionChangeRequest 集合变化请求类，负责对PHAssetCollection对象的操作
