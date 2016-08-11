@@ -40,7 +40,8 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
     self.messageView.hidden = true;
     self.messageImageView.image = nil;
     self.messageLabel.text = @"";
-    [self.chooseImageView setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+    //    [self.chooseImageView setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+    self.chooseImageView.image = [UIImage imageNamed:@"未选中"];
     self.cellType = CellTypeDeseleted;
 }
 
@@ -69,13 +70,16 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
     
     //add subviews
     [self addSubImageView];
-    [self addSubChooseImageView];
+    [self addChooseControl];
+    [self addChooseImageView1];
+    //    [self addSubChooseImageView];
     [self addSubMessageView];
     [self addSubMessageImageView];
     [self addSubMessageLabel];
-
-
+    
+    
 }
+
 
 
 /** 选择按钮被点击 */
@@ -133,15 +137,18 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 -(void)cellDidSelect
 {
     _cellType = CellTypeSelected;
-    [_chooseImageView setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
+    //    [_chooseImageView setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
+    _chooseImageView.image = [UIImage imageNamed:@"选中"];
 }
 
 
 -(void)cellDidDeselect
 {
     _cellType = CellTypeDeseleted;
-    [self.chooseImageView setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+    //    [self.chooseImageView setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+    _chooseImageView.image = [UIImage imageNamed:@"未选中"];
 }
+
 
 
 #pragma mark - CreateSubviews
@@ -241,28 +248,67 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
 }
 
 
-- (void)addSubChooseImageView
+//- (void)addSubChooseImageView
+//{
+//    _chooseImageView = [[UIButton alloc]init];
+//    
+//    [self.contentView addSubview:_chooseImageView];
+//    
+//    [_chooseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//       
+//        make.size.mas_equalTo(CGSizeMake(25, 25));
+//        make.right.and.bottom.mas_equalTo(-3);
+//        
+//    }];
+//    
+////     _chooseImageView.translatesAutoresizingMaskIntoConstraints = false;
+////    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_chooseImageView(25)]-3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chooseImageView)]];
+////    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_chooseImageView(25)]-3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chooseImageView)]];
+//    
+//    _chooseImageView.layer.cornerRadius = 25 / 2.0f;
+//    _chooseImageView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+//    [_chooseImageView setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+//    [_chooseImageView addTarget:self action:@selector(chooseButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
+//}
+
+
+- (void)addChooseControl
 {
-    _chooseImageView = [[UIButton alloc]init];
+    _chooseControl = [UIControl new];
     
-    [self.contentView addSubview:_chooseImageView];
+    [self.contentView addSubview:_chooseControl];
+    
+    [_chooseControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.size.mas_equalTo(CGSizeMake(45, 45));
+        make.right.and.bottom.mas_equalTo(-3);
+    }];
+    
+    _chooseControl.backgroundColor = [UIColor clearColor];
+    [_chooseControl addTarget:self action:@selector(chooseButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
+- (void)addChooseImageView1
+{
+    _chooseImageView = [UIImageView new];
+    
+    [_chooseControl addSubview:_chooseImageView];
     
     [_chooseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.size.mas_equalTo(CGSizeMake(25, 25));
-        make.right.and.bottom.mas_equalTo(-3);
+        make.right.and.bottom.mas_equalTo(0);
         
     }];
     
-//     _chooseImageView.translatesAutoresizingMaskIntoConstraints = false;
-//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_chooseImageView(25)]-3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chooseImageView)]];
-//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_chooseImageView(25)]-3-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_chooseImageView)]];
-    
-    _chooseImageView.layer.cornerRadius = 25 / 2.0f;
     _chooseImageView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    [_chooseImageView setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
-    [_chooseImageView addTarget:self action:@selector(chooseButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
+    _chooseImageView.image = [UIImage imageNamed:@"未选中"];
+    _chooseImageView.layer.cornerRadius = 25 / 2.0;
+    _chooseImageView.clipsToBounds = true;
+    
 }
+
 
 
 @end

@@ -437,7 +437,6 @@
 				TargetAttributes = {
 					DB302F271D35E3C7007B42C3 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 8S4NWFZC5J;
 					};
 					DB302F401D35E3C7007B42C3 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -685,7 +684,7 @@
 				INFOPLIST_FILE = YPPhotoDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yue.YPPhotoDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yue.YPPhotoDemo004;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "YPPhotoDemo/PhotosFiles/PhotosStore/YPPhotoDemo-Bridging-Header.h";
@@ -703,7 +702,7 @@
 				INFOPLIST_FILE = YPPhotoDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yue.YPPhotoDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yue.YPPhotoDemo004;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "YPPhotoDemo/PhotosFiles/PhotosStore/YPPhotoDemo-Bridging-Header.h";
