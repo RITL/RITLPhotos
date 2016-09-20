@@ -117,6 +117,11 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
     //设置delegate
     _browerDelegate = [YPPhotoBrowerCDelegate borwerDelegateWithLinkViewController:self];
     
+#ifdef __IPHONE_10_0
+    
+    _browerPreDataSource = [YPPhotoBrowerPreDataSource borwerPreDataSourceWithLinkViewController:self];
+#endif
+    
     //如果是集合对象
     if ([assets isMemberOfClass:[PHFetchResult class]])
     {
@@ -178,6 +183,13 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
         //初始化collectionView属性
         _collectionView.dataSource = _browerDatasource;
         _collectionView.delegate = _browerDelegate;
+        
+#ifdef __IPHONE_10_0
+        
+        _collectionView.prefetchDataSource = _browerPreDataSource;
+#endif
+        
+        
         _collectionView.pagingEnabled = true;
         _collectionView.showsHorizontalScrollIndicator = false;
         [_collectionView registerClass:[YPPhotoBrowerCell class] forCellWithReuseIdentifier:reuserIdentifier];

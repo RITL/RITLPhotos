@@ -10,6 +10,10 @@
 #import "YPPhotoBrowerCDelegate.h"
 #import "YPPhotoBrowerDataSource.h"
 
+#ifdef __IPHONE_10_0
+#import "YPPhotoBrowerPreDataSource.h"
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class YPPhotoBrowerController;
@@ -55,6 +59,11 @@ NS_CLASS_AVAILABLE_IOS(8_0) @interface YPPhotoBrowerController : UIViewControlle
 
 @property (nonatomic, readonly, strong)YPPhotoBrowerCDelegate * browerDelegate;
 @property (nonatomic, readonly, strong)YPPhotoBrowerDataSource * browerDatasource;
+
+
+#ifdef __IPHONE_10_0
+@property (nonatomic, readonly, strong)YPPhotoBrowerPreDataSource * browerPreDataSource NS_AVAILABLE_IOS(10_0);
+#endif
 
 
 /// 选择按钮被点击

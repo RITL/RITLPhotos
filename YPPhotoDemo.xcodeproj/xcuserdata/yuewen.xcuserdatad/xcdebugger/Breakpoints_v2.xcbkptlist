@@ -19,14 +19,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "YPPhotoDemo/PhotosFiles/PhotosStore/YPPhotoStore.h"
-            timestampString = "492416138.30029"
+            filePath = "YPPhotoDemo/PhotosFiles/PictureController/YPPhotosController.m"
+            timestampString = "496052103.288754"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "-addCustomGroupWithTitle:completionHandler:failture:"
-            landmarkType = "4">
+            startingLineNumber = "297"
+            endingLineNumber = "297"
+            landmarkName = "-collectionView:prefetchItemsAtIndexPaths:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

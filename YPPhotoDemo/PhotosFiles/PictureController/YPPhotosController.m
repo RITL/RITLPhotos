@@ -14,10 +14,18 @@
 #import "UIKit+YPPhotoDemo.h"
 #import "YPPhotoPreviewController.h"
 
+
+#ifdef __IPHONE_10_0
+@interface YPPhotosController ()<UIViewControllerPreviewingDelegate,YPPhotoBrowerControllerDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDataSourcePrefetching>
+#else
+
 #ifdef __IPHONE_9_0
 @interface YPPhotosController ()<UIViewControllerPreviewingDelegate,YPPhotoBrowerControllerDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
+
 #else
 @interface YPPhotosController ()<YPPhotoBrowerControllerDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
+#endif
+
 #endif
 
 /// @brief 显示的集合视图
@@ -280,7 +288,22 @@
 }
 
 
+#pragma mark - <UICollectionViewDataSourcePrefetching>
 
+#ifdef __IPHONE_10_0
+
+- (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
+{
+    //what happened???????
+}
+
+- (void)collectionView:(UICollectionView *)collectionView cancelPrefetchingForItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
+{
+    //what happened???????
+}
+
+
+#endif
 
 
 
@@ -356,6 +379,10 @@
         //protocol
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
+        
+#ifdef __IPHONE_10_0
+        _collectionView.prefetchDataSource = self;
+#endif
         
         //property
         _collectionView.backgroundColor = [UIColor whiteColor];

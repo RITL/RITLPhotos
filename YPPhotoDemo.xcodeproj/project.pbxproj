@@ -21,6 +21,7 @@
 		DB19EF971D45BD2400891ACF /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DB19EF891D45BD2400891ACF /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		DB19EF981D45BD2400891ACF /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DB19EF8B1D45BD2400891ACF /* View+MASAdditions.m */; };
 		DB19EF991D45BD2400891ACF /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DB19EF8E1D45BD2400891ACF /* ViewController+MASAdditions.m */; };
+		DB1F0D081D912A46001B3442 /* YPPhotoBrowerPreDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1F0D071D912A46001B3442 /* YPPhotoBrowerPreDataSource.m */; };
 		DB2587F11D50848800C72D6B /* PHObject+SupportCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2587E71D50848800C72D6B /* PHObject+SupportCategory.m */; };
 		DB2587F31D50848800C72D6B /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2587EA1D50848800C72D6B /* UIView+Category.m */; };
 		DB2587F41D50848800C72D6B /* UIViewController+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2587EC1D50848800C72D6B /* UIViewController+Frame.m */; };
@@ -99,6 +100,8 @@
 		DB19EF8C1D45BD2400891ACF /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		DB19EF8D1D45BD2400891ACF /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		DB19EF8E1D45BD2400891ACF /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		DB1F0D061D912A46001B3442 /* YPPhotoBrowerPreDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotoBrowerPreDataSource.h; sourceTree = "<group>"; };
+		DB1F0D071D912A46001B3442 /* YPPhotoBrowerPreDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPPhotoBrowerPreDataSource.m; sourceTree = "<group>"; };
 		DB2587E61D50848800C72D6B /* PHObject+SupportCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHObject+SupportCategory.h"; sourceTree = "<group>"; };
 		DB2587E71D50848800C72D6B /* PHObject+SupportCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHObject+SupportCategory.m"; sourceTree = "<group>"; };
 		DB2587E91D50848800C72D6B /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
@@ -364,6 +367,8 @@
 				DB16C5141D533E37003CD751 /* YPPhotoBrowerCDelegate.m */,
 				DB16C5101D533E08003CD751 /* YPPhotoBrowerDataSource.h */,
 				DB16C5111D533E08003CD751 /* YPPhotoBrowerDataSource.m */,
+				DB1F0D061D912A46001B3442 /* YPPhotoBrowerPreDataSource.h */,
+				DB1F0D071D912A46001B3442 /* YPPhotoBrowerPreDataSource.m */,
 				DBE3FBDA1D38705A00F4E7B8 /* YPPhotoBrowerCell.h */,
 				DBE3FBDB1D38705A00F4E7B8 /* YPPhotoBrowerCell.m */,
 				DBE173931D3779D000BDCD6A /* YPPhotoBrowerController.h */,
@@ -440,6 +445,8 @@
 				TargetAttributes = {
 					DB302F271D35E3C7007B42C3 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 8S4NWFZC5J;
+						ProvisioningStyle = Automatic;
 					};
 					DB302F401D35E3C7007B42C3 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -520,6 +527,7 @@
 				DB19EF991D45BD2400891ACF /* ViewController+MASAdditions.m in Sources */,
 				DB2587F11D50848800C72D6B /* PHObject+SupportCategory.m in Sources */,
 				DB19EF981D45BD2400891ACF /* View+MASAdditions.m in Sources */,
+				DB1F0D081D912A46001B3442 /* YPPhotoBrowerPreDataSource.m in Sources */,
 				DB302F641D35E5AE007B42C3 /* YPPhotoStore.m in Sources */,
 				DB19EF941D45BD2400891ACF /* MASViewAttribute.m in Sources */,
 				DBE3FBDC1D38705A00F4E7B8 /* YPPhotoBrowerCell.m in Sources */,
@@ -685,10 +693,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8S4NWFZC5J;
 				INFOPLIST_FILE = YPPhotoDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yue.YPPhotoDemo004;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yue.YPPhotoDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "YPPhotoDemo/PhotosFiles/PhotosStore/YPPhotoDemo-Bridging-Header.h";
@@ -703,10 +712,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8S4NWFZC5J;
 				INFOPLIST_FILE = YPPhotoDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yue.YPPhotoDemo004;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yue.YPPhotoDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "YPPhotoDemo/PhotosFiles/PhotosStore/YPPhotoDemo-Bridging-Header.h";
