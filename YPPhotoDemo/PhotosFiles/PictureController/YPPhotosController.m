@@ -159,15 +159,15 @@
     
     
 #ifdef __IPHONE_9_0
-//    
-//    BOOL isPhoto = (((PHAsset *)[self.assets objectAtIndex:indexPath.row]).mediaType == PHAssetMediaTypeImage);
-//    
-//    //确定为图片
-//    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable || isPhoto == true)
-//    {
-//        [self registerForPreviewingWithDelegate:self sourceView:cell];
-//    }
-//    
+    
+    BOOL isPhoto = (((PHAsset *)[self.assets objectAtIndex:indexPath.row]).mediaType == PHAssetMediaTypeImage);
+    
+    //确定为图片
+    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable && isPhoto == true)
+    {
+        [self registerForPreviewingWithDelegate:self sourceView:cell];
+    }
+    
     
 #endif
     
