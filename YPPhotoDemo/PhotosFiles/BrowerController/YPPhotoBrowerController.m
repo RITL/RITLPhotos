@@ -296,11 +296,17 @@ static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 {
     if (_originPhotoLabel == nil)
     {
-        _originPhotoLabel = [[UILabel alloc]initWithFrame:CGRectMake(_hignSignImageView.maxX + 5, 0, 30, 25)];
+        //计算字的大小
+        NSAttributedString * constWord = [[NSAttributedString alloc]initWithString:@"原图:" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]}];
+        
+        CGFloat width = [constWord boundingRectWithSize:CGSizeMake(100, 30) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size.width;
+        
+        _originPhotoLabel = [[UILabel alloc]initWithFrame:CGRectMake(_hignSignImageView.maxX + 5, 0, width, 25)];
         _originPhotoLabel.center = CGPointMake(_originPhotoLabel.center.x, _highQualityControl.center.y);
         _originPhotoLabel.font = [UIFont systemFontOfSize:13];
         _originPhotoLabel.textColor = self.deselectedColor;
         _originPhotoLabel.text = @"原图:";
+        
     }
     
     return _originPhotoLabel;
