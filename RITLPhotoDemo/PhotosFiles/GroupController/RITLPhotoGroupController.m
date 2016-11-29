@@ -7,7 +7,7 @@
 //
 
 #import "RITLPhotoGroupController.h"
-#import "RITLPhotoGroupCell.h"
+#import "RITLPhotoGroupCellOld.h"
 #import "PHObject+SupportCategory.h"
 #import "YPPhotosController.h"
 
@@ -28,7 +28,7 @@
     self.photoStore = [[RITLPhotoStore alloc]init];
     
     self.tableView.tableFooterView = [[UIView alloc]init];
-    [self.tableView registerClass:[RITLPhotoGroupCell class] forCellReuseIdentifier:@"YPPhotoGroupCell"];
+    [self.tableView registerClass:[RITLPhotoGroupCellOld class] forCellReuseIdentifier:@"YPPhotoGroupCell"];
     
     //Navigation
     self.navigationItem.title = @"相册";
@@ -90,7 +90,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RITLPhotoGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RITLPhotoGroupCell class]) forIndexPath:indexPath];
+    RITLPhotoGroupCellOld *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RITLPhotoGroupCellOld class]) forIndexPath:indexPath];
     
     //避免cell强引用
     __weak typeof(cell) weakCell = cell;

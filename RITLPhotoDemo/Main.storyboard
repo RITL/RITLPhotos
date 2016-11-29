@@ -28,7 +28,7 @@
         <!--Photo Main View Controller-->
         <scene sceneID="36a-U8-up3">
             <objects>
-                <viewController id="NYz-XA-RDm" customClass="YPhotoMainViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RITLPhotoMainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NYz-XA-RDm" customClass="RITLPhotoMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BGy-YC-Asm"/>
                         <viewControllerLayoutGuide type="bottom" id="rmH-GI-CkI"/>

@@ -47,7 +47,7 @@ NS_AVAILABLE_IOS(8_0) @interface RITLPhotoStore : NSObject<PHPhotoLibraryChangeO
 #pragma mark - 处理相册的方法
 
 /** 获取某个相册的所有照片的简便方法 */
-- (PHFetchResult *)fetchPhotos:(PHAssetCollection *)group;
+- (PHFetchResult *)fetchPhotos:(PHAssetCollection *)group __deprecated_msg("Use +fetchPhotos: instead.");
 
 
 #pragma mark - 发生变化的Block

@@ -163,9 +163,6 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 
 
 
-
-
-
 #pragma mark - private function
 
 /** 将assetCollections 中的胶卷相册排到第一位 */

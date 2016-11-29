@@ -7,16 +7,42 @@
 //
 
 #import "RITLPhotoNavigationViewController.h"
+#import "RITLPhotoNavigationViewModel.h"
+
+#import "RITLPhotoGroupViewController.h"
+#import "RITLPhotoGroupViewModel.h"
 
 @interface RITLPhotoNavigationViewController ()
+
 
 @end
 
 @implementation RITLPhotoNavigationViewController
 
-- (void)viewDidLoad {
+-(instancetype)initWithViewModel:(RITLPhotoNavigationViewModel *)viewModel
+{
+    if (self = [super init])
+    {
+        _viewModel = viewModel;
+    }
+    
+    return self;
+}
+
++(instancetype)controllerWithViewModel:(RITLPhotoNavigationViewModel *)viewModel
+{
+    return [[self alloc]initWithViewModel:viewModel];
+}
+
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.viewControllers = @[[RITLPhotoGroupViewController new]];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +50,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - 
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(RITLPhotoNavigationViewModel *)viewModel
+{
+    if (!_viewModel)
+    {
+        _viewModel = [RITLPhotoNavigationViewModel new];
+    }
+    
+    return _viewModel;
 }
-*/
 
 @end

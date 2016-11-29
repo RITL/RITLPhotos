@@ -11,8 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
-NS_CLASS_AVAILABLE_IOS(8_0) @interface YPPhotoNavgationController : UINavigationController
+NS_CLASS_DEPRECATED_IOS(2_0, 10_0,"Use RITLPhotoNavigationViewController instead.") @interface YPPhotoNavgationController : UINavigationController
 
 /// @brief 最多选择的图片数，默认最大为9张
 @property (nonatomic, assign)NSUInteger maxNumberOfSelectImages;

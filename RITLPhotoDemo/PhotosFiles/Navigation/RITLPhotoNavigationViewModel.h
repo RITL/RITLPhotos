@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RITLPhotoNavigationViewModel : NSObject
+NS_ASSUME_NONNULL_BEGIN
+
+/// 主导航控制器的viewModel
+NS_CLASS_AVAILABLE_IOS(8_0) @interface RITLPhotoNavigationViewModel : NSObject
 
 @end
+
+NS_ASSUME_NONNULL_END

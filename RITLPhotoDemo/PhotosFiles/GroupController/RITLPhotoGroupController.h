@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-NS_AVAILABLE_IOS(8_0) @interface RITLPhotoGroupController : UITableViewController
+NS_CLASS_DEPRECATED_IOS(2_0, 10_0,"Use RITLPhotoGroupViewController instead.") @interface RITLPhotoGroupController : UITableViewController
 
 @property (nullable, nonatomic, copy) YPPhotoDidSelectedBlockAsset photosDidSelectBlock;
 

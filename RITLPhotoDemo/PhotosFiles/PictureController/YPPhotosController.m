@@ -160,14 +160,19 @@
     
 #ifdef __IPHONE_9_0
     
-    BOOL isPhoto = (((PHAsset *)[self.assets objectAtIndex:indexPath.row]).mediaType == PHAssetMediaTypeImage);
-    
-    //确定为图片
-    if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable && isPhoto == true)
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f)
     {
-        [self registerForPreviewingWithDelegate:self sourceView:cell];
+        BOOL isPhoto = (((PHAsset *)[self.assets objectAtIndex:indexPath.row]).mediaType == PHAssetMediaTypeImage);
+        
+        //确定为图片
+        if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable && isPhoto == true)
+        {
+            [self registerForPreviewingWithDelegate:self sourceView:cell];
+        }
+        
     }
     
+
     
 #endif
     
@@ -381,7 +386,11 @@
         _collectionView.dataSource = self;
         
 #ifdef __IPHONE_10_0
-        _collectionView.prefetchDataSource = self;
+        if ([UIDevice currentDevice].systemVersion.floatValue >= 10.0f)
+        {
+            _collectionView.prefetchDataSource = self;
+        }
+        
 #endif
         
         //property
