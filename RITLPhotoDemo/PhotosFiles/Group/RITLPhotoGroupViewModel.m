@@ -138,4 +138,10 @@
 }
 
 
+-(NSString *)title
+{
+    return @"相册";
+}
+
+
 @end

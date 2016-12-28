@@ -7,7 +7,32 @@
 //
 
 #import "RITLPhotosViewModel.h"
+#import "RITLPhotoStore.h"
 
 @implementation RITLPhotosViewModel
+
+
+
+-(void)setAssetCollection:(PHAssetCollection *)assetCollection
+{
+    _assetCollection = assetCollection;
+    
+    _assetResult = [RITLPhotoStore fetchPhotos:assetCollection];
+}
+
+
+
+
+
+
+-(NSString *)title
+{
+    if (!_navigationTitle)
+    {
+        return @"";
+    }
+    
+    return _navigationTitle;
+}
 
 @end

@@ -7,15 +7,8 @@
 //
 
 #import "RITLPhotosViewController.h"
-//#import "YPPhotosCell.h"
 #import "RITLPhotosCell.h"
-////#import "PHObject+SupportCategory.h"
-//#import "YPPhotoBottomReusableView.h"
 #import "RITLPhotoBottomReusableView.h"
-//#import "YPPhotoBrowerController.h"
-//#import "UIKit+YPPhotoDemo.h"
-//#import "YPPhotoPreviewController.h"
-
 #import "RITLPhotosViewModel.h"
 
 
@@ -38,18 +31,6 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 
 /// @brief 显示的集合视图
 @property (nonatomic, strong) UICollectionView * collectionView;
-/// @brief cell‘s size
-//@property (nonatomic, assign) CGSize assetSize;
-/// @brief 所有的照片资源
-//@property (nonatomic, strong) PHFetchResult * assets;
-/// @brief 导航标题
-//@property (nonatomic, copy) NSString * itemTitle;
-/// @brief 对应浏览控制器进行图片控制
-//@property (nonatomic, strong)NSMutableArray <PHAsset *> * selectAssets;
-/// @brief 对应选中图片的状态，高清还是原图
-//@property (nonatomic, strong)NSMutableArray <NSNumber *> * selectAssetStatus;
-/// @brief 最大允许的选择数目
-//@property (nonatomic, strong) NSNumber * maxNumberOfSelectImages;
 /// @brief 底部的tabBar
 @property (nonatomic, strong) UITabBar * bottomBar;
 /// @brief 发送按钮
@@ -64,10 +45,27 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 @implementation RITLPhotosViewController
 
 
+-(instancetype)initWithViewModel:(id<RITLCollectionViewModel>)viewModel
+{
+    if (self = [super init])
+    {
+       self.viewModel = viewModel;
+    }
+
+    return self;
+}
+
+
++(instancetype)photosViewModelInstance:(id<RITLCollectionViewModel>)viewModel
+{
+    return [[self alloc]initWithViewModel:viewModel];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.navigationItem.title = _itemTitle;
+    self.navigationItem.title = self.viewModel.title;
 //    _selectAssets = [NSMutableArray arrayWithCapacity:0];
 //    _selectAssetStatus = [NSMutableArray arrayWithCapacity:0];
     
@@ -400,8 +398,8 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height - 44) collectionViewLayout:[[UICollectionViewFlowLayout alloc]init]];
         
         //protocol
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
+//        _collectionView.delegate = self;
+//        _collectionView.dataSource = self;
         
 #ifdef __IPHONE_10_0
         if ([UIDevice currentDevice].systemVersion.floatValue >= 10.0f)
@@ -506,6 +504,18 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
     
     return _numberOfLabel;
 }
+
+
+-(RITLPhotosViewModel *)viewModel
+{
+    if (!_viewModel)
+    {
+        _viewModel = [RITLPhotosViewModel new];
+    }
+    
+    return _viewModel;
+}
+
 
 #pragma mark - 设置numberOfLabel的数目
 ///** 设置当前选择后的资源数量 */

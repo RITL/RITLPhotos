@@ -6,8 +6,8 @@
 //  Copyright © 2016年 YueWen. All rights reserved.
 //
 
+#import "RITLBaseViewModel.h"
 #import "RITLTableViewModel.h"
-#import "RITLTableCellViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +23,7 @@ typedef PhotoCompleteBlock2 PhotoGroupMessageBlock;
 
 
 /// 显示组的控制器的viewModel
-@interface RITLPhotoGroupViewModel : NSObject<RITLTableViewModel,RITLTableCellViewModel>
+@interface RITLPhotoGroupViewModel : RITLBaseViewModel <RITLTableViewModel>
 
 /// 每张图片的大小，default (60,60)
 @property (nonatomic, assign)CGSize imageSize;

@@ -9,14 +9,16 @@
 #import "RITLPhotoGroupViewController.h"
 #import "RITLPhotoGroupViewModel.h"
 #import "RITLPhotoGroupCell.h"
-#import "YPPhotosController.h"
+//#import "YPPhotosController.h"
 
 #import "RITLPhotosViewController.h"
+#import "RITLPhotosViewModel.h"
 
+#import <objc/message.h>
 
 static NSString * cellIdentifier = @"RITLPhotoGroupCell";
 
-@interface RITLPhotoGroupViewController ()<YPPhotosControllerDelegate>
+@interface RITLPhotoGroupViewController ()
 
 @end
 
@@ -48,7 +50,7 @@ static NSString * cellIdentifier = @"RITLPhotoGroupCell";
     [self bindViewModel];
     
     //开始获取相片
-    [_viewModel fetchDefaultGroups];
+    ((void(*)(id,SEL))objc_msgSend)(self.viewModel,@selector(fetchDefaultGroups));
 }
 
 
@@ -63,7 +65,7 @@ static NSString * cellIdentifier = @"RITLPhotoGroupCell";
 /// 设置导航栏属性
 - (void)extensionNavigation
 {
-    self.navigationItem.title = @"相册";
+    self.navigationItem.title = self.viewModel.title;
     
     // 回归到viewModel
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancle" style:UIBarButtonItemStylePlain target:self.viewModel action:@selector(dismissGroupController)];
@@ -75,42 +77,44 @@ static NSString * cellIdentifier = @"RITLPhotoGroupCell";
 {
     __weak typeof(self) weakSelf = self;
     
-    _viewModel.dismissGroupBlock = ^(){
-      
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+    if ([self.viewModel isKindOfClass:[RITLPhotoGroupViewModel class]])
+    {
         
-        [strongSelf dismissViewControllerAnimated:true completion:^{}];
-        
-    };
+        RITLPhotoGroupViewModel * viewModel = self.viewModel;
     
-    
-    _viewModel.fetchGroupsBlock = ^(NSArray * groups){
-      
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        
-        [strongSelf.tableView reloadData];
-    };
-    
-    
-    _viewModel.selectedBlock = ^(PHAssetCollection * colletion,NSIndexPath * indexPath){
-      
-        __strong typeof(weakSelf) strongSelf = weakSelf;
+        viewModel.dismissGroupBlock = ^(){
+          
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            [strongSelf dismissViewControllerAnimated:true completion:^{}];
+            
+        };
         
         
-#warning 待重写!
+        viewModel.fetchGroupsBlock = ^(NSArray * groups){
+          
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            [strongSelf.tableView reloadData];
+        };
         
-        YPPhotosController * collectionViewController = [[YPPhotosController alloc]init];
         
-        //传递组对象
-        [collectionViewController setValue:[strongSelf.viewModel fetchPhotos:indexPath] forKey:@"assets"];
-        [collectionViewController setValue:NSLocalizedString(colletion.localizedTitle, @"") forKey:@"itemTitle"];
-        [collectionViewController setValue:@(8) forKey:@"maxNumberOfSelectImages"];
-        
-        [strongSelf.navigationController pushViewController:[RITLPhotosViewController new] animated:true];
-        
-    };
-    
-#warning 待重写!
+        viewModel.selectedBlock = ^(PHAssetCollection * colletion,NSIndexPath * indexPath){
+          
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            RITLPhotosViewModel * viewModel = [RITLPhotosViewModel new];
+            
+            //设置标题
+            viewModel.navigationTitle = colletion.localizedTitle;
+            
+            //设置数据源
+            viewModel.assetCollection = colletion;
+            
+            //弹出控制器
+            [strongSelf.navigationController pushViewController:[RITLPhotosViewController photosViewModelInstance:viewModel] animated:true];
+        };
+    }
 }
 
 
@@ -155,7 +159,7 @@ static NSString * cellIdentifier = @"RITLPhotoGroupCell";
     RITLPhotoGroupCell * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RITLPhotoGroupCell class]) forIndexPath:indexPath];
     
     //设置
-    [self.viewModel loadGroupTitleImage:indexPath complete:^(id _Nonnull title, id _Nonnull image, id _Nonnull appendTitle, NSUInteger count) {
+    [(RITLPhotoGroupViewModel *)self.viewModel loadGroupTitleImage:indexPath complete:^(id _Nonnull title, id _Nonnull image, id _Nonnull appendTitle, NSUInteger count) {
        
         cell.titleLabel.text = appendTitle;
         cell.imageView.image = image;

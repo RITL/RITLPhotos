@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RITLPublicViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// 提供简单的内容接口
-@protocol RITLCollectionCellViewModel <NSObject>
+@protocol RITLCollectionCellViewModel <NSObject,RITLPublicViewModel>
 
 @optional
 
@@ -25,6 +26,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+/**
+ 获得当前indexPath显示的标题
+ 
+ @param indexPath 当前位置indexPath
+ @return 当前位置显示的标题
+ */
+- (NSAttributedString *)attributeTitleOfItemAtIndexPath:(NSIndexPath *)indexPath;
+
 
 /**
  获得当前indexPath显示的图像
@@ -33,6 +42,15 @@ NS_ASSUME_NONNULL_BEGIN
  @return 当前位置显示的图片
  */
 - (UIImage *)imageOfItemAtIndexPath:(NSIndexPath *)indexPath;
+
+
+/**
+ 返回当前位置返回图片的url
+ 
+ @param indexPath 当前位置
+ @return 需要加载图片的url
+ */
+- (NSString *)imageUrlStringForCellAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

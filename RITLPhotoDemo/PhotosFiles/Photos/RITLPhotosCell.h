@@ -28,8 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// label in messageVie to show the information
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
 
-/// button in order to display the selected image
-@property (strong, nonatomic) IBOutlet UIButton *chooseImageViewBtn __deprecated_msg("Use chooseImageView");
+
 
 /// 负责显示选中的按钮
 @property (strong, nonatomic) UIImageView * chooseImageView;
@@ -47,6 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) cellDidSelect;
 - (void) cellDidDeselect;
 
+#pragma mark - Deprecated
+
+/// button in order to display the selected image
+@property (strong, nonatomic) IBOutlet UIButton *chooseImageViewBtn __deprecated_msg("Use chooseImageView");
 
 @end
 

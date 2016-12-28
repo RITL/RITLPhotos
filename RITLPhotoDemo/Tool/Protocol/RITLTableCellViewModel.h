@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RITLPublicViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// 提供简单的内容接口
-@protocol RITLTableCellViewModel <NSObject>
+@protocol RITLTableCellViewModel <NSObject,RITLPublicViewModel>
 
 @optional
 

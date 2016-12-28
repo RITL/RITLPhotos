@@ -50,6 +50,14 @@ NS_AVAILABLE_IOS(8_0) @interface RITLPhotoStore : NSObject<PHPhotoLibraryChangeO
 - (PHFetchResult *)fetchPhotos:(PHAssetCollection *)group __deprecated_msg("Use +fetchPhotos: instead.");
 
 
+/**
+ 获取某个相册的所有照片的简便方法
+
+ @param group
+ @return 
+ */
++ (PHFetchResult *)fetchPhotos:(PHAssetCollection *)group;
+
 #pragma mark - 发生变化的Block
 
 /// @brief 相册发生变化进行的回调block - 目前还未想到如何实现 = =

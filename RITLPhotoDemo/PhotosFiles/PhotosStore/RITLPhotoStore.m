@@ -160,7 +160,10 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
     return [PHAsset fetchAssetsInAssetCollection:group options:[[PHFetchOptions alloc]init]];
 }
 
-
++(PHFetchResult *)fetchPhotos:(PHAssetCollection *)group
+{
+    return [PHAsset fetchAssetsInAssetCollection:group options:[PHFetchOptions new]];
+}
 
 
 #pragma mark - private function

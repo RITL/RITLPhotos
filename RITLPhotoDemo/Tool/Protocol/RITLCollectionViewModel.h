@@ -7,10 +7,11 @@
 //
 
 #import "RITLScrollViewModel.h"
+#import "RITLCollectionCellViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol RITLCollectionViewModel <NSObject,RITLScrollViewModel>
+@protocol RITLCollectionViewModel <NSObject,RITLScrollViewModel,RITLCollectionCellViewModel>
 
 @optional
 
@@ -19,11 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-
 /**
- CollectionView 的组数
+ collection的组数
 
- @return CollectionView 的组数
+ @return section的数目
  */
 - (NSUInteger)numberOfSection;
 
@@ -55,13 +55,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- CollectionView footerView 当前位置的大小
+ CollectionView 的footerView的大小
 
- @param section  位置section
- @param collection 执行方法的collection
- @return 当前section的footerView大小
+ @param section 当前footerView的section
+ @param collectionView 执行方法的collectionView
+ @return 当前section的footerView的大小
  */
-- (CGSize)referenceSizeForFooterInSection:(NSUInteger)section inCollection:(UICollectionView *)collection;
+- (CGSize)referenceSizeForFooterInSection:(NSUInteger)section inCollection:(UICollectionView *)collectionView;
 
 
 
