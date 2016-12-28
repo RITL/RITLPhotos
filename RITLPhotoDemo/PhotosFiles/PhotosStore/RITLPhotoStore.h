@@ -45,11 +45,6 @@ NS_AVAILABLE_IOS(8_0) @interface RITLPhotoStore : NSObject<PHPhotoLibraryChangeO
 
 
 #pragma mark - 处理相册的方法
-
-/** 获取某个相册的所有照片的简便方法 */
-- (PHFetchResult *)fetchPhotos:(PHAssetCollection *)group __deprecated_msg("Use +fetchPhotos: instead.");
-
-
 /**
  获取某个相册的所有照片的简便方法
 
@@ -63,7 +58,14 @@ NS_AVAILABLE_IOS(8_0) @interface RITLPhotoStore : NSObject<PHPhotoLibraryChangeO
 /// @brief 相册发生变化进行的回调block - 目前还未想到如何实现 = =
 @property (nullable, nonatomic, copy)void(^photoStoreHasChanged)(PHChange * changeInstance);
 
+
 @end
+
+
+
+
+
+
 
 
 
@@ -77,6 +79,13 @@ NS_CLASS_AVAILABLE_IOS(8_0) @interface YPPhotoStoreHandleClass : NSObject
 + (void)dataWithAssets:(NSArray <PHAsset *> *)assets status:(NSArray <NSNumber *> *)status complete:(void (^)(NSArray <NSData *> *))dataBlock;
 
 @end
+
+
+
+
+
+
+
 
 
 /// 操作相册组类目
@@ -96,6 +105,13 @@ NS_CLASS_AVAILABLE_IOS(8_0) @interface YPPhotoStoreHandleClass : NSObject
 @end
 
 
+
+
+
+
+
+
+
 /// 操作资源对象类目
 @interface RITLPhotoStore (Asset)
 
@@ -105,6 +121,24 @@ NS_CLASS_AVAILABLE_IOS(8_0) @interface YPPhotoStoreHandleClass : NSObject
 
 /// 将图片路径写入对应相册
 - (void)addCustomAssetPath:(NSString *)imagePath collection:(PHAssetCollection *)collection completionHandler:(void(^)(void)) successBlock failture:(void(^)(NSString * error)) failtureBlock;
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+@interface RITLPhotoStore (NSDeprecated)
+
+/** 获取某个相册的所有照片的简便方法 */
+- (PHFetchResult *)fetchPhotos:(PHAssetCollection *)group __deprecated_msg("Use +fetchPhotos: instead.");
 
 @end
 

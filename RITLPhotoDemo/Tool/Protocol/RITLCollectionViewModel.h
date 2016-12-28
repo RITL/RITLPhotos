@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param collection 执行方法的collection
  @return 当前indexPath的item大小
  */
-- (CGSize)sizeForItemAtIndexPath:(NSIndexPath *)indexPath inCollection:(UICollectionView *)collection;
+- (CGSize)sizeForItemAtIndexPath:(nullable NSIndexPath *)indexPath inCollection:(UICollectionView *)collection;
 
 
 
@@ -103,6 +103,25 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 
+
+
+
+
+/**
+ 预备处理
+
+ @param indexPaths 
+ */
+- (void)prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_AVAILABLE_IOS(10_0);
+
+
+
+/**
+ 取消预备处理
+
+ @param indexPaths 
+ */
+- (void)cancelPrefetchingForItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_AVAILABLE_IOS(10_0);
 
 @end
 

@@ -24,6 +24,32 @@ NS_ASSUME_NONNULL_BEGIN
 /// 存储该组所有的asset对象的集合
 @property (nonatomic, strong, readonly) PHFetchResult * assetResult;
 
+/// 请求当前图片对象
+- (void)imageForIndexPath:(NSIndexPath *)indexPath
+               collection:(UICollectionView *)collection
+                 complete:(void(^)(UIImage *,PHAsset *,BOOL)) completeBlock;
+
+
+/// 资源数
+- (NSUInteger)assetCount;
+
+
+/**
+ 选择该位置的图片
+
+ @param indexPath 
+ */
+- (void)didSelectImageAtIndexPath:(NSIndexPath *)indexPath;
+
+
+/**
+ 该位置的图片是否选中
+
+ @param indexPath
+ @return
+ */
+- (BOOL)imageDidSelectedAtIndexPath:(NSIndexPath *)indexPath;
+
 
 @end
 

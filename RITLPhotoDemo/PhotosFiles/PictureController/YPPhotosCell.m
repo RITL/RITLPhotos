@@ -40,9 +40,11 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
     self.messageView.hidden = true;
     self.messageImageView.image = nil;
     self.messageLabel.text = @"";
-    //    [self.chooseImageView setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+
+    
     self.chooseImageView.image = [UIImage imageNamed:@"未选中"];
-    self.cellType = CellTypeDeseleted;
+    
+    self.cellType = CellTypeDeseleted;//默认为未选择
 }
 
 -(instancetype)initWithFrame:(CGRect)frame
@@ -94,6 +96,8 @@ NS_OPTIONS(NSUInteger, YPPhotosCellType)
             [self buttonShouldDeselect];break;
     }
 }
+
+
 
 
 - (void)buttonShouldSelect

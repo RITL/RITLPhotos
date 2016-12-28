@@ -155,10 +155,7 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 
 
 #pragma mark - 相片
--(PHFetchResult *)fetchPhotos:(PHAssetCollection *)group
-{
-    return [PHAsset fetchAssetsInAssetCollection:group options:[[PHFetchOptions alloc]init]];
-}
+
 
 +(PHFetchResult *)fetchPhotos:(PHAssetCollection *)group
 {
@@ -452,6 +449,18 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
         
         failtureBlock(error);
     }];
+}
+
+@end
+
+
+
+
+@implementation RITLPhotoStore (NSDeprecated)
+
+-(PHFetchResult *)fetchPhotos:(PHAssetCollection *)group
+{
+    return [PHAsset fetchAssetsInAssetCollection:group options:[[PHFetchOptions alloc]init]];
 }
 
 @end

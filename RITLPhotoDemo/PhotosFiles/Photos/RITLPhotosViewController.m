@@ -66,27 +66,27 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 {
     [super viewDidLoad];
     self.navigationItem.title = self.viewModel.title;
-//    _selectAssets = [NSMutableArray arrayWithCapacity:0];
-//    _selectAssetStatus = [NSMutableArray arrayWithCapacity:0];
-    
-    //设置navigationItem
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancleButtonDidTap)];
 
+    //设置navigationItem
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissViewController)];
+
+    //添加视图
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.bottomBar];
     
-//    CGFloat sizeHeight = (self.collectionView.frame.size.width - 3) / 4;
-//    _assetSize = CGSizeMake(sizeHeight, sizeHeight);
-//    
-//    if (_assets != nil && _assets.count >= 1) {
-//        
-//        //滚动到最后一个
-//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_assets.count - 1 inSection:0]atScrollPosition:UICollectionViewScrollPositionBottom animated:false];
-//        
-//        //重置偏移量
-//        [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentOffset.y + 64)];
-//    }
+    
+    //获得资源数
+    NSUInteger items = [self.viewModel numberOfItemsInSection:0];
+  
+    if (items >= 1)
+    {
+        //滚动到最后一个
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:items - 1 inSection:0]atScrollPosition:UICollectionViewScrollPositionBottom animated:false];
+
+        //重置偏移量
+        [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentOffset.y + 64)];
+    }
  
 }
 
@@ -148,21 +148,49 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 
 #pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-
-    return 1;
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
     return self.viewModel.numberOfSection;
 }
 
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 0;
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     return [self.viewModel numberOfItemsInSection:section];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RITLPhotosCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    if ([self.viewModel isKindOfClass:[RITLPhotosViewModel class]])
+    {
+        RITLPhotosViewModel * viewModel = self.viewModel;
+        
+        // 获得图片对象
+        [viewModel imageForIndexPath:indexPath collection:collectionView complete:^(UIImage * _Nonnull image, PHAsset * _Nonnull asset, BOOL isImage) {
+            
+            cell.imageView.image = image;
+            
+            cell.chooseControl.hidden = !isImage;
+    
+        }];
+
+        
+        cell.chooseImageDidSelectBlock = ^(RITLPhotosCell * cell){
+          
+            // 修改数据源
+            [viewModel didSelectImageAtIndexPath:indexPath];
+            
+            // 修改UI
+            [cell cellSelectedAction:[viewModel imageDidSelectedAtIndexPath:indexPath]];
+        };
+            
+    }
+    
+    
+    
+//    self.viewModel
     
     
 #ifdef __IPHONE_9_0
@@ -253,8 +281,8 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     RITLPhotoBottomReusableView * resuableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:reusableViewIdentifier forIndexPath:indexPath];
-    
-//    resuableView.numberOfAsset = self.assets.count;
+
+    resuableView.numberOfAsset = ((RITLPhotosViewModel *)self.viewModel).assetCount;
     
     return resuableView;
 }
@@ -263,26 +291,22 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 #pragma mark - <UICollectionViewDelegateFlowLayout>
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    return self.assetSize;
     return [self.viewModel sizeForItemAtIndexPath:indexPath inCollection:collectionView];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
-//    return CGSizeMake(collectionView.bounds.size.width, 44);
     return [self.viewModel referenceSizeForFooterInSection:section inCollection:collectionView];
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-//    return 1.0f;
     return [self.viewModel minimumLineSpacingForSectionAtIndex:section];
 }
 
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-//    return 1.0f;
     return [self.viewModel minimumInteritemSpacingForSectionAtIndex:section];
 }
 
@@ -290,22 +314,19 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (((PHAsset *)[self.assets objectAtIndex:indexPath.row]).mediaType != PHAssetMediaTypeImage) return false;
-//    
-//    return true;
-    
     return [self.viewModel shouldSelectItemAtIndexPath:indexPath];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     [self.viewModel didSelectItemAtIndexPath:indexPath];
-    
-    //跳转
-//    YPPhotoBrowerController * viewController = [self createBrowerController:indexPath];
-//
-//    [self.navigationController pushViewController:viewController animated:true];
+}
+
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    //是否显示选中标志
+    [((RITLPhotosCell *)cell) cellSelectedAction:[((RITLPhotosViewModel *)self.viewModel) imageDidSelectedAtIndexPath:indexPath]];
 }
 
 
@@ -315,12 +336,12 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 
 - (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
 {
-    //what happened???????
+    [self.viewModel prefetchItemsAtIndexPaths:indexPaths];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView cancelPrefetchingForItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths
 {
-    //what happened???????
+    [self.viewModel cancelPrefetchingForItemsAtIndexPaths:indexPaths];
 }
 
 
@@ -398,13 +419,13 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height - 44) collectionViewLayout:[[UICollectionViewFlowLayout alloc]init]];
         
         //protocol
-//        _collectionView.delegate = self;
-//        _collectionView.dataSource = self;
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
         
 #ifdef __IPHONE_10_0
         if ([UIDevice currentDevice].systemVersion.floatValue >= 10.0f)
         {
-//            _collectionView.prefetchDataSource = self;
+            _collectionView.prefetchDataSource = self;
         }
         
 #endif
@@ -514,6 +535,13 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
     }
     
     return _viewModel;
+}
+
+
+
+-(void)dismissViewController
+{
+    return [super dismissViewControllerAnimated:true completion:nil];
 }
 
 

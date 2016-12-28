@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-//typedef void(^RITLPhotosCellOperationBlock)(RITLPhotosCell * __nullable cell);
+typedef void(^RITLPhotosCellOperationBlock)(RITLPhotosCell * __nullable cell);
 
 @interface RITLPhotosCell : UICollectionViewCell
 
@@ -29,12 +29,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
 
 
-
 /// 负责显示选中的按钮
 @property (strong, nonatomic) UIImageView * chooseImageView;
 
 /// 负责响应点击事件的Control对象
 @property (strong, nonatomic) UIControl * chooseControl;
+
+/// control对象点击的回调
+@property (nullable, copy, nonatomic)RITLPhotosCellOperationBlock chooseImageDidSelectBlock;
+
 
 //evoked when the chooseImageView clicked
 //@property (nullable, copy, nonatomic)RITLPhotosCellOperationBlock imageSelectedBlock;
@@ -46,10 +49,25 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) cellDidSelect;
 - (void) cellDidDeselect;
 
+
+//- (void) 
+
+
 #pragma mark - Deprecated
 
 /// button in order to display the selected image
 @property (strong, nonatomic) IBOutlet UIButton *chooseImageViewBtn __deprecated_msg("Use chooseImageView");
+
+@end
+
+@interface RITLPhotosCell (RITLPhotosViewModel)
+
+/**
+ cell进行点击
+
+ @param isSelected 是否已经选中过
+ */
+- (void) cellSelectedAction:(BOOL)isSelected;
 
 @end
 

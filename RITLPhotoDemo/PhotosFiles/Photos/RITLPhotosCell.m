@@ -71,8 +71,7 @@
     //add subviews
     [self addSubImageView];
     [self addChooseControl];
-    [self addChooseImageView1];
-    //    [self addSubChooseImageView];
+    [self addChooseImageView];
     [self addSubMessageView];
     [self addSubMessageImageView];
     [self addSubMessageLabel];
@@ -82,18 +81,6 @@
 
 
 
-/** 选择按钮被点击 */
-//- (IBAction)chooseButtonDidTap:(id)sender
-//{
-//    switch (_cellType)
-//    {
-//        case CellTypeDeseleted:
-//            [self buttonShouldSelect];break;
-//            
-//        case CellTypeSelected:
-//            [self buttonShouldDeselect];break;
-//    }
-//}
 
 
 //- (void)buttonShouldSelect
@@ -106,24 +93,7 @@
 
 
 
-- (void)startAnimation
-{
-    //anmiation
-    [UIView animateWithDuration:0.2 animations:^{
-        
-        //放大
-        _chooseImageView.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
-        
-    } completion:^(BOOL finished) {//变回
-        
-        [UIView animateWithDuration:0.2 animations:^{
-            
-            _chooseImageView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-            
-        }];
-        
-    }];
-}
+
 
 //
 //- (void)buttonShouldDeselect
@@ -285,11 +255,23 @@
     }];
     
     _chooseControl.backgroundColor = [UIColor clearColor];
-//    [_chooseControl addTarget:self action:@selector(chooseButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
+    [_chooseControl addTarget:self action:@selector(chooseButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
-- (void)addChooseImageView1
+
+/** 选择按钮被点击 */
+- (IBAction)chooseButtonDidTap:(id)sender
+{
+    if (self.chooseImageDidSelectBlock)
+    {
+        self.chooseImageDidSelectBlock(self);
+    }
+}
+
+
+
+- (void)addChooseImageView
 {
     _chooseImageView = [UIImageView new];
     
@@ -309,6 +291,43 @@
     
 }
 
+@end
 
+
+@implementation RITLPhotosCell (RITLPhotosViewModel)
+
+-(void)cellSelectedAction:(BOOL)isSelected
+{
+    NSString * imageName = !isSelected ? @"未选中" : @"选中";
+    
+    self.chooseImageView.image = [UIImage imageNamed:imageName];
+    
+    
+    if (isSelected)
+    {
+        [self startSelectedAnimation];
+    }
+    
+}
+
+
+- (void)startSelectedAnimation
+{
+    //anmiation
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        //放大
+        self.chooseImageView.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+        
+    } completion:^(BOOL finished) {//变回
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            
+            self.chooseImageView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+            
+        }];
+        
+    }];
+}
 
 @end
