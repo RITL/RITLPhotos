@@ -177,6 +177,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         }];
 
         
+        // 响应选择
         cell.chooseImageDidSelectBlock = ^(RITLPhotosCell * cell){
           
             // 修改数据源

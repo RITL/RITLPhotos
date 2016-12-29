@@ -49,10 +49,19 @@
 
 -(void)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //回调当前的PHAssetCollection
+//    //回调当前的PHAssetCollection
+//    if (self.selectedBlock)
+//    {
+//        self.selectedBlock([self assetCollectionIndexPath:indexPath],indexPath);
+//    }
+}
+
+
+-(void)ritl_didSelectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animate
+{
     if (self.selectedBlock)
     {
-        self.selectedBlock([self assetCollectionIndexPath:indexPath],indexPath);
+        self.selectedBlock([self assetCollectionIndexPath:indexPath],indexPath,animate);
     }
 }
 

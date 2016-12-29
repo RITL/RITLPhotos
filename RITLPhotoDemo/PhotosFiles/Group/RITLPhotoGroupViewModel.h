@@ -11,14 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^PhotoBlock)(void);
-typedef void(^PhotoCompleteBlock0)(id);
-typedef void(^PhotoCompleteBlock1)(id,id);
-typedef void(^PhotoCompleteBlock2)(id,id,id,NSUInteger);
 
 typedef PhotoBlock PhotoGroupDissmissBlock;
 typedef PhotoCompleteBlock0 PhotoGroupCompleteBlock;
-typedef PhotoCompleteBlock1 PhotoGroupSelectedBlock;
+typedef PhotoCompleteBlock4 PhotoGroupSelectedBlock;
 typedef PhotoCompleteBlock2 PhotoGroupMessageBlock;
 
 
@@ -74,8 +70,6 @@ typedef PhotoCompleteBlock2 PhotoGroupMessageBlock;
 
 
 
-
-
 /**
  获取当前位置相册的所有照片集合
 
@@ -83,6 +77,19 @@ typedef PhotoCompleteBlock2 PhotoGroupMessageBlock;
  @return 当前当前位置相册的所有照片集合
  */
 -(PHFetchResult *)fetchPhotos:(NSIndexPath *)indexPath;
+    
+    
+
+
+
+/**
+ 当前tableView的row被点击触发
+
+ @param indexPath 当前位置
+ @param animate 是否进行动画跳转
+ */
+- (void)ritl_didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+                            animated:(BOOL)animate;
 
 @end
 

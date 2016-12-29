@@ -96,10 +96,16 @@ static NSString * cellIdentifier = @"RITLPhotoGroupCell";
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
             [strongSelf.tableView reloadData];
+            
+            // 跳入第一个
+            [strongSelf ritlTableView:strongSelf.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] Animated:false];
+            
         };
         
         
-        viewModel.selectedBlock = ^(PHAssetCollection * colletion,NSIndexPath * indexPath){
+        
+        
+        viewModel.selectedBlock = ^(PHAssetCollection * colletion,NSIndexPath * indexPath,BOOL animate){
           
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
@@ -112,7 +118,7 @@ static NSString * cellIdentifier = @"RITLPhotoGroupCell";
             viewModel.assetCollection = colletion;
             
             //弹出控制器
-            [strongSelf.navigationController pushViewController:[RITLPhotosViewController photosViewModelInstance:viewModel] animated:true];
+            [strongSelf.navigationController pushViewController:[RITLPhotosViewController photosViewModelInstance:viewModel] animated:animate];
         };
     }
 }
@@ -176,8 +182,15 @@ static NSString * cellIdentifier = @"RITLPhotoGroupCell";
 {
     //消除选择痕迹
     [tableView deselectRowAtIndexPath:indexPath animated:false];
-    [self.viewModel didSelectRowAtIndexPath:indexPath];
+//    [self.viewModel didSelectRowAtIndexPath:indexPath];
+    [self ritlTableView:tableView didSelectRowAtIndexPath:indexPath Animated:true];
     
+}
+
+- (void)ritlTableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath Animated:(BOOL)animated
+{
+    //进行viewModel转换
+    [((RITLPhotoGroupViewModel *)self.viewModel) ritl_didSelectRowAtIndexPath:indexPath animated:animated];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

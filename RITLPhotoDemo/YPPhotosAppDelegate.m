@@ -9,11 +9,16 @@
 #import "YPPhotosAppDelegate.h"
 #import "YPPhotoNavgationController.h"
 
+
+
 @interface YPPhotosAppDelegate ()
+    
+
 
 @end
 
 @implementation YPPhotosAppDelegate
+
 
 
 @end
