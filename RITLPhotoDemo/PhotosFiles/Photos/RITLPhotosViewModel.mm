@@ -8,14 +8,21 @@
 
 #import "RITLPhotosViewModel.h"
 #import "RITLPhotoStore.h"
+
 #import "PHObject+SupportCategory.h"
+
 #import "RITLPhotoCacheManager.h"
+#import "RITLPhotoHandleManager.h"
+#import "RITLPhotoBridgeManager.h"
 
 
 @interface RITLPhotosViewModel ()
 
 /// 存储该组所有的asset对象的集合
 @property (nonatomic, strong, readwrite) PHFetchResult * assetResult;
+
+/// 存储该组所有的asset对象的数组
+@property (nonatomic, copy)NSArray <PHAsset * > * assetResults;
 
 /// 存放当前所有的照片对象
 @property (nonatomic, copy) NSArray <PHAsset *> * photosAssetResult;
@@ -115,19 +122,33 @@
 }
 
 
--(void)didSelectImageAtIndexPath:(NSIndexPath *)indexPath
+-(BOOL)didSelectImageAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUInteger item = indexPath.item;
-    
     // 修改标志位
     RITLPhotoCacheManager * cacheManager = [RITLPhotoCacheManager sharedInstace];
     
-    cacheManager.assetIsSelectedSignal[item] = !cacheManager.assetIsSelectedSignal[item];
+    NSUInteger item = indexPath.item;
     
     // 表示消失还是选中，选中为1 未选中为 -1
-    NSInteger temp = cacheManager.assetIsSelectedSignal[item] ? 1 : -1;
+    NSInteger temp = cacheManager.assetIsSelectedSignal[item] ? -1 : 1;
     
     cacheManager.numberOfSelectedPhoto += temp;
+    
+    //判断当前数目是否达到上限
+    if (cacheManager.numberOfSelectedPhoto > cacheManager.maxNumberOfSelectedPhoto)
+    {
+        //退回
+        cacheManager.numberOfSelectedPhoto --;
+        
+        //弹出提醒框
+        self.warningBlock(false,cacheManager.maxNumberOfSelectedPhoto);
+        
+        return false;
+    }
+    
+    // 修改数据源标志位
+    cacheManager.assetIsSelectedSignal[item] = !cacheManager.assetIsSelectedSignal[item];
+    
     
     //获得选择的数目
     temp = cacheManager.numberOfSelectedPhoto;
@@ -136,6 +157,8 @@
 
     //执行允许点击以及预览的block
     self.photoSendStatusChangedBlock(enable,temp);
+    
+    return true;
 
 }
 
@@ -174,11 +197,8 @@
     self.assetResult = [RITLPhotoStore fetchPhotos:assetCollection];
     
     
-    RITLPhotoCacheManager * photoCacheManager = [RITLPhotoCacheManager sharedInstace];
     
-    //释放所有的资源
-//    [photoCacheManager freeAllSignal];
-
+    RITLPhotoCacheManager * photoCacheManager = [RITLPhotoCacheManager sharedInstace];
     
     unsigned long assetCount = self.assetResult.count;
     
@@ -202,6 +222,36 @@
         
     }];
 
+}
+
+
+
+-(void)setAssetResult:(PHFetchResult *)assetResult
+{
+    _assetResult = assetResult;
+    
+    //初始化所有的数组
+    [assetResult transToArrayComplete:^(NSArray<PHAsset *> * _Nonnull assets, PHFetchResult * _Nonnull result) {
+       
+        // 赋值
+        self.assetResults = assets;
+        
+    }];
+    
+}
+
+
+
+-(void)photoDidSelectedComplete
+{
+    //获得所有选中的图片数组
+    NSArray <PHAsset *> * assets = [RITLPhotoHandleManager assetForAssets:self.assetResults status:[RITLPhotoCacheManager sharedInstace].assetIsSelectedSignal];
+    
+    //进行回调
+    [[RITLPhotoBridgeManager sharedInstance]startRenderImage:assets];
+    
+    //弹出
+    self.dismissBlock();
 }
 
 

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 YueWen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "RITLBaseViewModel.h"
 #import "RITLCollectionCellViewModel.h"
 #import "RITLCollectionViewModel.h"
 
@@ -16,7 +16,7 @@ typedef PhotoCompleteBlock5 RITLPhotoDidTapHandleBlock;
 typedef PhotoCompleteBlock6 RITLPhotoSendStatusBlock;
 
 /// 选择图片的一级界面控制器的viewModel
-@interface RITLPhotosViewModel : NSObject <RITLCollectionViewModel>
+@interface RITLPhotosViewModel : RITLBaseViewModel <RITLCollectionViewModel>
 
 /// 当前显示的导航标题
 @property (nonatomic, copy) NSString * navigationTitle;
@@ -33,14 +33,13 @@ typedef PhotoCompleteBlock6 RITLPhotoSendStatusBlock;
 /// 响应是否能够点击预览以及发送按钮的block
 @property (nonatomic, copy)RITLPhotoSendStatusBlock photoSendStatusChangedBlock;
 
+/// 资源数
+- (NSUInteger)assetCount;
+
 /// 请求当前图片对象
 - (void)imageForIndexPath:(NSIndexPath *)indexPath
                collection:(UICollectionView *)collection
                  complete:(void(^)(UIImage *,PHAsset *,BOOL)) completeBlock;
-
-
-/// 资源数
-- (NSUInteger)assetCount;
 
 
 /**
@@ -48,7 +47,7 @@ typedef PhotoCompleteBlock6 RITLPhotoSendStatusBlock;
 
  @param indexPath 
  */
-- (void)didSelectImageAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)didSelectImageAtIndexPath:(NSIndexPath *)indexPath;
 
 
 /**

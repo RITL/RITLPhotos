@@ -7,7 +7,53 @@
 //
 
 #import "RITLPhotoNavigationViewModel.h"
+#import "RITLPhotoCacheManager.h"
+#import "RITLPhotoBridgeManager.h"
+
+CGSize const RITLPhotoOriginSize = {-100,-100};
+
 
 @implementation RITLPhotoNavigationViewModel
+
+-(instancetype)init
+{
+    if (self = [super init])
+    {
+        self.maxNumberOfSelectedPhoto = 9;
+        self.imageSize = RITLPhotoOriginSize;
+    }
+    
+    return self;
+}
+
+
+-(void)setMaxNumberOfSelectedPhoto:(NSUInteger)maxNumberOfSelectedPhoto
+{
+    _maxNumberOfSelectedPhoto = maxNumberOfSelectedPhoto;
+    
+    [RITLPhotoCacheManager sharedInstace].maxNumberOfSelectedPhoto = maxNumberOfSelectedPhoto;
+}
+
+
+-(void)setRITLBridgeGetImageBlock:(void (^)(NSArray<UIImage *> * _Nonnull))RITLBridgeGetImageBlock
+{
+    _RITLBridgeGetImageBlock = RITLBridgeGetImageBlock;
+    
+    [RITLPhotoBridgeManager sharedInstance].RITLBridgeGetImageBlock = RITLBridgeGetImageBlock;
+}
+
+
+-(void)setImageSize:(CGSize)imageSize
+{
+    _imageSize = imageSize;
+    
+    [RITLPhotoCacheManager sharedInstace].imageSize = imageSize;
+}
+
+
+-(void)dealloc
+{
+    NSLog(@"Dealloc %@",NSStringFromClass([self class]));
+}
 
 @end

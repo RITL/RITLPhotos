@@ -300,7 +300,7 @@ static NSString * hignSizeArray;
 
 @implementation PHFetchResult (NSArray)
 
--(void)transToArrayComplete:(void (^)(NSArray<PHAssetCollection *> * _Nonnull, PHFetchResult * _Nonnull))arrayObject
+-(void)transToArrayComplete:(void (^)(NSArray<id> * _Nonnull, PHFetchResult * _Nonnull))arrayObject
 {
     __weak typeof(self) weakSelf = self;
     
@@ -319,8 +319,16 @@ static NSString * hignSizeArray;
         
         if (idx == self.count - 1)
         {
-            arrayObject([array mutableCopy],weakSelf);
+            arrayObject(array,weakSelf);
         }
+        
+        printf("%s idx = %ld\n",NSStringFromClass([obj class]).UTF8String,idx);
+        
+        if ([obj isEqual:[self objectAtIndex:idx]])
+        {
+            
+        }
+        
     }];
 }
 

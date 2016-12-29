@@ -42,7 +42,7 @@
 
 -(void)dealloc
 {
-    [self freeAllSignal];
+
 }
 
 
@@ -62,12 +62,9 @@
         NSLog(@"signal dealloc2");
     }
     
-    
-//    if (self.assetIsSelectedInBrowerSignal)
-//    {
-//        free(self.assetIsSelectedInBrowerSignal);
-//        NSLog(@"signal dealloc3");
-//    }
+    _numberOfSelectedPhoto = 0;
+    _maxNumberOfSelectedPhoto = NSUIntegerMax;
+
 }
 
 

@@ -28,6 +28,11 @@
     return self;
 }
 
+-(void)dealloc
+{
+    NSLog(@"Dealloc %@",NSStringFromClass([self class]));
+}
+
 
 -(NSUInteger)numberOfGroup
 {

@@ -19,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 记录当前选择的数量
 @property (nonatomic, assign) NSUInteger numberOfSelectedPhoto;
 
+/// 图片的大小，默认为RITLPhotoOriginSize
+@property (nonatomic, assign) CGSize imageSize;
+
+
+
 /// 资源是否为图片的标志位
 @property (nonatomic, assign) BOOL * assetIsPictureSignal;
 
@@ -31,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 释放所有的信号资源
 - (void)freeAllSignal;
+
 
 /// 重置初始化信号标志位
 //void resetSignal(BOOL ** signal,NSUInteger count, BOOL value);

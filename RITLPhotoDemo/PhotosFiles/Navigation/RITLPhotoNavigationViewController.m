@@ -53,6 +53,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dealloc
+{
+    NSLog(@"Dealloc %@",NSStringFromClass([self class]));
+}
+
 #pragma mark - 
 
 -(id <RITLPublicViewModel>)viewModel

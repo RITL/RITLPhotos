@@ -13,6 +13,7 @@
 
 
 #import "RITLPhotoNavigationViewController.h"
+#import "RITLPhotoNavigationViewModel.h"
 
 @interface RITLPhotoMainViewController ()
 <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -40,12 +41,18 @@
     
     [store checkGroupExist:@"new" result:^(BOOL isExist, PHAssetCollection * _Nullable collection) {
        
-        if (isExist)  NSLog(@"exist!");
+//        if (isExist)  NSLog(@"exist!");
         
-        else NSLog(@"not exist!");
+//        else NSLog(@"not exist!");
         
     }];
     
+}
+- (IBAction)refresh:(id)sender
+{
+    self.assets = @[];
+    
+    [self.collectionView reloadData];
 }
 
 
@@ -58,32 +65,52 @@
 - (IBAction)photosItemDidTap:(id)sender
 {
 
-    YPPhotoNavgationController * photoViewController = [[YPPhotoNavgationController alloc]init];
-    
-    __weak typeof(self)weakSelf = self;
-    
-    
-#pragma photoViewController.photosDidSelectBlock用法
-//    photoViewController.photosDidSelectBlock = ^(NSArray <PHAsset *> * assets,NSArray <NSNumber *> * status){
-//        
-//        weakSelf.assets = assets;
+//    YPPhotoNavgationController * photoViewController = [[YPPhotoNavgationController alloc]init];
+//    
+//    __weak typeof(self)weakSelf = self;
+//    
+//    
+//#pragma photoViewController.photosDidSelectBlock用法
+////    photoViewController.photosDidSelectBlock = ^(NSArray <PHAsset *> * assets,NSArray <NSNumber *> * status){
+////        
+////        weakSelf.assets = assets;
+////        [weakSelf.collectionView reloadData];
+////        
+////        NSLog(@"%@",assets);
+////        NSLog(@"%@",status);
+////        
+////    };
+//    
+//#pragma photoViewController.photoImageSelectBlock 搭配imageSize 的用法
+//    photoViewController.imageSize = _assetSize;
+//    photoViewController.photoImageSelectBlock = ^(NSArray <UIImage *> * images){
+//      
+//        weakSelf.assets = images;
 //        [weakSelf.collectionView reloadData];
 //        
-//        NSLog(@"%@",assets);
-//        NSLog(@"%@",status);
-//        
 //    };
+//    
+//    RITLPhotoNavigationViewController * viewController = [RITLPhotoNavigationViewController new];
     
-#pragma photoViewController.photoImageSelectBlock 搭配imageSize 的用法
-    photoViewController.imageSize = _assetSize;
-    photoViewController.photoImageSelectBlock = ^(NSArray <UIImage *> * images){
-      
-        weakSelf.assets = images;
-        [weakSelf.collectionView reloadData];
+   
+    RITLPhotoNavigationViewModel * viewModel = [RITLPhotoNavigationViewModel new];
+    
+    __weak typeof(self) weakSelf = self;
+    
+//    viewModel.imageSize = _assetSize;
+    
+    viewModel.RITLBridgeGetImageBlock = ^(NSArray <UIImage *> * images){
+        
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        strongSelf.assets = images;
+        
+        [strongSelf.collectionView reloadData];
         
     };
     
-    RITLPhotoNavigationViewController * viewController = [RITLPhotoNavigationViewController new];
+     RITLPhotoNavigationViewController * viewController = [RITLPhotoNavigationViewController photosViewModelInstance:viewModel];
+    
     
     [self presentViewController:viewController animated:true completion:^{}];
     

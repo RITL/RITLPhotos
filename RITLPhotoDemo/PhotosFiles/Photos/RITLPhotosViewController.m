@@ -15,6 +15,7 @@
 #import "RITLPhotoBrowerViewModel.h"
 
 #import "UIButton+RITLBlockButton.h"
+#import "UIViewController+RITLPhotoAlertController.h"
 
 static NSString * cellIdentifier = @"RITLPhotosCell";
 static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
@@ -107,7 +108,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 {
     self.collectionView.delegate = nil;
     self.collectionView.dataSource = nil;
-    NSLog(@"YPPhotosController Dealloc");
+    NSLog(@"Dealloc %@",NSStringFromClass([self class]));
 }
 
 
@@ -130,7 +131,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
             
         };
         
-        
+        // 发送数目标签响应变化
         viewModel.photoSendStatusChangedBlock = ^(BOOL enable,NSUInteger count){
           
             __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -141,6 +142,25 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
             //设置标签数目
             [strongSelf updateNumbersForSelectAssets:count];
         };
+        
+        
+        // 弹出警告框
+        viewModel.warningBlock = ^(BOOL result,NSUInteger maxCount){
+          
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            [strongSelf presentAlertController:maxCount];
+        };
+        
+        // 模态弹出
+        viewModel.dismissBlock = ^{
+          
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            [strongSelf dismissViewController];
+            
+        };
+        
     }
 }
 
@@ -219,11 +239,12 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         // 响应选择
         cell.chooseImageDidSelectBlock = ^(RITLPhotosCell * cell){
           
-            // 修改数据源
-            [viewModel didSelectImageAtIndexPath:indexPath];
-            
-            // 修改UI
-            [cell cellSelectedAction:[viewModel imageDidSelectedAtIndexPath:indexPath]];
+            // 修改数据源成功
+            if([viewModel didSelectImageAtIndexPath:indexPath])
+            {
+                // 修改UI
+                [cell cellSelectedAction:[viewModel imageDidSelectedAtIndexPath:indexPath]];
+            }
         };
     }
     
@@ -515,8 +536,6 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         //默认不可点击
         _bowerButton.enabled = false;
         
-//        [_bowerButton addTarget:self action:@selector(bowerButtonDidTap) forControlEvents:UIControlEventTouchUpInside];
-        
         __weak typeof(self) weakSelf = self;
         
         [_bowerButton controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
@@ -556,8 +575,6 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         //默认为不可点击
         _sendButton.enabled = false;
         
-//        [_sendButton addTarget:self action:@selector(chooseImagesComplete) forControlEvents:UIControlEventTouchUpInside];
-        
         __weak typeof(self) weakSelf = self;
         
         [_sendButton controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
@@ -565,6 +582,9 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
             NSLog(@"发送!");
+            
+            // 选择完毕
+            [((RITLPhotosViewModel *)strongSelf.viewModel) photoDidSelectedComplete];
             
         }];
         
