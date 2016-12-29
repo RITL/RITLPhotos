@@ -13,6 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef PhotoCompleteBlock5 RITLPhotoDidTapHandleBlock;
+typedef PhotoCompleteBlock6 RITLPhotoSendStatusBlock;
 
 /// 选择图片的一级界面控制器的viewModel
 @interface RITLPhotosViewModel : NSObject <RITLCollectionViewModel>
@@ -29,7 +30,8 @@ typedef PhotoCompleteBlock5 RITLPhotoDidTapHandleBlock;
 /// 图片被点击进入浏览控制器的block
 @property (nonatomic, copy)RITLPhotoDidTapHandleBlock photoDidTapShouldBrowerBlock;
 
-
+/// 响应是否能够点击预览以及发送按钮的block
+@property (nonatomic, copy)RITLPhotoSendStatusBlock photoSendStatusChangedBlock;
 
 /// 请求当前图片对象
 - (void)imageForIndexPath:(NSIndexPath *)indexPath

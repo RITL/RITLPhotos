@@ -242,7 +242,10 @@ static NSString * hignSizeArray;
 
 @implementation PHFetchResult (PHAsset)
 
--(void)preparationWithType:(PHAssetMediaType)mediaType Complete:(void (^)(NSArray<PHAsset *> * _Nonnull))completeBlock
+-(void)preparationWithType:(PHAssetMediaType)mediaType
+       matchingObjectBlock:(void(^)(PHAsset *))matchingObjectBlock
+      enumerateObjectBlock:(void (^)(PHAsset * _Nonnull))enumerateObjectBlock
+                  Complete:(void (^)(NSArray<PHAsset *> * _Nullable))completeBlock
 {
     __weak typeof(self) weakSelf = self;
     
@@ -250,24 +253,48 @@ static NSString * hignSizeArray;
     
     if (weakSelf.count == 0) {
         
-        completeBlock([NSArray arrayWithArray:assets]);assets = nil;return;
+        if (completeBlock)
+        {
+            completeBlock([NSArray arrayWithArray:assets]);assets = nil;return;
+        }
     }
     
     
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-       
+        
+        if (enumerateObjectBlock)
+        {
+            enumerateObjectBlock(obj);
+        }
+
+        
         if (((PHAsset *)obj).mediaType == mediaType)
         {
+            if (matchingObjectBlock)
+            {
+                matchingObjectBlock(obj);
+            }
+            
             [assets addObject:obj];
         }
         
         if (idx == weakSelf.count - 1)
         {
-            completeBlock([NSArray arrayWithArray:assets]);
-            assets = nil;
+            if (completeBlock)
+            {
+                completeBlock([NSArray arrayWithArray:assets]);
+            }
         }
     }];
+
 }
+
+-(void)preparationWithType:(PHAssetMediaType)mediaType Complete:(void (^)(NSArray<PHAsset *> * _Nonnull))completeBlock
+{
+    [self preparationWithType:mediaType matchingObjectBlock:nil enumerateObjectBlock:nil Complete:completeBlock];
+}
+
+
 
 @end
 

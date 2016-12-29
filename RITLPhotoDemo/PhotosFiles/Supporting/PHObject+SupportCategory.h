@@ -46,6 +46,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PHFetchResult (PHAsset)
 
+
+/**
+  获取PHFetchResult符合媒体类型的PHAsset对象
+
+ @param mediaType 媒体对象
+ @param matchingObjectBlock  每次获得符合媒体类型的对象调用一次
+ @param enumerateObjectBlock 每次都会调用一次
+ @param completeBlock 完成之后返回存放符合媒体类型的PHAsset数组
+ */
+- (void)preparationWithType:(PHAssetMediaType)mediaType
+        matchingObjectBlock:(nullable void(^)(PHAsset *))matchingObjectBlock
+       enumerateObjectBlock:(nullable void(^)(PHAsset *))enumerateObjectBlock
+                   Complete:(nullable void(^)(NSArray <PHAsset *> * __nullable))completeBlock;
+
+
 /** 获取PHFetchResult中符合媒体类型的PHAsset对象 */
 - (void)preparationWithType:(PHAssetMediaType)mediaType Complete:(void(^)(NSArray <PHAsset *> * __nullable))completeBlock;
 

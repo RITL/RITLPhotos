@@ -45,6 +45,7 @@ typedef void(^PhotoCompleteBlock1)(id,id);
 typedef void(^PhotoCompleteBlock2)(id,id,id,NSUInteger);
 typedef void(^PhotoCompleteBlock4)(id,id,BOOL);
 typedef void(^PhotoCompleteBlock5)(id,id,NSUInteger);
+typedef void(^PhotoCompleteBlock6)(BOOL,NSUInteger);
 
 
 
@@ -74,6 +75,7 @@ static inline NSString * sizeWithLength(NSUInteger length)
     }
     
 }
+
 
 
 

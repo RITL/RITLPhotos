@@ -9,19 +9,13 @@
 #import "RITLPhotosViewModel.h"
 #import "RITLPhotoStore.h"
 #import "PHObject+SupportCategory.h"
+#import "RITLPhotoCacheManager.h"
 
 
 @interface RITLPhotosViewModel ()
 
-
 /// 存储该组所有的asset对象的集合
 @property (nonatomic, strong, readwrite) PHFetchResult * assetResult;
-
-/// 资源是否为图片的标志位
-@property (nonatomic, assign) BOOL * assetIsPicture;
-
-/// 资源是否被选中的标志位
-@property (nonatomic, assign) BOOL * assetIsSelected;
 
 /// 存放当前所有的照片对象
 @property (nonatomic, copy) NSArray <PHAsset *> * photosAssetResult;
@@ -55,17 +49,16 @@
 {
     NSUInteger item = indexPath.item;
     
-    __weak typeof(self) weakSelf = self;
     
     [((PHAsset *)[self.assetResult objectAtIndex:item]) representationImageWithSize:[self sizeForItemAtIndexPath:indexPath inCollection:collection] complete:^(UIImage * _Nullable image, PHAsset * _Nonnull asset) {
 
         //判断资源是否为图片
         if (asset.mediaType == PHAssetMediaTypeImage)
         {
-            weakSelf.assetIsPicture[item] = true;
+            [RITLPhotoCacheManager sharedInstace].assetIsPictureSignal[item] = true;
         }
         
-        completeBlock(image,asset,weakSelf.assetIsPicture[item]);
+        completeBlock(image,asset,[RITLPhotoCacheManager sharedInstace].assetIsPictureSignal[item]);
         
     }];
 }
@@ -101,7 +94,7 @@
 {
     NSUInteger item = indexPath.item;
     
-    return self.assetIsPicture[item];
+    return [RITLPhotoCacheManager sharedInstace].assetIsPictureSignal[item];
 }
 
 -(void)didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -127,7 +120,23 @@
     NSUInteger item = indexPath.item;
     
     // 修改标志位
-    self.assetIsSelected[item] = !self.assetIsSelected[item];
+    RITLPhotoCacheManager * cacheManager = [RITLPhotoCacheManager sharedInstace];
+    
+    cacheManager.assetIsSelectedSignal[item] = !cacheManager.assetIsSelectedSignal[item];
+    
+    // 表示消失还是选中，选中为1 未选中为 -1
+    NSInteger temp = cacheManager.assetIsSelectedSignal[item] ? 1 : -1;
+    
+    cacheManager.numberOfSelectedPhoto += temp;
+    
+    //获得选择的数目
+    temp = cacheManager.numberOfSelectedPhoto;
+    
+    BOOL enable = (temp >= 1);
+
+    //执行允许点击以及预览的block
+    self.photoSendStatusChangedBlock(enable,temp);
+
 }
 
 
@@ -135,7 +144,7 @@
 {
     NSUInteger item = indexPath.item;
     
-    return self.assetIsSelected[item];
+    return [RITLPhotoCacheManager sharedInstace].assetIsSelectedSignal[item];
 }
 
 
@@ -164,19 +173,22 @@
     
     self.assetResult = [RITLPhotoStore fetchPhotos:assetCollection];
     
+    
+    RITLPhotoCacheManager * photoCacheManager = [RITLPhotoCacheManager sharedInstace];
+    
     //释放所有的资源
-    [self freeAllAsset];
+//    [photoCacheManager freeAllSignal];
 
     
     unsigned long assetCount = self.assetResult.count;
     
     // 初始化数组
-    self.assetIsPicture = new BOOL[assetCount];
-    self.assetIsSelected = new BOOL[assetCount];
+    photoCacheManager.assetIsPictureSignal = new BOOL[assetCount];
+    photoCacheManager.assetIsSelectedSignal = new BOOL[assetCount];
     
     // 初始化
-    memset(self.assetIsPicture, false, assetCount * sizeof(BOOL));
-    memset(self.assetIsSelected, false, assetCount * sizeof(BOOL));
+    memset(photoCacheManager.assetIsPictureSignal, false, assetCount * sizeof(BOOL));
+    memset(photoCacheManager.assetIsSelectedSignal, false, assetCount * sizeof(BOOL));
     
     __weak typeof(self) weakSelf = self;;
     
@@ -190,13 +202,6 @@
         
     }];
 
-}
-
-
-- (void)freeAllAsset
-{
-    if (self.assetIsPicture)    free(self.assetIsPicture);
-    if (self.assetIsSelected)   free(self.assetIsSelected);
 }
 
 
@@ -227,11 +232,7 @@
 
 -(void)dealloc
 {
-    if (self.assetIsPicture)
-    {
-        free(self.assetIsPicture);
-        NSLog(@"assetIsPicture is free!");
-    }
+    [[RITLPhotoCacheManager sharedInstace] freeAllSignal];
     
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));
 }

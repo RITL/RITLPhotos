@@ -14,6 +14,8 @@
 #import "RITLPhotoBrowerController.h"
 #import "RITLPhotoBrowerViewModel.h"
 
+#import "UIButton+RITLBlockButton.h"
+
 static NSString * cellIdentifier = @"RITLPhotosCell";
 static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 
@@ -124,8 +126,20 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
             //进入随意一个浏览控制器
-            [strongSelf.navigationController pushViewController:[RITLPhotoBrowerController photosViewModelInstance:nil] animated:true];
+//            [strongSelf.navigationController pushViewController:[RITLPhotoBrowerController photosViewModelInstance:nil] animated:true];
             
+        };
+        
+        
+        viewModel.photoSendStatusChangedBlock = ^(BOOL enable,NSUInteger count){
+          
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            strongSelf.bowerButton.enabled = enable;
+            strongSelf.sendButton.enabled = enable;
+            
+            //设置标签数目
+            [strongSelf updateNumbersForSelectAssets:count];
         };
     }
 }
@@ -211,7 +225,6 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
             // 修改UI
             [cell cellSelectedAction:[viewModel imageDidSelectedAtIndexPath:indexPath]];
         };
-            
     }
     
     
@@ -497,10 +510,24 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         [_bowerButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [_bowerButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
         
+        _bowerButton.showsTouchWhenHighlighted = true;
+        
         //默认不可点击
         _bowerButton.enabled = false;
         
 //        [_bowerButton addTarget:self action:@selector(bowerButtonDidTap) forControlEvents:UIControlEventTouchUpInside];
+        
+        __weak typeof(self) weakSelf = self;
+        
+        [_bowerButton controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
+            
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            NSLog(@"预览啦!");
+            
+        }];
+        
+        
     }
     return _bowerButton;
 }
@@ -524,10 +551,23 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         [_sendButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [_sendButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
         
+        _sendButton.showsTouchWhenHighlighted = true;
+        
         //默认为不可点击
         _sendButton.enabled = false;
         
 //        [_sendButton addTarget:self action:@selector(chooseImagesComplete) forControlEvents:UIControlEventTouchUpInside];
+        
+        __weak typeof(self) weakSelf = self;
+        
+        [_sendButton controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
+           
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            NSLog(@"发送!");
+            
+        }];
+        
     }
     
     return _sendButton;
@@ -572,30 +612,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 
 
 #pragma mark - 设置numberOfLabel的数目
-///** 设置当前选择后的资源数量 */
-//- (void)setNumbersForSelectAssets:(NSUInteger)number
-//{
-//    if (number == 0)
-//    {
-//        _numberOfLabel.hidden = true;
-//        _bowerButton.enabled = false;
-//        _sendButton.enabled = false;
-//        return;
-//    }
-//    
-//    _numberOfLabel.hidden = false;
-//    _bowerButton.enabled = true;
-//    _sendButton.enabled = true;
-//    _numberOfLabel.text = [NSString stringWithFormat:@"%@",@(number)];
-//    _numberOfLabel.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
-//    
-//    //设置动画
-//    [UIView animateWithDuration:0.3 animations:^{
-//        
-//        _numberOfLabel.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-//    }];
-//    
-//}
+
 
 //#pragma mark - UIAlertController
 //- (void)alertControllerShouldPresent
@@ -644,3 +661,30 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 //}
 //
 //@end
+
+
+@implementation RITLPhotosViewController (updateNumberOfLabel)
+
+-(void)updateNumbersForSelectAssets:(NSUInteger)number
+{
+    BOOL hidden = (number == 0);
+    
+    _numberOfLabel.hidden = hidden;
+    
+    if (!hidden)
+    {
+        _numberOfLabel.text = [NSString stringWithFormat:@"%@",@(number)];
+        
+        //设置放射以及动画
+        _numberOfLabel.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+        
+        [UIView animateWithDuration:0.3 animations:^{
+          
+            _numberOfLabel.transform = CGAffineTransformIdentity;
+            
+        }];
+    }
+}
+
+
+@end

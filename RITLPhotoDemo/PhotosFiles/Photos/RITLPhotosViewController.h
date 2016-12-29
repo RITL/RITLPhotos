@@ -24,6 +24,19 @@ NS_AVAILABLE_IOS(8_0) @interface RITLPhotosViewController : UIViewController <RI
 @end
 
 
+@interface RITLPhotosViewController (updateNumberOfLabel)
+
+
+/**
+ 更新选中的图片数
+
+ @param number 选中的图片数
+ */
+- (void)updateNumbersForSelectAssets:(NSUInteger)number;
+
+@end
+
+
 
 //
 //@interface RITLPhotosTimeHandleObject : NSObject
