@@ -19,7 +19,7 @@
 
 @implementation RITLPhotoNavigationViewController
 
--(instancetype)initWithViewModel:(RITLPhotoNavigationViewModel *)viewModel
+-(instancetype)initWithViewModel:(id <RITLPublicViewModel>)viewModel
 {
     if (self = [super init])
     {
@@ -29,9 +29,10 @@
     return self;
 }
 
-+(instancetype)controllerWithViewModel:(RITLPhotoNavigationViewModel *)viewModel
+
++(instancetype)photosViewModelInstance:(id <RITLPublicViewModel>)viewModel
 {
-    return [[self alloc]initWithViewModel:viewModel];
+    return [[self alloc] initWithViewModel:viewModel];
 }
 
 
@@ -45,6 +46,8 @@
     
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -52,7 +55,7 @@
 
 #pragma mark - 
 
--(RITLPhotoNavigationViewModel *)viewModel
+-(id <RITLPublicViewModel>)viewModel
 {
     if (!_viewModel)
     {

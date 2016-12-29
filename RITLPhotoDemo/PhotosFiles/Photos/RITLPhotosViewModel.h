@@ -12,6 +12,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef PhotoCompleteBlock5 RITLPhotoDidTapHandleBlock;
+
 /// 选择图片的一级界面控制器的viewModel
 @interface RITLPhotosViewModel : NSObject <RITLCollectionViewModel>
 
@@ -24,6 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 存储该组所有的asset对象的集合
 @property (nonatomic, strong, readonly) PHFetchResult * assetResult;
 
+/// 图片被点击进入浏览控制器的block
+@property (nonatomic, copy)RITLPhotoDidTapHandleBlock photoDidTapShouldBrowerBlock;
+
+
+
 /// 请求当前图片对象
 - (void)imageForIndexPath:(NSIndexPath *)indexPath
                collection:(UICollectionView *)collection
@@ -35,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- 选择该位置的图片
+ 图片被选中的处理方法
 
  @param indexPath 
  */

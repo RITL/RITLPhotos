@@ -11,6 +11,8 @@
 #import "RITLPhotoBottomReusableView.h"
 #import "RITLPhotosViewModel.h"
 
+#import "RITLPhotoBrowerController.h"
+#import "RITLPhotoBrowerViewModel.h"
 
 static NSString * cellIdentifier = @"RITLPhotosCell";
 static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
@@ -66,6 +68,9 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 {
     [super viewDidLoad];
     self.navigationItem.title = self.viewModel.title;
+    
+    //绑定viewModel
+    [self bindViewModel];
 
     //设置navigationItem
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissViewController)];
@@ -98,11 +103,31 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 
 -(void)dealloc
 {
-//    self.assets = nil;
-//    self.selectAssets = nil;
     self.collectionView.delegate = nil;
     self.collectionView.dataSource = nil;
     NSLog(@"YPPhotosController Dealloc");
+}
+
+
+
+- (void)bindViewModel
+{
+    if ([self.viewModel isMemberOfClass:[RITLPhotosViewModel class]])
+    {
+        RITLPhotosViewModel * viewModel = self.viewModel;
+        
+        __weak typeof(self) weakSelf = self;
+ 
+        // 跳转至预览视图
+        viewModel.photoDidTapShouldBrowerBlock = ^(NSArray <PHAsset *> * allPhotoAssets,PHAsset * asset,NSUInteger index){
+            
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            //进入随意一个浏览控制器
+            [strongSelf.navigationController pushViewController:[RITLPhotoBrowerController photosViewModelInstance:nil] animated:true];
+            
+        };
+    }
 }
 
 
@@ -163,7 +188,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 {
     RITLPhotosCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    if ([self.viewModel isKindOfClass:[RITLPhotosViewModel class]])
+    if ([self.viewModel isMemberOfClass:[RITLPhotosViewModel class]])
     {
         RITLPhotosViewModel * viewModel = self.viewModel;
         

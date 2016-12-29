@@ -23,6 +23,9 @@
 /// 资源是否被选中的标志位
 @property (nonatomic, assign) BOOL * assetIsSelected;
 
+/// 存放当前所有的照片对象
+@property (nonatomic, copy) NSArray <PHAsset *> * photosAssetResult;
+
 
 @end
 
@@ -103,7 +106,19 @@
 
 -(void)didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (self.photoDidTapShouldBrowerBlock)
+    {
+        NSUInteger item = indexPath.item;
+        
+        //获得当前的照片对象
+        PHAsset * asset = [self.assetResult objectAtIndex:item];
+        
+        //获得当前对象的位置
+        NSUInteger index = [self.photosAssetResult indexOfObject:asset];
+        
+        //进行回调
+        self.photoDidTapShouldBrowerBlock(self.photosAssetResult,asset,index);
+    }
 }
 
 
@@ -162,6 +177,19 @@
     // 初始化
     memset(self.assetIsPicture, false, assetCount * sizeof(BOOL));
     memset(self.assetIsSelected, false, assetCount * sizeof(BOOL));
+    
+    __weak typeof(self) weakSelf = self;;
+    
+    
+    //初始化所有图片的数组
+    [self.assetResult preparationWithType:PHAssetMediaTypeImage Complete:^(NSArray<PHAsset *> * _Nullable allPhotoAssets) {
+       
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        strongSelf.photosAssetResult = allPhotoAssets;
+        
+    }];
+
 }
 
 

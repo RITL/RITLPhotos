@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB28E97C1E14A0B100B30D3C /* RITLPhotoBrowerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28E97B1E14A0B100B30D3C /* RITLPhotoBrowerCell.m */; };
+		DB28E97F1E14A0D500B30D3C /* RITLPhotoBrowerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28E97E1E14A0D500B30D3C /* RITLPhotoBrowerController.m */; };
+		DB28E9821E14A18900B30D3C /* RITLPhotoBrowerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28E9811E14A18900B30D3C /* RITLPhotoBrowerViewModel.m */; };
+		DB28E9861E14A3B600B30D3C /* RITLBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB28E9851E14A3B600B30D3C /* RITLBaseViewModel.m */; };
 		DB4D93FB1D5C74E9000439CC /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DB4D93FA1D5C74E9000439CC /* README.md */; };
-		DB7415011E138C6400B169C6 /* RITLBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7415001E138C6400B169C6 /* RITLBaseViewModel.m */; };
 		DBA276791DED28F6007F4E0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBA276101DED28F5007F4E0B /* Assets.xcassets */; };
 		DBA2767A1DED28F6007F4E0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBA276111DED28F5007F4E0B /* LaunchScreen.storyboard */; };
 		DBA2767B1DED28F6007F4E0B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBA276131DED28F5007F4E0B /* Info.plist */; };
@@ -87,6 +90,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB28E97A1E14A0B100B30D3C /* RITLPhotoBrowerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoBrowerCell.h; sourceTree = "<group>"; };
+		DB28E97B1E14A0B100B30D3C /* RITLPhotoBrowerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLPhotoBrowerCell.m; sourceTree = "<group>"; };
+		DB28E97D1E14A0D500B30D3C /* RITLPhotoBrowerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoBrowerController.h; sourceTree = "<group>"; };
+		DB28E97E1E14A0D500B30D3C /* RITLPhotoBrowerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLPhotoBrowerController.m; sourceTree = "<group>"; };
+		DB28E9801E14A18900B30D3C /* RITLPhotoBrowerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoBrowerViewModel.h; sourceTree = "<group>"; };
+		DB28E9811E14A18900B30D3C /* RITLPhotoBrowerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLPhotoBrowerViewModel.m; sourceTree = "<group>"; };
+		DB28E9841E14A3B600B30D3C /* RITLBaseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLBaseViewModel.h; sourceTree = "<group>"; };
+		DB28E9851E14A3B600B30D3C /* RITLBaseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLBaseViewModel.m; sourceTree = "<group>"; };
+		DB28E9871E14A3E900B30D3C /* RITLPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoViewController.h; sourceTree = "<group>"; };
 		DB302F281D35E3C7007B42C3 /* RITLPhotoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RITLPhotoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB302F411D35E3C7007B42C3 /* RITLPhotoDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RITLPhotoDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB302F4C1D35E3C7007B42C3 /* RITLPhotoDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RITLPhotoDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,8 +109,6 @@
 		DB7414FC1E13888700B169C6 /* RITLTableCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLTableCellViewModel.h; sourceTree = "<group>"; };
 		DB7414FD1E13888700B169C6 /* RITLTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLTableViewModel.h; sourceTree = "<group>"; };
 		DB7414FE1E13888700B169C6 /* RITLTextFieldViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLTextFieldViewModel.h; sourceTree = "<group>"; };
-		DB7414FF1E138C6400B169C6 /* RITLBaseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLBaseViewModel.h; sourceTree = "<group>"; };
-		DB7415001E138C6400B169C6 /* RITLBaseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLBaseViewModel.m; sourceTree = "<group>"; };
 		DB7415021E138D5C00B169C6 /* RITLPublicViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPublicViewModel.h; sourceTree = "<group>"; };
 		DB9D00F51E149DFE00B76489 /* RITLPhotoConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RITLPhotoConfig.h; sourceTree = "<group>"; };
 		DBA276101DED28F5007F4E0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -244,6 +254,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB28E9791E14A07600B30D3C /* Brower */ = {
+			isa = PBXGroup;
+			children = (
+				DB28E97A1E14A0B100B30D3C /* RITLPhotoBrowerCell.h */,
+				DB28E97B1E14A0B100B30D3C /* RITLPhotoBrowerCell.m */,
+				DB28E97D1E14A0D500B30D3C /* RITLPhotoBrowerController.h */,
+				DB28E97E1E14A0D500B30D3C /* RITLPhotoBrowerController.m */,
+				DB28E9801E14A18900B30D3C /* RITLPhotoBrowerViewModel.h */,
+				DB28E9811E14A18900B30D3C /* RITLPhotoBrowerViewModel.m */,
+			);
+			path = Brower;
+			sourceTree = "<group>";
+		};
+		DB28E9831E14A3A200B30D3C /* BaseClass */ = {
+			isa = PBXGroup;
+			children = (
+				DB28E9841E14A3B600B30D3C /* RITLBaseViewModel.h */,
+				DB28E9851E14A3B600B30D3C /* RITLBaseViewModel.m */,
+			);
+			path = BaseClass;
+			sourceTree = "<group>";
+		};
 		DB302F1F1D35E3C7007B42C3 = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +314,7 @@
 				DB7414FD1E13888700B169C6 /* RITLTableViewModel.h */,
 				DB7414FE1E13888700B169C6 /* RITLTextFieldViewModel.h */,
 				DB7415021E138D5C00B169C6 /* RITLPublicViewModel.h */,
+				DB28E9871E14A3E900B30D3C /* RITLPhotoViewController.h */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -309,16 +342,16 @@
 		DBA276431DED28F6007F4E0B /* PhotosFiles */ = {
 			isa = PBXGroup;
 			children = (
+				DB28E9831E14A3A200B30D3C /* BaseClass */,
 				DBA276E91DED293D007F4E0B /* Navigation */,
 				DBA276F01DED2B0A007F4E0B /* Group */,
 				DBA277151DED59BE007F4E0B /* Photos */,
+				DB28E9791E14A07600B30D3C /* Brower */,
 				DBA276441DED28F6007F4E0B /* BrowerController */,
 				DBA2764F1DED28F6007F4E0B /* GroupController */,
 				DBA276561DED28F6007F4E0B /* PhotosStore */,
 				DBA2765E1DED28F6007F4E0B /* PictureController */,
 				DBA276671DED28F6007F4E0B /* Supporting */,
-				DB7414FF1E138C6400B169C6 /* RITLBaseViewModel.h */,
-				DB7415001E138C6400B169C6 /* RITLBaseViewModel.m */,
 			);
 			path = PhotosFiles;
 			sourceTree = "<group>";
@@ -568,7 +601,7 @@
 		DB302F201D35E3C7007B42C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = YPPhoto;
+				CLASSPREFIX = RITLPhoto;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = YueWen;
 				TargetAttributes = {
@@ -647,6 +680,8 @@
 			files = (
 				DBA276E51DED2917007F4E0B /* UISplitViewController+MemoryLeak.m in Sources */,
 				DBA276941DED28F6007F4E0B /* YPPhotoBrowerDataSource.m in Sources */,
+				DB28E97C1E14A0B100B30D3C /* RITLPhotoBrowerCell.m in Sources */,
+				DB28E9821E14A18900B30D3C /* RITLPhotoBrowerViewModel.m in Sources */,
 				DBA276FF1DED2C84007F4E0B /* RITLPhotoGroupViewModel.m in Sources */,
 				DBA276D71DED2917007F4E0B /* MASCompositeConstraint.m in Sources */,
 				DBA276E01DED2917007F4E0B /* ViewController+MASAdditions.m in Sources */,
@@ -670,6 +705,8 @@
 				DBA276D81DED2917007F4E0B /* MASConstraint.m in Sources */,
 				DBA276A61DED28F6007F4E0B /* YPPhotosAppDelegate.m in Sources */,
 				DBA276DC1DED2917007F4E0B /* MASViewConstraint.m in Sources */,
+				DB28E97F1E14A0D500B30D3C /* RITLPhotoBrowerController.m in Sources */,
+				DB28E9861E14A3B600B30D3C /* RITLBaseViewModel.m in Sources */,
 				DBA276A01DED28F6007F4E0B /* PHObject+SupportCategory.m in Sources */,
 				DBA276951DED28F6007F4E0B /* YPPhotoBrowerPreDataSource.m in Sources */,
 				DBA276921DED28F6007F4E0B /* YPPhotoBrowerCell.m in Sources */,
@@ -691,7 +728,6 @@
 				DBA276A31DED28F6007F4E0B /* UIViewController+Frame.m in Sources */,
 				DBA276D91DED2917007F4E0B /* MASConstraintMaker.m in Sources */,
 				DBA276EC1DED295E007F4E0B /* RITLPhotoNavigationViewModel.m in Sources */,
-				DB7415011E138C6400B169C6 /* RITLBaseViewModel.m in Sources */,
 				DB4D93FB1D5C74E9000439CC /* README.md in Sources */,
 				DBA276FB1DED2C68007F4E0B /* RITLPhotoGroupCell.m in Sources */,
 				DBA2769C1DED28F6007F4E0B /* YPPhotoBottomReusableView.m in Sources */,

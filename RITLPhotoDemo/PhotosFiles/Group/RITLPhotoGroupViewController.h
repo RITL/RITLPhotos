@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "RITLTableViewModel.h"
+#import "RITLPhotoViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class RITLPhotoGroupViewModel;
 
 /// 显示组的控制器
-NS_AVAILABLE_IOS(8_0) @interface RITLPhotoGroupViewController : UITableViewController
+NS_AVAILABLE_IOS(8_0) @interface RITLPhotoGroupViewController : UITableViewController <RITLPhotoViewController>
 
 /// viewModel
 @property (nonatomic, strong) id <RITLTableViewModel> viewModel;

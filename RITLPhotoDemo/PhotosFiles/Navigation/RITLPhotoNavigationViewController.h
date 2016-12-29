@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RITLPhotoViewController.h"
+#import "RITLPublicViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class RITLPhotoNavigationViewModel;
 
 /// 进入控制器的主导航控制器
-NS_CLASS_AVAILABLE_IOS(8_0)  @interface RITLPhotoNavigationViewController : UINavigationController
+NS_CLASS_AVAILABLE_IOS(8_0)  @interface RITLPhotoNavigationViewController : UINavigationController <RITLPhotoViewController>
 
 /// 控制器的viewModel
-@property (nonatomic, strong) RITLPhotoNavigationViewModel * viewModel;
+@property (nonatomic, strong) id <RITLPublicViewModel> viewModel;
 
 
 @end
