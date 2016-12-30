@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YPPhotosAppDelegate : UIResponder <UIApplicationDelegate>
+@interface RITLPhotosAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 
 @end
 

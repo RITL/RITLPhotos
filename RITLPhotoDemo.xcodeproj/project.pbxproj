@@ -46,9 +46,9 @@
 		DBA276A11DED28F6007F4E0B /* UIKit+YPPhotoDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2766B1DED28F6007F4E0B /* UIKit+YPPhotoDemo.m */; };
 		DBA276A21DED28F6007F4E0B /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2766D1DED28F6007F4E0B /* UIView+Category.m */; };
 		DBA276A31DED28F6007F4E0B /* UIViewController+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2766F1DED28F6007F4E0B /* UIViewController+Frame.m */; };
-		DBA276A41DED28F6007F4E0B /* YPPhotos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBA276711DED28F6007F4E0B /* YPPhotos.xcassets */; };
+		DBA276A41DED28F6007F4E0B /* RITLPhotos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBA276711DED28F6007F4E0B /* RITLPhotos.xcassets */; };
 		DBA276A51DED28F6007F4E0B /* RITLPhotoMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA276731DED28F6007F4E0B /* RITLPhotoMainViewController.m */; };
-		DBA276A61DED28F6007F4E0B /* YPPhotosAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA276761DED28F6007F4E0B /* YPPhotosAppDelegate.m */; };
+		DBA276A61DED28F6007F4E0B /* RITLPhotosAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA276761DED28F6007F4E0B /* RITLPhotosAppDelegate.m */; };
 		DBA276A71DED28F6007F4E0B /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBA276771DED28F6007F4E0B /* LaunchScreen.strings */; };
 		DBA276D61DED2917007F4E0B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBA276AA1DED2917007F4E0B /* Info.plist */; };
 		DBA276D71DED2917007F4E0B /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA276AC1DED2917007F4E0B /* MASCompositeConstraint.m */; };
@@ -185,12 +185,12 @@
 		DBA2766E1DED28F6007F4E0B /* UIViewController+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Frame.h"; sourceTree = "<group>"; };
 		DBA2766F1DED28F6007F4E0B /* UIViewController+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Frame.m"; sourceTree = "<group>"; };
 		DBA276701DED28F6007F4E0B /* YPPhotoDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotoDefines.h; sourceTree = "<group>"; };
-		DBA276711DED28F6007F4E0B /* YPPhotos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = YPPhotos.xcassets; sourceTree = "<group>"; };
+		DBA276711DED28F6007F4E0B /* RITLPhotos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = RITLPhotos.xcassets; sourceTree = "<group>"; };
 		DBA276721DED28F6007F4E0B /* RITLPhotoMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoMainViewController.h; sourceTree = "<group>"; };
 		DBA276731DED28F6007F4E0B /* RITLPhotoMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLPhotoMainViewController.m; sourceTree = "<group>"; };
 		DBA276741DED28F6007F4E0B /* YPhotos.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPhotos.pch; sourceTree = "<group>"; };
-		DBA276751DED28F6007F4E0B /* YPPhotosAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPPhotosAppDelegate.h; sourceTree = "<group>"; };
-		DBA276761DED28F6007F4E0B /* YPPhotosAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPPhotosAppDelegate.m; sourceTree = "<group>"; };
+		DBA276751DED28F6007F4E0B /* RITLPhotosAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotosAppDelegate.h; sourceTree = "<group>"; };
+		DBA276761DED28F6007F4E0B /* RITLPhotosAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLPhotosAppDelegate.m; sourceTree = "<group>"; };
 		DBA276781DED28F6007F4E0B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		DBA276AA1DED2917007F4E0B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBA276AB1DED2917007F4E0B /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
@@ -394,8 +394,8 @@
 				DBA276721DED28F6007F4E0B /* RITLPhotoMainViewController.h */,
 				DBA276731DED28F6007F4E0B /* RITLPhotoMainViewController.m */,
 				DBA276741DED28F6007F4E0B /* YPhotos.pch */,
-				DBA276751DED28F6007F4E0B /* YPPhotosAppDelegate.h */,
-				DBA276761DED28F6007F4E0B /* YPPhotosAppDelegate.m */,
+				DBA276751DED28F6007F4E0B /* RITLPhotosAppDelegate.h */,
+				DBA276761DED28F6007F4E0B /* RITLPhotosAppDelegate.m */,
 				DBA276771DED28F6007F4E0B /* LaunchScreen.strings */,
 			);
 			path = RITLPhotoDemo;
@@ -491,7 +491,7 @@
 				DBA2766F1DED28F6007F4E0B /* UIViewController+Frame.m */,
 				DB9D00F51E149DFE00B76489 /* RITLPhotoConfig.h */,
 				DBA276701DED28F6007F4E0B /* YPPhotoDefines.h */,
-				DBA276711DED28F6007F4E0B /* YPPhotos.xcassets */,
+				DBA276711DED28F6007F4E0B /* RITLPhotos.xcassets */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -714,7 +714,7 @@
 			files = (
 				DBA276D61DED2917007F4E0B /* Info.plist in Resources */,
 				DBA276791DED28F6007F4E0B /* Assets.xcassets in Resources */,
-				DBA276A41DED28F6007F4E0B /* YPPhotos.xcassets in Resources */,
+				DBA276A41DED28F6007F4E0B /* RITLPhotos.xcassets in Resources */,
 				DBA276991DED28F6007F4E0B /* Localizable.strings in Resources */,
 				DBA2767A1DED28F6007F4E0B /* LaunchScreen.storyboard in Resources */,
 				DBA2767B1DED28F6007F4E0B /* Info.plist in Resources */,
@@ -774,7 +774,7 @@
 				DBA2769D1DED28F6007F4E0B /* YPPhotoPreviewController.m in Sources */,
 				DBA276961DED28F6007F4E0B /* RITLPhotoGroupCellOld.m in Sources */,
 				DBA276D81DED2917007F4E0B /* MASConstraint.m in Sources */,
-				DBA276A61DED28F6007F4E0B /* YPPhotosAppDelegate.m in Sources */,
+				DBA276A61DED28F6007F4E0B /* RITLPhotosAppDelegate.m in Sources */,
 				DBA276DC1DED2917007F4E0B /* MASViewConstraint.m in Sources */,
 				DB28E97F1E14A0D500B30D3C /* RITLPhotoBrowerController.m in Sources */,
 				DB28E9861E14A3B600B30D3C /* RITLBaseViewModel.m in Sources */,

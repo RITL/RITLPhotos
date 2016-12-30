@@ -114,11 +114,11 @@
         //获得当前的照片对象
         PHAsset * asset = [self.assetResult objectAtIndex:item];
         
-        //获得当前对象的位置
+        //获得当前对象在所有图片对象的位置
         NSUInteger index = [self.photosAssetResult indexOfObject:asset];
         
         //进行回调
-        self.photoDidTapShouldBrowerBlock(self.photosAssetResult,asset,index);
+        self.photoDidTapShouldBrowerBlock(self.assetResult,self.assetResults,self.photosAssetResult,asset,index);
     }
 }
 

@@ -13,6 +13,7 @@
 
 #import "RITLPhotoBrowerController.h"
 #import "RITLPhotoBrowerViewModel.h"
+
 #import "RITLPhotoHandleManager.h"
 
 #import "UIButton+RITLBlockButton.h"
@@ -100,6 +101,13 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 }
 
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:false animated:true];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -123,12 +131,20 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         __weak typeof(self) weakSelf = self;
  
         // 跳转至预览视图
-        viewModel.photoDidTapShouldBrowerBlock = ^(NSArray <PHAsset *> * allPhotoAssets,PHAsset * asset,NSUInteger index){
+        viewModel.photoDidTapShouldBrowerBlock = ^(PHFetchResult * result,NSArray <PHAsset *> * allAssets,NSArray <PHAsset *> * allPhotoAssets,PHAsset * asset,NSUInteger index){
             
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
+            /// 创建viewModel
+            RITLPhotoBrowerViewModel * viewModel = [RITLPhotoBrowerViewModel new];
+            
+            /// 设置所有的属性
+            viewModel.allAssets = allAssets;
+            viewModel.allPhotoAssets = allPhotoAssets;
+            
+
             //进入随意一个浏览控制器
-//            [strongSelf.navigationController pushViewController:[RITLPhotoBrowerController photosViewModelInstance:nil] animated:true];
+            [strongSelf.navigationController pushViewController:[RITLPhotoBrowerController photosViewModelInstance:viewModel] animated:true];
             
         };
         
@@ -417,7 +433,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 
 #pragma mark - <UIViewControllerPreviewingDelegate>
 
-#ifdef  __IPHONE_9_0
+//#ifdef  __IPHONE_9_0
 
 #warning 会出现内存泄露，临时不使用
 //- (nullable UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
@@ -443,7 +459,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 ////    
 ////    [self showViewController:[self createBrowerController:indexPath] sender:self];
 //}
-#endif
+//#endif
 
 
 //#pragma mark - CreateViewController

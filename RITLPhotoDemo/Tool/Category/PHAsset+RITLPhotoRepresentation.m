@@ -9,7 +9,6 @@
 #import "PHAsset+RITLPhotoRepresentation.h"
 #import <objc/runtime.h>
 
-//#import "PHObject+SupportCategory.h"
 #import "PHImageRequestOptions+RITLPhotoRepresentation.h"
 
 @implementation PHAsset (RITLPhotoRepresentation)

@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef PhotoCompleteBlock5 RITLPhotoDidTapHandleBlock;
+typedef PhotoCompleteBlock7 RITLPhotoDidTapHandleBlock;
 typedef PhotoCompleteBlock6 RITLPhotoSendStatusBlock;
 
 /// 选择图片的一级界面控制器的viewModel

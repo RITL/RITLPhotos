@@ -40,10 +40,10 @@
     self.messageView.hidden = true;
     self.messageImageView.image = nil;
     self.messageLabel.text = @"";
-    //    [self.chooseImageView setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
-    self.chooseImageView.image = [UIImage imageNamed:@"未选中"];
-//    self.cellType = CellTypeDeseleted;
+    self.chooseImageView.image = RITLPhotoDeselectedImage;
 }
+
+
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -285,7 +285,7 @@
     }];
     
     _chooseImageView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    _chooseImageView.image = [UIImage imageNamed:@"未选中"];
+    _chooseImageView.image = RITLPhotoDeselectedImage;
     _chooseImageView.layer.cornerRadius = 25 / 2.0;
     _chooseImageView.clipsToBounds = true;
     
@@ -298,9 +298,11 @@
 
 -(void)cellSelectedAction:(BOOL)isSelected
 {
-    NSString * imageName = !isSelected ? @"未选中" : @"选中";
+//    NSString * imageName = !isSelected ? @"未选中" : @"选中";
     
-    self.chooseImageView.image = [UIImage imageNamed:imageName];
+//    self.chooseImageView.image = [UIImage imageNamed:imageName];
+    
+    self.chooseImageView.image = !isSelected ? RITLPhotoDeselectedImage : RITLPhotoSelectedImage;
     
     
     if (isSelected)

@@ -30,6 +30,11 @@ alpha:1.0]
 #define UIColorFromIntRBG(RED, GREEN, BLUE) [UIColor colorWithRed:RED/255.0 green:GREEN/255.0 blue:BLUE/255.0 alpha:1.0]
 
 
+#define RITLPhotoSelectedName (@"RITLSelected")
+#define RITLPhotoDeselectedName (@"RITLDeselected")
+
+#define RITLPhotoSelectedImage ([UIImage imageNamed:RITLPhotoSelectedName])
+#define RITLPhotoDeselectedImage ([UIImage imageNamed:RITLPhotoDeselectedName])
 
 
 
@@ -46,6 +51,7 @@ typedef void(^PhotoCompleteBlock2)(id,id,id,NSUInteger);
 typedef void(^PhotoCompleteBlock4)(id,id,BOOL);
 typedef void(^PhotoCompleteBlock5)(id,id,NSUInteger);
 typedef void(^PhotoCompleteBlock6)(BOOL,NSUInteger);
+typedef void(^PhotoCompleteBlock7)(id,id,id,id,NSUInteger);
 
 
 

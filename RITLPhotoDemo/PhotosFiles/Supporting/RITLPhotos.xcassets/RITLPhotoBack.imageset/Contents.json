@@ -2,15 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "未选中.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "返回_b@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "返回_b@3x.png",
       "scale" : "3x"
     }
   ],

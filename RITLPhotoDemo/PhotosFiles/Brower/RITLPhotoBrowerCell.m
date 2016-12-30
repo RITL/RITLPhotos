@@ -31,7 +31,7 @@
 -(void)dealloc
 {
 #ifdef YDEBUG
-    NSLog(@"YPPhotoBrowerCell Dealloc");
+//    NSLog(@"YPPhotoBrowerCell Dealloc");
 #endif
 }
 
@@ -123,7 +123,7 @@
     {
         self.bottomScrollView = [[UIScrollView alloc]init];
         self.bottomScrollView.backgroundColor = [UIColor blackColor];
-        self.bottomScrollView.delegate = self;
+//        self.bottomScrollView.delegate = self;
         self.bottomScrollView.minimumZoomScale = self.minScaleZoome;
         self.bottomScrollView.maximumZoomScale = self.maxScaleZoome;
         [self.contentView addSubview:self.bottomScrollView];
@@ -134,7 +134,7 @@
         //添加约束
         [self.bottomScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
             
-            make.edges.equalTo(weakSelf.contentView).with.insets(UIEdgeInsetsMake(0, 0, 0, 10));
+            make.edges.equalTo(weakSelf.contentView).with.insets(UIEdgeInsetsMake(0, 5, 0, 5));
             
         }];
         

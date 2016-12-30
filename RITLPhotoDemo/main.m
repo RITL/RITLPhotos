@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YPPhotosAppDelegate.h"
+#import "RITLPhotosAppDelegate.h"
 
 
 
@@ -19,7 +19,7 @@ int main(int argc, char * argv[]) {
 //        NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
         
         
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([YPPhotosAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([RITLPhotosAppDelegate class]));
     }
 }
 

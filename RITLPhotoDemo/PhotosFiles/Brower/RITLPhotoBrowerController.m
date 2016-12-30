@@ -8,9 +8,16 @@
 
 #import "RITLPhotoBrowerController.h"
 #import "RITLPhotoBrowerViewModel.h"
-#import "UIKit+YPPhotoDemo.h"
+#import "RITLPhotoBrowerCell.h"
 
-@interface RITLPhotoBrowerController ()
+#import "UIKit+YPPhotoDemo.h"
+#import "UIButton+RITLBlockButton.h"
+
+#import <objc/runtime.h>
+
+static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
+
+@interface RITLPhotoBrowerController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 
 /// @brief 展示图片的collectionView
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -74,13 +81,57 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    //绑定viewModel
+    [self bindViewModel];
+    
+    //添加集合视图
+    [self.view addSubview:self.collectionView];
+    
+    //添加自定义导航栏
+    [self.view addSubview:self.topBar];
+    
 }
+
+
+-(BOOL)prefersStatusBarHidden
+{
+    return true;
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (self.navigationController != nil)
+    {
+        self.navigationController.navigationBarHidden = true;
+    }
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    if (self.navigationController != nil)
+    {
+        self.navigationController.navigationBarHidden = false;
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+-(void)dealloc
+{
+    NSLog(@"Dealloc %@",NSStringFromClass([self class]));
 }
 
 
@@ -95,10 +146,12 @@
         UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc]init];
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.width + 10, self.height) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(-5, 0, self.width + 10, self.height) collectionViewLayout:flowLayout];
         //初始化collectionView属性
-//        _collectionView.dataSource = _browerDatasource;
-//        _collectionView.delegate = _browerDelegate;
+        _collectionView.dataSource = self;
+        _collectionView.delegate = self;
+        
+//        _collectionView
         
 #ifdef __IPHONE_10_0
         
@@ -108,7 +161,7 @@
         
         _collectionView.pagingEnabled = true;
         _collectionView.showsHorizontalScrollIndicator = false;
-//        [_collectionView registerClass:[YPPhotoBrowerCell class] forCellWithReuseIdentifier:reuserIdentifier];
+        [_collectionView registerClass:[RITLPhotoBrowerCell class] forCellWithReuseIdentifier:cellIdentifier];
     }
     
     return _collectionView;
@@ -135,13 +188,23 @@
 {
     if (_backButtonItem == nil)
     {
-        _backButtonItem = [[UIButton alloc]initWithFrame:CGRectMake(5, 0, 45, 30)];
+        _backButtonItem = [[UIButton alloc]initWithFrame:CGRectMake(5, 0, 44, 44)];
         _backButtonItem.center = CGPointMake(_backButtonItem.center.x, _topBar.center.y);
-        [_backButtonItem setTitle:@"<" forState:UIControlStateNormal];
+        [_backButtonItem setImage:[UIImage imageNamed:@"RITLPhotoBack"] forState:UIControlStateNormal];
         [_backButtonItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_backButtonItem.titleLabel setFont:[UIFont systemFontOfSize:30]];
         [_backButtonItem.titleLabel setTextAlignment:NSTextAlignmentCenter];
 //        [_backButtonItem addTarget:self action:@selector(backItemDidTap:) forControlEvents:UIControlEventTouchUpInside];
+        
+        __weak typeof(self) weakSelf = self;
+        
+        [_backButtonItem controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
+           
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            [strongSelf.navigationController popViewControllerAnimated:true];
+            
+        }];
     }
     
     return _backButtonItem;
@@ -152,9 +215,10 @@
 {
     if(_selectButtonItem == nil)
     {
-        _selectButtonItem = [[UIButton alloc]initWithFrame:CGRectMake(_topBar.width - 35, 0, 25, 25)];
-        _selectButtonItem.center = CGPointMake(_selectButtonItem.center.x, _topBar.center.y + 4);
-        [_selectButtonItem setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+        _selectButtonItem = [[UIButton alloc]initWithFrame:CGRectMake(_topBar.width - 44 - 10, 0, 44, 44)];
+        [_selectButtonItem setImageEdgeInsets:UIEdgeInsetsMake(12, 10, 8, 10)];
+        _selectButtonItem.center = CGPointMake(_selectButtonItem.center.x, _topBar.center.y);
+        [_selectButtonItem setImage:RITLPhotoDeselectedImage forState:UIControlStateNormal];
         
 //        [_selectButtonItem addTarget:_browerDelegate action:NSSelectorFromString(@"selectButtonDidTap:") forControlEvents:UIControlEventTouchUpInside];
     }
@@ -286,7 +350,6 @@
     {
         _numberOfLabel = [[UILabel alloc]initWithFrame:CGRectMake(_sendButton.originX - 20, 0, 20, 20)];
         _numberOfLabel.center = CGPointMake(_numberOfLabel.center.x, _sendButton.center.y);
-//        _numberOfLabel.backgroundColor = self.selectedColor;
         _numberOfLabel.textAlignment = NSTextAlignmentCenter;
         _numberOfLabel.font = [UIFont boldSystemFontOfSize:14];
         _numberOfLabel.text = @"8";
@@ -310,5 +373,88 @@
     
     return _viewModel;
 }
+
+
+/// 绑定viewModel
+- (void)bindViewModel
+{
+    if ([self.viewModel isMemberOfClass:[RITLPhotoBrowerViewModel class]])
+    {
+        RITLPhotoBrowerViewModel * viewModel = self.viewModel;
+        
+        // 显示清晰图的回调
+        viewModel.ritl_BrowerCellShouldRefreshBlock = ^(UIImage * image,PHAsset * asset,NSIndexPath * indexPath){
+            
+            RITLPhotoBrowerCell * cell = (RITLPhotoBrowerCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    
+            [UIView animateWithDuration:0.5 delay:0. options:UIViewAnimationOptionCurveLinear animations:^{
+    
+                cell.imageView.image = image;
+                
+            } completion:nil];
+        };
+        
+        
+        
+        
+        
+        
+    }
+}
+
+
+
+
+
+#pragma mark - UICollectionViewDataSource
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [self.viewModel numberOfItemsInSection:section];
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    RITLPhotoBrowerCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    //
+    if ([self.viewModel isMemberOfClass:[RITLPhotoBrowerViewModel class]])
+    {
+        RITLPhotoBrowerViewModel * viewModel = self.viewModel;
+        
+        [viewModel imageForIndexPath:indexPath collection:collectionView isThumb:true complete:^(UIImage * _Nonnull image, PHAsset * _Nonnull asset) {
+            
+            cell.imageView.image = image;
+            
+        }];
+    }
+    
+    
+    return cell;
+}
+
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.viewModel sizeForItemAtIndexPath:indexPath inCollection:collectionView];
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return [self.viewModel minimumInteritemSpacingForSectionAtIndex:section];
+}
+
+
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [(RITLPhotoBrowerViewModel *)self.viewModel viewModelScrollViewDidEndDecelerating:scrollView];    
+}
+
 
 @end
