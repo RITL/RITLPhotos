@@ -15,6 +15,12 @@
 @implementation RITLPhotoBrowerViewModel
 
 
+-(void)dealloc
+{
+    NSLog(@"Dealloc %@",NSStringFromClass([self class]));
+}
+
+
 -(void)imageForIndexPath:(NSIndexPath *)indexPath collection:(UICollectionView *)collection isThumb:(BOOL)isThumb complete:(void (^)(UIImage * _Nonnull, PHAsset * _Nonnull))completeBlock
 {
     
@@ -60,16 +66,21 @@
     NSUInteger currentIndex = collectionView.contentOffset.x / collectionView.width;
     
     //获得当前的位置
-    NSNumber * index = (NSNumber *)objc_getAssociatedObject(self, &@selector(viewModelScrollViewDidEndDecelerating:));
+    NSUInteger index = self.currentIndex;
     
-    if (index && index.unsignedIntegerValue == currentIndex)
+    //判断是否为第一次进入
+    NSNumber * shouldIgnoreCurrentIndex = (NSNumber *)objc_getAssociatedObject(self, &@selector(viewModelScrollViewDidEndDecelerating:));
+    
+    
+    if ((shouldIgnoreCurrentIndex && !shouldIgnoreCurrentIndex.boolValue) && (index && index == currentIndex))
     {
         return;
     }
+
+    self.currentIndex = currentIndex;
     
-    
-    objc_setAssociatedObject(self, &@selector(viewModelScrollViewDidEndDecelerating:), @(currentIndex), OBJC_ASSOCIATION_ASSIGN);
-    
+    //修改值
+    objc_setAssociatedObject(self, &@selector(viewModelScrollViewDidEndDecelerating:), @(false), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     NSIndexPath * indexPath = [NSIndexPath indexPathForItem:currentIndex inSection:0];
     

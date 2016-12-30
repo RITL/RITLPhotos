@@ -141,7 +141,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
             /// 设置所有的属性
             viewModel.allAssets = allAssets;
             viewModel.allPhotoAssets = allPhotoAssets;
-            
+            viewModel.currentIndex = index;
 
             //进入随意一个浏览控制器
             [strongSelf.navigationController pushViewController:[RITLPhotoBrowerController photosViewModelInstance:viewModel] animated:true];

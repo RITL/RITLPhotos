@@ -91,6 +91,9 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     //添加自定义导航栏
     [self.view addSubview:self.topBar];
     
+    //滚动到最后一个
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:((RITLPhotoBrowerViewModel *)self.viewModel).currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:false];
+    
 }
 
 
@@ -108,6 +111,9 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     {
         self.navigationController.navigationBarHidden = true;
     }
+    
+    //执行viewModel
+    [self scrollViewDidEndDecelerating:self.collectionView];
 }
 
 
@@ -362,7 +368,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 }
 
 
-
+#pragma mark - ViewModel
 
 -(id<RITLCollectionViewModel>)viewModel
 {
@@ -382,10 +388,15 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     {
         RITLPhotoBrowerViewModel * viewModel = self.viewModel;
         
+        __weak typeof(self) weakSelf = self;
+        
         // 显示清晰图的回调
         viewModel.ritl_BrowerCellShouldRefreshBlock = ^(UIImage * image,PHAsset * asset,NSIndexPath * indexPath){
             
-            RITLPhotoBrowerCell * cell = (RITLPhotoBrowerCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+            RITLPhotoBrowerCell * cell = (RITLPhotoBrowerCell *)[strongSelf.collectionView cellForItemAtIndexPath:indexPath];
+
     
             [UIView animateWithDuration:0.5 delay:0. options:UIViewAnimationOptionCurveLinear animations:^{
     
@@ -393,7 +404,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
                 
             } completion:nil];
         };
-        
+//
         
         
         
@@ -417,7 +428,6 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     RITLPhotoBrowerCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    //
     if ([self.viewModel isMemberOfClass:[RITLPhotoBrowerViewModel class]])
     {
         RITLPhotoBrowerViewModel * viewModel = self.viewModel;

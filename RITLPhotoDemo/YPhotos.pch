@@ -11,7 +11,7 @@
 
 #import "RITLPhotoStore.h"
 #import <Photos/Photos.h>
-//#import "MLeaksFinder.h"
+#import "MLeaksFinder.h"
 //#import "YPPhotoDefines.h"
 #import "RITLPhotoConfig.h"
 #import "Masonry.h"

@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RITLPhotoBrowerViewModel : RITLBaseViewModel <RITLCollectionViewModel>
 
+/// 当前图片的位置指数
+@property (nonatomic, assign)NSUInteger currentIndex;
+
 /// 存储图片选择的所有资源对象
 @property (nonatomic, copy)NSArray <PHAsset *> * allAssets;
 
