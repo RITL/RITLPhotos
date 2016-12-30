@@ -9,7 +9,8 @@
 #import "RITLPhotosViewModel.h"
 #import "RITLPhotoStore.h"
 
-#import "PHObject+SupportCategory.h"
+#import "PHAsset+RITLPhotoRepresentation.h"
+#import "PHFetchResult+RITLPhotoRepresentation.h"
 
 #import "RITLPhotoCacheManager.h"
 #import "RITLPhotoHandleManager.h"
@@ -52,7 +53,7 @@
 
 
      
--(void)imageForIndexPath:(NSIndexPath *)indexPath collection:(UICollectionView *)collection complete:(void (^)(UIImage * _Nonnull, PHAsset * _Nonnull, BOOL isImage))completeBlock
+-(void)imageForIndexPath:(NSIndexPath *)indexPath collection:(UICollectionView *)collection complete:(void (^)(UIImage * _Nonnull, PHAsset * _Nonnull, BOOL isImage,NSTimeInterval durationTime))completeBlock
 {
     NSUInteger item = indexPath.item;
     
@@ -65,7 +66,7 @@
             [RITLPhotoCacheManager sharedInstace].assetIsPictureSignal[item] = true;
         }
         
-        completeBlock(image,asset,[RITLPhotoCacheManager sharedInstace].assetIsPictureSignal[item]);
+        completeBlock(image,asset,[RITLPhotoCacheManager sharedInstace].assetIsPictureSignal[item],asset.duration);
         
     }];
 }

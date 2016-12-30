@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (RITLPhotoAlertController)
 
+
 - (void)presentAlertController:(NSUInteger)maxNumberOfSelectedPhotos;
 
 @end

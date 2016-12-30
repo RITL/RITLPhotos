@@ -8,7 +8,7 @@
 
 #import "RITLPhotoMainViewController.h"
 #import "YPPhotosCell.h"
-#import "PHObject+SupportCategory.h"
+//#import "PHObject+SupportCategory.h"
 #import "YPPhotoNavgationController.h"
 
 
@@ -64,39 +64,11 @@
 
 - (IBAction)photosItemDidTap:(id)sender
 {
-
-//    YPPhotoNavgationController * photoViewController = [[YPPhotoNavgationController alloc]init];
-//    
-//    __weak typeof(self)weakSelf = self;
-//    
-//    
-//#pragma photoViewController.photosDidSelectBlock用法
-////    photoViewController.photosDidSelectBlock = ^(NSArray <PHAsset *> * assets,NSArray <NSNumber *> * status){
-////        
-////        weakSelf.assets = assets;
-////        [weakSelf.collectionView reloadData];
-////        
-////        NSLog(@"%@",assets);
-////        NSLog(@"%@",status);
-////        
-////    };
-//    
-//#pragma photoViewController.photoImageSelectBlock 搭配imageSize 的用法
-//    photoViewController.imageSize = _assetSize;
-//    photoViewController.photoImageSelectBlock = ^(NSArray <UIImage *> * images){
-//      
-//        weakSelf.assets = images;
-//        [weakSelf.collectionView reloadData];
-//        
-//    };
-//    
-//    RITLPhotoNavigationViewController * viewController = [RITLPhotoNavigationViewController new];
-    
-   
     RITLPhotoNavigationViewModel * viewModel = [RITLPhotoNavigationViewModel new];
     
     __weak typeof(self) weakSelf = self;
     
+//    设置需要图片剪切的大小，不设置为图片的原比例大小
 //    viewModel.imageSize = _assetSize;
     
     viewModel.RITLBridgeGetImageBlock = ^(NSArray <UIImage *> * images){
@@ -113,8 +85,6 @@
     
     
     [self presentViewController:viewController animated:true completion:^{}];
-    
-//    [self presentViewController:photoViewController animated:true completion:^{}];
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -134,20 +104,8 @@
 {
     YPPhotosCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
-#pragma photoViewController.photoImageSelectBlock 搭配imageSize 的用法
     cell.imageView.image = self.assets[indexPath.item];
     cell.chooseImageView.hidden = true;
-    
-#pragma photoViewController.photosDidSelectBlock用法，自己对资源进行裁剪
-    /**********避免block中进行retain影响对象释放，造成内存泄露*********/
-//    __weak typeof(YPPhotosCell *)copy_cell = cell;
-//    
-//    [((PHAsset *)[self.assets objectAtIndex:indexPath.item]) representationImageWithSize:_assetSize complete:^(UIImage * _Nullable image, PHAsset * _Nonnull asset) {
-//        
-//        copy_cell.imageView.image = image;
-//        copy_cell.chooseImageView.hidden = true;
-//        
-//    }];
     
     return cell;
 }

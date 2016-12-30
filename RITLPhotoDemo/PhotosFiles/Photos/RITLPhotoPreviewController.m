@@ -7,8 +7,9 @@
 //
 
 #import "RITLPhotoPreviewController.h"
-#import "PHObject+SupportCategory.h"
 #import "Masonry.h"
+
+#import "PHAsset+RITLPhotoRepresentation.h"
 
 @interface RITLPhotoPreviewController ()
 
@@ -51,7 +52,6 @@
     self.preferredContentSize = _assetSize;
     
     //add subview
-//    [self.view addSubview:self.imageView];
     [self __addImageView];
     
     __weak typeof(self) weakSelf = self;
@@ -98,9 +98,11 @@
     _imageView = [UIImageView new];
     [self.view addSubview:_imageView];
     
+    __weak typeof(self) weakSelf = self;
+    
     [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.edges.equalTo(self.view);
+        make.edges.equalTo(weakSelf.view);
         
     }];
     

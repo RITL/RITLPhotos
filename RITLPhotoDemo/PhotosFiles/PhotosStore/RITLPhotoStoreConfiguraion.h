@@ -7,34 +7,34 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YPPhotoDefines.h"
+#import "RITLPhotoConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// @brief 相机胶卷
-YPPHOTO_EXTERN NSString * ConfigurationCameraRoll;
+RITL_PHOTO_EXTERN NSString * ConfigurationCameraRoll;
 /// @brief 隐藏
-YPPHOTO_EXTERN NSString * ConfigurationHidden;
+RITL_PHOTO_EXTERN NSString * ConfigurationHidden;
 /// @brief 慢动作
-YPPHOTO_EXTERN NSString * ConfigurationSlo_mo;
+RITL_PHOTO_EXTERN NSString * ConfigurationSlo_mo;
 /// @brief 屏幕快照
-YPPHOTO_EXTERN NSString * ConfigurationScreenshots;
+RITL_PHOTO_EXTERN NSString * ConfigurationScreenshots;
 /// @brief 视频
-YPPHOTO_EXTERN NSString * ConfigurationVideos;
+RITL_PHOTO_EXTERN NSString * ConfigurationVideos;
 /// @brief 全景照片
-YPPHOTO_EXTERN NSString * ConfigurationPanoramas;
+RITL_PHOTO_EXTERN NSString * ConfigurationPanoramas;
 /// @brief 定时拍照
-YPPHOTO_EXTERN NSString * ConfigurationTime_lapse;
+RITL_PHOTO_EXTERN NSString * ConfigurationTime_lapse;
 /// @brief 最近添加
-YPPHOTO_EXTERN NSString * ConfigurationRecentlyAdded;
+RITL_PHOTO_EXTERN NSString * ConfigurationRecentlyAdded;
 /// @brief 最近删除
-YPPHOTO_EXTERN NSString * ConfigurationRecentlyDeleted;
+RITL_PHOTO_EXTERN NSString * ConfigurationRecentlyDeleted;
 /// @brief 快拍连照
-YPPHOTO_EXTERN NSString * ConfigurationBursts;
+RITL_PHOTO_EXTERN NSString * ConfigurationBursts;
 /// @brief 喜欢
-YPPHOTO_EXTERN NSString * ConfigurationFavorite;
+RITL_PHOTO_EXTERN NSString * ConfigurationFavorite;
 /// @brief 自拍
-YPPHOTO_EXTERN NSString * ConfigurationSelfies;
+RITL_PHOTO_EXTERN NSString * ConfigurationSelfies;
 
 
 @interface RITLPhotoStoreConfiguraion : NSObject

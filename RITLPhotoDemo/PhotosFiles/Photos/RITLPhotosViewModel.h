@@ -39,7 +39,7 @@ typedef PhotoCompleteBlock6 RITLPhotoSendStatusBlock;
 /// 请求当前图片对象
 - (void)imageForIndexPath:(NSIndexPath *)indexPath
                collection:(UICollectionView *)collection
-                 complete:(void(^)(UIImage *,PHAsset *,BOOL)) completeBlock;
+                 complete:(void(^)(UIImage *,PHAsset *,BOOL,NSTimeInterval)) completeBlock;
 
 
 /**

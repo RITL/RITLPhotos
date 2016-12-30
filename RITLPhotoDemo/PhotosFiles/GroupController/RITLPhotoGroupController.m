@@ -8,7 +8,8 @@
 
 #import "RITLPhotoGroupController.h"
 #import "RITLPhotoGroupCellOld.h"
-#import "PHObject+SupportCategory.h"
+
+#import "PHAssetCollection+RITLPhotoRepresentation.h"
 #import "YPPhotosController.h"
 
 

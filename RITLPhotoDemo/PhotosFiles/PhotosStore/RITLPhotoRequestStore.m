@@ -7,7 +7,8 @@
 //
 
 #import "RITLPhotoRequestStore.h"
-#import "PHObject+SupportCategory.h"
+
+#import "PHImageRequestOptions+RITLPhotoRepresentation.h"
 
 @implementation RITLPhotoRequestStore
 

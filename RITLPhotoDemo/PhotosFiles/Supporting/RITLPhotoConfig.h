@@ -11,9 +11,9 @@
 
 
 #ifdef __cplusplus
-#define YPPHOTO_EXTERN extern "C" __attribute__((visibility ("default")))
+#define RITL_PHOTO_EXTERN extern "C" __attribute__((visibility ("default")))
 #else
-#define YPPHOTO_EXTERN extern __attribute__((visibility ("default")))
+#define RITL_PHOTO_EXTERN extern __attribute__((visibility ("default")))
 #endif
 
 

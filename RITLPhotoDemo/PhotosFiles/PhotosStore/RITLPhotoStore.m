@@ -8,7 +8,9 @@
 
 #import "RITLPhotoStore.h"
 #import "RITLPhotoStoreConfiguraion.h"
-#import "PHObject+SupportCategory.h"
+
+#import "PHImageRequestOptions+RITLPhotoRepresentation.h"
+#import "PHFetchResult+RITLPhotoRepresentation.h"
 
 typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 

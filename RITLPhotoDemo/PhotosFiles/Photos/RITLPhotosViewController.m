@@ -13,6 +13,7 @@
 
 #import "RITLPhotoBrowerController.h"
 #import "RITLPhotoBrowerViewModel.h"
+#import "RITLPhotoHandleManager.h"
 
 #import "UIButton+RITLBlockButton.h"
 #import "UIViewController+RITLPhotoAlertController.h"
@@ -227,11 +228,18 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         RITLPhotosViewModel * viewModel = self.viewModel;
         
         // 获得图片对象
-        [viewModel imageForIndexPath:indexPath collection:collectionView complete:^(UIImage * _Nonnull image, PHAsset * _Nonnull asset, BOOL isImage) {
+        [viewModel imageForIndexPath:indexPath collection:collectionView complete:^(UIImage * _Nonnull image, PHAsset * _Nonnull asset, BOOL isImage,NSTimeInterval durationTime) {
             
             cell.imageView.image = image;
             
             cell.chooseControl.hidden = !isImage;
+            
+            // 如果不是图片
+            if (!isImage)
+            {
+                cell.messageView.hidden = isImage;
+                cell.messageLabel.text =  [RITLPhotoHandleManager timeStringWithTimeDuration:durationTime];
+            }
     
         }];
 
@@ -257,7 +265,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
     
 //    if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f)
 //    {
-//        BOOL isPhoto = (((PHAsset *)[self.assets objectAtIndex:indexPath.row]).mediaType == PHAssetMediaTypeImage);
+//        BOOL isPhoto = ([(RITLPhotosViewModel *)self.viewModel shouldSelectItemAtIndexPath:indexPath]) ;
 //        
 //        //确定为图片
 //        if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable && isPhoto == true)
@@ -266,9 +274,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 //        }
 //        
 //    }
-    
 
-    
 #endif
     
 //    /**********避免block中进行retail影响对象释放，造成内存泄露*********/
@@ -409,11 +415,11 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 
 
 
-//#pragma mark - <UIViewControllerPreviewingDelegate>
-//
-//#ifdef __IPHONE_9_0
-//
-//#warning 会出现内存泄露，临时不使用
+#pragma mark - <UIViewControllerPreviewingDelegate>
+
+#ifdef  __IPHONE_9_0
+
+#warning 会出现内存泄露，临时不使用
 //- (nullable UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 //{
 //    //获取当前cell的indexPath
@@ -437,7 +443,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 ////    
 ////    [self showViewController:[self createBrowerController:indexPath] sender:self];
 //}
-//#endif
+#endif
 
 
 //#pragma mark - CreateViewController

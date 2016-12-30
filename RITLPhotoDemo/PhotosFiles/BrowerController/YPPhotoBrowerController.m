@@ -8,8 +8,10 @@
 
 #import "YPPhotoBrowerController.h"
 #import "YPPhotoBrowerCell.h"
-#import "PHObject+SupportCategory.h"
+#import "PHFetchResult+RITLPhotoRepresentation.h"
 #import "UIKit+YPPhotoDemo.h"
+
+#import "PHAsset+RITLPhotoRepresentation.h"
 
 static NSString * reuserIdentifier = @"YPPhotoBrowerCell";
 

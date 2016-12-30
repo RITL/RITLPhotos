@@ -8,7 +8,8 @@
 
 #import "YPPhotoBrowerCell.h"
 #import "YPPhotoBrowerController.h"
-#import "PHObject+SupportCategory.h"
+
+#import "PHAsset+RITLPhotoRepresentation.h"
 
 @interface YPPhotoBrowerCDelegate ()
 {

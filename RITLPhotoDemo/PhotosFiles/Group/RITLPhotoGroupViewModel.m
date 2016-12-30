@@ -7,7 +7,8 @@
 //
 
 #import "RITLPhotoGroupViewModel.h"
-#import "PHObject+SupportCategory.h"
+
+#import "PHAssetCollection+RITLPhotoRepresentation.h"
 
 @interface RITLPhotoGroupViewModel ()
 

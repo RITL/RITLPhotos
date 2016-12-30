@@ -7,8 +7,10 @@
 //
 
 #import "YPPhotoPreviewController.h"
-#import "PHObject+SupportCategory.h"
+
 #import "Masonry.h"
+
+#import "PHAsset+RITLPhotoRepresentation.h"
 
 @interface YPPhotoPreviewController ()
 

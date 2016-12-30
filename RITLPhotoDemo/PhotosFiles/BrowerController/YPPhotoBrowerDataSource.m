@@ -7,9 +7,10 @@
 //
 
 #import "YPPhotoBrowerCell.h"
-#import "PHObject+SupportCategory.h"
 #import "YPPhotoBrowerController.h"
 #import "YPPhotoBrowerCDelegate.h"
+
+#import "PHAsset+RITLPhotoRepresentation.h"
 
 @implementation YPPhotoBrowerDataSource
 

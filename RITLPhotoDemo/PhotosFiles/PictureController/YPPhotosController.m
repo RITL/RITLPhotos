@@ -8,11 +8,13 @@
 
 #import "YPPhotosController.h"
 #import "YPPhotosCell.h"
-#import "PHObject+SupportCategory.h"
 #import "YPPhotoBottomReusableView.h"
 #import "YPPhotoBrowerController.h"
 #import "UIKit+YPPhotoDemo.h"
 #import "YPPhotoPreviewController.h"
+
+
+#import "PHAsset+RITLPhotoRepresentation.h"
 
 
 #ifdef __IPHONE_10_0
