@@ -52,6 +52,9 @@ typedef void(^PhotoCompleteBlock4)(id,id,BOOL);
 typedef void(^PhotoCompleteBlock5)(id,id,NSUInteger);
 typedef void(^PhotoCompleteBlock6)(BOOL,NSUInteger);
 typedef void(^PhotoCompleteBlock7)(id,id,id,id,NSUInteger);
+typedef void(^PhotoCompleteBlock8)(BOOL,id);
+typedef void(^PhotoCompleteBlock9)(BOOL);
+
 
 
 

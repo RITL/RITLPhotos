@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface RITLPhotoBrowerController (updateNumberOfLabel)
+@interface RITLPhotoBrowerController (UpdateNumberOfLabel)
 
 /**
  更新选中的图片数
@@ -28,6 +28,19 @@ NS_ASSUME_NONNULL_BEGIN
  @param number 选中的图片数
  */
 - (void)updateNumbersForSelectAssets:(NSUInteger)number;
+
+@end
+
+
+@interface RITLPhotoBrowerController (UpdateSizeLabel)
+
+
+/**
+ 更新高清显示的状态
+
+ @param isHightQuarity 是否为高清状态
+ */
+- (void)updateSizeLabelForIsHightQuarity:(BOOL)isHightQuarity;
 
 @end
 

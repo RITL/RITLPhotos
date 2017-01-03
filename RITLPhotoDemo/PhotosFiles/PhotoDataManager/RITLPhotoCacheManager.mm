@@ -104,20 +104,17 @@
     if (self.assetIsPictureSignal)
     {
         free(self.assetIsPictureSignal);
-        NSLog(@"signal dealloc1");
     }
-    
     
     if (self.assetIsSelectedSignal)
     {
         free(self.assetIsSelectedSignal);
-        NSLog(@"signal dealloc2");
     }
     
     _numberOfSelectedPhoto = 0;
     _maxNumberOfSelectedPhoto = NSUIntegerMax;
     _numberOfAssetIsSelectedSignal = 0;
-
+    _isHightQuarity = false;
 }
 
 

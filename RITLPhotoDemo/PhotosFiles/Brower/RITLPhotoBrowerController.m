@@ -87,6 +87,8 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = false;
+    
     //绑定viewModel
     [self bindViewModel];
     
@@ -105,6 +107,8 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     //检测选择的数量
     ((void(*)(id,SEL))objc_msgSend)(self.viewModel,NSSelectorFromString(@"ritl_checkPhotoSendStatusChanged"));
     
+    //检测高清状态
+    ((void(*)(id,SEL))objc_msgSend)(self.viewModel,NSSelectorFromString(@"ritl_checkHightQuaratyStatus"));
 }
 
 
@@ -122,6 +126,11 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     {
         self.navigationController.navigationBarHidden = true;
     }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
     //执行viewModel
     [self scrollViewDidEndDecelerating:self.collectionView];
@@ -214,7 +223,6 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         [_backButtonItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_backButtonItem.titleLabel setFont:[UIFont systemFontOfSize:30]];
         [_backButtonItem.titleLabel setTextAlignment:NSTextAlignmentCenter];
-//        [_backButtonItem addTarget:self action:@selector(backItemDidTap:) forControlEvents:UIControlEventTouchUpInside];
         
         __weak typeof(self) weakSelf = self;
         
@@ -281,8 +289,18 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         [_highQualityControl addSubview:self.originPhotoLabel];
         [_highQualityControl addSubview:self.activityIndicatorView];
         [_highQualityControl addSubview:self.photoSizeLabel];
+
         
-//        [_highQualityControl addTarget:_browerDelegate action:NSSelectorFromString(@"controlAction:") forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) weakSelf = self;
+        
+        [_highQualityControl controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
+            
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            [((RITLPhotoBrowerViewModel *)strongSelf.viewModel) highQualityStatusShouldChanged:strongSelf.collectionView];
+            
+        }];
+        
     }
     
     return _highQualityControl;
@@ -478,6 +496,37 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
             [strongSelf updateNumbersForSelectAssets:count];
         };
         
+        
+        
+        
+        
+        // hight quarity
+        viewModel.ritl_browerQuarityChangedBlock = ^(BOOL isHightQuarity){
+          
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            [strongSelf updateSizeLabelForIsHightQuarity:isHightQuarity];
+        };
+        
+        
+        viewModel.ritl_browerRequestQuarityBlock = ^(BOOL result,NSString * selectorName){
+          
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            ((void(*)(id,SEL))objc_msgSend)(strongSelf.activityIndicatorView,NSSelectorFromString(selectorName));
+            
+            strongSelf.photoSizeLabel.hidden = result;
+        };
+        
+        
+        viewModel.ritl_browerQuarityCompleteBlock = ^(NSString * imageSize){
+          
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            strongSelf.photoSizeLabel.text = imageSize;
+            
+        };
+        
     }
 }
 
@@ -551,7 +600,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 @end
 
 
-@implementation RITLPhotoBrowerController (updateNumberOfLabel)
+@implementation RITLPhotoBrowerController (UpdateNumberOfLabel)
 
 -(void)updateNumbersForSelectAssets:(NSUInteger)number
 {
@@ -572,6 +621,60 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
             
         }];
     }
+}
+
+@end
+
+
+@implementation RITLPhotoBrowerController (UpdateSizeLabel)
+
+-(void)updateSizeLabelForIsHightQuarity:(BOOL)isHightQuarity
+{
+    if (isHightQuarity)//如果是高清状态
+    {
+        //
+        [self ritlChangeToHightQualityStatus];
+        
+    }
+    
+    else //如果不是高清状态
+    {
+        [self ritlChangeToThumiStatus];
+    }
+}
+
+
+
+/**
+ 变为高清状态
+ */
+- (void)ritlChangeToHightQualityStatus
+{
+    UIColor * currentColor = RITLPhotoBrowerSelectedColor;
+    
+    self.hignSignImageView.backgroundColor = currentColor;
+    
+    self.originPhotoLabel.textColor = [UIColor whiteColor];
+    self.photoSizeLabel.textColor = [UIColor whiteColor];
+    
+    NSLog(@"高清图!");
+}
+
+
+/**
+ 变为缩略状态
+ */
+- (void)ritlChangeToThumiStatus
+{
+    UIColor * currentColor = RITLPhotoBrowerDeselectedColor;
+    
+    self.hignSignImageView.backgroundColor = currentColor;
+    self.originPhotoLabel.textColor = currentColor;
+    self.photoSizeLabel.textColor = currentColor;
+    
+    [self.activityIndicatorView stopAnimating];
+    self.photoSizeLabel.text = @"";
+    
 }
 
 @end

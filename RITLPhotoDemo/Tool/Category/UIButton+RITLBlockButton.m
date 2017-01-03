@@ -10,7 +10,7 @@
 
 #import <objc/runtime.h>
 
-@implementation UIButton (RITLBlockButton)
+@implementation UIControl (RITLBlockButton)
 
 
 -(void)controlEvents:(UIControlEvents)controlEvents handle:(void (^)(UIButton * _Nonnull))eventHandleBlock

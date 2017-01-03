@@ -11,6 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef PhotoCompleteBlock8 RITLBrowerRequestQuarityBlock;
+typedef PhotoCompleteBlock0 RITLBrowerQuarityCompleteBlock;
+typedef PhotoCompleteBlock9 RITLBrowerQuarityStatusChangeBlock;
+
 @interface RITLPhotoBrowerViewModel : RITLBaseViewModel <RITLCollectionViewModel>
 
 /// 当前图片的位置指数
@@ -35,6 +39,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable)void(^ritl_BrowerSendStatusChangedBlock)(BOOL,NSUInteger);
 
 
+#pragma mark - hightQuarity
+
+/// 高清状态发生变化的block
+@property (nonatomic, copy, nullable)RITLBrowerQuarityStatusChangeBlock ritl_browerQuarityChangedBlock;
+
+/// 请求高清数据过程的block
+@property (nonatomic, copy, nullable)RITLBrowerRequestQuarityBlock ritl_browerRequestQuarityBlock;
+
+/// 请求高清数据完毕的block
+@property (nonatomic, copy, nullable)RITLBrowerQuarityCompleteBlock ritl_browerQuarityCompleteBlock;
+
+
 /**
  点击选择按钮,触发ritl_BrowerSelectedBtnShouldRefreshBlock
 
@@ -43,13 +59,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)selectedPhotoInScrollView:(UICollectionView *)scrollView;
 
 
-
 /**
  控制器将要消失的方法
  */
 - (void)controllerViewWillDisAppear;
-
-
 
 
 /**
@@ -74,15 +87,21 @@ NS_ASSUME_NONNULL_BEGIN
                  complete:(void(^)(UIImage *,PHAsset *)) completeBlock;
 
 
-
-
-
 /**
  滚动视图结束滚动的方法
 
  @param scrollView
  */
 - (void)viewModelScrollViewDidEndDecelerating:(UIScrollView *)scrollView;
+
+
+
+/**
+ 高清状态发生变化
+
+ @param scrollView
+ */
+- (void)highQualityStatusShouldChanged:(UIScrollView *)scrollView;
 
 
 @end

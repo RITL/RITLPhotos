@@ -14,7 +14,7 @@
 
 
 +(void)imagesWithAssets:(NSArray<PHAsset *> *)assets
-                 status:(BOOL *)status
+                 status:(BOOL)status
                    Size:(CGSize)size
              ignoreSize:(BOOL)isIgnoreSize
                complete:(nonnull void (^)(NSArray<UIImage *> * _Nonnull))imagesBlock
@@ -32,10 +32,15 @@
             size = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
         }
         
-        //获取图片类型
-//        PHImageRequestOptionsDeliveryMode mode = status[i] ? PHImageRequestOptionsDeliveryModeHighQualityFormat : PHImageRequestOptionsDeliveryModeOpportunistic;
+        if (status)
+        {
+            printf("\n\n高清图！！！！！！\n\n");
+        }
         
-        PHImageRequestOptions * option = [PHImageRequestOptions imageRequestOptionsWithDeliveryMode:PHImageRequestOptionsDeliveryModeOpportunistic];
+        //获取图片类型
+        PHImageRequestOptionsDeliveryMode mode = status ? PHImageRequestOptionsDeliveryModeHighQualityFormat : PHImageRequestOptionsDeliveryModeOpportunistic;
+        
+        PHImageRequestOptions * option = [PHImageRequestOptions imageRequestOptionsWithDeliveryMode:mode];
         option.synchronous = true;
         
         //请求图片

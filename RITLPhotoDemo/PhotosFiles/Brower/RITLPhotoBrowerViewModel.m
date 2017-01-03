@@ -20,6 +20,7 @@
 
 -(void)dealloc
 {
+    objc_removeAssociatedObjects(self);
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));
 }
 
@@ -43,7 +44,7 @@
     if (isSimplePhoto)
     {
         //获得当前的偏移
-        NSUInteger currentIndex = [self indexOffAssetWithScrollView:collection];
+        NSUInteger currentIndex = [self ritl_indexOffAssetWithScrollView:collection];
         
         currentIndex = [self ritl_indexInAllAssetFormIndexInPictureAssets:currentIndex];
         
@@ -67,7 +68,7 @@
 -(void)selectedPhotoInScrollView:(UICollectionView *)scrollView
 {
     //
-    NSUInteger currentIndex = [self indexOffAssetWithScrollView:scrollView];
+    NSUInteger currentIndex = [self ritl_indexOffAssetWithScrollView:scrollView];
     
     //获得当前的资源真正的位置
     currentIndex = [self ritl_indexInAllAssetFormIndexInPictureAssets:currentIndex];
@@ -105,20 +106,6 @@
     self.ritl_BrowerSelectedBtnShouldRefreshBlock([self ritl_imageForCurrentAssetIndex:currentIndex]);
     
 }
-
-
-/**
- 检测当前的可用
- */
-- (void)ritl_checkPhotoSendStatusChanged
-{
-    NSUInteger temp = [RITLPhotoCacheManager sharedInstace].numberOfSelectedPhoto;
-    
-    BOOL enable = (temp >= 1);
-    
-    self.ritl_BrowerSendStatusChangedBlock(enable,temp);
-}
-
 
 
 -(void)imageForIndexPath:(NSIndexPath *)indexPath collection:(UICollectionView *)collection isThumb:(BOOL)isThumb complete:(void (^)(UIImage * _Nonnull, PHAsset * _Nonnull))completeBlock
@@ -160,7 +147,7 @@
 -(void)viewModelScrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     
-    NSUInteger currentIndex = [self indexOffAssetWithScrollView:scrollView];
+    NSUInteger currentIndex = [self ritl_indexOffAssetWithScrollView:scrollView];
     
     //获得当前的位置
     NSUInteger index = self.currentIndex;
@@ -202,22 +189,32 @@
         self.ritl_BrowerSelectedBtnShouldRefreshBlock([self ritl_imageForCurrentAssetIndex:[self ritl_indexInAllAssetFormIndexInPictureAssets:currentIndex]]);
     }
     
+    [self ritl_checkHightQuaratyStatusChanged:currentIndex];
+
     //分页完毕
 //    printf("分页完毕! count   contentOffSetX = %f currentIndex = %ld \n",scrollView.contentOffset.x,currentIndex);
 }
 
 
-/// 根据scrollView的偏移量获得当前资源的位置
-- (NSUInteger)indexOffAssetWithScrollView:(UIScrollView *)scrollView
+-(void)highQualityStatusShouldChanged:(UIScrollView *)scrollView
 {
-    //获得当前的collectionview
-    UICollectionView * collectionView = (UICollectionView *)scrollView;
+    BOOL isHightQuarity = [RITLPhotoCacheManager sharedInstace].isHightQuarity;
     
-    //获得当前显示的真正索引，消除浮点型对visibleCells.count的干扰
-    NSUInteger currentIndex = collectionView.contentOffset.x / collectionView.width;
+    //变换标志位
+    [RITLPhotoCacheManager sharedInstace].isHightQuarity = !isHightQuarity;
     
+    //
+    [self ritl_checkHightQuaratyStatus];
     
-    return currentIndex;
+    //如果进入高清状态进行当前的计算
+    if (!isHightQuarity)
+    {
+        NSUInteger currentIndex = [self ritl_indexOffAssetWithScrollView:scrollView];
+
+        [self ritl_checkHightQuaratyStatusChanged:currentIndex];
+    }
+    
+    printf("change to %s!\n",[RITLPhotoCacheManager sharedInstace].isHightQuarity ? "Yes" : "No");
 }
 
 
@@ -252,6 +249,74 @@
 
 
 #pragma mark - private
+
+
+/// 根据scrollView的偏移量获得当前资源的位置
+- (NSUInteger)ritl_indexOffAssetWithScrollView:(UIScrollView *)scrollView
+{
+    //获得当前的collectionview
+    UICollectionView * collectionView = (UICollectionView *)scrollView;
+    
+    //获得当前显示的真正索引，消除浮点型对visibleCells.count的干扰
+    NSUInteger currentIndex = collectionView.contentOffset.x / collectionView.width;
+    
+    
+    return currentIndex;
+}
+
+
+/**
+ 检测当前的可用
+ */
+- (void)ritl_checkPhotoSendStatusChanged
+{
+    NSUInteger temp = [RITLPhotoCacheManager sharedInstace].numberOfSelectedPhoto;
+    
+    BOOL enable = (temp >= 1);
+    
+    self.ritl_BrowerSendStatusChangedBlock(enable,temp);
+}
+
+
+
+
+/**
+ 检测当前的图片状态
+ */
+- (void)ritl_checkHightQuaratyStatus
+{
+    self.ritl_browerQuarityChangedBlock([RITLPhotoCacheManager sharedInstace].isHightQuarity);
+}
+
+
+
+/**
+ 检测当前是否为高清状态，并执行响应的block
+
+ @param index 当前展示图片的位置
+ */
+- (void)ritl_checkHightQuaratyStatusChanged:(NSUInteger)index
+{
+    NSUInteger currentIndex = index;
+    
+    //如果是高清状态
+    if ([RITLPhotoCacheManager sharedInstace].isHightQuarity)
+    {
+        //获得当前的资源对象
+        PHAsset * currentAsset = self.allPhotoAssets[currentIndex];
+        
+        self.ritl_browerRequestQuarityBlock(true,@"startAnimating");
+        
+        //获取高清数据
+        [currentAsset sizeOfHignQualityWithSize:CGSizeMake(currentAsset.pixelWidth, currentAsset.pixelHeight) complete:^(NSString * _Nonnull imageSize) {
+            
+            self.ritl_browerRequestQuarityBlock(false,@"stopAnimating");
+            
+            self.ritl_browerQuarityCompleteBlock(imageSize);
+        }];
+    }
+}
+
 
 
 

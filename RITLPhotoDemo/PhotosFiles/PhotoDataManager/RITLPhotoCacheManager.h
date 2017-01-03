@@ -22,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 图片的大小，默认为RITLPhotoOriginSize
 @property (nonatomic, assign) CGSize imageSize;
 
-
+/// 是否为高清图，默认为false
+@property (nonatomic, assign) BOOL isHightQuarity;
 
 /// 资源是否为图片的标志位
 @property (nonatomic, assign) BOOL * assetIsPictureSignal;

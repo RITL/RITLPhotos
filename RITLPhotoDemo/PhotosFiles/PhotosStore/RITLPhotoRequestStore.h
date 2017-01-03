@@ -18,13 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
  获取资源中的图片对象
 
  @param assets 需要请求的asset数组
- @param status 当前图片是否需要高清图
+ @param status 图片是否需要高清图
  @param size   当前图片的截取size
  @param isIgnoreSize 是否无视size属性，按照图片原本大小获取
  @param imagesBlock 返回图片的block
  */
 + (void)imagesWithAssets:(NSArray <PHAsset *> *)assets
-                  status:(nullable BOOL *)status
+                  status:(BOOL)status
                     Size:(CGSize)size
               ignoreSize:(BOOL)isIgnoreSize
                 complete:(void (^)(NSArray <UIImage *> *))imagesBlock;
