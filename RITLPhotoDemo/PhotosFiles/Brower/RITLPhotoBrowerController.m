@@ -102,6 +102,9 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     //滚动到最后一个
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:((RITLPhotoBrowerViewModel *)self.viewModel).currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:false];
     
+    //检测选择的数量
+    ((void(*)(id,SEL))objc_msgSend)(self.viewModel,NSSelectorFromString(@"ritl_checkPhotoSendStatusChanged"));
+    
 }
 
 
@@ -390,6 +393,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         _numberOfLabel.textAlignment = NSTextAlignmentCenter;
         _numberOfLabel.font = [UIFont boldSystemFontOfSize:14];
         _numberOfLabel.text = @"8";
+        _numberOfLabel.backgroundColor = UIColorFromRGB(0x2dd58a);
         _numberOfLabel.textColor = [UIColor whiteColor];
         _numberOfLabel.layer.cornerRadius = _numberOfLabel.width / 2.0;
         _numberOfLabel.clipsToBounds = true;
@@ -466,6 +470,14 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
             
         };
         
+        // 显示选择的数量
+        viewModel.ritl_BrowerSendStatusChangedBlock = ^(BOOL hiddenNumberLabel,NSUInteger count){
+            
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            [strongSelf updateNumbersForSelectAssets:count];
+        };
+        
     }
 }
 
@@ -497,9 +509,6 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
             cell.imageView.image = image;
             
         }];
-        
-        //定位
-//        [viewModel didEndDisplayingCellForItemAtIndexPath:indexPath];
     }
     
     return cell;
@@ -524,6 +533,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
+//    Nothing..
 //    printf("didEndDisplayingCell\n");
 //    [self.viewModel didEndDisplayingCellForItemAtIndexPath:indexPath];
 }
@@ -536,6 +546,32 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [(RITLPhotoBrowerViewModel *)self.viewModel viewModelScrollViewDidEndDecelerating:scrollView];    
+}
+
+@end
+
+
+@implementation RITLPhotoBrowerController (updateNumberOfLabel)
+
+-(void)updateNumbersForSelectAssets:(NSUInteger)number
+{
+    BOOL hidden = (number == 0);
+    
+    _numberOfLabel.hidden = hidden;
+    
+    if (!hidden)
+    {
+        _numberOfLabel.text = [NSString stringWithFormat:@"%@",@(number)];
+        
+        //设置放射以及动画
+        _numberOfLabel.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            _numberOfLabel.transform = CGAffineTransformIdentity;
+            
+        }];
+    }
 }
 
 @end

@@ -54,7 +54,7 @@
 - (void)browerCellLoad
 {
     self.minScaleZoome = 1.0f;
-    self.maxScaleZoome = 4.0f;
+    self.maxScaleZoome = 2.5f;
     
     [self createBottomScrollView];
     [self createImageView];
@@ -123,7 +123,7 @@
     {
         self.bottomScrollView = [[UIScrollView alloc]init];
         self.bottomScrollView.backgroundColor = [UIColor blackColor];
-//        self.bottomScrollView.delegate = self;
+        self.bottomScrollView.delegate = self;
         self.bottomScrollView.minimumZoomScale = self.minScaleZoome;
         self.bottomScrollView.maximumZoomScale = self.maxScaleZoome;
         [self.contentView addSubview:self.bottomScrollView];

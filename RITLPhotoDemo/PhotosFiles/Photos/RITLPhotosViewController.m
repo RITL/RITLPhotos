@@ -19,6 +19,8 @@
 #import "UIButton+RITLBlockButton.h"
 #import "UIViewController+RITLPhotoAlertController.h"
 
+#import <objc/message.h>
+
 static NSString * cellIdentifier = @"RITLPhotosCell";
 static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 
@@ -147,11 +149,12 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
             viewModel.ritl_BrowerWillDisAppearBlock = ^{
               
                 [strongSelf.collectionView reloadData];
-//                strongSelf.collectionView reloadItemsAtIndexPaths:<#(nonnull NSArray<NSIndexPath *> *)#>
+                
+                // 检测发送按钮可用性
+                ((void(*)(id,SEL))objc_msgSend)(strongSelf.viewModel,NSSelectorFromString(@"ritl_checkPhotoSendStatusChanged"));
                 
             };
             
-
             //进入一个浏览控制器
             [strongSelf.navigationController pushViewController:[RITLPhotoBrowerController photosViewModelInstance:viewModel] animated:true];
             

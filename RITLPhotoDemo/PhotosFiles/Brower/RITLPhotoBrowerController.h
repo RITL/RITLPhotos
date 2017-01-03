@@ -19,4 +19,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+@interface RITLPhotoBrowerController (updateNumberOfLabel)
+
+/**
+ 更新选中的图片数
+ 
+ @param number 选中的图片数
+ */
+- (void)updateNumbersForSelectAssets:(NSUInteger)number;
+
+@end
+
 NS_ASSUME_NONNULL_END

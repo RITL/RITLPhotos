@@ -31,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 当前控制器将要消失的block
 @property (nonatomic, copy, nullable)void(^ritl_BrowerWillDisAppearBlock)(void);
 
+/// 响应是否显示当前数目标签以及数目的block
+@property (nonatomic, copy, nullable)void(^ritl_BrowerSendStatusChangedBlock)(BOOL,NSUInteger);
+
 
 /**
  点击选择按钮,触发ritl_BrowerSelectedBtnShouldRefreshBlock

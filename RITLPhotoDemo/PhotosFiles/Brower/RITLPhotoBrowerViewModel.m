@@ -96,14 +96,29 @@
         return;
     }
     
-    
     //修改状态量
     [cacheManager changeAssetIsSelectedSignal:currentIndex];
+    
+    [self ritl_checkPhotoSendStatusChanged];
     
     //执行block
     self.ritl_BrowerSelectedBtnShouldRefreshBlock([self ritl_imageForCurrentAssetIndex:currentIndex]);
     
 }
+
+
+/**
+ 检测当前的可用
+ */
+- (void)ritl_checkPhotoSendStatusChanged
+{
+    NSUInteger temp = [RITLPhotoCacheManager sharedInstace].numberOfSelectedPhoto;
+    
+    BOOL enable = (temp >= 1);
+    
+    self.ritl_BrowerSendStatusChangedBlock(enable,temp);
+}
+
 
 
 -(void)imageForIndexPath:(NSIndexPath *)indexPath collection:(UICollectionView *)collection isThumb:(BOOL)isThumb complete:(void (^)(UIImage * _Nonnull, PHAsset * _Nonnull))completeBlock

@@ -150,17 +150,24 @@
     // 修改数据源标志位
     cacheManager.assetIsSelectedSignal[item] = !cacheManager.assetIsSelectedSignal[item];
     
-    
-    //获得选择的数目
-    temp = cacheManager.numberOfSelectedPhoto;
-    
-    BOOL enable = (temp >= 1);
-
-    //执行允许点击以及预览的block
-    self.photoSendStatusChangedBlock(enable,temp);
+    [self ritl_checkPhotoSendStatusChanged];
     
     return true;
 
+}
+
+
+
+/**
+ 检测当前的可用
+ */
+- (void)ritl_checkPhotoSendStatusChanged
+{
+    NSUInteger temp = [RITLPhotoCacheManager sharedInstace].numberOfSelectedPhoto;
+    
+    BOOL enable = (temp >= 1);
+    
+    self.photoSendStatusChangedBlock(enable,temp);
 }
 
 
