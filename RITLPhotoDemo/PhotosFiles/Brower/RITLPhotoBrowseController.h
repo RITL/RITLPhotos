@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RITLPhotoBrowerController : UIViewController <RITLPhotoViewController>
+@interface RITLPhotoBrowseController : UIViewController <RITLPhotoViewController>
 
 /// 当前控制器的viewModel
 @property (nonatomic, strong) id <RITLCollectionViewModel> viewModel;
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface RITLPhotoBrowerController (UpdateNumberOfLabel)
+@interface RITLPhotoBrowseController (UpdateNumberOfLabel)
 
 /**
  更新选中的图片数
@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface RITLPhotoBrowerController (UpdateSizeLabel)
+@interface RITLPhotoBrowseController (UpdateSizeLabel)
 
 
 /**
@@ -41,6 +41,11 @@ NS_ASSUME_NONNULL_BEGIN
  @param isHightQuarity 是否为高清状态
  */
 - (void)updateSizeLabelForIsHightQuarity:(BOOL)isHightQuarity;
+
+@end
+
+
+@interface RITLPhotoBrowseController (RITLPhotosViewController)
 
 @end
 

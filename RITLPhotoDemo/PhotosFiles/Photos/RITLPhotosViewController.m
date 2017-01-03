@@ -11,8 +11,8 @@
 #import "RITLPhotoBottomReusableView.h"
 #import "RITLPhotosViewModel.h"
 
-#import "RITLPhotoBrowerController.h"
-#import "RITLPhotoBrowerViewModel.h"
+#import "RITLPhotoBrowseController.h"
+#import "RITLPhotoBrowseViewModel.h"
 
 #import "RITLPhotoHandleManager.h"
 
@@ -131,14 +131,21 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         RITLPhotosViewModel * viewModel = self.viewModel;
         
         __weak typeof(self) weakSelf = self;
- 
+        
+        
+//        viewModel.pushBrowerControllerByBrowerButtonBlock = ^(PHFetchResult * result,NSArray <PHAsset *> * allAssets,NSArray <PHAsset *> * allPhotoAssets,PHAsset * asset,NSUInteger index){
+//            
+//            
+//        };
+// 
+        
         // 跳转至预览视图
         viewModel.photoDidTapShouldBrowerBlock = ^(PHFetchResult * result,NSArray <PHAsset *> * allAssets,NSArray <PHAsset *> * allPhotoAssets,PHAsset * asset,NSUInteger index){
             
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
             /// 创建viewModel
-            RITLPhotoBrowerViewModel * viewModel = [RITLPhotoBrowerViewModel new];
+            RITLPhotoBrowseViewModel * viewModel = [RITLPhotoBrowseViewModel new];
             
             /// 设置所有的属性
             viewModel.allAssets = allAssets;
@@ -156,7 +163,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
             };
             
             //进入一个浏览控制器
-            [strongSelf.navigationController pushViewController:[RITLPhotoBrowerController photosViewModelInstance:viewModel] animated:true];
+            [strongSelf.navigationController pushViewController:[RITLPhotoBrowseController photosViewModelInstance:viewModel] animated:true];
             
         };
         
@@ -572,11 +579,12 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         
         __weak typeof(self) weakSelf = self;
         
-        [_bowerButton controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
+        [_bowerButton controlEvents:UIControlEventTouchUpInside handle:^(UIControl * _Nonnull sender) {
             
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
-            NSLog(@"预览啦!");
+            //跳转至预览视图
+            ((void(*)(id,SEL))objc_msgSend)(strongSelf.viewModel,NSSelectorFromString(@"pushBrowerControllerByBrowerButtonTap"));
             
         }];
         
@@ -611,7 +619,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         
         __weak typeof(self) weakSelf = self;
         
-        [_sendButton controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
+        [_sendButton controlEvents:UIControlEventTouchUpInside handle:^(UIControl * _Nonnull sender) {
            
             __strong typeof(weakSelf) strongSelf = weakSelf;
             

@@ -26,7 +26,6 @@ NS_AVAILABLE_IOS(8_0) @interface RITLPhotosViewController : UIViewController <RI
 
 @interface RITLPhotosViewController (updateNumberOfLabel)
 
-
 /**
  更新选中的图片数
 
@@ -38,13 +37,6 @@ NS_AVAILABLE_IOS(8_0) @interface RITLPhotosViewController : UIViewController <RI
 
 
 
-//
-//@interface RITLPhotosTimeHandleObject : NSObject
-//
-///// @brief 将timeInterval转成字符串,格式为00:26
-//+ (NSString *)timeStringWithTimeDuration:(NSTimeInterval)timeInterval;
-//
-//@end
 
 
 NS_ASSUME_NONNULL_END

@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YueWen. All rights reserved.
 //
 
-#import "RITLPhotoBrowerController.h"
-#import "RITLPhotoBrowerViewModel.h"
-#import "RITLPhotoBrowerCell.h"
+#import "RITLPhotoBrowseController.h"
+#import "RITLPhotoBrowseViewModel.h"
+#import "RITLPhotoBrowseCell.h"
 
 #import "UIKit+YPPhotoDemo.h"
 #import "UIButton+RITLBlockButton.h"
@@ -22,7 +22,7 @@
 
 static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 
-@interface RITLPhotoBrowerController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
+@interface RITLPhotoBrowseController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 
 /// @brief 展示图片的collectionView
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -62,7 +62,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 
 @end
 
-@implementation RITLPhotoBrowerController
+@implementation RITLPhotoBrowseController
 
 
 -(instancetype)initWithViewModel:(id <RITLCollectionViewModel> )viewModel
@@ -102,7 +102,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     [self.view addSubview:self.bottomBar];
     
     //滚动到最后一个
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:((RITLPhotoBrowerViewModel *)self.viewModel).currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:false];
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:((RITLPhotoBrowseViewModel *)self.viewModel).currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:false];
     
     //检测选择的数量
     ((void(*)(id,SEL))objc_msgSend)(self.viewModel,NSSelectorFromString(@"ritl_checkPhotoSendStatusChanged"));
@@ -190,7 +190,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         
         _collectionView.pagingEnabled = true;
         _collectionView.showsHorizontalScrollIndicator = false;
-        [_collectionView registerClass:[RITLPhotoBrowerCell class] forCellWithReuseIdentifier:cellIdentifier];
+        [_collectionView registerClass:[RITLPhotoBrowseCell class] forCellWithReuseIdentifier:cellIdentifier];
     }
     
     return _collectionView;
@@ -226,7 +226,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         
         __weak typeof(self) weakSelf = self;
         
-        [_backButtonItem controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
+        [_backButtonItem controlEvents:UIControlEventTouchUpInside handle:^(UIControl * _Nonnull sender) {
            
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
@@ -250,11 +250,11 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         
         __weak typeof(self) weakSelf = self;
         
-        [_selectButtonItem controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
+        [_selectButtonItem controlEvents:UIControlEventTouchUpInside handle:^(UIControl * _Nonnull sender) {
             
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
-            [((RITLPhotoBrowerViewModel *)strongSelf.viewModel) selectedPhotoInScrollView:strongSelf.collectionView];
+            [((RITLPhotoBrowseViewModel *)strongSelf.viewModel) selectedPhotoInScrollView:strongSelf.collectionView];
             
         }];
         
@@ -293,11 +293,11 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         
         __weak typeof(self) weakSelf = self;
         
-        [_highQualityControl controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
+        [_highQualityControl controlEvents:UIControlEventTouchUpInside handle:^(UIControl * _Nonnull sender) {
             
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
-            [((RITLPhotoBrowerViewModel *)strongSelf.viewModel) highQualityStatusShouldChanged:strongSelf.collectionView];
+            [((RITLPhotoBrowseViewModel *)strongSelf.viewModel) highQualityStatusShouldChanged:strongSelf.collectionView];
             
         }];
         
@@ -387,7 +387,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         
         __weak typeof(self) weakSelf = self;
         
-        [_sendButton controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
+        [_sendButton controlEvents:UIControlEventTouchUpInside handle:^(UIControl * _Nonnull sender) {
             
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
@@ -429,7 +429,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if (!_viewModel)
     {
-        _viewModel = [RITLPhotoBrowerViewModel new];
+        _viewModel = [RITLPhotoBrowseViewModel new];
     }
     
     return _viewModel;
@@ -439,9 +439,9 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 /// 绑定viewModel
 - (void)bindViewModel
 {
-    if ([self.viewModel isMemberOfClass:[RITLPhotoBrowerViewModel class]])
+    if ([self.viewModel isMemberOfClass:[RITLPhotoBrowseViewModel class]])
     {
-        RITLPhotoBrowerViewModel * viewModel = self.viewModel;
+        RITLPhotoBrowseViewModel * viewModel = self.viewModel;
         
         __weak typeof(self) weakSelf = self;
         
@@ -450,7 +450,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
             
             __strong typeof(weakSelf) strongSelf = weakSelf;
         
-            RITLPhotoBrowerCell * cell = (RITLPhotoBrowerCell *)[strongSelf.collectionView cellForItemAtIndexPath:indexPath];
+            RITLPhotoBrowseCell * cell = (RITLPhotoBrowseCell *)[strongSelf.collectionView cellForItemAtIndexPath:indexPath];
 
     
             [UIView animateWithDuration:0.5 delay:0. options:UIViewAnimationOptionCurveLinear animations:^{
@@ -547,11 +547,11 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RITLPhotoBrowerCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    RITLPhotoBrowseCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    if ([self.viewModel isMemberOfClass:[RITLPhotoBrowerViewModel class]])
+    if ([self.viewModel isMemberOfClass:[RITLPhotoBrowseViewModel class]])
     {
-        RITLPhotoBrowerViewModel * viewModel = self.viewModel;
+        RITLPhotoBrowseViewModel * viewModel = self.viewModel;
         
         [viewModel imageForIndexPath:indexPath collection:collectionView isThumb:true complete:^(UIImage * _Nonnull image, PHAsset * _Nonnull asset) {
             
@@ -594,13 +594,13 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [(RITLPhotoBrowerViewModel *)self.viewModel viewModelScrollViewDidEndDecelerating:scrollView];    
+    [(RITLPhotoBrowseViewModel *)self.viewModel viewModelScrollViewDidEndDecelerating:scrollView];
 }
 
 @end
 
 
-@implementation RITLPhotoBrowerController (UpdateNumberOfLabel)
+@implementation RITLPhotoBrowseController (UpdateNumberOfLabel)
 
 -(void)updateNumbersForSelectAssets:(NSUInteger)number
 {
@@ -626,7 +626,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 @end
 
 
-@implementation RITLPhotoBrowerController (UpdateSizeLabel)
+@implementation RITLPhotoBrowseController (UpdateSizeLabel)
 
 -(void)updateSizeLabelForIsHightQuarity:(BOOL)isHightQuarity
 {

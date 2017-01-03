@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RITLPhotoBrowerCell : UICollectionViewCell
+@interface RITLPhotoBrowseCell : UICollectionViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 

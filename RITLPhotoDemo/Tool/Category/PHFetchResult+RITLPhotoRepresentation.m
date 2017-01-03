@@ -97,7 +97,7 @@
                 arrayObject(array,weakSelf);
             }
             
-            printf("%s idx = %ld\n",NSStringFromClass([obj class]).UTF8String,idx);
+//            printf("%s idx = %ld\n",NSStringFromClass([obj class]).UTF8String,idx);
             
         }];
     }

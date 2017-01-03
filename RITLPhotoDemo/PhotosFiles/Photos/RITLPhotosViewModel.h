@@ -33,6 +33,16 @@ typedef PhotoCompleteBlock6 RITLPhotoSendStatusBlock;
 /// 响应是否能够点击预览以及发送按钮的block
 @property (nonatomic, copy)RITLPhotoSendStatusBlock photoSendStatusChangedBlock;
 
+/// 点击预览进入浏览控制器的block，暂时使用photoDidTapShouldBrowerBlock替代
+@property (nonatomic, copy)RITLPhotoDidTapHandleBlock pushBrowerControllerByBrowerButtonBlock;
+
+
+/**
+ 通过点击浏览按钮弹出浏览控制器，触发pushBrowerControllerByBrowerButton
+ */
+- (void)pushBrowerControllerByBrowerButtonTap;
+
+
 /// 资源数
 - (NSUInteger)assetCount;
 

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 YueWen. All rights reserved.
 //
 
-#import "RITLPhotoBrowerViewModel.h"
+#import "RITLPhotoBrowseViewModel.h"
 #import "PHAsset+RITLPhotoRepresentation.h"
 
 #import "RITLPhotoCacheManager.h"
@@ -16,7 +16,7 @@
 #import <objc/runtime.h>
 
 
-@implementation RITLPhotoBrowerViewModel
+@implementation RITLPhotoBrowseViewModel
 
 -(void)dealloc
 {

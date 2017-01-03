@@ -259,6 +259,20 @@
 
 
 
+-(void)pushBrowerControllerByBrowerButtonTap
+{
+    //获得所有选中的图片数组
+    NSArray <PHAsset *> * assets = [RITLPhotoHandleManager assetForAssets:self.assetResults status:[RITLPhotoCacheManager sharedInstace].assetIsSelectedSignal];
+    
+    //当前位置
+    NSUInteger index = 0;
+    
+    //进行回调
+    self.photoDidTapShouldBrowerBlock(self.assetResult,self.assetResults,assets,nil,index);
+}
+
+
+
 -(NSUInteger)assetCount
 {
     if (!self.assetResult)

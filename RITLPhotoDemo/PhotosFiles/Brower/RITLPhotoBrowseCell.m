@@ -6,9 +6,9 @@
 //  Copyright © 2016年 YueWen. All rights reserved.
 //
 
-#import "RITLPhotoBrowerCell.h"
+#import "RITLPhotoBrowseCell.h"
 
-@interface RITLPhotoBrowerCell ()<UIScrollViewDelegate>
+@interface RITLPhotoBrowseCell ()<UIScrollViewDelegate>
 
 /// @brief 是否已经缩放的标志位
 @property (nonatomic, assign)BOOL isScale;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation RITLPhotoBrowerCell
+@implementation RITLPhotoBrowseCell
 
 -(void)dealloc
 {

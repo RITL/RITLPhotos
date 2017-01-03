@@ -15,7 +15,7 @@ typedef PhotoCompleteBlock8 RITLBrowerRequestQuarityBlock;
 typedef PhotoCompleteBlock0 RITLBrowerQuarityCompleteBlock;
 typedef PhotoCompleteBlock9 RITLBrowerQuarityStatusChangeBlock;
 
-@interface RITLPhotoBrowerViewModel : RITLBaseViewModel <RITLCollectionViewModel>
+@interface RITLPhotoBrowseViewModel : RITLBaseViewModel <RITLCollectionViewModel>
 
 /// 当前图片的位置指数
 @property (nonatomic, assign)NSUInteger currentIndex;

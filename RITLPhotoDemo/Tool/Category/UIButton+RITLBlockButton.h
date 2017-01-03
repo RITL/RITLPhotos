@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param controlEvents 响应事件
  @param eventHandleBlock 处理事件的block
  */
-- (void)controlEvents:(UIControlEvents)controlEvents handle:(void(^)(UIButton *)) eventHandleBlock;
+- (void)controlEvents:(UIControlEvents)controlEvents handle:(void(^)(UIControl *)) eventHandleBlock;
 
 
 @end
