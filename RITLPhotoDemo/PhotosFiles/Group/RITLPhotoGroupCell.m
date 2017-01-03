@@ -15,7 +15,7 @@
 
 -(void)dealloc
 {
-#ifdef YDEBUG
+#ifdef RITLDebug
 //    NSLog(@"YPPhotoGroupCell Dealloc");
 #endif
 }

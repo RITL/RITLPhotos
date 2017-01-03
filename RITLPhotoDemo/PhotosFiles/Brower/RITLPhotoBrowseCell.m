@@ -30,7 +30,7 @@
 
 -(void)dealloc
 {
-#ifdef YDEBUG
+#ifdef RITLDebug
 //    NSLog(@"YPPhotoBrowerCell Dealloc");
 #endif
 }

@@ -8,18 +8,9 @@
 
 #import "RITLPhotosCell.h"
 
-///// @brief cell的选中状态
-//NS_OPTIONS(NSUInteger, YPPhotosCellType)
-//{
-//    CellTypeDeseleted = 0,/**<未选中 */
-//    CellTypeSelected = 1, /**<选中 */
-//};
 
 @interface RITLPhotosCell ()
 
-//@property (nonatomic, assign)enum YPPhotosCellType cellType;
-
-//@property (weak, nonatomic)RITLPhotosCell * weakSelf;
 
 @end
 
@@ -78,47 +69,6 @@
     
     
 }
-
-
-
-
-
-//- (void)buttonShouldSelect
-//{
-//    __weak typeof(self)copy_self = self;
-//    [self cellDidSelect];
-//    [self startAnimation];
-//    if (self.imageSelectedBlock) self.imageSelectedBlock(copy_self);
-//}
-
-
-
-
-
-//
-//- (void)buttonShouldDeselect
-//{
-//    __weak typeof(self)copy_self = self;
-//    [self cellDidDeselect];
-//    if (self.imageDeselectedBlock) self.imageDeselectedBlock(copy_self);
-//}
-
-
-//-(void)cellDidSelect
-//{
-//    _cellType = CellTypeSelected;
-//    //    [_chooseImageView setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
-//    _chooseImageView.image = [UIImage imageNamed:@"选中"];
-//}
-
-
-//-(void)cellDidDeselect
-//{
-//    _cellType = CellTypeDeseleted;
-//    //    [self.chooseImageView setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
-//    _chooseImageView.image = [UIImage imageNamed:@"未选中"];
-//}
-
 
 
 #pragma mark - CreateSubviews

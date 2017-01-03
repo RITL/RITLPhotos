@@ -55,10 +55,12 @@
 
 -(void)dealloc
 {
+#ifdef RITLDebug
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));
+#endif
 }
 
-#pragma mark - 
+#pragma mark -
 
 -(id <RITLPublicViewModel>)viewModel
 {

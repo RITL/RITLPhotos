@@ -12,7 +12,9 @@
 
 -(void)dealloc
 {
+#ifdef RITLDebug
     NSLog(@"YPPhotoBottomReusableView Dealloc");
+#endif
 }
 
 -(void)prepareForReuse

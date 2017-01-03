@@ -21,7 +21,10 @@
 -(void)dealloc
 {
     objc_removeAssociatedObjects(self);
+    
+#ifdef RITLDebug
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));
+#endif
 }
 
 -(void)controllerViewWillDisAppear

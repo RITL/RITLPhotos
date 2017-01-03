@@ -301,7 +301,9 @@
 {
     [[RITLPhotoCacheManager sharedInstace] freeAllSignal];
     
+#ifdef RITLDebug
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));
+#endif
 }
 
 @end

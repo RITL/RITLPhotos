@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YPPhotoDefines.h"
 #import "RITLCollectionViewModel.h"
 #import "RITLPhotoViewController.h"
 

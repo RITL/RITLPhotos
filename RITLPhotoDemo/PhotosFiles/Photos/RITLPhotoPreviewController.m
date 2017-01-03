@@ -73,7 +73,9 @@
 
 -(void)dealloc
 {
+#ifdef RITLDebug
     NSLog(@"%@ Dealloc",NSStringFromClass([self class]));
+#endif
 }
 
 #pragma mark - Getter

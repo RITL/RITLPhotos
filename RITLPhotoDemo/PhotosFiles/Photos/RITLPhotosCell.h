@@ -39,18 +39,12 @@ typedef void(^RITLPhotosCellOperationBlock)(RITLPhotosCell * __nullable cell);
 @property (nullable, copy, nonatomic)RITLPhotosCellOperationBlock chooseImageDidSelectBlock;
 
 
-//evoked when the chooseImageView clicked
-//@property (nullable, copy, nonatomic)RITLPhotosCellOperationBlock imageSelectedBlock;
-//@property (nullable, copy, nonatomic)RITLPhotosCellOperationBlock imageDeselectedBlock;
-
 
 
 //simple method to set UI change, not evoked the block
 - (void) cellDidSelect;
 - (void) cellDidDeselect;
 
-
-//- (void) 
 
 
 #pragma mark - Deprecated

@@ -14,6 +14,8 @@
 #import "RITLPhotoBrowseController.h"
 #import "RITLPhotoBrowseViewModel.h"
 
+#import "RITLPhotoPreviewController.h"
+
 #import "RITLPhotoHandleManager.h"
 
 #import "UIButton+RITLBlockButton.h"
@@ -25,18 +27,16 @@ static NSString * cellIdentifier = @"RITLPhotosCell";
 static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 
 
-//#ifdef __IPHONE_10_0
-//@interface RITLPhotosViewController ()<UIViewControllerPreviewingDelegate,YPPhotoBrowerControllerDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDataSourcePrefetching>
-//#else
-//
-//#ifdef __IPHONE_9_0
-//@interface RITLPhotosViewController ()<UIViewControllerPreviewingDelegate,YPPhotoBrowerControllerDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
-//
-//#else
+#ifdef __IPHONE_10_0
+@interface RITLPhotosViewController ()<UIViewControllerPreviewingDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDataSourcePrefetching>
+#else
+
+#ifdef __IPHONE_9_0
+@interface RITLPhotosViewController ()<UIViewControllerPreviewingDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
+#else
 @interface RITLPhotosViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
-//#endif
-//
-//#endif
+#endif
+#endif
 
 /// @brief 显示的集合视图
 @property (nonatomic, strong) UICollectionView * collectionView;
@@ -119,7 +119,18 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 {
     self.collectionView.delegate = nil;
     self.collectionView.dataSource = nil;
+    
+#ifdef __IPHONE_10_0
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 10.0f)
+    {
+        _collectionView.prefetchDataSource = nil;
+    }
+    
+#endif
+    
+#ifdef RITLDebug
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));
+#endif
 }
 
 
@@ -131,13 +142,6 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         RITLPhotosViewModel * viewModel = self.viewModel;
         
         __weak typeof(self) weakSelf = self;
-        
-        
-//        viewModel.pushBrowerControllerByBrowerButtonBlock = ^(PHFetchResult * result,NSArray <PHAsset *> * allAssets,NSArray <PHAsset *> * allPhotoAssets,PHAsset * asset,NSUInteger index){
-//            
-//            
-//        };
-// 
         
         // 跳转至预览视图
         viewModel.photoDidTapShouldBrowerBlock = ^(PHFetchResult * result,NSArray <PHAsset *> * allAssets,NSArray <PHAsset *> * allPhotoAssets,PHAsset * asset,NSUInteger index){
@@ -194,51 +198,10 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
             [strongSelf dismissViewController];
-            
         };
-        
     }
 }
 
-
-//- (void)cancleButtonDidTap//cancle button did tap
-//{
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(photosControllerShouldBack:)])
-//    {
-//        [self.delegate photosControllerShouldBack:self];
-//        [self.navigationController popViewControllerAnimated:false];
-//
-//    }
-//}
-
-//
-//- (void)chooseImagesComplete//click finish buttonItem
-//{
-// 
-//    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(photosController:photosSelected:Status:)])
-//    {
-//        [self.delegate photosController:self photosSelected:[_selectAssets mutableCopy] Status:[_selectAssetStatus mutableCopy]];;
-//        _selectAssets = nil;
-//        _selectAssetStatus = nil;
-//        [self.navigationController popViewControllerAnimated:false];
-//    }
-//}
-
-
-//- (void)bowerButtonDidTap//预览按钮被点击
-//{
-//    NSLog(@"预览啦!");
-//    //跳转
-//    YPPhotoBrowerController * viewController = [[YPPhotoBrowerController alloc]init];
-//    
-//    //设置
-//    [viewController setBrowerDataSource:_selectAssets currentAsset:_selectAssets.firstObject didSelectAssets:_selectAssets status:_selectAssetStatus maxNumberOfSelectImages:_maxNumberOfSelectImages];
-//    
-//    
-//    viewController.delegate = self;
-//    
-//    [self.navigationController pushViewController:viewController animated:true];
-//}
 
 
 #pragma mark <UICollectionViewDataSource>
@@ -291,89 +254,28 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         };
     }
     
-    
-    
-//    self.viewModel
-    
+
     
 #ifdef __IPHONE_9_0
     
-//    if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f)
-//    {
-//        BOOL isPhoto = ([(RITLPhotosViewModel *)self.viewModel shouldSelectItemAtIndexPath:indexPath]) ;
-//        
-//        //确定为图片
-//        if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable && isPhoto == true)
-//        {
-//            [self registerForPreviewingWithDelegate:self sourceView:cell];
-//        }
-//        
-//    }
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f)
+    {
+        NSUInteger item = indexPath.item;
+        
+        //获得当前的资源对象
+        PHAsset * asset = [((RITLPhotosViewModel *)self.viewModel).assetResult objectAtIndex:item];
+        
+        BOOL isPhoto = (asset.mediaType == PHAssetMediaTypeImage);
+        
+        //确定为图片并且3D Touch可用
+        if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable && isPhoto == true)
+        {
+            [self registerForPreviewingWithDelegate:self sourceView:cell];
+        }
+    }
 
 #endif
     
-//    /**********避免block中进行retail影响对象释放，造成内存泄露*********/
-//    __weak typeof(YPPhotosCell *)copy_cell = cell;
-//    __weak typeof(self) copy_self = self;
-//    __weak typeof(UICollectionView *)weakCollectionView = collectionView;
-//    /**********end*********/
-//    
-    
-//    [((PHAsset *)[self.assets objectAtIndex:indexPath.row]) representationImageWithSize:_assetSize complete:^(UIImage * _Nullable image, PHAsset * _Nonnull asset) {
-//
-//        // Configure the cell
-//        copy_cell.imageView.image = image;
-//        
-//        //如果不是photo类型,隐藏选择标志
-//        if (asset.mediaType != PHAssetMediaTypeImage)
-//        {
-//            copy_cell.chooseImageView.hidden = true;
-//            copy_cell.messageView.hidden = false;
-//            copy_cell.messageLabel.text =  [RITLPhotosTimeHandleObject timeStringWithTimeDuration:asset.duration];
-//        }
-//
-//        else{
-//            if ([copy_self.selectAssets containsObject:asset]) [copy_cell cellDidSelect];
-//            else [copy_cell cellDidDeselect];
-//        }
-//
-//    }];
-//    
-//    cell.imageSelectedBlock = ^(YPPhotosCell * cell){
-//        
-//        if (copy_self.selectAssets.count >= copy_self.maxNumberOfSelectImages.unsignedIntegerValue)
-//        {
-//            //不再变化状态
-//            [cell cellDidDeselect];
-//            
-//            //alertController提示
-//            [copy_self alertControllerShouldPresent];
-//        }
-//        
-//        else//此图没有原图选项，所以都为高清
-//        {
-//            [copy_self.selectAssets addObject:[copy_self.assets objectAtIndex:[weakCollectionView indexPathForCell:cell].item]];
-//            [copy_self.selectAssetStatus addObject:[NSNumber numberWithUnsignedInteger:0]];
-//        }
-//        
-//        [copy_self setNumbersForSelectAssets:copy_self.selectAssets.count];
-//        
-//    };
-//    
-//    cell.imageDeselectedBlock = ^(YPPhotosCell * cell){
-//        
-//        PHAsset * deleteAsset = [copy_self.assets objectAtIndex:[weakCollectionView indexPathForCell:cell].item];
-//        
-//        //移除状态位
-//        [copy_self.selectAssetStatus removeObjectAtIndex:[copy_self.selectAssets indexOfObject:deleteAsset]];
-//        
-//        [copy_self.selectAssets removeObject:deleteAsset];
-//        
-//        [copy_self setNumbersForSelectAssets:copy_self.selectAssets.count];
-//        
-//    };
-//    
-
     return cell;
 }
 
@@ -452,65 +354,37 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 
 #pragma mark - <UIViewControllerPreviewingDelegate>
 
-//#ifdef  __IPHONE_9_0
+#ifdef  __IPHONE_9_0
 
-#warning 会出现内存泄露，临时不使用
-//- (nullable UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
-//{
-//    //获取当前cell的indexPath
-//    NSIndexPath * indexPath = [self.collectionView indexPathForCell:(YPPhotosCell *)previewingContext.sourceView];
-//    
-//    //获得当前的资源
-//    PHAsset * asset = (PHAsset *)[_assets objectAtIndex:indexPath.item];
-//    
-//    YPPhotoPreviewController * viewController = [YPPhotoPreviewController previewWithShowAsset:asset];
-//    
-////    viewController.assetSize = _assetSize;
-//    
-//    return viewController;
-//}
-//
-//
-//- (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit
-//{
-////    //获取当前cell的indexPath
-////    NSIndexPath * indexPath = [self.collectionView indexPathForCell:(YPPhotosCell *)previewingContext.sourceView];
-////    
-////    [self showViewController:[self createBrowerController:indexPath] sender:self];
-//}
-//#endif
+//#warning 会出现内存泄露，临时不使用
+- (nullable UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
+{
+    //获取当前cell的indexPath
+    NSIndexPath * indexPath = [self.collectionView indexPathForCell:(RITLPhotosCell *)previewingContext.sourceView];
+    
+    NSUInteger item = indexPath.item;
+    
+    //获得当前的资源
+    PHAsset * asset = [((RITLPhotosViewModel *)self.viewModel).assetResult objectAtIndex:item];
+    
+    
+    RITLPhotoPreviewController * viewController = [RITLPhotoPreviewController previewWithShowAsset:asset];
+    
+    return viewController;
+}
 
 
-//#pragma mark - CreateViewController
-//- (YPPhotoBrowerController *)createBrowerController:(NSIndexPath *)indexPath
-//{
-//    //跳转
-//    YPPhotoBrowerController * viewController = [[YPPhotoBrowerController alloc]init];
-//    
-//    //设置
-//    [viewController setBrowerDataSource:_assets currentAsset:((PHAsset *)[_assets objectAtIndex:indexPath.row]) didSelectAssets:_selectAssets status:_selectAssetStatus maxNumberOfSelectImages:_maxNumberOfSelectImages];
-//    
-//    viewController.delegate = self;
-//
-//    return viewController;
-//}
+- (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit
+{
+    //获取当前cell的indexPath
+    NSIndexPath * indexPath = [self.collectionView indexPathForCell:(RITLPhotosCell *)previewingContext.sourceView];
+    
+    
+    [self.viewModel didSelectItemAtIndexPath:indexPath];
+}
+#endif
 
 
-//#pragma mark - <YPPhotoBrowerControllerDelegate>
-///** 返回按钮执行的block,用于colletionView更新 */
-//- (void)photoBrowerControllerShouldBack:(YPPhotoBrowerController *)viewController
-//{
-////    [self setNumbersForSelectAssets:self.selectAssets.count];
-//    [self.collectionView reloadData];
-//}
-//
-///** 点击完成进行的回调 */
-//- (void)photoBrowerController:(YPPhotoBrowerController *)viewController photosSelected:(nonnull NSArray<PHAsset *> *)photos Status:(nonnull NSArray<NSNumber *> *)status
-//{
-//    //执行发送回调
-//    [self chooseImagesComplete];
-//}
-//
 
 #pragma mark - Getter Function
 -(UICollectionView *)collectionView
@@ -673,56 +547,10 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 }
 
 
-#pragma mark - 设置numberOfLabel的数目
-
-
-//#pragma mark - UIAlertController
-//- (void)alertControllerShouldPresent
-//{
-//    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"你最多只能选择%@张照片",@(_maxNumberOfSelectImages.unsignedIntegerValue)] message:nil preferredStyle:UIAlertControllerStyleAlert];
-//    
-//    [alertController addAction:[UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleDefault handler:nil]];
-//    
-//    [self presentViewController:alertController animated:true completion:nil];
-//}
-
-
 
 
 @end
 
-
-
-//
-//@implementation RITLPhotosTimeHandleObject
-//
-//+(NSString *)timeStringWithTimeDuration:(NSTimeInterval)timeInterval
-//{
-//    NSUInteger time = (NSUInteger)timeInterval;
-//    
-//    //大于1小时
-//    if (time >= 60 * 60)
-//    {
-//        NSUInteger hour = time / 60 / 60;
-//        NSUInteger minute = time % 3600 / 60;
-//        NSUInteger second = time % (3600 * 60);
-//        
-//        return [NSString stringWithFormat:@"%.2lu:%.2lu:%.2lu",(unsigned long)hour,(unsigned long)minute,(unsigned long)second];
-//    }
-//    
-//    
-//    if (time >= 60)
-//    {
-//        NSUInteger mintue = time / 60;
-//        NSUInteger second = time % 60;
-//        
-//        return [NSString stringWithFormat:@"%.2lu:%.2lu",(unsigned long)mintue,(unsigned long)second];
-//    }
-//    
-//    return [NSString stringWithFormat:@"00:%.2lu",(unsigned long)time];
-//}
-//
-//@end
 
 
 @implementation RITLPhotosViewController (updateNumberOfLabel)

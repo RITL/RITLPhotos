@@ -53,7 +53,9 @@ CGSize const RITLPhotoOriginSize = {-100,-100};
 
 -(void)dealloc
 {
+#ifdef RITLDebug
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));
+#endif
 }
 
 @end

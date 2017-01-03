@@ -60,7 +60,10 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 -(void)dealloc
 {
     [self.photoLibaray unregisterChangeObserver:self];
+    
+#ifdef RITLDebug
     NSLog(@"%@ Dealloc",NSStringFromClass([self class]));
+#endif
 }
 
 

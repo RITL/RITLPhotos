@@ -143,7 +143,7 @@ static NSString * cellIdentifier = @"RITLPhotoGroupCell";
 -(void)dealloc
 {
 //    self.groups = nil;
-#ifdef YDEBUG
+#ifdef RITLDebug
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));
 #endif
 }

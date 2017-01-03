@@ -31,7 +31,9 @@
 
 -(void)dealloc
 {
+#ifdef RITLDebug
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));
+#endif
 }
 
 

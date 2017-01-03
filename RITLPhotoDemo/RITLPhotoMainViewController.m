@@ -7,9 +7,7 @@
 //
 
 #import "RITLPhotoMainViewController.h"
-#import "YPPhotosCell.h"
-//#import "PHObject+SupportCategory.h"
-#import "YPPhotoNavgationController.h"
+#import "RITLPhotosCell.h"
 
 
 #import "RITLPhotoNavigationViewController.h"
@@ -102,7 +100,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    YPPhotosCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    RITLPhotosCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
     cell.imageView.image = self.assets[indexPath.item];
     cell.chooseImageView.hidden = true;
@@ -137,7 +135,7 @@
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = UIColorFromRGB(0xF6FFB7);
         
-        [_collectionView registerClass:[YPPhotosCell class] forCellWithReuseIdentifier:@"Cell"];
+        [_collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:@"Cell"];
     }
     
     return _collectionView;

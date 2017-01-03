@@ -10,6 +10,9 @@
 #define RITLPhotoConfig_h
 
 
+//#define RITLDebug
+
+
 #ifdef __cplusplus
 #define RITL_PHOTO_EXTERN extern "C" __attribute__((visibility ("default")))
 #else
@@ -32,6 +35,8 @@ alpha:1.0]
 
 #define RITLPhotoSelectedName (@"RITLSelected")
 #define RITLPhotoDeselectedName (@"RITLDeselected")
+
+#define RITLPhotoBrowseBackImage ([UIImage imageNamed:@"RITLPhotoBack"])
 
 #define RITLPhotoSelectedImage ([UIImage imageNamed:RITLPhotoSelectedName])
 #define RITLPhotoDeselectedImage ([UIImage imageNamed:RITLPhotoDeselectedName])

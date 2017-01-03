@@ -160,7 +160,9 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 
 -(void)dealloc
 {
+#ifdef RITLDebug
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));
+#endif
 }
 
 
@@ -219,7 +221,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     {
         _backButtonItem = [[UIButton alloc]initWithFrame:CGRectMake(5, 0, 44, 44)];
         _backButtonItem.center = CGPointMake(_backButtonItem.center.x, _topBar.center.y);
-        [_backButtonItem setImage:[UIImage imageNamed:@"RITLPhotoBack"] forState:UIControlStateNormal];
+        [_backButtonItem setImage:RITLPhotoBrowseBackImage forState:UIControlStateNormal];
         [_backButtonItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_backButtonItem.titleLabel setFont:[UIFont systemFontOfSize:30]];
         [_backButtonItem.titleLabel setTextAlignment:NSTextAlignmentCenter];
