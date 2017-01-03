@@ -3,7 +3,7 @@
 //  RITLPhotoDemo
 //
 //  Created by YueWen on 2016/12/30.
-//  Copyright © 2016年 YueWen. All rights reserved.
+//  Copyright © 2017年 YueWen. All rights reserved.
 //
 
 #import <Photos/Photos.h>

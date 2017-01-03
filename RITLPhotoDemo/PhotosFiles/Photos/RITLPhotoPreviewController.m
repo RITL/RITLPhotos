@@ -3,7 +3,7 @@
 //  YPPhotoDemo
 //
 //  Created by YueWen on 16/8/5.
-//  Copyright © 2016年 YueWen. All rights reserved.
+//  Copyright © 2017年 YueWen. All rights reserved.
 //
 
 #import "RITLPhotoPreviewController.h"
