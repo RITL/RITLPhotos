@@ -142,8 +142,17 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
             viewModel.allAssets = allAssets;
             viewModel.allPhotoAssets = allPhotoAssets;
             viewModel.currentIndex = index;
+            
+            //记录刷新当前的视图
+            viewModel.ritl_BrowerWillDisAppearBlock = ^{
+              
+                [strongSelf.collectionView reloadData];
+//                strongSelf.collectionView reloadItemsAtIndexPaths:<#(nonnull NSArray<NSIndexPath *> *)#>
+                
+            };
+            
 
-            //进入随意一个浏览控制器
+            //进入一个浏览控制器
             [strongSelf.navigationController pushViewController:[RITLPhotoBrowerController photosViewModelInstance:viewModel] animated:true];
             
         };

@@ -8,6 +8,12 @@
 
 #import "RITLPhotoCacheManager.h"
 
+@interface RITLPhotoCacheManager ()
+
+/// 是否选择的长度
+@property (nonatomic, assign)unsigned long numberOfAssetIsSelectedSignal;
+
+@end
 
 @implementation RITLPhotoCacheManager
 
@@ -40,6 +46,52 @@
 
 
 
+-(void)allocInitAssetIsSelectedSignal:(NSUInteger)count
+{
+//    if (self.assetIsSelectedSignal)
+//    {
+//        free(self.assetIsSelectedSignal);
+//    }
+    
+    self.numberOfAssetIsSelectedSignal = count;
+
+    //初始化
+    self.assetIsSelectedSignal = new BOOL[count];
+    
+    memset(self.assetIsSelectedSignal,false,count * sizeof(BOOL));
+}
+
+
+-(void)allocInitAssetIsPictureSignal:(NSUInteger)count
+{
+//    if (self.assetIsPictureSignal)
+//    {
+//        free(self.assetIsPictureSignal);
+//    }
+    
+    self.assetIsPictureSignal = new BOOL[count];
+    
+    memset(self.assetIsPictureSignal,false,count * sizeof(BOOL));
+}
+
+
+
+-(BOOL)changeAssetIsSelectedSignal:(NSUInteger)index
+{
+    if (index > self.numberOfAssetIsSelectedSignal)
+    {
+        return false;
+    }
+    
+    self.assetIsSelectedSignal[index] = !self.assetIsSelectedSignal[index];
+    
+    printf("选中状态:%d\n",self.assetIsSelectedSignal[index]);
+    
+    return true;
+}
+
+
+
 -(void)dealloc
 {
 
@@ -64,6 +116,7 @@
     
     _numberOfSelectedPhoto = 0;
     _maxNumberOfSelectedPhoto = NSUIntegerMax;
+    _numberOfAssetIsSelectedSignal = 0;
 
 }
 

@@ -25,6 +25,37 @@ NS_ASSUME_NONNULL_BEGIN
 /// 当前位置的cell应该显示清晰图的block
 @property (nonatomic, copy, nullable)void(^ritl_BrowerCellShouldRefreshBlock)(UIImage *,PHAsset *,NSIndexPath *);
 
+/// 当前的选中按钮刷新成当前图片的block
+@property (nonatomic, copy, nullable)void(^ritl_BrowerSelectedBtnShouldRefreshBlock)(UIImage *);
+
+/// 当前控制器将要消失的block
+@property (nonatomic, copy, nullable)void(^ritl_BrowerWillDisAppearBlock)(void);
+
+
+/**
+ 点击选择按钮,触发ritl_BrowerSelectedBtnShouldRefreshBlock
+
+ @param scrollView 当前的collectionView
+ */
+- (void)selectedPhotoInScrollView:(UICollectionView *)scrollView;
+
+
+
+/**
+ 控制器将要消失的方法
+ */
+- (void)controllerViewWillDisAppear;
+
+
+
+
+/**
+ 点击发送执行的方法
+
+ @param collection 当前的collectionView
+ */
+- (void)photoDidSelectedComplete:(UICollectionView *)collection;
+
 
 /**
  获得当前的位置的图片对象

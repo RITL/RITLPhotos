@@ -34,7 +34,36 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获得单例对象
 + (instancetype)sharedInstace;
 
-/// 释放所有的信号资源
+
+/**
+ 初始化资源是否为图片的标志位
+
+ @param count 初始化长度
+ */
+- (void)allocInitAssetIsPictureSignal:(NSUInteger)count;
+
+
+/**
+ 初始化资源是否被选中的标志位
+
+ @param count 初始化长度
+ */
+- (void)allocInitAssetIsSelectedSignal:(NSUInteger)count;
+
+
+/**
+ 修改index位置的选中状态
+
+ @param index
+ @return true表示修改成功，false失败
+ */
+- (BOOL)changeAssetIsSelectedSignal:(NSUInteger)index;
+
+
+
+/**
+ 释放所有的信号资源
+ */
 - (void)freeAllSignal;
 
 

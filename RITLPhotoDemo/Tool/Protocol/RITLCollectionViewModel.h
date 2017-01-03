@@ -108,6 +108,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
+ 当前位置的cell显示完毕执行的回调操作
+
+ @param indexPath 当前位置
+ */
+- (void)didEndDisplayingCellForItemAtIndexPath:(NSIndexPath *)indexPath;
+
+
+
+
+
+/**
  预备处理
 
  @param indexPaths 

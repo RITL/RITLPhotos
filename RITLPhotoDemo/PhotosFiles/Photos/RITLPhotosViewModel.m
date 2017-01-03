@@ -203,16 +203,11 @@
     
     unsigned long assetCount = self.assetResult.count;
     
-    // 初始化数组
-    photoCacheManager.assetIsPictureSignal = new BOOL[assetCount];
-    photoCacheManager.assetIsSelectedSignal = new BOOL[assetCount];
-    
     // 初始化
-    memset(photoCacheManager.assetIsPictureSignal, false, assetCount * sizeof(BOOL));
-    memset(photoCacheManager.assetIsSelectedSignal, false, assetCount * sizeof(BOOL));
+    [photoCacheManager allocInitAssetIsPictureSignal:assetCount];
+    [photoCacheManager allocInitAssetIsSelectedSignal:assetCount];
     
     __weak typeof(self) weakSelf = self;;
-    
     
     //初始化所有图片的数组
     [self.assetResult preparationWithType:PHAssetMediaTypeImage Complete:^(NSArray<PHAsset *> * _Nullable allPhotoAssets) {

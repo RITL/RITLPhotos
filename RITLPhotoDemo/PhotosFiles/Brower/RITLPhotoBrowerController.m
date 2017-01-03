@@ -12,8 +12,13 @@
 
 #import "UIKit+YPPhotoDemo.h"
 #import "UIButton+RITLBlockButton.h"
+#import "UIViewController+RITLPhotoAlertController.h"
 
 #import <objc/runtime.h>
+#import <objc/message.h>
+
+#define RITLPhotoBrowerDeselectedColor ([UIColor darkGrayColor])
+#define RITLPhotoBrowerSelectedColor (UIColorFromRGB(0x2dd58a))
 
 static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 
@@ -91,6 +96,9 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     //添加自定义导航栏
     [self.view addSubview:self.topBar];
     
+    //添加自定义tab
+    [self.view addSubview:self.bottomBar];
+    
     //滚动到最后一个
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:((RITLPhotoBrowerViewModel *)self.viewModel).currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:false];
     
@@ -125,6 +133,9 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     {
         self.navigationController.navigationBarHidden = false;
     }
+    
+    
+    ((void(*)(id,SEL))objc_msgSend)(self.viewModel,NSSelectorFromString(@"controllerViewWillDisAppear"));
 }
 
 
@@ -226,7 +237,16 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         _selectButtonItem.center = CGPointMake(_selectButtonItem.center.x, _topBar.center.y);
         [_selectButtonItem setImage:RITLPhotoDeselectedImage forState:UIControlStateNormal];
         
-//        [_selectButtonItem addTarget:_browerDelegate action:NSSelectorFromString(@"selectButtonDidTap:") forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) weakSelf = self;
+        
+        [_selectButtonItem controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
+            
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            [((RITLPhotoBrowerViewModel *)strongSelf.viewModel) selectedPhotoInScrollView:strongSelf.collectionView];
+            
+        }];
+        
     }
     
     return _selectButtonItem;
@@ -294,7 +314,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         _originPhotoLabel = [[UILabel alloc]initWithFrame:CGRectMake(_hignSignImageView.maxX + 5, 0, width, 25)];
         _originPhotoLabel.center = CGPointMake(_originPhotoLabel.center.x, _highQualityControl.center.y);
         _originPhotoLabel.font = [UIFont systemFontOfSize:13];
-//        _originPhotoLabel.textColor = self.deselectedColor;
+        _originPhotoLabel.textColor = RITLPhotoBrowerDeselectedColor;
         _originPhotoLabel.text = @"原图:";
         
     }
@@ -326,7 +346,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         _photoSizeLabel = [[UILabel alloc]initWithFrame:CGRectMake(_originPhotoLabel.maxX + 5, 0, _highQualityControl.width - _photoSizeLabel.originX , 25)];
         _photoSizeLabel.center = CGPointMake(_photoSizeLabel.center.x, _highQualityControl.center.y);
         _photoSizeLabel.font = [UIFont systemFontOfSize:13];
-//        _photoSizeLabel.textColor = self.deselectedColor;
+        _photoSizeLabel.textColor = RITLPhotoBrowerDeselectedColor;
         _photoSizeLabel.text = @"";
     }
     
@@ -344,11 +364,22 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         [_sendButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [_sendButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
         
-//        [_sendButton addTarget:self action:@selector(sendButtonDidTap:) forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) weakSelf = self;
+        
+        [_sendButton controlEvents:UIControlEventTouchUpInside handle:^(UIButton * _Nonnull sender) {
+            
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            
+            ((void(*)(id,SEL,id))objc_msgSend)(strongSelf.viewModel,NSSelectorFromString(@"photoDidSelectedComplete:"),strongSelf.collectionView);
+            
+        }];
     }
     
     return _sendButton;
 }
+
+
 
 -(UILabel *)numberOfLabel
 {
@@ -362,6 +393,8 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         _numberOfLabel.textColor = [UIColor whiteColor];
         _numberOfLabel.layer.cornerRadius = _numberOfLabel.width / 2.0;
         _numberOfLabel.clipsToBounds = true;
+        
+        _numberOfLabel.hidden = true;
     }
     
     return _numberOfLabel;
@@ -404,15 +437,42 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
                 
             } completion:nil];
         };
-//
         
         
         
+        // 刷新选中按钮状态
+        viewModel.ritl_BrowerSelectedBtnShouldRefreshBlock = ^(UIImage * image){
+          
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            [strongSelf.selectButtonItem setImage:image forState:UIControlStateNormal];
+        };
         
+        
+        // 弹出警告提示框
+        viewModel.warningBlock = ^(BOOL result,NSUInteger maxCount){
+            
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            [strongSelf presentAlertController:maxCount];
+        };
+        
+        // 模态弹出
+        viewModel.dismissBlock = ^{
+            
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            [strongSelf dismissViewController];
+            
+        };
         
     }
 }
 
+-(void)dismissViewController
+{
+    return [super dismissViewControllerAnimated:true completion:nil];
+}
 
 
 
@@ -437,8 +497,10 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
             cell.imageView.image = image;
             
         }];
+        
+        //定位
+//        [viewModel didEndDisplayingCellForItemAtIndexPath:indexPath];
     }
-    
     
     return cell;
 }
@@ -458,6 +520,16 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 }
 
 
+#pragma mark - UICollectionDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+//    printf("didEndDisplayingCell\n");
+//    [self.viewModel didEndDisplayingCellForItemAtIndexPath:indexPath];
+}
+
+
+
 
 #pragma mark - UIScrollViewDelegate
 
@@ -465,6 +537,5 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     [(RITLPhotoBrowerViewModel *)self.viewModel viewModelScrollViewDidEndDecelerating:scrollView];    
 }
-
 
 @end
