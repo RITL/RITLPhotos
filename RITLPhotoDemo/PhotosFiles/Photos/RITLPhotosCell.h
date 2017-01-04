@@ -42,8 +42,8 @@ typedef void(^RITLPhotosCellOperationBlock)(RITLPhotosCell * __nullable cell);
 
 
 //simple method to set UI change, not evoked the block
-- (void) cellDidSelect;
-- (void) cellDidDeselect;
+//- (void) cellDidSelect;
+//- (void) cellDidDeselect;
 
 
 

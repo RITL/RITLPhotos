@@ -17,4 +17,10 @@
 }
 
 
+-(void)photoDidSelectedComplete
+{
+    
+}
+
+
 @end
