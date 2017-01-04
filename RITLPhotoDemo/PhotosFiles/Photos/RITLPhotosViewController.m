@@ -367,6 +367,10 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
     //获得当前的资源
     PHAsset * asset = [((RITLPhotosViewModel *)self.viewModel).assetResult objectAtIndex:item];
     
+    if (asset.mediaType != PHAssetMediaTypeImage)
+    {
+        return nil;
+    }
     
     RITLPhotoPreviewController * viewController = [RITLPhotoPreviewController previewWithShowAsset:asset];
     
