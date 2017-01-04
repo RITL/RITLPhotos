@@ -262,77 +262,6 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 
 @end
 
-
-@implementation YPPhotoStoreHandleClass
-
-+(void)imagesWithAssets:(NSArray<PHAsset *> *)assets status:(NSArray<NSNumber *> *)status Size:(CGSize)size complete:(nonnull void (^)(NSArray<UIImage *> * _Nonnull))imagesBlock
-{
-    __block NSMutableArray <UIImage *> * images = [NSMutableArray arrayWithCapacity:assets.count];
-    
-    for (NSUInteger i = 0; i < assets.count; i++)
-    {
-        //获取资源
-        PHAsset * asset = assets[i];
-    
-        //获取图片类型
-        PHImageRequestOptionsDeliveryMode mode = status[i].integerValue;
-        
-        PHImageRequestOptions * option = [PHImageRequestOptions imageRequestOptionsWithDeliveryMode:mode];
-        option.synchronous = true;
-        
-        //请求图片
-        [[PHImageManager defaultManager]requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-            
-            [images addObject:result];
-            
-            if (images.count == assets.count)//表示已经添加完毕
-            {
-                //回调
-                imagesBlock([images mutableCopy]);
-                
-                images = nil;
-            }
-        }];
-    }
-
-}
-
-+(void)dataWithAssets:(NSArray<PHAsset *> *)assets status:(NSArray<NSNumber *> *)status complete:(void (^)(NSArray<NSData *> * _Nonnull))dataBlock
-{
-    __block NSMutableArray <NSData *> * datas = [NSMutableArray arrayWithCapacity:assets.count];
-    
-    for (NSUInteger i = 0; i < assets.count; i++)
-    {
-        //获取资源
-        PHAsset * asset = assets[i];
-        
-        //获取图片类型
-        PHImageRequestOptionsDeliveryMode mode = status[i].integerValue;
-        
-        PHImageRequestOptions * option = [PHImageRequestOptions imageRequestOptionsWithDeliveryMode:mode];
-        option.synchronous = true;
-        
-        //请求数据
-        [[PHImageManager defaultManager]requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-            
-            [datas addObject:imageData];
-            
-            if (datas.count == assets.count)
-            {
-                //回调
-                dataBlock([datas mutableCopy]);
-                
-                datas = nil;
-            }
-            
-        }];
-        
-    }
-}
-
-@end
-
-
 @implementation RITLPhotoStore (Group)
 
 -(void)addCustomGroupWithTitle:(NSString *)title completionHandler:(void (^)(void))successBlock failture:(void (^)(NSString * _Nonnull))failtureBlock
@@ -350,7 +279,7 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
         }
         
         failtureBlock(error.localizedDescription);
-    
+        
     }];
 }
 
@@ -425,7 +354,7 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
             PHAssetCollectionChangeRequest * groupChangeRequest = [PHAssetCollectionChangeRequest changeRequestForAssetCollection:collection];
             
             [groupChangeRequest addAssets:@[assetChangeRequest.placeholderForCreatedAsset]];
-        
+            
         }
         
     }completionHandler:^(BOOL success, NSError * _Nullable error) {
@@ -459,6 +388,82 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 @end
 
 
+
+
+
+
+
+#pragma mark - Deprecated
+
+
+@implementation YPPhotoStoreHandleClass
+
++(void)imagesWithAssets:(NSArray<PHAsset *> *)assets status:(NSArray<NSNumber *> *)status Size:(CGSize)size complete:(nonnull void (^)(NSArray<UIImage *> * _Nonnull))imagesBlock
+{
+    __block NSMutableArray <UIImage *> * images = [NSMutableArray arrayWithCapacity:assets.count];
+    
+    for (NSUInteger i = 0; i < assets.count; i++)
+    {
+        //获取资源
+        PHAsset * asset = assets[i];
+    
+        //获取图片类型
+        PHImageRequestOptionsDeliveryMode mode = status[i].integerValue;
+        
+        PHImageRequestOptions * option = [PHImageRequestOptions imageRequestOptionsWithDeliveryMode:mode];
+        option.synchronous = true;
+        
+        //请求图片
+        [[PHImageManager defaultManager]requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            
+            [images addObject:result];
+            
+            if (images.count == assets.count)//表示已经添加完毕
+            {
+                //回调
+                imagesBlock([images mutableCopy]);
+                
+                images = nil;
+            }
+        }];
+    }
+
+}
+
++(void)dataWithAssets:(NSArray<PHAsset *> *)assets status:(NSArray<NSNumber *> *)status complete:(void (^)(NSArray<NSData *> * _Nonnull))dataBlock
+{
+    __block NSMutableArray <NSData *> * datas = [NSMutableArray arrayWithCapacity:assets.count];
+    
+    for (NSUInteger i = 0; i < assets.count; i++)
+    {
+        //获取资源
+        PHAsset * asset = assets[i];
+        
+        //获取图片类型
+        PHImageRequestOptionsDeliveryMode mode = status[i].integerValue;
+        
+        PHImageRequestOptions * option = [PHImageRequestOptions imageRequestOptionsWithDeliveryMode:mode];
+        option.synchronous = true;
+        
+        //请求数据
+        [[PHImageManager defaultManager]requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+            
+            [datas addObject:imageData];
+            
+            if (datas.count == assets.count)
+            {
+                //回调
+                dataBlock([datas mutableCopy]);
+                
+                datas = nil;
+            }
+            
+        }];
+        
+    }
+}
+
+@end
 
 
 @implementation RITLPhotoStore (NSDeprecated)

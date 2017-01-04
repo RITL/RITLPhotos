@@ -101,16 +101,28 @@
 {
     __weak typeof(self) weakSelf = self;
     
-   [_photoStore fetchPhotosGroup:^(NSArray<PHAssetCollection *> * _Nonnull groups) {
+    
+    [_photoStore fetchDefaultAllPhotosGroup:^(NSArray<PHAssetCollection *> * _Nonnull groups, PHFetchResult * _Nonnull collections) {
       
-       __strong typeof(weakSelf) strongSelf = weakSelf;
-       
-       strongSelf.groups = groups;
-       
-       //进行回调
-       if (strongSelf.fetchGroupsBlock)  strongSelf.fetchGroupsBlock(strongSelf.groups);
-
-   }];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        strongSelf.groups = groups;
+        
+        //进行回调
+        if (strongSelf.fetchGroupsBlock)  strongSelf.fetchGroupsBlock(strongSelf.groups);
+        
+    }];
+    
+//   [_photoStore fetchPhotosGroup:^(NSArray<PHAssetCollection *> * _Nonnull groups) {
+//      
+//       __strong typeof(weakSelf) strongSelf = weakSelf;
+//       
+//       strongSelf.groups = groups;
+//       
+//       //进行回调
+//       if (strongSelf.fetchGroupsBlock)  strongSelf.fetchGroupsBlock(strongSelf.groups);
+//
+//   }];
 }
 
 
