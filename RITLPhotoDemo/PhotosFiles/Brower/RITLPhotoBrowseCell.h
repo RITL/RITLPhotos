@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
+/// 单击执行的block
+@property (nonatomic, copy, nullable)void(^ritl_PhotoBrowerSimpleTapHandleBlock)(id);
+
+
 @end
 
 NS_ASSUME_NONNULL_END

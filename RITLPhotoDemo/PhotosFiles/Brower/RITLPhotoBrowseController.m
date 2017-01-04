@@ -60,6 +60,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 /// @brief 显示数目
 @property (strong, nonatomic) UILabel * numberOfLabel;
 
+
 @end
 
 @implementation RITLPhotoBrowseController
@@ -168,6 +169,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 
 
 #pragma mark - lazy
+
 
 #pragma mark - Create Views
 -(UICollectionView *)collectionView
@@ -499,6 +501,15 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         };
         
         
+        // 设置barView的hidden
+        viewModel.ritl_BrowerBarHiddenStatusChangedBlock = ^(BOOL hidden){
+          
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            strongSelf.topBar.hidden = hidden;
+            strongSelf.bottomBar.hidden = hidden;
+            
+        };
         
         
         
@@ -560,6 +571,13 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
             cell.imageView.image = image;
             
         }];
+        
+        
+        cell.ritl_PhotoBrowerSimpleTapHandleBlock = ^(RITLPhotoBrowseCell * cell){
+          
+            [viewModel sendViewBarDidChangedSignal];
+            
+        };
     }
     
     return cell;
@@ -585,7 +603,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
 //    Nothing..
-//    printf("didEndDisplayingCell\n");
+    printf("didEndDisplayingCell\n");
 //    [self.viewModel didEndDisplayingCellForItemAtIndexPath:indexPath];
 }
 

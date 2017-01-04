@@ -38,6 +38,9 @@ typedef PhotoCompleteBlock9 RITLBrowerQuarityStatusChangeBlock;
 /// 响应是否显示当前数目标签以及数目的block
 @property (nonatomic, copy, nullable)void(^ritl_BrowerSendStatusChangedBlock)(BOOL,NSUInteger);
 
+/// 当前控制器的bar对象是否隐藏的block
+@property (nonatomic, copy, nullable)void(^ritl_BrowerBarHiddenStatusChangedBlock)(BOOL);
+
 
 #pragma mark - hightQuarity
 
@@ -102,6 +105,13 @@ typedef PhotoCompleteBlock9 RITLBrowerQuarityStatusChangeBlock;
  @param scrollView
  */
 - (void)highQualityStatusShouldChanged:(UIScrollView *)scrollView;
+
+
+
+/**
+ 发送控制器应该处理bar对象隐藏与否的信号
+ */
+- (void)sendViewBarDidChangedSignal;
 
 
 @end

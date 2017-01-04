@@ -7,6 +7,7 @@
 //
 
 #import "RITLPhotoBrowseCell.h"
+#import "UIButton+RITLBlockButton.h"
 
 @interface RITLPhotoBrowseCell ()<UIScrollViewDelegate>
 
@@ -54,7 +55,7 @@
 - (void)browerCellLoad
 {
     self.minScaleZoome = 1.0f;
-    self.maxScaleZoome = 2.5f;
+    self.maxScaleZoome = 2.0f;
     
     [self createBottomScrollView];
     [self createImageView];
@@ -67,52 +68,6 @@
 {
     _imageView.image = nil;
     _bottomScrollView.zoomScale = 1.0f;
-}
-
-
-#pragma mark - Action
-
-- (void)simpleTapGestureDidTap:(UITapGestureRecognizer *)sender
-{
-    NSLog(@"单击了!");
-    if (self.bottomScrollView.zoomScale != 1.0f)
-    {
-        //单击缩小
-        [self.bottomScrollView setZoomScale:1.0f animated:true];
-    }
-}
-
-
-- (void)doubleTapGestureDidTap:(UITapGestureRecognizer *)touch
-{
-    NSLog(@"双击了!");
-    if (self.bottomScrollView.zoomScale != 1.0f)
-    {
-        [self.bottomScrollView setZoomScale:1.0f animated:true];
-    }
-    
-    else{
-        
-        //获得Cell的宽度
-        CGFloat width = self.frame.size.width;
-        
-        //触及范围
-        CGFloat scale = width / self.maxScaleZoome;
-        
-        //获取当前的触摸点
-        CGPoint point = [touch locationInView:self.imageView];
-        
-        //对点进行处理
-        CGFloat originX = MAX(0, point.x - width / scale);
-        CGFloat originY = MAX(0, point.y - width / scale);
-        
-        //进行位置的计算
-        CGRect rect = CGRectMake(originX, originY, width / scale , width / scale);
-        
-        //进行缩放
-        [self.bottomScrollView zoomToRect:rect animated:true];
-        
-    }
 }
 
 
@@ -176,9 +131,46 @@
 {
     if (self.doubleTapGesture == nil)
     {
-        self.doubleTapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTapGestureDidTap:)];
+
+        self.doubleTapGesture = [UITapGestureRecognizer new];
         self.doubleTapGesture.numberOfTapsRequired = 2;
         [self.bottomScrollView addGestureRecognizer:self.doubleTapGesture];
+        
+        __weak typeof(self) weakSelf = self;
+        
+        
+        [self.doubleTapGesture gestureRecognizerHandle:^(UIGestureRecognizer * _Nonnull sender) {
+           
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            
+            if (strongSelf.bottomScrollView.zoomScale != 1.0f)
+            {
+                [strongSelf.bottomScrollView setZoomScale:1.0f animated:true];
+            }
+            
+            else{
+                
+                //获得Cell的宽度
+                CGFloat width = strongSelf.frame.size.width;
+                
+                //触及范围
+                CGFloat scale = width / strongSelf.maxScaleZoome;
+                
+                //获取当前的触摸点
+                CGPoint point = [sender locationInView:strongSelf.imageView];
+                
+                //对点进行处理
+                CGFloat originX = MAX(0, point.x - width / scale);
+                CGFloat originY = MAX(0, point.y - width / scale);
+                
+                //进行位置的计算
+                CGRect rect = CGRectMake(originX, originY, width / scale , width / scale);
+                
+                //进行缩放
+                [strongSelf.bottomScrollView zoomToRect:rect animated:true];
+                
+            }
+        }];
     }
 }
 
@@ -186,10 +178,37 @@
 {
     if (self.simpleTapGesture == nil)
     {
-        self.simpleTapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(simpleTapGestureDidTap:)];
+        
+        self.simpleTapGesture = [UITapGestureRecognizer new];
         self.simpleTapGesture.numberOfTapsRequired = 1;
         [self.simpleTapGesture requireGestureRecognizerToFail:self.doubleTapGesture];
         [self.bottomScrollView addGestureRecognizer:self.simpleTapGesture];
+        
+        __weak typeof(self) weakSelf = self;
+        
+        [self.simpleTapGesture gestureRecognizerHandle:^(UIGestureRecognizer * _Nonnull sender) {
+           
+            __strong typeof(weakSelf) stongSelf = weakSelf;
+            
+            NSLog(@"单击了!");
+            
+            //执行单击block
+            if (stongSelf.ritl_PhotoBrowerSimpleTapHandleBlock)
+            {
+                stongSelf.ritl_PhotoBrowerSimpleTapHandleBlock(stongSelf);
+            }
+            
+/********** 此处不再返回原始比例，如需此功能，请清除此处注释 2017-01-04 ***********/
+            /*
+            if (stongSelf.bottomScrollView.zoomScale != 1.0f)
+            {
+                //单击缩小
+                [stongSelf.bottomScrollView setZoomScale:1.0f animated:true];
+            }
+             */
+/*************************************************************************/
+            
+        }];
     }
 }
 

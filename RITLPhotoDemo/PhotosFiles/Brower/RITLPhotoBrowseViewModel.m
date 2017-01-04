@@ -146,6 +146,34 @@
 }
 
 
+-(void)sendViewBarDidChangedSignal
+{
+    printf("噼里啪啦\n");
+    
+    if (!self.ritl_BrowerBarHiddenStatusChangedBlock)
+    {
+        return;
+    }
+    
+    // 噼里啪啦判断
+    NSNumber * barViewIsHidden = (NSNumber *)objc_getAssociatedObject(self, &@selector(sendViewBarDidChangedSignal));
+    
+    if (barViewIsHidden == nil)//需要隐藏
+    {
+        objc_setAssociatedObject(self, &@selector(sendViewBarDidChangedSignal), @true, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        self.ritl_BrowerBarHiddenStatusChangedBlock(true); return;
+    }
+    
+    //变换
+    objc_setAssociatedObject(self, &@selector(sendViewBarDidChangedSignal), @(!barViewIsHidden.boolValue), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    // 执行block
+    self.ritl_BrowerBarHiddenStatusChangedBlock(!barViewIsHidden.boolValue);
+    
+}
+
+
 
 -(void)viewModelScrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
