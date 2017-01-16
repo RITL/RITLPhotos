@@ -25,6 +25,9 @@ NS_CLASS_AVAILABLE_IOS(8_0) @interface RITLPhotoNavigationViewModel : RITLBaseVi
 /// 获取图片之后的回调
 @property (nonatomic, copy, nullable)void(^RITLBridgeGetImageBlock)(NSArray <UIImage *> *);
 
+/// 获取图片的data
+@property (nonatomic, copy, nullable)void(^RITLBridgeGetImageDataBlock)(NSArray <NSData *> *);
+
 @end
 
 NS_ASSUME_NONNULL_END

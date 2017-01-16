@@ -31,9 +31,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+/**
+ 获取资源中的图片的data对象
 
-/// 根据资源以及状态获取资源转化后的data
-//+ (void)dataWithAssets:(NSArray <PHAsset *> *)assets status:(NSArray <NSNumber *> *)status complete:(void (^)(NSArray <NSData *> *))dataBlock __deprecated_msg("Use RITLPhotoRequestStore instead. see RITLPhotoRequestStore.h");
+ @param assets 需要请求的asset数组
+ @param status 图片是否需要高清图
+ @param dataBlock 返回数据的block
+ */
++ (void)dataWithAssets:(NSArray <PHAsset *> *)assets
+                status:(BOOL)status
+              complete:(void (^)(NSArray <NSData *> *))dataBlock;
 
 
 

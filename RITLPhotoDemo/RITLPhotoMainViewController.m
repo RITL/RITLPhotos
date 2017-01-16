@@ -63,14 +63,15 @@
 - (IBAction)photosItemDidTap:(id)sender
 {
     RITLPhotoNavigationViewModel * viewModel = [RITLPhotoNavigationViewModel new];
-    
+
     __weak typeof(self) weakSelf = self;
-    
-//    设置需要图片剪切的大小，不设置为图片的原比例大小
-//    viewModel.imageSize = _assetSize;
-    
+
+    //    设置需要图片剪切的大小，不设置为图片的原比例大小
+    //    viewModel.imageSize = _assetSize;
+
     viewModel.RITLBridgeGetImageBlock = ^(NSArray <UIImage *> * images){
         
+        //获得图片
         __strong typeof(weakSelf) strongSelf = weakSelf;
         
         strongSelf.assets = images;
@@ -78,10 +79,16 @@
         [strongSelf.collectionView reloadData];
         
     };
-    
+
+    viewModel.RITLBridgeGetImageDataBlock = ^(NSArray <NSData *> * datas){
+      
+        //可以进行数据上传操作..
+
+        
+    };
+
      RITLPhotoNavigationViewController * viewController = [RITLPhotoNavigationViewController photosViewModelInstance:viewModel];
-    
-    
+
     [self presentViewController:viewController animated:true completion:^{}];
 }
 

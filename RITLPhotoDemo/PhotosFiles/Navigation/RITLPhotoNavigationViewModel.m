@@ -43,6 +43,14 @@ CGSize const RITLPhotoOriginSize = {-100,-100};
 }
 
 
+-(void)setRITLBridgeGetImageDataBlock:(void (^)(NSArray<NSData *> * _Nonnull))RITLBridgeGetImageDataBlock
+{
+    _RITLBridgeGetImageDataBlock = RITLBridgeGetImageDataBlock;
+    
+    [RITLPhotoBridgeManager sharedInstance].RITLBridgeGetImageDataBlock = RITLBridgeGetImageDataBlock;
+}
+
+
 -(void)setImageSize:(CGSize)imageSize
 {
     _imageSize = imageSize;
