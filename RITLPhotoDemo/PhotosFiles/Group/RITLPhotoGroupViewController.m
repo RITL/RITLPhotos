@@ -71,6 +71,7 @@ static NSString * cellIdentifier = @"RITLPhotoGroupCell";
     
     // 回归到viewModel
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancle" style:UIBarButtonItemStylePlain target:self.viewModel action:@selector(dismissGroupController)];
+    
 }
 
 

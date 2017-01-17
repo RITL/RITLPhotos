@@ -38,10 +38,10 @@
 }
 
 
--(void)dealloc
-{
-    objc_removeAssociatedObjects(self);
-}
+//-(void)dealloc
+//{
+//    objc_removeAssociatedObjects(self);
+//}
 
 @end
 
@@ -74,9 +74,9 @@
 }
 
 
--(void)dealloc
-{
-    objc_removeAssociatedObjects(self);
-}
+//-(void)dealloc
+//{
+//    objc_removeAssociatedObjects(self);
+//}
 
 @end
