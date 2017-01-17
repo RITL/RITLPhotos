@@ -58,4 +58,42 @@
 }
 
 
++(void)dataWithAssets:(NSArray<PHAsset *> *)assets
+               status:(BOOL)status
+             complete:(void (^)(NSArray<NSData *> * _Nonnull))dataBlock
+{
+    __block NSMutableArray <NSData *> * datas = [NSMutableArray arrayWithCapacity:assets.count];
+    
+    for (NSUInteger i = 0; i < assets.count; i++)
+    {
+        //获取资源
+        PHAsset * asset = assets[i];
+        
+        //获取图片类型
+        PHImageRequestOptionsDeliveryMode mode = status ? PHImageRequestOptionsDeliveryModeHighQualityFormat : PHImageRequestOptionsDeliveryModeOpportunistic;
+        
+        PHImageRequestOptions * option = [PHImageRequestOptions imageRequestOptionsWithDeliveryMode:mode];
+        option.synchronous = true;
+        
+        if (status)
+        {
+            printf("高清数据!\n");
+        }
+        
+
+        //请求数据
+        [[PHImageManager defaultManager]requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+            
+            [datas addObject:imageData];
+            
+            if (datas.count == assets.count)
+            {
+                dataBlock([datas copy]);
+            }
+            
+        }];
+    }
+}
+
+
 @end

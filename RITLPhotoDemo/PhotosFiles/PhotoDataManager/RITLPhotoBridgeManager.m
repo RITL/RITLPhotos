@@ -46,9 +46,20 @@
         {
             self.RITLBridgeGetImageBlock(images);
         }
-        
-        
     }];
+    
+    
+    if (self.RITLBridgeGetImageDataBlock)
+    {
+        //请求数据
+        [RITLPhotoRequestStore dataWithAssets:assets status:isHightQuarity complete:^(NSArray<NSData *> * _Nonnull datas) {
+           
+            self.RITLBridgeGetImageDataBlock(datas);
+            
+        }];
+    }
+    
+    
 
 }
 
