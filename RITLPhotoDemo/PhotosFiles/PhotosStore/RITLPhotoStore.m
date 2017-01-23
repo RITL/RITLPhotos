@@ -200,11 +200,12 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 /** 获取最基本的智能分组 */
 -(void)fetchBasePhotosGroup:(void(^)( PHFetchResult * _Nullable  result))completeBlock
 {
-    //获得智能分组
-    PHFetchResult * smartGroups = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
- 
     //进行检测
     [self storeCheckAuthorizationStatusAllow:^{//获得准许
+        
+        //获得智能分组
+        PHFetchResult * smartGroups = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+        
         
         completeBlock(smartGroups);
         

@@ -34,16 +34,16 @@
     
     [self.view addSubview:self.collectionView];
     
-    //检测是否存在new的相册
-    RITLPhotoStore * store = [RITLPhotoStore new];
-    
-    [store checkGroupExist:@"new" result:^(BOOL isExist, PHAssetCollection * _Nullable collection) {
-       
-//        if (isExist)  NSLog(@"exist!");
-        
-//        else NSLog(@"not exist!");
-        
-    }];
+//    //检测是否存在new的相册
+//    RITLPhotoStore * store = [RITLPhotoStore new];
+//    
+//    [store checkGroupExist:@"new" result:^(BOOL isExist, PHAssetCollection * _Nullable collection) {
+//       
+////        if (isExist)  NSLog(@"exist!");
+//        
+////        else NSLog(@"not exist!");
+//        
+//    }];
     
 }
 - (IBAction)refresh:(id)sender
