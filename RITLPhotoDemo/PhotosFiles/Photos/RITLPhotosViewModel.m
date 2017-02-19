@@ -299,7 +299,9 @@
 
 -(void)dealloc
 {
-    [[RITLPhotoCacheManager sharedInstace] freeAllSignal];
+    //修复再次返回列表限制数量出问题的bug
+    //[[RITLPhotoCacheManager sharedInstace] freeAllSignal];
+    [[RITLPhotoCacheManager sharedInstace] freeSignalIngnoreMax];
     
 #ifdef RITLDebug
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));

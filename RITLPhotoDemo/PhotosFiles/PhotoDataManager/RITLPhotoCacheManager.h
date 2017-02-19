@@ -61,6 +61,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)changeAssetIsSelectedSignal:(NSUInteger)index;
 
 
+/**
+ 释放除了最大限制的所有属性
+ */
+- (void)freeSignalIngnoreMax;
 
 /**
  释放所有的信号资源

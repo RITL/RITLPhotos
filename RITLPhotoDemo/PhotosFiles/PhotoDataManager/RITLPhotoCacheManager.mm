@@ -101,6 +101,26 @@
 
 -(void)freeAllSignal
 {
+//    if (self.assetIsPictureSignal)
+//    {
+//        free(self.assetIsPictureSignal);
+//    }
+//    
+//    if (self.assetIsSelectedSignal)
+//    {
+//        free(self.assetIsSelectedSignal);
+//    }
+//    
+//    _numberOfSelectedPhoto = 0;
+    [self freeSignalIngnoreMax];
+    _maxNumberOfSelectedPhoto = NSUIntegerMax;
+//    _numberOfAssetIsSelectedSignal = 0;
+//    _isHightQuarity = false;
+}
+
+
+- (void)freeSignalIngnoreMax
+{
     if (self.assetIsPictureSignal)
     {
         free(self.assetIsPictureSignal);
@@ -112,7 +132,6 @@
     }
     
     _numberOfSelectedPhoto = 0;
-    _maxNumberOfSelectedPhoto = NSUIntegerMax;
     _numberOfAssetIsSelectedSignal = 0;
     _isHightQuarity = false;
 }

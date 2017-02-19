@@ -8,8 +8,12 @@
 
 #import "RITLPhotoStoreConfiguraion.h"
 
-
+// 由于楼主发现问题的版本为10.2.1，如果有误，请告知，感谢
+#ifndef __IPHONE_10_2
 NSString * ConfigurationCameraRoll = @"Camera Roll";
+#else
+NSString * ConfigurationCameraRoll = @"All Photos";
+#endif
 NSString * ConfigurationHidden = @"Hidden";
 NSString * ConfigurationSlo_mo = @"Slo-mo";
 NSString * ConfigurationScreenshots = @"Screenshots";

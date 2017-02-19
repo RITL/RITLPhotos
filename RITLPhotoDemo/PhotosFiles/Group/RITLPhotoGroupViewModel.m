@@ -7,7 +7,7 @@
 //
 
 #import "RITLPhotoGroupViewModel.h"
-
+#import "RITLPhotoCacheManager.h"
 #import "PHAssetCollection+RITLPhotoRepresentation.h"
 
 @interface RITLPhotoGroupViewModel ()
@@ -31,6 +31,7 @@
 
 -(void)dealloc
 {
+    [[RITLPhotoCacheManager sharedInstace] freeAllSignal];
 #ifdef RITLDebug
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));
 #endif
