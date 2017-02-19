@@ -31,7 +31,7 @@
 
 -(void)dealloc
 {
-    [[RITLPhotoCacheManager sharedInstace] freeAllSignal];
+    [[RITLPhotoCacheManager sharedInstace] resetMaxSelectedCount];
 #ifdef RITLDebug
     NSLog(@"Dealloc %@",NSStringFromClass([self class]));
 #endif

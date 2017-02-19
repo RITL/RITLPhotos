@@ -66,10 +66,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)freeSignalIngnoreMax;
 
+
+
+/**
+ 重置默认的最大选择数量
+ */
+- (void)resetMaxSelectedCount;
+
 /**
  释放所有的信号资源
  */
-- (void)freeAllSignal;
+- (void)freeAllSignal __deprecated_msg("no safe");
 
 
 /// 重置初始化信号标志位

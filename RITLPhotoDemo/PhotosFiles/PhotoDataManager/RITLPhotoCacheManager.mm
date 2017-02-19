@@ -101,6 +101,8 @@
 
 -(void)freeAllSignal
 {
+    NSAssert(false, @"方法不安全，禁止使用");
+    
 //    if (self.assetIsPictureSignal)
 //    {
 //        free(self.assetIsPictureSignal);
@@ -112,10 +114,14 @@
 //    }
 //    
 //    _numberOfSelectedPhoto = 0;
-    [self freeSignalIngnoreMax];
-    _maxNumberOfSelectedPhoto = NSUIntegerMax;
-//    _numberOfAssetIsSelectedSignal = 0;
+//    [self freeSignalIngnoreMax];
+   //    _numberOfAssetIsSelectedSignal = 0;
 //    _isHightQuarity = false;
+}
+
+-(void)resetMaxSelectedCount
+{
+    _maxNumberOfSelectedPhoto = NSUIntegerMax;
 }
 
 
