@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// @brief 相机胶卷
 RITL_PHOTO_EXTERN NSString * ConfigurationCameraRoll;
+/// @brief 所有照片
+RITL_PHOTO_EXTERN NSString * ConfigurationAllPhotos;
 /// @brief 隐藏
 RITL_PHOTO_EXTERN NSString * ConfigurationHidden;
 /// @brief 慢动作

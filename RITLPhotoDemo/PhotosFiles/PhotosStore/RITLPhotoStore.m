@@ -181,7 +181,7 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
         //获取当前的相册组
         PHAssetCollection * collection = collections[i];
         
-        if ([collection.localizedTitle isEqualToString:NSLocalizedString(ConfigurationCameraRoll, @"")])
+        if ([collection.localizedTitle isEqualToString:NSLocalizedString(ConfigurationCameraRoll, @"")] || [collection.localizedTitle isEqualToString:NSLocalizedString(ConfigurationAllPhotos, @"")])
         {
             //移除该相册
             [collections removeObject:collection];

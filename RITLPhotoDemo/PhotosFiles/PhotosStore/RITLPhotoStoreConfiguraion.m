@@ -8,12 +8,9 @@
 
 #import "RITLPhotoStoreConfiguraion.h"
 
-// 由于楼主发现问题的版本为10.2.1，如果有误，请告知，感谢
-#ifndef __IPHONE_10_2
+
 NSString * ConfigurationCameraRoll = @"Camera Roll";
-#else
-NSString * ConfigurationCameraRoll = @"All Photos";
-#endif
+NSString * ConfigurationAllPhotos = @"All Photos";
 NSString * ConfigurationHidden = @"Hidden";
 NSString * ConfigurationSlo_mo = @"Slo-mo";
 NSString * ConfigurationScreenshots = @"Screenshots";
@@ -37,6 +34,7 @@ static NSArray <NSString *>*  groupNames;
     {
     
         groupNames = @[NSLocalizedString(ConfigurationCameraRoll, @""),
+                   NSLocalizedString(ConfigurationAllPhotos, @""),
                    NSLocalizedString(ConfigurationSlo_mo, @""),
                    NSLocalizedString(ConfigurationScreenshots, @""),
                    NSLocalizedString(ConfigurationVideos, @""),
