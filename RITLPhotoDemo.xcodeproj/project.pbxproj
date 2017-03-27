@@ -201,7 +201,7 @@
 		DBCB39281E88DDEE005AD498 /* RITLCollectionCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLCollectionCellViewModel.h; sourceTree = "<group>"; };
 		DBCB39291E88DDEE005AD498 /* RITLCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLCollectionViewModel.h; sourceTree = "<group>"; };
 		DBCB392A1E88DDEE005AD498 /* RITLPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoViewController.h; sourceTree = "<group>"; };
-		DBCB392B1E88DDEE005AD498 /* RITLPublicViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPublicViewModel.h; sourceTree = "<group>"; };
+		DBCB392B1E88DDEE005AD498 /* RITLPhotoPublicViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoPublicViewModel.h; sourceTree = "<group>"; };
 		DBCB392C1E88DDEE005AD498 /* RITLScrollViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLScrollViewModel.h; sourceTree = "<group>"; };
 		DBCB392D1E88DDEE005AD498 /* RITLTableCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLTableCellViewModel.h; sourceTree = "<group>"; };
 		DBCB392E1E88DDEE005AD498 /* RITLTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLTableViewModel.h; sourceTree = "<group>"; };
@@ -496,7 +496,7 @@
 				DBCB39281E88DDEE005AD498 /* RITLCollectionCellViewModel.h */,
 				DBCB39291E88DDEE005AD498 /* RITLCollectionViewModel.h */,
 				DBCB392A1E88DDEE005AD498 /* RITLPhotoViewController.h */,
-				DBCB392B1E88DDEE005AD498 /* RITLPublicViewModel.h */,
+				DBCB392B1E88DDEE005AD498 /* RITLPhotoPublicViewModel.h */,
 				DBCB392C1E88DDEE005AD498 /* RITLScrollViewModel.h */,
 				DBCB392D1E88DDEE005AD498 /* RITLTableCellViewModel.h */,
 				DBCB392E1E88DDEE005AD498 /* RITLTableViewModel.h */,

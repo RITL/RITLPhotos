@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RITLPublicViewModel.h"
+#import "RITLPhotoPublicViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol RITLScrollViewModel <NSObject,RITLPublicViewModel>
+@protocol RITLScrollViewModel <NSObject,RITLPhotoPublicViewModel>
 
 @optional
 

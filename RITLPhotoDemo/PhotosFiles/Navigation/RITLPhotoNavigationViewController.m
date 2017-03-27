@@ -19,7 +19,7 @@
 
 @implementation RITLPhotoNavigationViewController
 
--(instancetype)initWithViewModel:(id <RITLPublicViewModel>)viewModel
+-(instancetype)initWithViewModel:(id <RITLPhotoPublicViewModel>)viewModel
 {
     if (self = [super init])
     {
@@ -30,7 +30,7 @@
 }
 
 
-+(instancetype)photosViewModelInstance:(id <RITLPublicViewModel>)viewModel
++(instancetype)photosViewModelInstance:(id <RITLPhotoPublicViewModel>)viewModel
 {
     return [[self alloc] initWithViewModel:viewModel];
 }
@@ -62,7 +62,7 @@
 
 #pragma mark -
 
--(id <RITLPublicViewModel>)viewModel
+-(id <RITLPhotoPublicViewModel>)viewModel
 {
     if (!_viewModel)
     {

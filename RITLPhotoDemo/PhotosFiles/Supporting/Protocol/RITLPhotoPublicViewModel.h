@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol RITLPublicViewModel <NSObject>
+@protocol RITLPhotoPublicViewModel <NSObject>
 
 @required
 
