@@ -198,7 +198,7 @@
 		DBCB39241E88DDEE005AD498 /* UIButton+RITLBlockButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+RITLBlockButton.m"; sourceTree = "<group>"; };
 		DBCB39251E88DDEE005AD498 /* UIViewController+RITLPhotoAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RITLPhotoAlertController.h"; sourceTree = "<group>"; };
 		DBCB39261E88DDEE005AD498 /* UIViewController+RITLPhotoAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RITLPhotoAlertController.m"; sourceTree = "<group>"; };
-		DBCB39281E88DDEE005AD498 /* RITLCollectionCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLCollectionCellViewModel.h; sourceTree = "<group>"; };
+		DBCB39281E88DDEE005AD498 /* RITLPhotoCollectionCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoCollectionCellViewModel.h; sourceTree = "<group>"; };
 		DBCB39291E88DDEE005AD498 /* RITLPhotoCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoCollectionViewModel.h; sourceTree = "<group>"; };
 		DBCB392A1E88DDEE005AD498 /* RITLPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoViewController.h; sourceTree = "<group>"; };
 		DBCB392B1E88DDEE005AD498 /* RITLPhotoPublicViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoPublicViewModel.h; sourceTree = "<group>"; };
@@ -493,7 +493,7 @@
 		DBCB39271E88DDEE005AD498 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				DBCB39281E88DDEE005AD498 /* RITLCollectionCellViewModel.h */,
+				DBCB39281E88DDEE005AD498 /* RITLPhotoCollectionCellViewModel.h */,
 				DBCB39291E88DDEE005AD498 /* RITLPhotoCollectionViewModel.h */,
 				DBCB392A1E88DDEE005AD498 /* RITLPhotoViewController.h */,
 				DBCB392B1E88DDEE005AD498 /* RITLPhotoPublicViewModel.h */,

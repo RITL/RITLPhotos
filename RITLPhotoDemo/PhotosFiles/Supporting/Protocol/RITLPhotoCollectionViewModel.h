@@ -7,11 +7,11 @@
 //
 
 #import "RITLPhotoScrollViewModel.h"
-#import "RITLCollectionCellViewModel.h"
+#import "RITLPhotoCollectionCellViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol RITLPhotoCollectionViewModel <NSObject,RITLPhotoScrollViewModel,RITLCollectionCellViewModel>
+@protocol RITLPhotoCollectionViewModel <NSObject,RITLPhotoScrollViewModel,RITLPhotoCollectionCellViewModel>
 
 @optional
 

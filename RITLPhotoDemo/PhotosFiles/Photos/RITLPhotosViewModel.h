@@ -7,7 +7,7 @@
 //
 
 #import "RITLBaseViewModel.h"
-#import "RITLCollectionCellViewModel.h"
+#import "RITLPhotoCollectionCellViewModel.h"
 #import "RITLPhotoCollectionViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
