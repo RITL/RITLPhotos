@@ -76,7 +76,7 @@
 
 -(CGSize)sizeForItemAtIndexPath:(NSIndexPath *)indexPath inCollection:(UICollectionView *)collection
 {
-    CGFloat sizeHeight = (collection.width - 3) / 4;
+    CGFloat sizeHeight = (collection.ritl_width - 3) / 4;
     
     return CGSizeMake(sizeHeight, sizeHeight);
 }
@@ -84,7 +84,7 @@
 
 -(CGSize)referenceSizeForFooterInSection:(NSUInteger)section inCollection:(UICollectionView *)collectionView
 {
-    return CGSizeMake(collectionView.width, 44);
+    return CGSizeMake(collectionView.ritl_width, 44);
 }
 
 -(CGFloat)minimumLineSpacingForSectionAtIndex:(NSInteger)section

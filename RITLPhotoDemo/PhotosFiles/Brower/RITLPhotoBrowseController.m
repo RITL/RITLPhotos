@@ -10,7 +10,7 @@
 #import "RITLPhotoBrowseViewModel.h"
 #import "RITLPhotoBrowseCell.h"
 
-#import "UIKit+YPPhotoDemo.h"
+#import "UIBar+RITLPhotos.h"
 #import "UIButton+RITLBlockButton.h"
 #import "UIViewController+RITLPhotoAlertController.h"
 
@@ -179,7 +179,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc]init];
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(-5, 0, self.width + 10, self.height) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(-5, 0, self.ritl_width + 10, self.ritl_height) collectionViewLayout:flowLayout];
         //初始化collectionView属性
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
@@ -247,7 +247,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if(_selectButtonItem == nil)
     {
-        _selectButtonItem = [[UIButton alloc]initWithFrame:CGRectMake(_topBar.width - 44 - 10, 0, 44, 44)];
+        _selectButtonItem = [[UIButton alloc]initWithFrame:CGRectMake(_topBar.ritl_width - 44 - 10, 0, 44, 44)];
         [_selectButtonItem setImageEdgeInsets:UIEdgeInsetsMake(12, 10, 8, 10)];
         _selectButtonItem.center = CGPointMake(_selectButtonItem.center.x, _topBar.center.y);
         [_selectButtonItem setImage:RITLPhotoDeselectedImage forState:UIControlStateNormal];
@@ -271,7 +271,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if (_bottomBar == nil)
     {
-        _bottomBar = [[UITabBar alloc]initWithFrame:CGRectMake(0, self.height - 44, self.width, 44)];
+        _bottomBar = [[UITabBar alloc]initWithFrame:CGRectMake(0, self.ritl_height - 44, self.ritl_width, 44)];
         _bottomBar.barStyle = UIBarStyleBlack;
         [_bottomBar setViewColor:[[UIColor blackColor] colorWithAlphaComponent:0.6]];
         
@@ -288,7 +288,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if (_highQualityControl == nil)
     {
-        _highQualityControl = [[UIControl alloc]initWithFrame:CGRectMake(0, 0, 150, _bottomBar.height)];
+        _highQualityControl = [[UIControl alloc]initWithFrame:CGRectMake(0, 0, 150, _bottomBar.ritl_height)];
         [_highQualityControl addSubview:self.hignSignImageView];
         [_highQualityControl addSubview:self.originPhotoLabel];
         [_highQualityControl addSubview:self.activityIndicatorView];
@@ -336,7 +336,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
         
         CGFloat width = [constWord boundingRectWithSize:CGSizeMake(100, 30) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size.width;
         
-        _originPhotoLabel = [[UILabel alloc]initWithFrame:CGRectMake(_hignSignImageView.maxX + 5, 0, width, 25)];
+        _originPhotoLabel = [[UILabel alloc]initWithFrame:CGRectMake(_hignSignImageView.ritl_maxX + 5, 0, width, 25)];
         _originPhotoLabel.center = CGPointMake(_originPhotoLabel.center.x, _highQualityControl.center.y);
         _originPhotoLabel.font = [UIFont systemFontOfSize:13];
         _originPhotoLabel.textColor = RITLPhotoBrowerDeselectedColor;
@@ -354,7 +354,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     if (_activityIndicatorView == nil)
     {
         _activityIndicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        _activityIndicatorView.frame = CGRectMake(_originPhotoLabel.maxX + 5, 0, 15, 15);
+        _activityIndicatorView.frame = CGRectMake(_originPhotoLabel.ritl_maxX + 5, 0, 15, 15);
         _activityIndicatorView.center = CGPointMake(_activityIndicatorView.center.x, _highQualityControl.center.y);
         _activityIndicatorView.hidesWhenStopped = true;
     }
@@ -368,7 +368,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if (_photoSizeLabel == nil)
     {
-        _photoSizeLabel = [[UILabel alloc]initWithFrame:CGRectMake(_originPhotoLabel.maxX + 5, 0, _highQualityControl.width - _photoSizeLabel.originX , 25)];
+        _photoSizeLabel = [[UILabel alloc]initWithFrame:CGRectMake(_originPhotoLabel.ritl_maxX + 5, 0, _highQualityControl.ritl_width - _photoSizeLabel.ritl_originX , 25)];
         _photoSizeLabel.center = CGPointMake(_photoSizeLabel.center.x, _highQualityControl.center.y);
         _photoSizeLabel.font = [UIFont systemFontOfSize:13];
         _photoSizeLabel.textColor = RITLPhotoBrowerDeselectedColor;
@@ -382,8 +382,8 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if (_sendButton == nil)
     {
-        _sendButton = [[UIButton alloc]initWithFrame:CGRectMake(_bottomBar.width - 50 - 5, 0, 50, 40)];
-        _sendButton.center = CGPointMake(_sendButton.center.x, _bottomBar.center.y - _bottomBar.originY);
+        _sendButton = [[UIButton alloc]initWithFrame:CGRectMake(_bottomBar.ritl_width - 50 - 5, 0, 50, 40)];
+        _sendButton.center = CGPointMake(_sendButton.center.x, _bottomBar.center.y - _bottomBar.ritl_originY);
         [_sendButton setTitle:@"发送" forState:UIControlStateNormal];
         [_sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sendButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -410,14 +410,14 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if (_numberOfLabel == nil)
     {
-        _numberOfLabel = [[UILabel alloc]initWithFrame:CGRectMake(_sendButton.originX - 20, 0, 20, 20)];
+        _numberOfLabel = [[UILabel alloc]initWithFrame:CGRectMake(_sendButton.ritl_originX - 20, 0, 20, 20)];
         _numberOfLabel.center = CGPointMake(_numberOfLabel.center.x, _sendButton.center.y);
         _numberOfLabel.textAlignment = NSTextAlignmentCenter;
         _numberOfLabel.font = [UIFont boldSystemFontOfSize:14];
         _numberOfLabel.text = @"8";
         _numberOfLabel.backgroundColor = UIColorFromRGB(0x2dd58a);
         _numberOfLabel.textColor = [UIColor whiteColor];
-        _numberOfLabel.layer.cornerRadius = _numberOfLabel.width / 2.0;
+        _numberOfLabel.layer.cornerRadius = _numberOfLabel.ritl_width / 2.0;
         _numberOfLabel.clipsToBounds = true;
         
         _numberOfLabel.hidden = true;
