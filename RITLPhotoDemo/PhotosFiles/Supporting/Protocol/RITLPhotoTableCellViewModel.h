@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// 提供简单的内容接口
-@protocol RITLTableCellViewModel <NSObject,RITLPhotoPublicViewModel>
+@protocol RITLPhotoTableCellViewModel <NSObject,RITLPhotoPublicViewModel>
 
 @optional
 

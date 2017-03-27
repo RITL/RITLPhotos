@@ -7,11 +7,11 @@
 //
 
 #import "RITLPhotoScrollViewModel.h"
-#import "RITLTableCellViewModel.h"
+#import "RITLPhotoTableCellViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol RITLTableViewModel <NSObject,RITLPhotoScrollViewModel,RITLTableCellViewModel>
+@protocol RITLTableViewModel <NSObject,RITLPhotoScrollViewModel,RITLPhotoTableCellViewModel>
 
 @optional
 
