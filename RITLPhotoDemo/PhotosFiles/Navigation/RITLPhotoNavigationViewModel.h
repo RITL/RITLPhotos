@@ -6,7 +6,7 @@
 //  Copyright © 2017年 YueWen. All rights reserved.
 //
 
-#import "RITLBaseViewModel.h"
+#import "RITLPhotoBaseViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 extern CGSize const RITLPhotoOriginSize;
 
 /// 主导航控制器的viewModel
-NS_CLASS_AVAILABLE_IOS(8_0) @interface RITLPhotoNavigationViewModel : RITLBaseViewModel
+NS_CLASS_AVAILABLE_IOS(8_0) @interface RITLPhotoNavigationViewModel : RITLPhotoBaseViewModel
 
 /// 最大允许选择的图片数目，默认为9
 @property (nonatomic, assign) NSUInteger maxNumberOfSelectedPhoto;

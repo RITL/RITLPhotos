@@ -15,7 +15,7 @@ typedef PhotoBlock          RITLShouldDismissBlock;
 typedef PhotoCompleteBlock6 RITLShouldAlertToWarningBlock;
 
 /// 基础的viewModel
-@interface RITLBaseViewModel : NSObject <RITLPhotoPublicViewModel>
+@interface RITLPhotoBaseViewModel : NSObject <RITLPhotoPublicViewModel>
 
 /// 选择图片达到最大上限，需要提醒的block
 @property (nonatomic, copy, nullable)RITLShouldAlertToWarningBlock warningBlock;

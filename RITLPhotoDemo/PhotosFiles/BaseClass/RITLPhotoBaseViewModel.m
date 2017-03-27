@@ -6,9 +6,9 @@
 //  Copyright © 2017年 YueWen. All rights reserved.
 //
 
-#import "RITLBaseViewModel.h"
+#import "RITLPhotoBaseViewModel.h"
 
-@implementation RITLBaseViewModel
+@implementation RITLPhotoBaseViewModel
 
 /// 默认为空
 -(NSString *)title
