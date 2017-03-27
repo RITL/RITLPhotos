@@ -30,7 +30,6 @@
 		DBA276991DED28F6007F4E0B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBA276571DED28F6007F4E0B /* Localizable.strings */; };
 		DBA2769A1DED28F6007F4E0B /* RITLPhotoStore.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2765A1DED28F6007F4E0B /* RITLPhotoStore.m */; };
 		DBA2769B1DED28F6007F4E0B /* RITLPhotoStoreConfiguraion.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2765C1DED28F6007F4E0B /* RITLPhotoStoreConfiguraion.m */; };
-		DBA276A11DED28F6007F4E0B /* UIBar+RITLPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2766B1DED28F6007F4E0B /* UIBar+RITLPhotos.m */; };
 		DBA276A21DED28F6007F4E0B /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2766D1DED28F6007F4E0B /* UIView+Category.m */; };
 		DBA276A31DED28F6007F4E0B /* UIViewController+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2766F1DED28F6007F4E0B /* UIViewController+Frame.m */; };
 		DBA276A41DED28F6007F4E0B /* RITLPhotos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBA276711DED28F6007F4E0B /* RITLPhotos.xcassets */; };
@@ -66,6 +65,7 @@
 		DBCB39341E88DDEE005AD498 /* UIButton+RITLBlockButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCB39241E88DDEE005AD498 /* UIButton+RITLBlockButton.m */; };
 		DBCB39351E88DDEE005AD498 /* UIViewController+RITLPhotoAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCB39261E88DDEE005AD498 /* UIViewController+RITLPhotoAlertController.m */; };
 		DBCB39381E88DE58005AD498 /* UIBar+RITLPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCB39371E88DE58005AD498 /* UIBar+RITLPhotos.m */; };
+		DBCB393B1E88DEC5005AD498 /* UIView+RITLFrameChanged.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCB393A1E88DEC5005AD498 /* UIView+RITLFrameChanged.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,8 +134,6 @@
 		DBA2765B1DED28F6007F4E0B /* RITLPhotoStoreConfiguraion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoStoreConfiguraion.h; sourceTree = "<group>"; };
 		DBA2765C1DED28F6007F4E0B /* RITLPhotoStoreConfiguraion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLPhotoStoreConfiguraion.m; sourceTree = "<group>"; };
 		DBA2765D1DED28F6007F4E0B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		DBA2766A1DED28F6007F4E0B /* UIBar+RITLPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBar+RITLPhotos.h"; sourceTree = "<group>"; };
-		DBA2766B1DED28F6007F4E0B /* UIBar+RITLPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBar+RITLPhotos.m"; sourceTree = "<group>"; };
 		DBA2766C1DED28F6007F4E0B /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
 		DBA2766D1DED28F6007F4E0B /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
 		DBA2766E1DED28F6007F4E0B /* UIViewController+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Frame.h"; sourceTree = "<group>"; };
@@ -216,6 +214,8 @@
 		DBCB392F1E88DDEE005AD498 /* RITLTextFieldViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLTextFieldViewModel.h; sourceTree = "<group>"; };
 		DBCB39361E88DE58005AD498 /* UIBar+RITLPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBar+RITLPhotos.h"; sourceTree = "<group>"; };
 		DBCB39371E88DE58005AD498 /* UIBar+RITLPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBar+RITLPhotos.m"; sourceTree = "<group>"; };
+		DBCB39391E88DEC5005AD498 /* UIView+RITLFrameChanged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RITLFrameChanged.h"; sourceTree = "<group>"; };
+		DBCB393A1E88DEC5005AD498 /* UIView+RITLFrameChanged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RITLFrameChanged.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,8 +384,6 @@
 			children = (
 				DBCB391A1E88DDEE005AD498 /* Category */,
 				DBCB39271E88DDEE005AD498 /* Protocol */,
-				DBA2766A1DED28F6007F4E0B /* UIBar+RITLPhotos.h */,
-				DBA2766B1DED28F6007F4E0B /* UIBar+RITLPhotos.m */,
 				DBA2766C1DED28F6007F4E0B /* UIView+Category.h */,
 				DBA2766D1DED28F6007F4E0B /* UIView+Category.m */,
 				DBA2766E1DED28F6007F4E0B /* UIViewController+Frame.h */,
@@ -496,6 +494,8 @@
 				DBCB39241E88DDEE005AD498 /* UIButton+RITLBlockButton.m */,
 				DBCB39251E88DDEE005AD498 /* UIViewController+RITLPhotoAlertController.h */,
 				DBCB39261E88DDEE005AD498 /* UIViewController+RITLPhotoAlertController.m */,
+				DBCB39391E88DEC5005AD498 /* UIView+RITLFrameChanged.h */,
+				DBCB393A1E88DEC5005AD498 /* UIView+RITLFrameChanged.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -658,6 +658,7 @@
 				DB28E9821E14A18900B30D3C /* RITLPhotoBrowseViewModel.m in Sources */,
 				DB28E9A41E14F9DE00B30D3C /* RITLPhotoBridgeManager.m in Sources */,
 				DBCB39331E88DDEE005AD498 /* PHImageRequestOptions+RITLPhotoRepresentation.m in Sources */,
+				DBCB393B1E88DEC5005AD498 /* UIView+RITLFrameChanged.m in Sources */,
 				DBA276FF1DED2C84007F4E0B /* RITLPhotoGroupViewModel.m in Sources */,
 				DBA276D71DED2917007F4E0B /* MASCompositeConstraint.m in Sources */,
 				DBA276E01DED2917007F4E0B /* ViewController+MASAdditions.m in Sources */,
@@ -691,7 +692,6 @@
 				DBA277241DED5BC6007F4E0B /* RITLPhotosViewModel.m in Sources */,
 				DBA2771E1DED59BE007F4E0B /* RITLPhotoBottomReusableView.m in Sources */,
 				DB6789A01E1652880039894D /* UISplitViewController+MemoryLeak.m in Sources */,
-				DBA276A11DED28F6007F4E0B /* UIBar+RITLPhotos.m in Sources */,
 				DBA277201DED59BE007F4E0B /* RITLPhotosCell.m in Sources */,
 				DBA276DE1DED2917007F4E0B /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				DBA276A31DED28F6007F4E0B /* UIViewController+Frame.m in Sources */,

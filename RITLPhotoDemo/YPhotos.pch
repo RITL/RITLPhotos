@@ -15,8 +15,9 @@
 //#import "YPPhotoDefines.h"
 #import "RITLPhotoConfig.h"
 #import "Masonry.h"
-#import "UIView+Category.h"
-#import "UIViewController+Frame.h"
+#import "UIView+RITLFrameChanged.h"
+//#import "UIView+Category.h"
+//#import "UIViewController+Frame.h"
 
 
 #define YDEBUG

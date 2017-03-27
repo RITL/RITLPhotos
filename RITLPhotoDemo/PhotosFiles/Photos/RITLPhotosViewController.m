@@ -395,7 +395,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 {
     if(_collectionView == nil)
     {
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height - 44) collectionViewLayout:[[UICollectionViewFlowLayout alloc]init]];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.ritl_width, self.ritl_height - 44) collectionViewLayout:[[UICollectionViewFlowLayout alloc]init]];
         
         //protocol
         _collectionView.delegate = self;
@@ -424,7 +424,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 {
     if (_bottomBar == nil)
     {
-        _bottomBar = [[UITabBar alloc]initWithFrame:CGRectMake(0, self.height - 44, self.width, 44)];
+        _bottomBar = [[UITabBar alloc]initWithFrame:CGRectMake(0, self.ritl_height - 44, self.ritl_width, 44)];
         
         //add subviews
         [_bottomBar addSubview:self.sendButton];
@@ -478,8 +478,8 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 {
     if (_sendButton == nil)
     {
-        _sendButton = [[UIButton alloc]initWithFrame:CGRectMake(_bottomBar.width - 50 - 5, 0, 50, 40)];
-        _sendButton.center = CGPointMake(_sendButton.center.x, _bottomBar.center.y - _bottomBar.originY);
+        _sendButton = [[UIButton alloc]initWithFrame:CGRectMake(_bottomBar.ritl_width - 50 - 5, 0, 50, 40)];
+        _sendButton.center = CGPointMake(_sendButton.center.x, _bottomBar.center.y - _bottomBar.ritl_originY);
         
         [_sendButton setTitle:@"发送" forState:UIControlStateNormal];
         [_sendButton setTitle:@"发送" forState:UIControlStateDisabled];
@@ -517,7 +517,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 {
     if (_numberOfLabel == nil)
     {
-        _numberOfLabel = [[UILabel alloc]initWithFrame:CGRectMake(_sendButton.originX - 20, 0, 20, 20)];
+        _numberOfLabel = [[UILabel alloc]initWithFrame:CGRectMake(_sendButton.ritl_originX - 20, 0, 20, 20)];
         _numberOfLabel.center = CGPointMake(_numberOfLabel.center.x, _sendButton.center.y);
         _numberOfLabel.backgroundColor = UIColorFromRGB(0x2dd58a);
         _numberOfLabel.textAlignment = NSTextAlignmentCenter;
@@ -525,7 +525,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         _numberOfLabel.text = @"";
         _numberOfLabel.hidden = true;
         _numberOfLabel.textColor = [UIColor whiteColor];
-        _numberOfLabel.layer.cornerRadius = _numberOfLabel.width / 2.0;
+        _numberOfLabel.layer.cornerRadius = _numberOfLabel.ritl_width / 2.0;
         _numberOfLabel.clipsToBounds = true;
     }
     

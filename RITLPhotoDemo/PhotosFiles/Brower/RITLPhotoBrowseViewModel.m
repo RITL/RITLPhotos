@@ -131,10 +131,10 @@
     if (!isThumb)
     {
         //获得图片的高度
-        CGFloat assetHeight = (collection.width - 10) * scale;
+        CGFloat assetHeight = (collection.ritl_width - 10) * scale;
         
         //如果不是缩略图，变成原始大小
-        imageSize = CGSizeMake(collection.width - 10, assetHeight);
+        imageSize = CGSizeMake(collection.ritl_width - 10, assetHeight);
     }
     
     
@@ -259,7 +259,7 @@
 
 -(CGSize)sizeForItemAtIndexPath:(NSIndexPath *)indexPath inCollection:(UICollectionView *)collection
 {
-    return CGSizeMake(collection.width, collection.height);
+    return CGSizeMake(collection.ritl_width, collection.ritl_height);
 }
 
 
@@ -289,7 +289,7 @@
     UICollectionView * collectionView = (UICollectionView *)scrollView;
     
     //获得当前显示的真正索引，消除浮点型对visibleCells.count的干扰
-    NSUInteger currentIndex = collectionView.contentOffset.x / collectionView.width;
+    NSUInteger currentIndex = collectionView.contentOffset.x / collectionView.ritl_width;
     
     
     return currentIndex;
