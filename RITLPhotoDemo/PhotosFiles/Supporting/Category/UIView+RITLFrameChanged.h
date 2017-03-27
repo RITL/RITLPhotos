@@ -53,4 +53,18 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
+@interface UIScrollView (RITLFrameChanged)
+
+@property (nonatomic, assign)CGFloat ritl_contentOffSetX;
+@property (nonatomic, assign)CGFloat ritl_contentOffSetY;
+
+@property (nonatomic, assign)CGFloat ritl_contentSizeWidth;
+@property (nonatomic, assign)CGFloat ritl_contentSizeHeight;
+
+- (void)setRitl_contentOffSetX:(CGFloat)ritl_contentOffSetX animated:(BOOL)animated;
+- (void)setRitl_contentOffSetY:(CGFloat)ritl_contentOffSetY animated:(BOOL)animated;
+
+@end
+
+
 NS_ASSUME_NONNULL_END

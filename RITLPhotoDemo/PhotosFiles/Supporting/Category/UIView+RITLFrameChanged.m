@@ -169,3 +169,64 @@
 }
 
 @end
+
+@implementation UIScrollView (RITLFrameChanged)
+
+-(CGFloat)ritl_contentOffSetX
+{
+    return self.contentOffset.x;
+}
+
+-(CGFloat)ritl_contentOffSetY
+{
+    return self.contentOffset.y;
+}
+
+-(CGFloat)ritl_contentSizeWidth
+{
+    return self.contentSize.width;
+}
+
+-(CGFloat)ritl_contentSizeHeight
+{
+    return self.contentSize.height;
+}
+
+
+-(void)setRitl_contentOffSetX:(CGFloat)ritl_contentOffSetX
+{
+    [self setRitl_contentOffSetX:ritl_contentOffSetX animated:false];
+}
+
+
+-(void)setRitl_contentOffSetY:(CGFloat)ritl_contentOffSetY
+{
+    [self setRitl_contentOffSetY:ritl_contentOffSetY animated:false];
+}
+
+
+-(void)setRitl_contentOffSetX:(CGFloat)ritl_contentOffSetX animated:(BOOL)animated
+{
+    [self setContentOffset:CGPointMake(ritl_contentOffSetX, self.ritl_contentOffSetY) animated:animated];
+}
+
+
+-(void)setRitl_contentOffSetY:(CGFloat)ritl_contentOffSetY animated:(BOOL)animated
+{
+    [self setContentOffset:CGPointMake(self.ritl_contentOffSetX, ritl_contentOffSetY) animated:animated];
+}
+
+
+-(void)setRitl_contentSizeWidth:(CGFloat)ritl_contentSizeWidth
+{
+    self.contentSize = CGSizeMake(ritl_contentSizeWidth, self.ritl_contentSizeHeight);
+}
+
+
+-(void)setRitl_contentSizeHeight:(CGFloat)ritl_contentSizeHeight
+{
+    self.contentSize = CGSizeMake(self.ritl_contentSizeWidth, ritl_contentSizeHeight);
+}
+
+
+@end
