@@ -10,7 +10,7 @@
 #import "RITLPhotoBrowseViewModel.h"
 #import "RITLPhotoBrowseCell.h"
 
-#import "UIKit+YPPhotoDemo.h"
+#import "UIBar+RITLPhotos.h"
 #import "UIButton+RITLBlockButton.h"
 #import "UIViewController+RITLPhotoAlertController.h"
 

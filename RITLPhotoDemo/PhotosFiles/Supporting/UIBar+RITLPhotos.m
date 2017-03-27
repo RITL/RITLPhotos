@@ -6,7 +6,7 @@
 //  Copyright © 2017年 YueWen. All rights reserved.
 //
 
-#import "UIKit+YPPhotoDemo.h"
+#import "UIBar+RITLPhotos.h"
 #import <objc/runtime.h>
 
 static NSString * key;
