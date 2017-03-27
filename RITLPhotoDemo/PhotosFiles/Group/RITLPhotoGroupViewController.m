@@ -24,7 +24,7 @@ static NSString * cellIdentifier = @"RITLPhotoGroupCell";
 
 @implementation RITLPhotoGroupViewController
 
--(instancetype)initWithViewModel:(id <RITLTableViewModel>)viewModel
+-(instancetype)initWithViewModel:(id <RITLPhotoTableViewModel>)viewModel
 {
     if (self = [super init])
     {
@@ -36,7 +36,7 @@ static NSString * cellIdentifier = @"RITLPhotoGroupCell";
 
 
 
-+(instancetype)photosViewModelInstance:(id <RITLTableViewModel>)viewModel
++(instancetype)photosViewModelInstance:(id <RITLPhotoTableViewModel>)viewModel
 {
     return  [[self alloc] initWithViewModel:viewModel];
 }
@@ -205,7 +205,7 @@ static NSString * cellIdentifier = @"RITLPhotoGroupCell";
 
 #pragma mark - 
 
--(id <RITLTableViewModel>)viewModel
+-(id <RITLPhotoTableViewModel>)viewModel
 {
     if (!_viewModel)
     {

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RITLTableViewModel.h"
+#import "RITLPhotoTableViewModel.h"
 #import "RITLPhotoViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 NS_AVAILABLE_IOS(8_0) @interface RITLPhotoGroupViewController : UITableViewController <RITLPhotoViewController>
 
 /// viewModel
-@property (nonatomic, strong) id <RITLTableViewModel> viewModel;
+@property (nonatomic, strong) id <RITLPhotoTableViewModel> viewModel;
 
 
 @end

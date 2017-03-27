@@ -204,7 +204,7 @@
 		DBCB392B1E88DDEE005AD498 /* RITLPhotoPublicViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoPublicViewModel.h; sourceTree = "<group>"; };
 		DBCB392C1E88DDEE005AD498 /* RITLPhotoScrollViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoScrollViewModel.h; sourceTree = "<group>"; };
 		DBCB392D1E88DDEE005AD498 /* RITLPhotoTableCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoTableCellViewModel.h; sourceTree = "<group>"; };
-		DBCB392E1E88DDEE005AD498 /* RITLTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLTableViewModel.h; sourceTree = "<group>"; };
+		DBCB392E1E88DDEE005AD498 /* RITLPhotoTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoTableViewModel.h; sourceTree = "<group>"; };
 		DBCB392F1E88DDEE005AD498 /* RITLTextFieldViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLTextFieldViewModel.h; sourceTree = "<group>"; };
 		DBCB39361E88DE58005AD498 /* UIBar+RITLPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBar+RITLPhotos.h"; sourceTree = "<group>"; };
 		DBCB39371E88DE58005AD498 /* UIBar+RITLPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBar+RITLPhotos.m"; sourceTree = "<group>"; };
@@ -499,7 +499,7 @@
 				DBCB392B1E88DDEE005AD498 /* RITLPhotoPublicViewModel.h */,
 				DBCB392C1E88DDEE005AD498 /* RITLPhotoScrollViewModel.h */,
 				DBCB392D1E88DDEE005AD498 /* RITLPhotoTableCellViewModel.h */,
-				DBCB392E1E88DDEE005AD498 /* RITLTableViewModel.h */,
+				DBCB392E1E88DDEE005AD498 /* RITLPhotoTableViewModel.h */,
 				DBCB392F1E88DDEE005AD498 /* RITLTextFieldViewModel.h */,
 			);
 			path = Protocol;
