@@ -7,7 +7,7 @@
 //
 
 #import "RITLBaseViewModel.h"
-#import "RITLCollectionViewModel.h"
+#import "RITLPhotoCollectionViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +15,7 @@ typedef PhotoCompleteBlock8 RITLBrowerRequestQuarityBlock;
 typedef PhotoCompleteBlock0 RITLBrowerQuarityCompleteBlock;
 typedef PhotoCompleteBlock9 RITLBrowerQuarityStatusChangeBlock;
 
-@interface RITLPhotoBrowseViewModel : RITLBaseViewModel <RITLCollectionViewModel>
+@interface RITLPhotoBrowseViewModel : RITLBaseViewModel <RITLPhotoCollectionViewModel>
 
 /// 当前图片的位置指数
 @property (nonatomic, assign)NSUInteger currentIndex;

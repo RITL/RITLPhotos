@@ -66,7 +66,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 @implementation RITLPhotoBrowseController
 
 
--(instancetype)initWithViewModel:(id <RITLCollectionViewModel> )viewModel
+-(instancetype)initWithViewModel:(id <RITLPhotoCollectionViewModel> )viewModel
 {
     if (self = [super init])
     {
@@ -77,7 +77,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 }
 
 
-+(instancetype)photosViewModelInstance:(id <RITLCollectionViewModel> )viewModel
++(instancetype)photosViewModelInstance:(id <RITLPhotoCollectionViewModel> )viewModel
 {
     return [[self alloc] initWithViewModel:viewModel];
 }
@@ -429,7 +429,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 
 #pragma mark - ViewModel
 
--(id<RITLCollectionViewModel>)viewModel
+-(id<RITLPhotoCollectionViewModel>)viewModel
 {
     if (!_viewModel)
     {

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RITLCollectionViewModel.h"
+#import "RITLPhotoCollectionViewModel.h"
 #import "RITLPhotoViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RITLPhotoBrowseController : UIViewController <RITLPhotoViewController>
 
 /// 当前控制器的viewModel
-@property (nonatomic, strong) id <RITLCollectionViewModel> viewModel;
+@property (nonatomic, strong) id <RITLPhotoCollectionViewModel> viewModel;
 
 @end
 

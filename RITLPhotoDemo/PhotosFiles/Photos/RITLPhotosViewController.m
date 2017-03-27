@@ -54,7 +54,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 @implementation RITLPhotosViewController
 
 
--(instancetype)initWithViewModel:(id<RITLCollectionViewModel>)viewModel
+-(instancetype)initWithViewModel:(id<RITLPhotoCollectionViewModel>)viewModel
 {
     if (self = [super init])
     {
@@ -65,7 +65,7 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
 }
 
 
-+(instancetype)photosViewModelInstance:(id<RITLCollectionViewModel>)viewModel
++(instancetype)photosViewModelInstance:(id<RITLPhotoCollectionViewModel>)viewModel
 {
     return [[self alloc]initWithViewModel:viewModel];
 }

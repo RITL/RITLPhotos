@@ -8,7 +8,7 @@
 
 #import "RITLBaseViewModel.h"
 #import "RITLCollectionCellViewModel.h"
-#import "RITLCollectionViewModel.h"
+#import "RITLPhotoCollectionViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,7 +16,7 @@ typedef PhotoCompleteBlock7 RITLPhotoDidTapHandleBlock;
 typedef PhotoCompleteBlock6 RITLPhotoSendStatusBlock;
 
 /// 选择图片的一级界面控制器的viewModel
-@interface RITLPhotosViewModel : RITLBaseViewModel <RITLCollectionViewModel>
+@interface RITLPhotosViewModel : RITLBaseViewModel <RITLPhotoCollectionViewModel>
 
 /// 当前显示的导航标题
 @property (nonatomic, copy) NSString * navigationTitle;

@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol RITLCollectionViewModel <NSObject,RITLScrollViewModel,RITLCollectionCellViewModel>
+@protocol RITLPhotoCollectionViewModel <NSObject,RITLScrollViewModel,RITLCollectionCellViewModel>
 
 @optional
 
