@@ -38,15 +38,15 @@
 @interface UIView (ChangeFrame)
 
 
-/** 修改frame的便利方法，后面为变化的长度变化量，减少为负数 */
-- (void)changeLength:(CGFloat)dLength;//变化量
-
-/** 修改frame的便利方法，后面为变化后的长度，不能为负数*/
-- (void)changeLengthWithChangedLength:(CGFloat)length;
-
-
-- (void)changeOriginY:(CGFloat)dOriginY;
-- (void)changeOriginYWithChangedOriginY:(CGFloat)originY;
+///** 修改frame的便利方法，后面为变化的长度变化量，减少为负数 */
+//- (void)changeLength:(CGFloat)dLength;//变化量
+//
+///** 修改frame的便利方法，后面为变化后的长度，不能为负数*/
+//- (void)changeLengthWithChangedLength:(CGFloat)length;
+//
+//
+//- (void)changeOriginY:(CGFloat)dOriginY;
+//- (void)changeOriginYWithChangedOriginY:(CGFloat)originY;
 
 
 @end
