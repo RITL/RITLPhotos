@@ -30,8 +30,6 @@
 		DBA276991DED28F6007F4E0B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBA276571DED28F6007F4E0B /* Localizable.strings */; };
 		DBA2769A1DED28F6007F4E0B /* RITLPhotoStore.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2765A1DED28F6007F4E0B /* RITLPhotoStore.m */; };
 		DBA2769B1DED28F6007F4E0B /* RITLPhotoStoreConfiguraion.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2765C1DED28F6007F4E0B /* RITLPhotoStoreConfiguraion.m */; };
-		DBA276A21DED28F6007F4E0B /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2766D1DED28F6007F4E0B /* UIView+Category.m */; };
-		DBA276A31DED28F6007F4E0B /* UIViewController+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA2766F1DED28F6007F4E0B /* UIViewController+Frame.m */; };
 		DBA276A41DED28F6007F4E0B /* RITLPhotos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBA276711DED28F6007F4E0B /* RITLPhotos.xcassets */; };
 		DBA276A51DED28F6007F4E0B /* RITLPhotoMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA276731DED28F6007F4E0B /* RITLPhotoMainViewController.m */; };
 		DBA276A61DED28F6007F4E0B /* RITLPhotosAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA276761DED28F6007F4E0B /* RITLPhotosAppDelegate.m */; };
@@ -134,10 +132,6 @@
 		DBA2765B1DED28F6007F4E0B /* RITLPhotoStoreConfiguraion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoStoreConfiguraion.h; sourceTree = "<group>"; };
 		DBA2765C1DED28F6007F4E0B /* RITLPhotoStoreConfiguraion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLPhotoStoreConfiguraion.m; sourceTree = "<group>"; };
 		DBA2765D1DED28F6007F4E0B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		DBA2766C1DED28F6007F4E0B /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
-		DBA2766D1DED28F6007F4E0B /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
-		DBA2766E1DED28F6007F4E0B /* UIViewController+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Frame.h"; sourceTree = "<group>"; };
-		DBA2766F1DED28F6007F4E0B /* UIViewController+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Frame.m"; sourceTree = "<group>"; };
 		DBA276711DED28F6007F4E0B /* RITLPhotos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = RITLPhotos.xcassets; sourceTree = "<group>"; };
 		DBA276721DED28F6007F4E0B /* RITLPhotoMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotoMainViewController.h; sourceTree = "<group>"; };
 		DBA276731DED28F6007F4E0B /* RITLPhotoMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLPhotoMainViewController.m; sourceTree = "<group>"; };
@@ -384,10 +378,6 @@
 			children = (
 				DBCB391A1E88DDEE005AD498 /* Category */,
 				DBCB39271E88DDEE005AD498 /* Protocol */,
-				DBA2766C1DED28F6007F4E0B /* UIView+Category.h */,
-				DBA2766D1DED28F6007F4E0B /* UIView+Category.m */,
-				DBA2766E1DED28F6007F4E0B /* UIViewController+Frame.h */,
-				DBA2766F1DED28F6007F4E0B /* UIViewController+Frame.m */,
 				DB9D00F51E149DFE00B76489 /* RITLPhotoConfig.h */,
 				DBA276711DED28F6007F4E0B /* RITLPhotos.xcassets */,
 			);
@@ -694,7 +684,6 @@
 				DB6789A01E1652880039894D /* UISplitViewController+MemoryLeak.m in Sources */,
 				DBA277201DED59BE007F4E0B /* RITLPhotosCell.m in Sources */,
 				DBA276DE1DED2917007F4E0B /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
-				DBA276A31DED28F6007F4E0B /* UIViewController+Frame.m in Sources */,
 				DB6789A31E1652880039894D /* UIViewController+MemoryLeak.m in Sources */,
 				DBA276D91DED2917007F4E0B /* MASConstraintMaker.m in Sources */,
 				DBA276EC1DED295E007F4E0B /* RITLPhotoNavigationViewModel.m in Sources */,
@@ -702,7 +691,6 @@
 				DB28E99B1E14EB6E00B30D3C /* RITLPhotoRequestStore.m in Sources */,
 				DB6789A11E1652880039894D /* UITabBarController+MemoryLeak.m in Sources */,
 				DBCB39311E88DDEE005AD498 /* PHAssetCollection+RITLPhotoRepresentation.m in Sources */,
-				DBA276A21DED28F6007F4E0B /* UIView+Category.m in Sources */,
 				DB28E9A11E14F06B00B30D3C /* RITLPhotoHandleManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
