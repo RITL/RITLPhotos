@@ -6,12 +6,12 @@
 //  Copyright © 2017年 wangpj. All rights reserved.
 //
 
-#import "RITLScrollViewModel.h"
+#import "RITLPhotoScrollViewModel.h"
 #import "RITLTableCellViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol RITLTableViewModel <NSObject,RITLScrollViewModel,RITLTableCellViewModel>
+@protocol RITLTableViewModel <NSObject,RITLPhotoScrollViewModel,RITLTableCellViewModel>
 
 @optional
 

@@ -6,12 +6,12 @@
 //  Copyright © 2017年 wangpj. All rights reserved.
 //
 
-#import "RITLScrollViewModel.h"
+#import "RITLPhotoScrollViewModel.h"
 #import "RITLCollectionCellViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol RITLPhotoCollectionViewModel <NSObject,RITLScrollViewModel,RITLCollectionCellViewModel>
+@protocol RITLPhotoCollectionViewModel <NSObject,RITLPhotoScrollViewModel,RITLCollectionCellViewModel>
 
 @optional
 
