@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取图片的data
 @property (nonatomic, copy, nullable)void(^RITLBridgeGetImageDataBlock)(NSArray <NSData *> *);
 
+
+/// 获得的图片源
+@property (nonatomic, copy, nullable)void(^RITLBridgeGetAssetBlock)(NSArray <PHAsset *>*);
+
 /// 单例对象
 + (instancetype)sharedInstance;
 

@@ -38,7 +38,12 @@
     //获得当前的高清图否
     BOOL isHightQuarity = [RITLPhotoCacheManager sharedInstace].isHightQuarity;
     
+    if (self.RITLBridgeGetAssetBlock) {
+        
+        self.RITLBridgeGetAssetBlock(assets);
+    }
 
+    
     [RITLPhotoRequestStore imagesWithAssets:assets status:isHightQuarity Size:imageSize ignoreSize:isIgnore complete:^(NSArray<UIImage *> * _Nonnull images) {
         
         //进行回调
