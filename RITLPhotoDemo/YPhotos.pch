@@ -9,18 +9,7 @@
 #ifndef YPhotos_pch
 #define YPhotos_pch
 
-#import "RITLPhotoStore.h"
-#import <Photos/Photos.h>
-#import "MLeaksFinder.h"
-//#import "YPPhotoDefines.h"
-#import "RITLPhotoConfig.h"
-#import "Masonry.h"
-#import "UIView+RITLFrameChanged.h"
-//#import "UIView+Category.h"
-//#import "UIViewController+Frame.h"
-
-
-#define YDEBUG
+#import "RITLPhotos.h"
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.

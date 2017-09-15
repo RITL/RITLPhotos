@@ -22,6 +22,7 @@
 
 -(void)prepareForReuse
 {
+    [super prepareForReuse];
     _imageView.image = nil;
     _titleLabel.text = @"";
 }

@@ -14,11 +14,6 @@
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
-        
-        //捕捉异常
-//        NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-        
-        
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([RITLPhotosAppDelegate class]));
     }
 }

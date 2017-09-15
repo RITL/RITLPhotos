@@ -9,9 +9,9 @@
 #ifndef RITLPhotoConfig_h
 #define RITLPhotoConfig_h
 
-
-//#define RITLDebug
-
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
 
 #ifdef __cplusplus
 #define RITL_PHOTO_EXTERN extern "C" __attribute__((visibility ("default")))

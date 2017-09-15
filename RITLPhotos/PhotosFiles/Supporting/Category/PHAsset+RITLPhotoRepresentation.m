@@ -125,16 +125,5 @@
 }
 
 
--(void)dealloc
-{
-    for (NSValue * value in self.catcheArray)
-    {
-        //cancle the caching
-        [((PHCachingImageManager *)[PHCachingImageManager defaultManager])stopCachingImagesForAssets:@[self] targetSize:value.CGSizeValue contentMode:PHImageContentModeAspectFill options:nil];
-    }
-    
-    objc_removeAssociatedObjects(self);
-}
-
 
 @end
