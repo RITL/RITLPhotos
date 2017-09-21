@@ -8,10 +8,7 @@
 
 #import "RITLPhotoMainViewController.h"
 #import "RITLPhotosCell.h"
-
-
-#import "RITLPhotoNavigationViewController.h"
-#import "RITLPhotoNavigationViewModel.h"
+#import "RITLPhotos.h"
 
 @interface RITLPhotoMainViewController ()
 <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -140,7 +137,7 @@
         _collectionView = [[UICollectionView alloc]initWithFrame:self.view.bounds collectionViewLayout:[UICollectionViewFlowLayout new]];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.backgroundColor = UIColorFromRGB(0xF6FFB7);
+        _collectionView.backgroundColor = RITLColorFromRGB(0xF6FFB7);
         
         [_collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:@"Cell"];
     }
