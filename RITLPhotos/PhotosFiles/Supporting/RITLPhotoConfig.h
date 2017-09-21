@@ -42,6 +42,7 @@ alpha:1.0]
 #define RITLPhotoDeselectedImage ([UIImage imageNamed:RITLPhotoDeselectedName])
 
 
+#define RITLPhotoIsiPhoneX ([UIScreen mainScreen].bounds.size.height == 812 && [UIScreen mainScreen].bounds.size.width == 375)
 
 
 //**************** 进行通用回调的block ***************

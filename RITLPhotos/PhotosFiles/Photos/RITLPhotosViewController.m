@@ -20,6 +20,7 @@
 
 #import "UIButton+RITLBlockButton.h"
 #import "UIViewController+RITLPhotoAlertController.h"
+#import "Masonry.h"
 
 #import <objc/message.h>
 
@@ -99,7 +100,10 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
         //重置偏移量
         [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentOffset.y + 64)];
     }
- 
+    
+    
+    //进行autoLayout布局
+    [self autoLayoutSubViews];
 }
 
 
@@ -114,6 +118,28 @@ static NSString * reusableViewIdentifier = @"RITLPhotoBottomReusableView";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+ - (void)autoLayoutSubViews
+{
+    [self.bottomBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.bottom.left.and.right.offset(0);
+        
+        //获得高度
+        if (RITLPhotoIsiPhoneX) {
+            
+            make.height.mas_equalTo(83 - 5);
+            
+        }else {
+            
+            make.height.mas_equalTo(44);
+        }
+    }];
+    
+}
+
+
 
 -(void)dealloc
 {

@@ -205,7 +205,9 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if (_topBar == nil)
     {
-        _topBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+        CGFloat height = RITLPhotoIsiPhoneX ? 88 : 64;
+        
+        _topBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, height)];
         _topBar.barStyle = UIBarStyleBlack;
         
         [_topBar setViewColor:[[UIColor blackColor] colorWithAlphaComponent:0.6]];
@@ -221,8 +223,10 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if (_backButtonItem == nil)
     {
-        _backButtonItem = [[UIButton alloc]initWithFrame:CGRectMake(5, 0, 44, 44)];
-        _backButtonItem.center = CGPointMake(_backButtonItem.center.x, _topBar.center.y);
+//        CGFloat originY = RITLPhotoIsiPhoneX ? 24 : 0;
+        
+        _backButtonItem = [[UIButton alloc]initWithFrame:CGRectMake(5, self.topBar.ritl_height - 44, 44, 44)];
+        _backButtonItem.center = CGPointMake(_backButtonItem.center.x, _backButtonItem.center.y);
         [_backButtonItem setImage:RITLPhotoBrowseBackImage forState:UIControlStateNormal];
         [_backButtonItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_backButtonItem.titleLabel setFont:[UIFont systemFontOfSize:30]];
@@ -247,9 +251,11 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if(_selectButtonItem == nil)
     {
-        _selectButtonItem = [[UIButton alloc]initWithFrame:CGRectMake(_topBar.ritl_width - 44 - 10, 0, 44, 44)];
+//        CGFloat originY = RITLPhotoIsiPhoneX ? 24 : 0;
+        
+        _selectButtonItem = [[UIButton alloc]initWithFrame:CGRectMake(_topBar.ritl_width - 44 - 10, self.topBar.ritl_height - 44, 44, 44)];
         [_selectButtonItem setImageEdgeInsets:UIEdgeInsetsMake(12, 10, 8, 10)];
-        _selectButtonItem.center = CGPointMake(_selectButtonItem.center.x, _topBar.center.y);
+//        _selectButtonItem.center = CGPointMake(_selectButtonItem.center.x,_se);
         [_selectButtonItem setImage:RITLPhotoDeselectedImage forState:UIControlStateNormal];
         
         __weak typeof(self) weakSelf = self;
@@ -271,7 +277,9 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if (_bottomBar == nil)
     {
-        _bottomBar = [[UITabBar alloc]initWithFrame:CGRectMake(0, self.ritl_height - 44, self.ritl_width, 44)];
+        CGFloat height = RITLPhotoIsiPhoneX ? 83 - 5 : 44;
+        
+        _bottomBar = [[UITabBar alloc]initWithFrame:CGRectMake(0, self.ritl_height - height, self.ritl_width, height)];
         _bottomBar.barStyle = UIBarStyleBlack;
         [_bottomBar setViewColor:[[UIColor blackColor] colorWithAlphaComponent:0.6]];
         
@@ -288,7 +296,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if (_highQualityControl == nil)
     {
-        _highQualityControl = [[UIControl alloc]initWithFrame:CGRectMake(0, 0, 150, _bottomBar.ritl_height)];
+        _highQualityControl = [[UIControl alloc]initWithFrame:CGRectMake(0, 0, 150, 44)];
         [_highQualityControl addSubview:self.hignSignImageView];
         [_highQualityControl addSubview:self.originPhotoLabel];
         [_highQualityControl addSubview:self.activityIndicatorView];
@@ -382,8 +390,8 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 {
     if (_sendButton == nil)
     {
-        _sendButton = [[UIButton alloc]initWithFrame:CGRectMake(_bottomBar.ritl_width - 50 - 5, 0, 50, 40)];
-        _sendButton.center = CGPointMake(_sendButton.center.x, _bottomBar.center.y - _bottomBar.ritl_originY);
+        _sendButton = [[UIButton alloc]initWithFrame:CGRectMake(_bottomBar.ritl_width - 50 - 5, 2, 50, 40)];
+        _sendButton.center = CGPointMake(_sendButton.center.x, _sendButton.center.y);
         [_sendButton setTitle:@"发送" forState:UIControlStateNormal];
         [_sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sendButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
