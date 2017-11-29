@@ -3,9 +3,9 @@
 
 - 请不要忘记将`Localizable.strings`下的多语言化复制到自己的多语言文件中
 
-swift版本:[Swift-RITLImagePickerDemo](https://github.com/RITL/Swift-RITLImagePickerDemo)
+- swift版本:[Swift-RITLImagePickerDemo](https://github.com/RITL/Swift-RITLImagePickerDemo)
 
-用法比较简单:
+- 用法比较简单:
 ```
 RITLPhotoNavigationViewModel * viewModel = [RITLPhotoNavigationViewModel new];
 
