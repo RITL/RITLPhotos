@@ -38,6 +38,7 @@
 		DB8429B61FD00AC5004E85F7 /* RITLPhotoCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8429B51FD00AC5004E85F7 /* RITLPhotoCacheManager.m */; };
 		DB8429B91FD00AE2004E85F7 /* PHCachingImageManager+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8429B81FD00AE2004E85F7 /* PHCachingImageManager+RITLExtension.m */; };
 		DB8429BC1FD00B26004E85F7 /* UIControl+RITLBlockButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8429BA1FD00B26004E85F7 /* UIControl+RITLBlockButton.m */; };
+		DB8429BF1FD0110C004E85F7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB8429C11FD0110C004E85F7 /* Localizable.strings */; };
 		DBA276791DED28F6007F4E0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBA276101DED28F5007F4E0B /* Assets.xcassets */; };
 		DBA2767A1DED28F6007F4E0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBA276111DED28F5007F4E0B /* LaunchScreen.storyboard */; };
 		DBA2767C1DED28F6007F4E0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA276141DED28F5007F4E0B /* main.m */; };
@@ -142,6 +143,8 @@
 		DB8429B81FD00AE2004E85F7 /* PHCachingImageManager+RITLExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHCachingImageManager+RITLExtension.m"; sourceTree = "<group>"; };
 		DB8429BA1FD00B26004E85F7 /* UIControl+RITLBlockButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+RITLBlockButton.m"; sourceTree = "<group>"; };
 		DB8429BB1FD00B26004E85F7 /* UIControl+RITLBlockButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+RITLBlockButton.h"; sourceTree = "<group>"; };
+		DB8429C01FD0110C004E85F7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DB8429C21FD0110D004E85F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DBA276101DED28F5007F4E0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBA276121DED28F5007F4E0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBA276131DED28F5007F4E0B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 		DB1E31F61F6BE4680024C60E /* RITLPhotos */ = {
 			isa = PBXGroup;
 			children = (
+				DB2E50F81F73D1B600B84F7E /* RITLPhotos.h */,
 				DB2E50F51F73D1B600B84F7E /* BaseClass */,
 				DB2E51041F73D1B600B84F7E /* Brower */,
 				DB2E51321F73D1B600B84F7E /* Group */,
@@ -201,7 +205,6 @@
 				DB2E51391F73D1B700B84F7E /* PhotoDataManager */,
 				DB2E50F91F73D1B600B84F7E /* Photos */,
 				DB2E510B1F73D1B600B84F7E /* PhotosStore */,
-				DB2E50F81F73D1B600B84F7E /* RITLPhotos.h */,
 				DB2E51151F73D1B600B84F7E /* Supporting */,
 			);
 			path = RITLPhotos;
@@ -381,6 +384,7 @@
 		DBA2760F1DED28F5007F4E0B /* RITLPhotoDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DB8429C11FD0110C004E85F7 /* Localizable.strings */,
 				DBA276101DED28F5007F4E0B /* Assets.xcassets */,
 				DBA276111DED28F5007F4E0B /* LaunchScreen.storyboard */,
 				DBA276131DED28F5007F4E0B /* Info.plist */,
@@ -506,6 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBA276791DED28F6007F4E0B /* Assets.xcassets in Resources */,
+				DB8429BF1FD0110C004E85F7 /* Localizable.strings in Resources */,
 				DBA2767A1DED28F6007F4E0B /* LaunchScreen.storyboard in Resources */,
 				DB2E51571F73D1B700B84F7E /* RITLPhotos.xcassets in Resources */,
 				DBA2767D1DED28F6007F4E0B /* Main.storyboard in Resources */,
@@ -650,6 +655,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		DB8429C11FD0110C004E85F7 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB8429C01FD0110C004E85F7 /* zh-Hans */,
+				DB8429C21FD0110D004E85F7 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		DBA276111DED28F5007F4E0B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

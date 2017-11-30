@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  YPPhotoDemo
+
+  Created by YueWen on 16/7/13.
+  Copyright © 2017年 YueWen. All rights reserved.
+*/
+
+
+//将内容复制到当前项目的该文件下
+"Camera Roll" = "Camera Roll";
+"All Photos" = "All Photos";
+"Hidden" = "Hidden";
+"Slo-mo" = "Slo-mo";
+"Screenshots" = "Screenshots";
+"Videos" = "Videos";
+"Panoramas" = "Panoramas";
+"Time-lapse" = "Time-lapse";
+"Recently Added" = "Recently Added";
+"Recently Deleted" = "Recently Deleted";
+"Bursts" = "Bursts";
+"Favorite" = "Favorite";
+"Selfies" = "Selfies";
