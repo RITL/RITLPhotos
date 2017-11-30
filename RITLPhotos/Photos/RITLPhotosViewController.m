@@ -18,7 +18,7 @@
 
 #import "RITLPhotoHandleManager.h"
 #import "UIView+RITLFrameChanged.h"
-#import "UIButton+RITLBlockButton.h"
+#import "UIControl+RITLBlockButton.h"
 #import "UIViewController+RITLPhotoAlertController.h"
 #import <Masonry.h>
 

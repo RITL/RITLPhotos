@@ -7,7 +7,7 @@
 //
 
 #import "RITLPhotoBrowseCell.h"
-#import "UIButton+RITLBlockButton.h"
+#import "UIControl+RITLBlockButton.h"
 #import <Masonry.h>
 
 @interface RITLPhotoBrowseCell ()<UIScrollViewDelegate>

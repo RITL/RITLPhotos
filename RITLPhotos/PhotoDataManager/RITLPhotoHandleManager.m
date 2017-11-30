@@ -10,14 +10,15 @@
 
 @implementation RITLPhotoHandleManager
 
-+(NSArray<PHAsset *> *)assetForAssets:(NSArray<PHAsset *> *)assets status:(BOOL *)status
+//+(NSArray<PHAsset *> *)assetForAssets:(NSArray<PHAsset *> *)assets status:(BOOL *)status
++(NSArray<PHAsset *> *)assetForAssets:(NSArray<PHAsset *> *)assets status:(NSArray <NSNumber *> *)status
 {
     NSMutableArray <PHAsset *> * assetsHandle = [NSMutableArray arrayWithCapacity:assets.count];
     
     for (NSUInteger i = 0; i < assets.count; i++)
     {
         //获得当前的状态
-        BOOL currentStatus = status[i];
+        BOOL currentStatus = status[i].boolValue;
         
         if (currentStatus)
         {

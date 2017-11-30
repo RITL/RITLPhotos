@@ -11,7 +11,7 @@
 #import "RITLPhotoBrowseCell.h"
 
 #import "UIBar+RITLPhotos.h"
-#import "UIButton+RITLBlockButton.h"
+#import "UIControl+RITLBlockButton.h"
 #import "UIView+RITLFrameChanged.h"
 #import "UIViewController+RITLPhotoAlertController.h"
 
@@ -29,10 +29,10 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
 /// @brief 底部的tabBar
-@property (nonatomic, strong) UITabBar * bottomBar;
+@property (nonatomic, strong)UIView * bottomBar;
 
 /// @brief 顶部的bar
-@property (nonatomic, strong)UINavigationBar * topBar;
+@property (nonatomic, strong)UIView * topBar;
 
 /// @brief 返回
 @property (nonatomic, strong)UIButton * backButtonItem;
@@ -90,6 +90,7 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets = false;
+    self.navigationController.navigationBar.hidden = true;
     
     //绑定viewModel
     [self bindViewModel];
@@ -202,16 +203,17 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
 }
 
 
--(UINavigationBar *)topBar
+-(UIView *)topBar
 {
     if (_topBar == nil)
     {
         CGFloat height = RITLPhotoIsiPhoneX ? 88 : 64;
         
-        _topBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, height)];
-        _topBar.barStyle = UIBarStyleBlack;
+        _topBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, height)];
+//        _topBar.barStyle = UIBarStyleBlack;
         
-        [_topBar setViewColor:[[UIColor blackColor] colorWithAlphaComponent:0.6]];
+//        [_topBar setViewColor:[[UIColor blackColor] colorWithAlphaComponent:0.6]];
+        _topBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
         
         [_topBar addSubview:self.backButtonItem];
         [_topBar addSubview:self.selectButtonItem];
@@ -274,15 +276,16 @@ static NSString * const cellIdentifier = @"RITLPhotoBrowerCell";
     return _selectButtonItem;
 }
 
--(UITabBar *)bottomBar
+-(UIView *)bottomBar
 {
     if (_bottomBar == nil)
     {
         CGFloat height = RITLPhotoIsiPhoneX ? 83 - 5 : 44;
         
-        _bottomBar = [[UITabBar alloc]initWithFrame:CGRectMake(0, self.ritl_height - height, self.ritl_width, height)];
-        _bottomBar.barStyle = UIBarStyleBlack;
-        [_bottomBar setViewColor:[[UIColor blackColor] colorWithAlphaComponent:0.6]];
+        _bottomBar = [[UIView alloc]initWithFrame:CGRectMake(0, self.ritl_height - height, self.ritl_width, height)];
+//        _bottomBar.barStyle = UIBarStyleBlack;
+//        [_bottomBar setViewColor:[[UIColor blackColor] colorWithAlphaComponent:0.6]];
+        _bottomBar.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
         
         [_bottomBar addSubview:self.highQualityControl];
         [_bottomBar addSubview:self.sendButton];
