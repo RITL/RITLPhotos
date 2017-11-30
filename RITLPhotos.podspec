@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "RITLPhotos"
-  s.version      = "2.0.1"
+  s.version      = "2.0.2"
   s.summary      = "PhotosPicker"
   s.description  = <<-DESC
                     一个基于Photos.framework的图片多选，模仿微信，还有很多不足，正在改进和优化
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.author             = { "YueXiaoWen" => "yuexiaowen108@gmail.com" }
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/RITL/RITLImagePickerDemo.git", :tag => "#{s.version}" }
-  s.source_files  = "RITLPhotos/**/*.{h}"
+  s.source_files  = "RITLPhotos/**/*.{h,m}"
   s.frameworks = "Foundation", "UIKit","Photos"
   s.requires_arc = true
   s.dependency "Masonry"

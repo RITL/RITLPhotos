@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  修改index位置的选中状态
 
- @param index
+ @param index 当前的索引
  @return true表示修改成功，false失败
  */
 - (BOOL)changeAssetIsSelectedSignal:(NSUInteger)index;
