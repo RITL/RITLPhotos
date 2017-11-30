@@ -69,6 +69,8 @@ viewModel.bridgeDelegate = self;//优先级高于block回调
 
 ```
 
+---
+
 
 <div align="center"><img src="http://7xruse.com1.z0.glb.clouddn.com/RITLPhotos.gif" height=500></img></div>
 <br>
