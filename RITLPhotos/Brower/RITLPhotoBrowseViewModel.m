@@ -83,7 +83,7 @@
     NSUInteger item = currentIndex;
     
     // 表示消失还是选中，选中为1 未选中为 -1
-    NSInteger temp = cacheManager.assetIsSelectedSignal[item] ? -1 : 1;
+    NSInteger temp = cacheManager.assetIsSelectedSignal[item].boolValue ? -1 : 1;
     
     cacheManager.numberOfSelectedPhoto += temp;
     
@@ -375,7 +375,7 @@
 - (BOOL)ritl_currentPhotoIsSelected:(NSUInteger)index
 {
     //获得当前资源的状态
-    return [RITLPhotoCacheManager sharedInstace].assetIsSelectedSignal[index];
+    return [[RITLPhotoCacheManager sharedInstace].assetIsSelectedSignal[index] boolValue];
 }
 
 

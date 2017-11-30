@@ -7,6 +7,7 @@
 //
 
 #import "RITLPhotoBaseViewModel.h"
+#import "RITLPhotoBridgeDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,9 @@ extern CGSize const RITLPhotoOriginSize;
 
 /// 主导航控制器的viewModel
 NS_CLASS_AVAILABLE_IOS(8_0) @interface RITLPhotoNavigationViewModel : RITLPhotoBaseViewModel
+
+
+@property (nonatomic, weak) id <RITLPhotoBridgeDelegate> bridgeDelegate;
 
 /// 最大允许选择的图片数目，默认为9
 @property (nonatomic, assign) NSUInteger maxNumberOfSelectedPhoto;
@@ -27,7 +31,6 @@ NS_CLASS_AVAILABLE_IOS(8_0) @interface RITLPhotoNavigationViewModel : RITLPhotoB
 
 /// 获取图片的data
 @property (nonatomic, copy, nullable)void(^RITLBridgeGetImageDataBlock)(NSArray <NSData *> *);
-
 
 /// 获得的图片源
 @property (nonatomic, copy, nullable)void(^RITLBridgeGetAssetBlock)(NSArray <PHAsset *>*);

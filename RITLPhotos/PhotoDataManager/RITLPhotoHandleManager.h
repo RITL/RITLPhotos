@@ -22,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param status 选中状态
  @return 
  */
-+ (NSArray <PHAsset *> *)assetForAssets:(NSArray <PHAsset *> *)assets status:(BOOL *)status;
+//+ (NSArray <PHAsset *> *)assetForAssets:(NSArray <PHAsset *> *)assets status:(BOOL *)status;
++(NSArray<PHAsset *> *)assetForAssets:(NSArray<PHAsset *> *)assets status:(NSArray <NSNumber *> *)status;
 
 
 @end

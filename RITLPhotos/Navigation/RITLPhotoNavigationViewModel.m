@@ -67,6 +67,14 @@ CGSize const RITLPhotoOriginSize = {-100,-100};
 }
 
 
+- (void)setBridgeDelegate:(id<RITLPhotoBridgeDelegate>)bridgeDelegate
+{
+    _bridgeDelegate = bridgeDelegate;
+    
+    [RITLPhotoBridgeManager sharedInstance].delegate = bridgeDelegate;
+}
+
+
 -(void)dealloc
 {
 #ifdef RITLDebug

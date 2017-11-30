@@ -63,10 +63,10 @@
         //判断资源是否为图片
         if (asset.mediaType == PHAssetMediaTypeImage)
         {
-            [RITLPhotoCacheManager sharedInstace].assetIsPictureSignal[item] = true;
+            [RITLPhotoCacheManager sharedInstace].assetIsPictureSignal[item] = @(true);
         }
         
-        completeBlock(image,asset,[RITLPhotoCacheManager sharedInstace].assetIsPictureSignal[item],asset.duration);
+        completeBlock(image,asset,[RITLPhotoCacheManager sharedInstace].assetIsPictureSignal[item].boolValue,asset.duration);
         
     }];
 }
@@ -102,8 +102,10 @@
 {
     NSUInteger item = indexPath.item;
     
-    return [RITLPhotoCacheManager sharedInstace].assetIsPictureSignal[item];
+    return [RITLPhotoCacheManager sharedInstace].assetIsPictureSignal[item].boolValue;
 }
+
+
 
 -(void)didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -131,7 +133,7 @@
     NSUInteger item = indexPath.item;
     
     // 表示消失还是选中，选中为1 未选中为 -1
-    NSInteger temp = cacheManager.assetIsSelectedSignal[item] ? -1 : 1;
+    NSInteger temp = cacheManager.assetIsSelectedSignal[item].boolValue ? -1 : 1;
     
     cacheManager.numberOfSelectedPhoto += temp;
     
@@ -148,7 +150,7 @@
     }
     
     // 修改数据源标志位
-    cacheManager.assetIsSelectedSignal[item] = !cacheManager.assetIsSelectedSignal[item];
+    cacheManager.assetIsSelectedSignal[item] = @(!([cacheManager.assetIsSelectedSignal[item] boolValue]));
     
     [self ritl_checkPhotoSendStatusChanged];
     
@@ -175,7 +177,7 @@
 {
     NSUInteger item = indexPath.item;
     
-    return [RITLPhotoCacheManager sharedInstace].assetIsSelectedSignal[item];
+    return [RITLPhotoCacheManager sharedInstace].assetIsSelectedSignal[item].boolValue;
 }
 
 

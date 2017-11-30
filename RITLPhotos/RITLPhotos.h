@@ -15,5 +15,7 @@
 #import "RITLPhotoStore.h"
 #import "RITLPhotoNavigationViewController.h"
 #import "RITLPhotoNavigationViewModel.h"
+#import "RITLPhotoBridgeDelegate.h"
+#import "PHCachingImageManager+RITLExtension.h"
 
 #endif /* RITLPhotos_h */

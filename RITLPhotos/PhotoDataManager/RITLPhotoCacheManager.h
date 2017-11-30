@@ -27,10 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isHightQuarity;
 
 /// 资源是否为图片的标志位
-@property (nonatomic, assign) BOOL * assetIsPictureSignal;
+//@property (nonatomic, assign) BOOL *assetIsPictureSignal;
+@property (nonatomic, strong, nullable) NSMutableArray <NSNumber *> *assetIsPictureSignal;
 
 /// 资源是否被选中的标志位
-@property (nonatomic, assign) BOOL * assetIsSelectedSignal;
+//@property (nonatomic, assign) BOOL *assetIsSelectedSignal;
+@property (nonatomic, strong, nullable) NSMutableArray <NSNumber *> *assetIsSelectedSignal;
 
 
 /// 获得单例对象
