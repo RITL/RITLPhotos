@@ -6,14 +6,7 @@
 
 - 去掉了必须使用Objc++模式
 - 增加了代理，并且代理方法的优先级位于block之上
-- 新增了CocoaPods集成
 
-```
-platform :ios, '8.0'
-target "YourProjectName" do
-pod 'RITLPhotos'
-end
-```
 
 
 ```
