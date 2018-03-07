@@ -8,8 +8,46 @@
 
 #import "PHPhotoLibrary+RITLPhotoStore.h"
 #import "PHFetchResult+RITLPhotos.h"
+#import <RITLKit.h>
 
 @implementation PHPhotoLibrary (RITLPhotoStore)
+
+
+- (void)fetchAlbumRegularGroupsByUserLibrary:(void (^)(NSArray<PHAssetCollection *> * _Nonnull))complete
+{
+    [self fetchAlbumRegularGroups:^(NSArray<PHAssetCollection *> * _Nonnull collections) {
+        
+        //进行排序
+        NSMutableArray <PHAssetCollection *> *sortCollections = [NSMutableArray arrayWithArray:collections];
+        
+        //选出对象
+        PHAssetCollection *userLibrary = [sortCollections ritl_filter:^BOOL(PHAssetCollection * _Nonnull item) {
+            
+            NSLog(@"title = %@, item = %@",item.localizedTitle,@(item.assetCollectionSubtype));
+            
+            
+            return (item.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary);
+            
+        }].ritl_safeFirstObject;
+        
+        if (userLibrary) {
+            
+            //进行变换
+            [sortCollections removeObject:userLibrary];
+            [sortCollections insertObject:userLibrary atIndex:0];
+        }
+        
+        complete([sortCollections ritl_filter:^BOOL(PHAssetCollection * _Nonnull item) {
+            
+            PHAssetCollectionSubtype subType = item.assetCollectionSubtype;
+            
+            //取出不需要的数据
+            return !(subType == PHAssetCollectionSubtypeSmartAlbumAllHidden || [item.localizedTitle isEqualToString:NSLocalizedString(@"Recently Deleted", @"")]);
+        }]);
+    }];
+}
+
+
 
 - (void)fetchAlbumRegularGroups:(void (^)(NSArray<PHAssetCollection *> * _Nonnull))complete
 {
@@ -29,7 +67,9 @@
 {
     [self handlerWithAuthorizationAllow:^{
         
-        albumRegular([PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil]);
+        PHFetchOptions *fetchOptions = PHFetchOptions.new;
+        
+        albumRegular([PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:fetchOptions]);
     }];
 }
 

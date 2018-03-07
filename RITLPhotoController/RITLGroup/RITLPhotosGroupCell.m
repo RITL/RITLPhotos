@@ -7,7 +7,12 @@
 //
 
 #import "RITLPhotosGroupCell.h"
+#import <RITLKit.h>
 #import <Masonry.h>
+
+static NSString *const RITLGroupTableViewControllerRightArrowImageName = @"RITLPhotos.bundle/ritl_arrow_right";
+
+
 
 @implementation RITLPhotosGroupCell
 
@@ -49,7 +54,7 @@
 {
     [self addSubImageView];
     [self addSubTitleLabel];
-    [self addSubCategoryImageView];
+    [self addSubArrowImageView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -77,13 +82,6 @@
         make.width.equalTo(self.imageView.mas_height);
         
     }];
-    
-    
-    //等价
-//    _imageView.translatesAutoresizingMaskIntoConstraints = false;
-//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_imageView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_imageView)]];
-//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[_imageView]-5-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_imageView)]];
-//    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_imageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_imageView attribute:NSLayoutAttributeHeight multiplier:1 constant:0]];
 }
 
 
@@ -102,34 +100,22 @@
         
     }];
     
-    
-    //等价
-//    _titleLabel.translatesAutoresizingMaskIntoConstraints = false;
-//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_imageView]-10-[_titleLabel]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_titleLabel,_imageView)]];
-//    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
-    
 }
 
-- (void)addSubCategoryImageView
+- (void)addSubArrowImageView
 {
-    _categoryImageView = [[UIImageView alloc]init];
+    _arrowImageView = [[UIImageView alloc]init];
+    _arrowImageView.image = RITLGroupTableViewControllerRightArrowImageName.ritl_image;
     
-    [self.contentView addSubview:_categoryImageView];
+    [self.contentView addSubview:_arrowImageView];
     
-    [_categoryImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.mas_equalTo(15);
-        make.bottom.mas_equalTo(-7);
+        make.right.inset(15);
+        make.centerY.offset(0);
         make.size.mas_equalTo(CGSizeMake(15, 15));
     }];
-  
-    //等价
-//    _categoryImageView.translatesAutoresizingMaskIntoConstraints = false;
-//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-15-[_categoryImageView(15)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_categoryImageView)]];
-//    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_categoryImageView(15)]-7-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_categoryImageView)]];
-
-    _categoryImageView.hidden = true;
-    
+ 
 }
 
 @end

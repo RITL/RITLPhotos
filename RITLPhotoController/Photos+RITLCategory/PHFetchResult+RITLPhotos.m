@@ -92,9 +92,12 @@
             
             [array addObject:obj];
             
+            NSLog(@"identifier = %@",((PHAssetCollection *)obj).localIdentifier);
+            
             if (idx == self.count - 1)
             {
                 arrayObject(array,weakSelf);
+                NSLog(@"\n\n");
             }
         }];
     }

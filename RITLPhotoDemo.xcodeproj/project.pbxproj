@@ -26,6 +26,7 @@
 		DBCFFE0A204F911700D5DAE5 /* PHAsset+RITLPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCFFE06204F911700D5DAE5 /* PHAsset+RITLPhotos.m */; };
 		DBCFFE0D204FB4A900D5DAE5 /* PHPhotoLibrary+RITLPhotoStore.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCFFE0C204FB4A900D5DAE5 /* PHPhotoLibrary+RITLPhotoStore.m */; };
 		DBCFFE10204FBAE300D5DAE5 /* RITLPhotosGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCFFE0F204FBAE300D5DAE5 /* RITLPhotosGroupCell.m */; };
+		DBCFFE13204FD00800D5DAE5 /* RITLPhotos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DBCFFE12204FD00800D5DAE5 /* RITLPhotos.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		DBCFFE0C204FB4A900D5DAE5 /* PHPhotoLibrary+RITLPhotoStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHPhotoLibrary+RITLPhotoStore.m"; sourceTree = "<group>"; };
 		DBCFFE0E204FBAE300D5DAE5 /* RITLPhotosGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotosGroupCell.h; sourceTree = "<group>"; };
 		DBCFFE0F204FBAE300D5DAE5 /* RITLPhotosGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLPhotosGroupCell.m; sourceTree = "<group>"; };
+		DBCFFE12204FD00800D5DAE5 /* RITLPhotos.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RITLPhotos.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		DBCFFDE2204F897800D5DAE5 /* RITLPhotoController */ = {
 			isa = PBXGroup;
 			children = (
+				DBCFFE11204FCFF900D5DAE5 /* Resource */,
 				DBCFFDFE204F90F700D5DAE5 /* Photos+RITLCategory */,
 				DBCFFDF0204F8D8F00D5DAE5 /* RITLPhotoStore */,
 				DBCFFDE3204F897800D5DAE5 /* RITLGroup */,
@@ -181,6 +184,14 @@
 				DBCFFE01204F911700D5DAE5 /* PHImageRequestOptions+RITLPhotos.m */,
 			);
 			path = "Photos+RITLCategory";
+			sourceTree = "<group>";
+		};
+		DBCFFE11204FCFF900D5DAE5 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				DBCFFE12204FD00800D5DAE5 /* RITLPhotos.bundle */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +263,7 @@
 				DBA2767A1DED28F6007F4E0B /* LaunchScreen.storyboard in Resources */,
 				DBA2767D1DED28F6007F4E0B /* Main.storyboard in Resources */,
 				DBA276A71DED28F6007F4E0B /* LaunchScreen.strings in Resources */,
+				DBCFFE13204FD00800D5DAE5 /* RITLPhotos.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

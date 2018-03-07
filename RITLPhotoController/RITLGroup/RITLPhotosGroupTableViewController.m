@@ -15,6 +15,7 @@
 
 #import <RITLKit.h>
 
+
 @interface RITLPhotosGroupTableViewController (AssetData)
 
 /// 加载默认的组
@@ -43,6 +44,8 @@
     //navigationItem
     self.navigationItem.title = @"照片";
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancle" style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
+    
     //data
     self.groups = @[];
     
@@ -59,6 +62,21 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark - Dismiss
+
+- (void)dismissPhotoControllers
+{
+    if(self.navigationController.presentingViewController){//如果是模态弹出
+        
+        [self.navigationController dismissViewControllerAnimated:true completion:nil];
+        
+    }else if(self.navigationController){
+        
+        [self.navigationController popViewControllerAnimated:true];
+    }
 }
 
 #pragma mark - Table view data source
@@ -108,7 +126,7 @@
 
 - (void)loadDefaultAblumGroups
 {
-    [PHPhotoLibrary.sharedPhotoLibrary fetchAlbumRegularGroups:^(NSArray<PHAssetCollection *> * _Nonnull groups) {
+    [PHPhotoLibrary.sharedPhotoLibrary fetchAlbumRegularGroupsByUserLibrary:^(NSArray<PHAssetCollection *> * _Nonnull groups) {
        
         //set
         self.groups = groups;

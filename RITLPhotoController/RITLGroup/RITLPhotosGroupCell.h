@@ -19,8 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 分组的名称
 @property (strong, nonatomic) IBOutlet UILabel * titleLabel;
 
-/// @brief 种类类别的ImageView,暂时无用
-@property (strong, nonatomic) IBOutlet UIImageView * categoryImageView;
+/// 
+@property (strong, nonatomic) IBOutlet UIImageView * arrowImageView;
 
 @end
 
