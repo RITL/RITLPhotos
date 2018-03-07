@@ -103,7 +103,6 @@
 {
     __weak typeof(self) weakSelf = self;
     
-    
     [_photoStore fetchDefaultAllPhotosGroup:^(NSArray<PHAssetCollection *> * _Nonnull groups, PHFetchResult * _Nonnull collections) {
       
         __strong typeof(weakSelf) strongSelf = weakSelf;
