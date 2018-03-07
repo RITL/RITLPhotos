@@ -1,16 +1,16 @@
 //
-//  PHImageRequestOptions+RITLRepresentation.m
+//  PHImageRequestOptions+RITLPhotos.m
 //  RITLPhotoDemo
 //
 //  Created by YueWen on 2016/12/29.
 //  Copyright © 2017年 YueWen. All rights reserved.
 //
 
-#import "PHImageRequestOptions+RITLRepresentation.h"
+#import "PHImageRequestOptions+RITLPhotos.h"
 
-@implementation PHImageRequestOptions (RITLRepresentation)
+@implementation PHImageRequestOptions (RITLPhotos)
 
-+(instancetype)imageRequestOptionsWithDeliveryMode:(PHImageRequestOptionsDeliveryMode)deliverMode
++(instancetype)requestOptionsWithDeliveryMode:(PHImageRequestOptionsDeliveryMode)deliverMode
 {
     PHImageRequestOptions * option = [[self alloc] init];
     

@@ -1,5 +1,5 @@
 //
-//  PHAssetCollection+RITLRepresentation.h
+//  PHAssetCollection+RITLPhotos.h
 //  RITLPhotoDemo
 //
 //  Created by YueWen on 2016/12/29.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PHAssetCollection (RITLRepresentation)
+@interface PHAssetCollection (RITLPhotos)
 
 
 /**
@@ -19,8 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param size 获得封面图片的大小
  @param completeBlock 取组的标题、照片资源的预估个数以及封面照片,默认为最新的一张
  */
-- (void)representationImageWithSize:(CGSize)size
-                           complete:(void (^)(NSString *,NSUInteger,UIImage * __nullable)) completeBlock;
+- (void)ritl_headerImageWithSize:(CGSize)size
+                        complete:(void (^)(NSString *,NSUInteger,UIImage * __nullable)) completeBlock;
 
 
 @end

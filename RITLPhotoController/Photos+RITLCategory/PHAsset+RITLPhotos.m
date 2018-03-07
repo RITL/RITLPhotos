@@ -1,17 +1,17 @@
 //
-//  PHAsset+RITLRepresentation.m
+//  PHAsset+RITLPhotos.m
 //  RITLPhotoDemo
 //
 //  Created by YueWen on 2016/12/29.
 //  Copyright © 2017年 YueWen. All rights reserved.
 //
 
-#import "PHAsset+RITLRepresentation.h"
+#import "PHAsset+RITLPhotos.h"
+#import "PHImageRequestOptions+RITLPhotos.h"
 #import <objc/runtime.h>
 #import <RITLKit.h>
-#import "PHImageRequestOptions+RITLRepresentation.h"
 
-@implementation PHAsset (RITLRepresentation)
+@implementation PHAsset (RITLPhotos)
 
 - (NSMutableArray *)catcheArray
 {
@@ -45,7 +45,7 @@
 
 
 
--(void)representationImageWithSize:(CGSize)size complete:(nonnull void (^)(UIImage * _Nullable, PHAsset * _Nonnull))completeBlock
+-(void)ritl_imageWithSize:(CGSize)size complete:(nonnull void (^)(UIImage * _Nullable, PHAsset * _Nonnull))completeBlock
 {
     __weak typeof(self)copy_self = self;
     
@@ -74,7 +74,7 @@
 }
 
 
--(void)sizeOfHignQualityWithSize:(CGSize)size complete:(void (^)(NSString * _Nonnull))completeBlock
+-(void)ritl_hignQualityImageWithSize:(CGSize)size complete:(void (^)(NSString * _Nonnull))completeBlock
 {
     CGSize newSize = size;
     
@@ -99,7 +99,7 @@
     __weak typeof(self) weakSelf = self;
     
     //初始化option选项
-    PHImageRequestOptions * option = [PHImageRequestOptions imageRequestOptionsWithDeliveryMode:PHImageRequestOptionsDeliveryModeHighQualityFormat];
+    PHImageRequestOptions * option = [PHImageRequestOptions requestOptionsWithDeliveryMode:PHImageRequestOptionsDeliveryModeHighQualityFormat];
     
     [[PHCachingImageManager defaultManager]requestImageDataForAsset:self options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
         

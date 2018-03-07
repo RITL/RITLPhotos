@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_AVAILABLE_IOS(8_0) @interface RITLPhotosStore : NSObject<PHPhotoLibraryChangeObserver>
+NS_AVAILABLE_IOS(8_0) @interface RITLPhotosStore : NSObject
 
 /// @brief 配置类，用来设置相册的类
 //@property (nonatomic, strong, readonly)RITLPhotoStoreConfiguraion * config;
@@ -26,22 +26,22 @@ NS_AVAILABLE_IOS(8_0) @interface RITLPhotosStore : NSObject<PHPhotoLibraryChange
 
 #pragma mark - 相册组
 
-/** 获取photos提供的所有的智能分类相册组，与config属性无关 */
-- (void)fetchPhotosGroup:(void(^)(NSArray <PHAssetCollection *> *)) groups;
+/// 获取photos提供的所有的智能分类相册组
+- (void)fetchAlbumRegularGroups:(void(^)(NSArray <PHAssetCollection *> *)) groups;
 
 
 /** 
  *  根据photos提供的智能分类相册组
  *  根据config中的groupNamesConfig属性进行筛别
  */
-- (void)fetchDefaultPhotosGroup:(void(^)(NSArray <PHAssetCollection *> *)) groups;
+//- (void)fetchDefaultPhotosGroup:(void(^)(NSArray <PHAssetCollection *> *)) groups;
 
 
 /** 
  *  根据photos提供的智能分类相册组
  *  根据config中的groupNamesConfig属性进行筛别 并添加上其他在手机中创建的相册 
  */
-- (void)fetchDefaultAllPhotosGroup:(void(^)(NSArray <PHAssetCollection *> * , PHFetchResult *)) groups;
+//- (void)fetchDefaultAllPhotosGroup:(void(^)(NSArray <PHAssetCollection *> * , PHFetchResult *)) groups;
 
 
 #pragma mark - 处理相册的方法
@@ -51,7 +51,7 @@ NS_AVAILABLE_IOS(8_0) @interface RITLPhotosStore : NSObject<PHPhotoLibraryChange
  @param group
  @return 
  */
-+ (PHFetchResult *)fetchPhotos:(PHAssetCollection *)group;
+//+ (PHFetchResult *)fetchPhotos:(PHAssetCollection *)group;
 
 #pragma mark - 发生变化的Block
 

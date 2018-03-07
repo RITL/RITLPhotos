@@ -8,19 +8,20 @@
 
 #import "RITLPhotosStore.h"
 //#import "RITLPhotoStoreConfiguraion.h"
-//#import "PHImageRequestOptions+RITLRepresentation.h"
-//#import "PHFetchResult+RITLRepresentation.h"
+//#import "PHImageRequestOptions+RITLPhotos.h"
+#import "PHFetchResult+RITLPhotos.h"
 
 typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 
-@interface RITLPhotosStore ()
+@interface RITLPhotosStore ()<PHPhotoLibraryChangeObserver>
 
 @property (nonatomic, strong) PHPhotoLibrary *photoLibaray;
 
-@property (nonatomic, strong) PHFetchResult *topLevelResult;
+//@property (nonatomic, strong) PHFetchResult *topLevelResult;
+
 
 //记录默认全部组的block,适当的进行回调
-@property (nonatomic, copy) void(^defaultAllPhotosGroupBlock)(NSArray<PHAssetCollection *> * _Nonnull topLevelArray, PHFetchResult * _Nonnull result);
+//@property (nonatomic, copy) void(^defaultAllPhotosGroupBlock)(NSArray<PHAssetCollection *> * _Nonnull topLevelArray, PHFetchResult * _Nonnull result);
 
 @end
 
@@ -71,22 +72,21 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 
 #pragma mark - public function
 
-//- (void)fetchPhotosGroup:(void (^)(NSArray<PHAssetCollection *> * _Nonnull))groups
-//{
-//    __weak typeof(self) weakSelf = self;
-//
-//    [self fetchBasePhotosGroup:^(PHFetchResult * _Nullable result) {
-//
-//        if (result == nil) return;
-//
-//        [result transToArrayComplete:^(NSArray<PHAssetCollection *> * _Nonnull group, PHFetchResult * _Nonnull result) {
-//
-//            groups([weakSelf handleAssetCollection:group]);
-//
-//        }];
-//    }];
-//
-//}
+- (void)fetchAlbumRegularGroups:(void (^)(NSArray<PHAssetCollection *> * _Nonnull))groups
+{
+    [self fetchAssetAlbumRegularCollection:^(PHFetchResult * _Nullable albumRegular) {
+       
+        if (!albumRegular) { return; }
+        
+        [albumRegular transToArrayComplete:^(NSArray<id> * _Nonnull array, PHFetchResult * _Nonnull result) {
+            
+            groups(array);
+        }];
+    }];
+}
+
+
+
 //
 //
 //
@@ -195,25 +195,8 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 //}
 
 
-//* 获取最基本的智能分组
--(void)fetchBasePhotosGroup:(void(^)( PHFetchResult * _Nullable  result))completeBlock
-{
-    //进行检测
-    [self storeCheckAuthorizationStatusAllow:^{//获得准许
-
-        //获得智能分组
-        PHFetchResult * smartGroups = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-
-
-        completeBlock(smartGroups);
-
-    } denied:^{}];//无操作
-}
-
-
-
 /// 获得SmartAlbum
-- (void)fetchAssetAlbumRegularCollection:(void(^)( PHFetchResult * _Nullable albumRegular))albumRegular
+- (void)fetchAssetAlbumRegularCollection:(void(^)(PHFetchResult * _Nullable albumRegular))albumRegular
 {
     [self handlerWithAuthorizationAllow:^{
        
@@ -258,39 +241,16 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 }
 
 
-- (void)storeCheckAuthorizationStatusAllow:(void(^)(void))allowHander denied:(void(^)(void))deniedHander __deprecated_msg("Use authorizationStatusAllow: instead")
-{
-    switch (PHPhotoLibrary.authorizationStatus)
-    {
-            //准许
-        case PHAuthorizationStatusAuthorized: allowHander(); break;
-            
-            //待获取
-        case PHAuthorizationStatusNotDetermined:
-        {
-            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-                
-                if (status == PHAuthorizationStatusAuthorized) { allowHander(); }//允许，进行回调
-                else { deniedHander(); }
-            }];
-        } break;
-            
-            //不允许,进行无权限回调
-        case PHAuthorizationStatusDenied:
-        case PHAuthorizationStatusRestricted: deniedHander(); break;
-    }
-}
-
 
 #pragma mark - PHPhotoLibraryChangeObserver
-//
-//- (void)photoLibraryDidChange:(PHChange *)changeInstance
-//{
+
+- (void)photoLibraryDidChange:(PHChange *)changeInstance
+{
 //    if (_photoStoreHasChanged != nil)
 //    {
 //        _photoStoreHasChanged(changeInstance);
 //    }
-//}
+}
 
 @end
 //

@@ -1,14 +1,14 @@
 //
-//  PHFetchResult+RITLRepresentation.m
+//  PHFetchResult+RITLPhotos.m
 //  RITLPhotoDemo
 //
 //  Created by YueWen on 2016/12/30.
 //  Copyright © 2017年 YueWen. All rights reserved.
 //
 
-#import "PHFetchResult+RITLRepresentation.h"
+#import "PHFetchResult+RITLPhotos.h"
 
-@implementation PHFetchResult (RITLRepresentation)
+@implementation PHFetchResult (RITLPhotos)
 
 @end
 
@@ -16,7 +16,7 @@
 @implementation PHFetchResult (RITLAsset)
 
 
--(void)preparationWithType:(PHAssetMediaType)mediaType
+-(void)filterWithType:(PHAssetMediaType)mediaType
        matchingObjectBlock:(void(^)(PHAsset *))matchingObjectBlock
       enumerateObjectBlock:(void (^)(PHAsset * _Nonnull))enumerateObjectBlock
                   Complete:(void (^)(NSArray<PHAsset *> * _Nullable))completeBlock
@@ -63,10 +63,10 @@
     
 }
 
--(void)preparationWithType:(PHAssetMediaType)mediaType
+-(void)filterWithType:(PHAssetMediaType)mediaType
                   Complete:(void (^)(NSArray<PHAsset *> * _Nonnull))completeBlock
 {
-    [self preparationWithType:mediaType matchingObjectBlock:nil enumerateObjectBlock:nil Complete:completeBlock];
+    [self filterWithType:mediaType matchingObjectBlock:nil enumerateObjectBlock:nil Complete:completeBlock];
 }
 
 @end
@@ -96,9 +96,6 @@
             {
                 arrayObject(array,weakSelf);
             }
-            
-//            printf("%s idx = %ld\n",NSStringFromClass([obj class]).UTF8String,idx);
-            
         }];
     }
 }

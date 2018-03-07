@@ -1,5 +1,5 @@
 //
-//  PHFetchResult+RITLRepresentation.h
+//  PHFetchResult+RITLPhotos.h
 //  RITLPhotoDemo
 //
 //  Created by YueWen on 2016/12/30.
@@ -10,12 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PHFetchResult (RITLRepresentation)
+@interface PHFetchResult (RITLPhotos)
 
 
 @end
 
-@interface PHFetchResult (RITLAsset)
+@interface PHFetchResult (RITLFilter)
 
 
 /**
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param enumerateObjectBlock 每次都会调用一次
  @param completeBlock 完成之后返回存放符合媒体类型的PHAsset数组
  */
-- (void)preparationWithType:(PHAssetMediaType)mediaType
+- (void)filterWithType:(PHAssetMediaType)mediaType
         matchingObjectBlock:(nullable void(^)(PHAsset *))matchingObjectBlock
        enumerateObjectBlock:(nullable void(^)(PHAsset *))enumerateObjectBlock
                    Complete:(nullable void(^)(NSArray <PHAsset *> * __nullable))completeBlock;
@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param mediaType 媒体类型
  @param completeBlock 完成之后返回存放符合媒体类型的PHAsset数组
  */
-- (void)preparationWithType:(PHAssetMediaType)mediaType
+- (void)filterWithType:(PHAssetMediaType)mediaType
                    Complete:(void(^)(NSArray <PHAsset *> * __nullable))completeBlock;
 
 @end
