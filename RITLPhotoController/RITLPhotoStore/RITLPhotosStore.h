@@ -14,7 +14,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_AVAILABLE_IOS(8_0) @interface RITLPhotosStore : NSObject
+NS_AVAILABLE_IOS(8_0)
+
+NS_CLASS_DEPRECATED_IOS(2_0, 11_0,"Use PHPhotoLibrary instead.") @interface RITLPhotosStore : NSObject
 
 /// @brief 配置类，用来设置相册的类
 //@property (nonatomic, strong, readonly)RITLPhotoStoreConfiguraion * config;
@@ -26,8 +28,7 @@ NS_AVAILABLE_IOS(8_0) @interface RITLPhotosStore : NSObject
 
 #pragma mark - 相册组
 
-/// 获取photos提供的所有的智能分类相册组
-- (void)fetchAlbumRegularGroups:(void(^)(NSArray <PHAssetCollection *> *)) groups;
+
 
 
 /** 

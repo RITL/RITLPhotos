@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 主流的控制器
 @interface RITLPhotosViewController : UINavigationController
 
+/// 图片控制器
+@property (class, nonatomic, strong, readonly)RITLPhotosViewController *photosViewController;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -8,15 +8,30 @@
 
 #import "RITLPhotosGroupTableViewController.h"
 
+#import "RITLPhotosGroupCell.h"
+
+#import "PHAssetCollection+RITLPhotos.h"
+#import "PHPhotoLibrary+RITLPhotoStore.h"
+
+#import <RITLKit.h>
+
 @interface RITLPhotosGroupTableViewController (AssetData)
 
-/// 加载Store默认的组
+/// 加载默认的组
 - (void)loadDefaultAblumGroups;
+
+@end
+
+@interface RITLPhotosGroupTableViewController (RITLString)
+
+- (NSAttributedString *)titleForCollection:(PHAssetCollection *)collection count:(NSInteger)count;
 
 @end
 
 
 @interface RITLPhotosGroupTableViewController ()
+
+@property (nonatomic, copy)NSArray <PHAssetCollection *> *groups;
 
 @end
 
@@ -25,9 +40,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //navigationItem
+    self.navigationItem.title = @"照片";
+    
+    //data
+    self.groups = @[];
     
     //tableView
     self.tableView.tableFooterView = [[UIView alloc]init];
+    
+    //cell
+    [self.tableView registerClass:RITLPhotosGroupCell.class forCellReuseIdentifier:@"group"];
     
     //获取数据
     [self loadDefaultAblumGroups];
@@ -40,69 +63,41 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.groups.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    RITLPhotosGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"group" forIndexPath:indexPath];
     
     // Configure the cell...
+    PHAssetCollection *collection = self.groups[indexPath.row];
+    
+    [collection ritl_headerImageWithSize:CGSizeMake(30, 30) mode:PHImageRequestOptionsDeliveryModeOpportunistic complete:^(NSString * _Nonnull title, NSUInteger count, UIImage * _Nullable image) {
+        
+        //set value
+        cell.titleLabel.attributedText = [self titleForCollection:collection count:count];
+        cell.imageView.image = image;
+        
+    }];
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
 
@@ -111,5 +106,51 @@
 
 @implementation RITLPhotosGroupTableViewController (AssetData)
 
+- (void)loadDefaultAblumGroups
+{
+    [PHPhotoLibrary.sharedPhotoLibrary fetchAlbumRegularGroups:^(NSArray<PHAssetCollection *> * _Nonnull groups) {
+       
+        //set
+        self.groups = groups;
+        
+        if (NSThread.isMainThread) {
+            [self.tableView reloadData];//reload
+        }else {
+            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:false];
+        }
+    }];
+}
+
+@end
+
+
+
+
+@implementation RITLPhotosGroupTableViewController (RITLString)
+
+- (NSAttributedString *)titleForCollection:(PHAssetCollection *)collection count:(NSInteger)count
+{
+    //数据拼接
+    NSMutableAttributedString *result = [[NSMutableAttributedString alloc]
+                                         initWithString:collection.localizedTitle
+                                  attributes:@{NSFontAttributeName: RITLUtilityFont(RITLFontPingFangSC_Medium, 15)}];
+    
+    if (count < 0 || count == NSNotFound) {
+        
+        count = 0;
+    }
+    
+    //
+    NSString *countString = [NSString stringWithFormat:@"  (%@)",@(count).stringValue];
+    
+    //数量
+    NSMutableAttributedString *countResult = [[NSMutableAttributedString alloc]
+                                       initWithString:countString
+                                              attributes:@{NSFontAttributeName: RITLUtilityFont(RITLFontPingFangSC_Medium, 15),NSForegroundColorAttributeName:RITLColorSimpleFromIntRBG(102)}];
+    
+    [result appendAttributedString:countResult];
+    
+    return result;
+}
 
 @end

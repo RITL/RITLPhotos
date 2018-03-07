@@ -72,18 +72,18 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 
 #pragma mark - public function
 
-- (void)fetchAlbumRegularGroups:(void (^)(NSArray<PHAssetCollection *> * _Nonnull))groups
-{
-    [self fetchAssetAlbumRegularCollection:^(PHFetchResult * _Nullable albumRegular) {
-       
-        if (!albumRegular) { return; }
-        
-        [albumRegular transToArrayComplete:^(NSArray<id> * _Nonnull array, PHFetchResult * _Nonnull result) {
-            
-            groups(array);
-        }];
-    }];
-}
+//- (void)fetchAlbumRegularGroups:(void (^)(NSArray<PHAssetCollection *> * _Nonnull))groups
+//{
+//    [self fetchAssetAlbumRegularCollection:^(PHFetchResult * _Nullable albumRegular) {
+//
+//        if (!albumRegular) { return; }
+//
+//        [albumRegular transToArrayComplete:^(NSArray<id> * _Nonnull array, PHFetchResult * _Nonnull result) {
+//
+//            groups(array);
+//        }];
+//    }];
+//}
 
 
 
@@ -195,50 +195,6 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 //}
 
 
-/// 获得SmartAlbum
-- (void)fetchAssetAlbumRegularCollection:(void(^)(PHFetchResult * _Nullable albumRegular))albumRegular
-{
-    [self handlerWithAuthorizationAllow:^{
-       
-        albumRegular([PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil]);
-    }];
-}
-
-#pragma mark - 进行权限检测后的操作
-
-///
-- (void)handlerWithAuthorizationAllow:(void(^)(void))hander
-{
-    [self authorizationStatusAllow:^{
-        
-        hander();
-        
-    } denied:^{}];
-}
-
-#pragma mark - 权限检测
-- (void)authorizationStatusAllow:(void(^)(void))allowHander denied:(void(^)(void))deniedHander
-{
-    switch (PHPhotoLibrary.authorizationStatus)
-    {
-        //准许
-        case PHAuthorizationStatusAuthorized: allowHander(); break;
-            
-        //待获取
-        case PHAuthorizationStatusNotDetermined:
-        {
-           [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-              
-               if (status == PHAuthorizationStatusAuthorized) { allowHander(); }//允许，进行回调
-               else { deniedHander(); }
-           }];
-        } break;
-            
-        //不允许,进行无权限回调
-        case PHAuthorizationStatusDenied:
-        case PHAuthorizationStatusRestricted: deniedHander(); break;
-    }
-}
 
 
 

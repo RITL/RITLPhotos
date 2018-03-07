@@ -24,6 +24,8 @@
 		DBCFFE08204F911700D5DAE5 /* PHFetchResult+RITLPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCFFE00204F911700D5DAE5 /* PHFetchResult+RITLPhotos.m */; };
 		DBCFFE09204F911700D5DAE5 /* PHImageRequestOptions+RITLPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCFFE01204F911700D5DAE5 /* PHImageRequestOptions+RITLPhotos.m */; };
 		DBCFFE0A204F911700D5DAE5 /* PHAsset+RITLPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCFFE06204F911700D5DAE5 /* PHAsset+RITLPhotos.m */; };
+		DBCFFE0D204FB4A900D5DAE5 /* PHPhotoLibrary+RITLPhotoStore.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCFFE0C204FB4A900D5DAE5 /* PHPhotoLibrary+RITLPhotoStore.m */; };
+		DBCFFE10204FBAE300D5DAE5 /* RITLPhotosGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCFFE0F204FBAE300D5DAE5 /* RITLPhotosGroupCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,10 @@
 		DBCFFE04204F911700D5DAE5 /* PHImageRequestOptions+RITLPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHImageRequestOptions+RITLPhotos.h"; sourceTree = "<group>"; };
 		DBCFFE05204F911700D5DAE5 /* PHAssetCollection+RITLPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHAssetCollection+RITLPhotos.h"; sourceTree = "<group>"; };
 		DBCFFE06204F911700D5DAE5 /* PHAsset+RITLPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+RITLPhotos.m"; sourceTree = "<group>"; };
+		DBCFFE0B204FB4A900D5DAE5 /* PHPhotoLibrary+RITLPhotoStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHPhotoLibrary+RITLPhotoStore.h"; sourceTree = "<group>"; };
+		DBCFFE0C204FB4A900D5DAE5 /* PHPhotoLibrary+RITLPhotoStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHPhotoLibrary+RITLPhotoStore.m"; sourceTree = "<group>"; };
+		DBCFFE0E204FBAE300D5DAE5 /* RITLPhotosGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLPhotosGroupCell.h; sourceTree = "<group>"; };
+		DBCFFE0F204FBAE300D5DAE5 /* RITLPhotosGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLPhotosGroupCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,8 @@
 		DBCFFDE3204F897800D5DAE5 /* RITLGroup */ = {
 			isa = PBXGroup;
 			children = (
+				DBCFFE0E204FBAE300D5DAE5 /* RITLPhotosGroupCell.h */,
+				DBCFFE0F204FBAE300D5DAE5 /* RITLPhotosGroupCell.m */,
 				DBCFFDEA204F89F900D5DAE5 /* RITLPhotosGroupTableViewController.h */,
 				DBCFFDEB204F89F900D5DAE5 /* RITLPhotosGroupTableViewController.m */,
 			);
@@ -154,6 +162,8 @@
 			children = (
 				DBCFFDF1204F8DAA00D5DAE5 /* RITLPhotosStore.h */,
 				DBCFFDF2204F8DAA00D5DAE5 /* RITLPhotosStore.m */,
+				DBCFFE0B204FB4A900D5DAE5 /* PHPhotoLibrary+RITLPhotoStore.h */,
+				DBCFFE0C204FB4A900D5DAE5 /* PHPhotoLibrary+RITLPhotoStore.m */,
 			);
 			path = RITLPhotoStore;
 			sourceTree = "<group>";
@@ -309,8 +319,10 @@
 				DBA276A51DED28F6007F4E0B /* RITLPhotoMainViewController.m in Sources */,
 				DBCFFDEF204F8A1400D5DAE5 /* RITLPhotosViewController.m in Sources */,
 				DBA276A61DED28F6007F4E0B /* RITLPhotosAppDelegate.m in Sources */,
+				DBCFFE0D204FB4A900D5DAE5 /* PHPhotoLibrary+RITLPhotoStore.m in Sources */,
 				DBCFFE09204F911700D5DAE5 /* PHImageRequestOptions+RITLPhotos.m in Sources */,
 				DBCFFE07204F911700D5DAE5 /* PHAssetCollection+RITLPhotos.m in Sources */,
+				DBCFFE10204FBAE300D5DAE5 /* RITLPhotosGroupCell.m in Sources */,
 				DBCFFE08204F911700D5DAE5 /* PHFetchResult+RITLPhotos.m in Sources */,
 				DBCFFDEC204F89F900D5DAE5 /* RITLPhotosGroupTableViewController.m in Sources */,
 			);
@@ -472,7 +484,7 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = " $(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yue.RITL-Photo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yue.RITLPhotos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -504,7 +516,7 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = " $(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yue.RITL-Photo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yue.RITLPhotos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

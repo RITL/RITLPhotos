@@ -7,14 +7,14 @@
 //
 
 #import "PHAssetCollection+RITLPhotos.h"
+#import "PHImageRequestOptions+RITLPhotos.h"
 #import <objc/runtime.h>
 
 @implementation PHAssetCollection (RITLPhotos)
 
--(void)ritl_headerImageWithSize:(CGSize)size complete:(nonnull void (^)(NSString * _Nonnull, NSUInteger, UIImage * _Nullable))completeBlock
+
+- (void)ritl_headerImageWithSize:(CGSize)size mode:(PHImageRequestOptionsDeliveryMode)mode complete:(void (^)(NSString * _Nonnull, NSUInteger, UIImage * _Nullable))completeBlock
 {
-//    __weak typeof(self) copy_self = self;
-    
     //获取照片资源
     PHFetchResult * assetResult = [PHAsset fetchAssetsInAssetCollection:self options:nil];
     
@@ -38,7 +38,7 @@
     CGSize newSize = CGSizeMake(size.width * scale, size.height * scale);
     
     //开始截取照片
-    [[PHCachingImageManager defaultManager] requestImageForAsset:assetResult.lastObject targetSize:newSize contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    [[PHCachingImageManager defaultManager] requestImageForAsset:assetResult.lastObject targetSize:newSize contentMode:PHImageContentModeAspectFill options:[PHImageRequestOptions requestOptionsWithDeliveryMode:mode] resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         
         objc_setAssociatedObject(self, &@selector(ritl_headerImageWithSize:complete:), result, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
@@ -46,6 +46,15 @@
         completeBlock(self.localizedTitle,count,result);
         
     }];
+}
+
+
+
+-(void)ritl_headerImageWithSize:(CGSize)size complete:(nonnull void (^)(NSString * _Nonnull, NSUInteger, UIImage * _Nullable))completeBlock
+{
+//    __weak typeof(self) copy_self = self;
+    
+    [self ritl_headerImageWithSize:size mode:PHImageRequestOptionsDeliveryModeOpportunistic complete:completeBlock];
 }
 
 

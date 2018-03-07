@@ -12,6 +12,9 @@
 //#import "RITLPhotosCell.h"
 //#import "RITLPhotos.h"
 
+
+#import "RITLPhotosViewController.h"
+
 @interface RITLPhotoMainViewController ()
 <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -59,15 +62,15 @@
 }
 
 
-//- (IBAction)photosItemDidTap:(id)sender
-//{
+- (IBAction)photosItemDidTap:(id)sender
+{
 //    RITLPhotoNavigationViewModel * viewModel = [RITLPhotoNavigationViewModel new];
-//
+
 //    viewModel.bridgeDelegate = self;//优先级高于block回调
-//
+
 //    __weak typeof(self) weakSelf = self;
-//
-//    //设置需要图片剪切的大小，不设置为图片的原比例大小
+
+    //设置需要图片剪切的大小，不设置为图片的原比例大小
 //    viewModel.imageSize = _assetSize;
 //
 //    viewModel.RITLBridgeGetImageBlock = ^(NSArray <UIImage *> * images){
@@ -87,11 +90,11 @@
 //
 //
 //    };
-//
+
 //     RITLPhotoNavigationViewController * viewController = [RITLPhotoNavigationViewController photosViewModelInstance:viewModel];
-//
-//    [self presentViewController:viewController animated:true completion:^{}];
-//}
+
+    [self presentViewController:RITLPhotosViewController.photosViewController animated:true completion:^{}];
+}
 
 
 #pragma mark - RITLPhotoBridgeDelegate

@@ -16,9 +16,17 @@
 @implementation RITLPhotosViewController
 
 
++ (RITLPhotosViewController *)photosViewController
+{
+    return [[self alloc]initWithRootViewController:RITLPhotosGroupTableViewController.new];
+}
+
+
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
     return [super initWithRootViewController:RITLPhotosGroupTableViewController.new];
 }
+
+
 
 @end

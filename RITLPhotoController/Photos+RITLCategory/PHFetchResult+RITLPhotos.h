@@ -48,12 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PHFetchResult (RITLArray)
 
-
-/**
- 转成ObjectType的泛型数组
-
- @param arrayObject
- */
+///泛型数组
 - (void)transToArrayComplete:(void(^)(NSArray <id> *, PHFetchResult *)) arrayObject;
 
 @end
