@@ -45,7 +45,7 @@
 
 
 
--(void)ritl_imageWithSize:(CGSize)size complete:(nonnull void (^)(UIImage * _Nullable, PHAsset * _Nonnull))completeBlock
+-(void)ritl_imageWithSize:(CGSize)size complete:(nonnull void (^)(UIImage * _Nullable, PHAsset * _Nonnull,NSDictionary *info))completeBlock
 {
     __weak typeof(self)copy_self = self;
     
@@ -60,7 +60,7 @@
     
     [[PHCachingImageManager defaultManager]requestImageForAsset:copy_self targetSize:newSize contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         
-        completeBlock(result,copy_self);
+        completeBlock(result,copy_self,info);
         
     }];
     

@@ -92,7 +92,7 @@
             
             [array addObject:obj];
             
-            NSLog(@"identifier = %@",((PHAssetCollection *)obj).localIdentifier);
+//            NSLog(@"identifier = %@",((PHAssetCollection *)obj).localIdentifier);
             
             if (idx == self.count - 1)
             {

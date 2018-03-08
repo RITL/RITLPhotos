@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param completeBlock
  */
 - (void)ritl_imageWithSize:(CGSize)size
-                  complete:(void (^)(UIImage * __nullable image,PHAsset * asset))completeBlock;
+                  complete:(void (^)(UIImage * __nullable image,PHAsset * asset,NSDictionary *info))completeBlock;
 
 /**
  获取PHAsset的高清图片资源

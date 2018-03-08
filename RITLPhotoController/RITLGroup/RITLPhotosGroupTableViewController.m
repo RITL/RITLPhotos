@@ -15,6 +15,9 @@
 
 #import <RITLKit.h>
 
+#pragma mark - 跳转
+#import "RITLPhotosCollectionViewController.h"
+
 
 @interface RITLPhotosGroupTableViewController (AssetData)
 
@@ -26,6 +29,12 @@
 @interface RITLPhotosGroupTableViewController (RITLString)
 
 - (NSAttributedString *)titleForCollection:(PHAssetCollection *)collection count:(NSInteger)count;
+
+@end
+
+@interface RITLPhotosGroupTableViewController (RITLPhotosCollectionViewController)
+
+- (void)pushPhotosCollectionViewController:(NSIndexPath *)indexPath animated:(BOOL)animated;
 
 @end
 
@@ -91,7 +100,6 @@
     return self.groups.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     RITLPhotosGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"group" forIndexPath:indexPath];
@@ -116,6 +124,11 @@
     return 60;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self pushPhotosCollectionViewController:indexPath animated:true];
+}
 
 @end
 
@@ -169,6 +182,29 @@
     [result appendAttributedString:countResult];
     
     return result;
+}
+
+@end
+
+
+
+@implementation RITLPhotosGroupTableViewController (RITLPhotosCollectionViewController)
+
+- (void)pushPhotosCollectionViewController:(NSIndexPath *)indexPath animated:(BOOL)animated
+{
+    PHAssetCollection *collection = self.groups[indexPath.row];
+    
+    [self.navigationController pushViewController:({
+        
+        RITLPhotosCollectionViewController *collectionViewController = RITLPhotosCollectionViewController.photosCollectionController;
+        
+        //设置
+        collectionViewController.navigationItem.title = NSLocalizedString(collection.localizedTitle, @"");
+        collectionViewController.localIdentifier = collection.localIdentifier;
+        
+        collectionViewController;
+        
+    }) animated:animated];
 }
 
 @end
