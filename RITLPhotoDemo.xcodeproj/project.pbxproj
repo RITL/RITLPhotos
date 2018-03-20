@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		16A20F658605C74106DAC503 /* libPods-RITLPhotoDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0C1B984DF64B17C3BF117E /* libPods-RITLPhotoDemo.a */; };
+		DB38E3D820527B83001D550B /* RITLPhotosBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB38E3D720527B83001D550B /* RITLPhotosBottomView.m */; };
 		DB8429BF1FD0110C004E85F7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB8429C11FD0110C004E85F7 /* Localizable.strings */; };
 		DBA276791DED28F6007F4E0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBA276101DED28F5007F4E0B /* Assets.xcassets */; };
 		DBA2767A1DED28F6007F4E0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBA276111DED28F5007F4E0B /* LaunchScreen.storyboard */; };
@@ -38,6 +39,8 @@
 		BF340BD6B80EBA5B4750AEF2 /* Pods-RITLPhotoDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RITLPhotoDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RITLPhotoDemo/Pods-RITLPhotoDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		CE0C1B984DF64B17C3BF117E /* libPods-RITLPhotoDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RITLPhotoDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB302F281D35E3C7007B42C3 /* RITLPhotoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RITLPhotoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB38E3D620527B83001D550B /* RITLPhotosBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RITLPhotosBottomView.h; sourceTree = "<group>"; };
+		DB38E3D720527B83001D550B /* RITLPhotosBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RITLPhotosBottomView.m; sourceTree = "<group>"; };
 		DB8429C01FD0110C004E85F7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DB8429C21FD0110D004E85F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DBA276101DED28F5007F4E0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,6 +124,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DB38E3D520527B6F001D550B /* RITLViews */ = {
+			isa = PBXGroup;
+			children = (
+				DB38E3D620527B83001D550B /* RITLPhotosBottomView.h */,
+				DB38E3D720527B83001D550B /* RITLPhotosBottomView.m */,
+			);
+			path = RITLViews;
+			sourceTree = "<group>";
+		};
 		DB6129A61D4841E400358ED4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				DBCFFE11204FCFF900D5DAE5 /* Resource */,
+				DB38E3D520527B6F001D550B /* RITLViews */,
 				DBCFFDFE204F90F700D5DAE5 /* Photos+RITLCategory */,
 				DBCFFDF0204F8D8F00D5DAE5 /* RITLPhotoStore */,
 				DBCFFDE3204F897800D5DAE5 /* RITLGroup */,
@@ -354,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBA2767C1DED28F6007F4E0B /* main.m in Sources */,
+				DB38E3D820527B83001D550B /* RITLPhotosBottomView.m in Sources */,
 				DBCFFE17204FE35000D5DAE5 /* RITLPhotosCollectionViewController.m in Sources */,
 				DBF1B7F620510E61000B55FB /* RITLPhotoPreviewController.m in Sources */,
 				DBCFFE0A204F911700D5DAE5 /* PHAsset+RITLPhotos.m in Sources */,

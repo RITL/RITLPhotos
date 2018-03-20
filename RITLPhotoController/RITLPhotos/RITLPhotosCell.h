@@ -12,9 +12,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^RITLPhotosCellOperationBlock)(RITLPhotosCell * __nullable cell);
+@protocol RITLPhotosCellActionTarget <NSObject>
+
+@optional
+
+/// 上方的响应按钮被点击
+- (void)photosCellDidTouchUpInSlide:(RITLPhotosCell *)cell;
+
+@end
+
+//typedef void(^RITLPhotosCellOperationBlock)(RITLPhotosCell * __nullable cell);
 
 @interface RITLPhotosCell : UICollectionViewCell
+
+@property (nonatomic, copy) NSString *representedAssetIdentifier;
+
+/// 响应源
+@property (nonatomic, weak, nullable)id <RITLPhotosCellActionTarget> actionTarget;
 
 /// display backgroundImage
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
@@ -30,8 +44,10 @@ typedef void(^RITLPhotosCellOperationBlock)(RITLPhotosCell * __nullable cell);
 
 /// 负责显示选中的按钮
 @property (strong, nonatomic) UIButton * chooseButton;
-/// control对象点击的回调
-@property (nullable, copy, nonatomic)RITLPhotosCellOperationBlock chooseImageDidSelectBlock;
+
+/// 不能点击进行的遮罩层
+@property (nonatomic, strong, readonly)UIView *shadeView;
+
 
 @end
 

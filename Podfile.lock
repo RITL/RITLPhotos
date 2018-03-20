@@ -1,34 +1,34 @@
 PODS:
   - Masonry (1.1.0)
-  - RITLKit (0.3.1):
+  - RITLKit (0.3.2):
     - Masonry
-    - RITLKit/Category (= 0.3.1)
-    - RITLKit/ImagePicker (= 0.3.1)
-    - RITLKit/ScrollPageController (= 0.3.1)
-    - RITLKit/Utility (= 0.3.1)
-    - RITLKit/View (= 0.3.1)
-    - RITLKit/Web (= 0.3.1)
-  - RITLKit/Category (0.3.1):
+    - RITLKit/Category (= 0.3.2)
+    - RITLKit/ImagePicker (= 0.3.2)
+    - RITLKit/ScrollPageController (= 0.3.2)
+    - RITLKit/Utility (= 0.3.2)
+    - RITLKit/View (= 0.3.2)
+    - RITLKit/Web (= 0.3.2)
+  - RITLKit/Category (0.3.2):
     - Masonry
     - RITLKit/Utility
-  - RITLKit/ImagePicker (0.3.1):
+  - RITLKit/ImagePicker (0.3.2):
     - Masonry
-  - RITLKit/ScrollPageController (0.3.1):
+  - RITLKit/ScrollPageController (0.3.2):
     - Masonry
     - RITLKit/Category
-    - RITLKit/ScrollPageController/LLSegmentBar (= 0.3.1)
+    - RITLKit/ScrollPageController/LLSegmentBar (= 0.3.2)
     - RITLKit/Utility
-  - RITLKit/ScrollPageController/LLSegmentBar (0.3.1):
-    - Masonry
-    - RITLKit/Category
-    - RITLKit/Utility
-  - RITLKit/Utility (0.3.1):
-    - Masonry
-  - RITLKit/View (0.3.1):
+  - RITLKit/ScrollPageController/LLSegmentBar (0.3.2):
     - Masonry
     - RITLKit/Category
     - RITLKit/Utility
-  - RITLKit/Web (0.3.1):
+  - RITLKit/Utility (0.3.2):
+    - Masonry
+  - RITLKit/View (0.3.2):
+    - Masonry
+    - RITLKit/Category
+    - RITLKit/Utility
+  - RITLKit/Web (0.3.2):
     - Masonry
     - RITLKit/Category
     - RITLKit/Utility
@@ -38,7 +38,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  RITLKit: 2c454f19edc35f09b58c9abd8c055f9f98785690
+  RITLKit: f10d653abbab346d02d4ec2e4b5e29e5987563f5
 
 PODFILE CHECKSUM: 81275162235877d420a935f5c4213ac1b7ee53eb
 

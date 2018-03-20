@@ -14,6 +14,8 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
 
 @interface RITLPhotosCell ()
 
+/// 不能点击进行的遮罩层
+@property (nonatomic, strong, readwrite)UIView *shadeView;
 
 @end
 
@@ -60,18 +62,31 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
 
 - (void)photosCellWillLoad
 {
-//    _weakSelf = self;
     self.backgroundColor = [UIColor whiteColor];
     
     //add subviews
     [self addSubImageView];
-    [self addChooseControl];
-//    [self addChooseImageView];
     [self addSubMessageView];
     [self addSubMessageImageView];
     [self addSubMessageLabel];
     
+    self.shadeView = ({
+        
+        UIView *view = [UIView new];
+        view.backgroundColor = [UIColor.whiteColor colorWithAlphaComponent:0.6];
+        view.hidden = true;
+        
+        view;
+    });
     
+    [self.contentView addSubview:self.shadeView];
+    
+    [self.shadeView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.edges.offset(0);
+    }];
+    
+    [self addChooseControl];
 }
 
 
@@ -162,26 +177,28 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
     
     [_chooseButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.size.mas_equalTo(CGSizeMake(45, 45));
+        make.size.mas_equalTo(CGSizeMake(40, 40));
         make.top.offset(0);
         make.right.offset(0);
     }];
     
-//    _chooseButton.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    _chooseButton.layer.cornerRadius = 25 / 2.0;
-    _chooseButton.clipsToBounds = true;
     [_chooseButton addTarget:self
                       action:@selector(chooseButtonDidTap:)
             forControlEvents:UIControlEventTouchUpInside];
     
     
-    _chooseButton.imageEdgeInsets = UIEdgeInsetsMake(4, 19, 20, 5);
+    _chooseButton.imageEdgeInsets = UIEdgeInsetsMake(4, 14, 15, 5);
+    
+    /// normal
     [_chooseButton setImage:RITLPhotosCollectionCellDeselectImageName.ritl_image forState:UIControlStateNormal];
 
-
+    /// selected
     [_chooseButton setTitle:@"1" forState:UIControlStateSelected];
-    _chooseButton.imageView.backgroundColor = UIColor.orangeColor;
-
+    [_chooseButton setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
+    _chooseButton.imageView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.15];
+    
+    _chooseButton.imageView.layer.cornerRadius = 21 / 2.0;
+    _chooseButton.imageView.layer.masksToBounds = true;
 }
 
 
@@ -189,10 +206,12 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
 /** 选择按钮被点击 */
 - (IBAction)chooseButtonDidTap:(id)sender
 {
-    if (self.chooseImageDidSelectBlock)
-    {
-        self.chooseImageDidSelectBlock(self);
+    if (self.actionTarget && [self.actionTarget respondsToSelector:@selector(photosCellDidTouchUpInSlide:)]) {
+        
+        [self.actionTarget photosCellDidTouchUpInSlide:self];
     }
+    
+    NSLog(@"点击了！");
 }
 
 

@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PHAsset (RITLPhotos)
 
+
 /**
  获取PHAsset的照片资源
 
@@ -22,13 +23,23 @@ NS_ASSUME_NONNULL_BEGIN
                   complete:(void (^)(UIImage * __nullable image,PHAsset * asset,NSDictionary *info))completeBlock;
 
 /**
- 获取PHAsset的高清图片资源
+ 
+ 获取PHAsset的高清图片的数据大小
 
- @param size 获取图片的大小
  @param completeBlock
  */
-- (void)ritl_hignQualityImageWithSize:(CGSize)size
-                             complete:(void(^)(NSString *imageSize))completeBlock;
+- (void)ritl_hignQualityDataSizeComplete:(void(^)(NSString *imageSize))completeBlock;
+
+
+
+/**
+ 获取PHAsset快速资源
+
+ @param size 获取图片的大小
+ @param completeBlock 
+ */
+- (void)ritl_fastFormatImageWithSize:(CGSize)size
+                            complete:(void(^)(UIImage * __nullable image,PHAsset * asset,NSDictionary *info))completeBlock;
 
 @end
 

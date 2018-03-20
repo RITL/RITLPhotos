@@ -1,11 +1,3 @@
-//
-//  UIButton+RITLExtension.m
-//  RITLKitDemo
-//
-//  Created by YueWen on 2018/1/12.
-//  Copyright © 2018年 YueWen. All rights reserved.
-//
-
 #import "UIButton+RITLKit.h"
 #import "RITLRuntimeTool.h"
 
@@ -22,7 +14,7 @@
 
 ///image
 @property (nonatomic, strong, nullable) UIImage *image;
-@property (nonatomic, strong, nullable) UIImage *backgroundImage;
+//@property (nonatomic, strong, nullable) UIImage *backgroundImage;
 
 
 
@@ -90,21 +82,21 @@
 - (NSMethodSignature *)ritl_methodSignatureForSelector:(SEL)sel
 {
     SEL changedSelector = sel;
-
+    
     if ([self isExtensionGetterSelector:sel])//getter
     {
         changedSelector = @selector(extensionValueForSelName:state:);
         
         return [self.class instanceMethodSignatureForSelector:changedSelector];
     }
-
+    
     else if ([self isExtensionSetterSelector:sel])
     {
         changedSelector = @selector(setButtonExtension:forState:);
         
         return [self.class instanceMethodSignatureForSelector:changedSelector];
     }
-
+    
     return [self ritl_methodSignatureForSelector:sel];
 }
 
@@ -114,10 +106,10 @@
 - (void)ritl_forwardInvocation:(NSInvocation *)invocation
 {
     NSString *propertyName = nil;
-
+    
     // getter
     propertyName = [self isExtensionGetterSelector:invocation.selector];
-
+    
     if (propertyName)
     {
         UIControlState state = [self stateExtension:propertyName];
@@ -128,11 +120,11 @@
         [invocation invokeWithTarget:self];
         return;
     }
-
-
+    
+    
     // setter
     propertyName = [self isExtensionSetterSelector:invocation.selector];
-
+    
     if (propertyName)
     {
         //获得第一个参数
@@ -141,17 +133,17 @@
         
         /// 获得对象
         RITLButtonExtension *obj = [self buttonExtension:propertyName argu:object];
-
+        
         //获得当前状态
         UIControlState state = [self stateExtension:propertyName];
-
+        
         invocation.selector = @selector(setButtonExtension:forState:);
         [invocation setArgument:&obj atIndex:2]; // self, _cmd, obj, state
         [invocation setArgument:&state atIndex:3];
         [invocation invokeWithTarget:self];
         return;
     }
-
+    
     [self ritl_forwardInvocation:invocation];
 }
 
@@ -161,12 +153,12 @@
 - (NSString *)isExtensionGetterSelector:(SEL)selector
 {
     NSString *selectorName = NSStringFromSelector(selector);
-
+    
     if ([selectorName hasPrefix:@"ritl_"]) {//表示getter方法
-
+        
         return selectorName;
     }
-
+    
     return nil;
 }
 
@@ -175,12 +167,12 @@
 - (NSString *)isExtensionSetterSelector:(SEL)selector
 {
     NSString *selectorName = NSStringFromSelector(selector);
-
+    
     if ([selectorName hasPrefix:@"setRitl_"]) {//表示setter方法
-
+        
         return selectorName;
     }
-
+    
     return nil;
 }
 
@@ -201,11 +193,11 @@
         
         return ex.titleShadowColor;
         
-    }else if([selName containsString:@"BackgroundImage"]){
+    }/*else if([selName containsString:@"BackgroundImage"]){
         
         return ex.backgroundImage;
-        
-    }else if ([selName containsString:@"Image"]){
+      
+    }*/else if ([selName containsString:@"Image"]){
         
         return ex.image;
         
@@ -236,11 +228,11 @@
             
             obj.titleShadowColor = object;
             
-        }else if([selName containsString:@"BackgroundImage"]){
+        }/*else if([selName containsString:@"BackgroundImage"]){
             
             obj.backgroundImage = object;
             
-        }else if ([selName containsString:@"Image"]){
+        }*/else if ([selName containsString:@"Image"]){
             
             obj.image = object;
             
@@ -292,11 +284,11 @@
 - (RITLButtonExtension *)defaultExtension:(UIControlState)state
 {
     return [RITLButtonExtension ritlButtonExtension:^(RITLButtonExtension *obj) {
-       
+        
         obj.title = [self titleForState:state];
         obj.attributeTitle = [self attributedTitleForState:state];
         obj.image = [self imageForState:state];
-        obj.backgroundImage = [self backgroundImageForState:state];
+        //obj.backgroundImage = [self backgroundImageForState:state];
         obj.titleColor = [self titleColorForState:state];
         obj.titleShadowColor = [self titleShadowColorForState:state];
     }];
@@ -309,11 +301,10 @@
     [self setAttributedTitle:obj.attributeTitle forState:state];
     
     [self setImage:obj.image forState:state];
-    [self setBackgroundImage:obj.backgroundImage forState:state];
+    //[self setBackgroundImage:obj.backgroundImage forState:state];
     
     [self setTitleColor:obj.titleColor forState:state];
     [self setTitleShadowColor:obj.titleShadowColor forState:state];
 }
 
 @end
-

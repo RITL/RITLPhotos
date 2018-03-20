@@ -11,113 +11,161 @@
 #import <objc/runtime.h>
 #import <RITLKit.h>
 
+
 @implementation PHAsset (RITLPhotos)
 
-- (NSMutableArray *)catcheArray
+#pragma mark - *************** 普通高清 ***************
+- (NSMutableDictionary *)normalCache
 {
-    return objc_getAssociatedObject(self, &@selector(catcheArray));
+    return objc_getAssociatedObject(self, _cmd);
 }
 
-- (void)setCatcheArray:(NSMutableArray *)newArray
+- (void)setNormalCache:(NSMutableDictionary *)set
 {
-    objc_setAssociatedObject(self, &@selector(catcheArray), newArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(normalCache), set, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-
-- (NSMutableArray *)highQualityArray
-{
-    return objc_getAssociatedObject(self, &@selector(highQualityArray));
-}
-
-- (void)setHighQualityArray:(NSMutableArray *)newArray
-{
-    objc_setAssociatedObject(self, &@selector(highQualityArray), newArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSMutableArray *)hignSizeArray
-{
-    return objc_getAssociatedObject(self, &@selector(hignSizeArray));
-}
-
-- (void)setHignSizeArray:(NSMutableArray *)newArray
-{
-    objc_setAssociatedObject(self, &@selector(hignSizeArray), newArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 
 
 -(void)ritl_imageWithSize:(CGSize)size complete:(nonnull void (^)(UIImage * _Nullable, PHAsset * _Nonnull,NSDictionary *info))completeBlock
 {
-    __weak typeof(self)copy_self = self;
-    
-    if (copy_self.catcheArray == nil)
-    {
-        copy_self.catcheArray = [NSMutableArray arrayWithCapacity:0];
+    if (!self.normalCache) {
+        self.normalCache = [NSMutableDictionary dictionaryWithCapacity:10];
     }
     
     CGFloat scale = [UIScreen mainScreen].scale;
     CGSize newSize = CGSizeMake(size.width * scale, size.height * scale);
     
-    
-    [[PHCachingImageManager defaultManager]requestImageForAsset:copy_self targetSize:newSize contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    [[PHCachingImageManager defaultManager]requestImageForAsset:self targetSize:newSize contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         
-        completeBlock(result,copy_self,info);
-        
+        completeBlock(result,self,info);
     }];
     
-    if (![copy_self.catcheArray containsObject:[NSValue valueWithCGSize:size]])
-    {
-        //start catch
-        [((PHCachingImageManager *)[PHCachingImageManager defaultManager])startCachingImagesForAssets:@[copy_self] targetSize:newSize contentMode:PHImageContentModeAspectFill options:nil];
-        
-        [copy_self.catcheArray addObject:[NSValue valueWithCGSize:newSize]];
-    }
+    [self ritl_prefetchImageWithSize:newSize mode:PHImageRequestOptionsDeliveryModeHighQualityFormat options:nil];
 }
 
 
--(void)ritl_hignQualityImageWithSize:(CGSize)size complete:(void (^)(NSString * _Nonnull))completeBlock
+#pragma mark - *************** 高清 ***************
+- (NSMutableDictionary *)highQualitySizeCache
 {
-    CGSize newSize = size;
-    
-    if (!self.highQualityArray)
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setHighQualitySizeCache:(NSMutableDictionary *)set
+{
+    objc_setAssociatedObject(self, @selector(highQualitySizeCache), set, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+
+-(void)ritl_hignQualityDataSizeComplete:(void (^)(NSString * _Nonnull))completeBlock
+{
+    if (!self.highQualitySizeCache)
     {
-        self.highQualityArray = [NSMutableArray arrayWithCapacity:0];
-        self.hignSizeArray = [NSMutableArray arrayWithCapacity:0];
+        self.highQualitySizeCache = [NSMutableDictionary dictionaryWithCapacity:10];
     }
     
+    NSString *imageSizeString = [self.highQualitySizeCache valueForKey:[NSString stringWithFormat:@"high_%@",self.localIdentifier]];
     
-    if ([self.highQualityArray containsObject:[NSValue valueWithCGSize:newSize]])
-    {
-        //获得当前的index
-        NSUInteger index = [self.highQualityArray indexOfObject:[NSValue valueWithCGSize:newSize]];
+    //获得数据
+    if (imageSizeString) {
         
-        //直接返回大小
-        NSString * sizeRerturn = self.hignSizeArray[index];
-        
-        completeBlock(sizeRerturn);return;
+        completeBlock(imageSizeString);
     }
-    
-    __weak typeof(self) weakSelf = self;
-    
+
     //初始化option选项
     PHImageRequestOptions * option = [PHImageRequestOptions requestOptionsWithDeliveryMode:PHImageRequestOptionsDeliveryModeHighQualityFormat];
     
     [[PHCachingImageManager defaultManager]requestImageDataForAsset:self options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
         
-        NSString * imageSize = ritl_sizeWithLength(imageData.length);
+        NSString * imageDataSize = ritl_sizeWithLength(imageData.length);
         
         //数组进行缓存
-        [weakSelf.hignSizeArray addObject:imageSize];
+        [self.highQualitySizeCache setValue:imageDataSize forKey:[NSString stringWithFormat:@"high_%@",self.localIdentifier]];
         
         //将大小传出，默认为btye
-        completeBlock(imageSize);
+        completeBlock(imageDataSize);
         
     }];
-    
-    if (![self.highQualityArray containsObject:[NSValue valueWithCGSize:newSize]])
-    {
-        //进行大小缓存
-        [weakSelf.highQualityArray addObject:[NSValue valueWithCGSize:newSize]];
-    }
 }
+
+#pragma mark - *************** fast ***************
+
+- (NSMutableDictionary *)fastformatCache
+{
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+
+- (void)setFastformatCache:(NSMutableDictionary *)set
+{
+    objc_setAssociatedObject(self, @selector(fastformatCache), set, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+
+
+- (void)ritl_fastFormatImageWithSize:(CGSize)size complete:(void (^)(UIImage * _Nullable, PHAsset * _Nonnull, NSDictionary * _Nonnull))completeBlock
+{
+    if (!self.fastformatCache) {
+        self.fastformatCache = [NSMutableDictionary dictionaryWithCapacity:10];
+    }
+    
+    CGFloat scale = [UIScreen mainScreen].scale;
+    CGSize newSize = CGSizeMake(size.width * scale, size.height * scale);
+    
+    PHImageRequestOptions *options = ({
+        
+        PHImageRequestOptions *options = PHImageRequestOptions.new;
+        options.deliveryMode = PHImageRequestOptionsDeliveryModeFastFormat;
+        options.synchronous = true;
+        
+        options;
+        
+    });
+    
+    [[PHCachingImageManager defaultManager] requestImageForAsset:self targetSize:newSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        
+        completeBlock(result,self,info);
+    }];
+    
+    [self ritl_prefetchImageWithSize:newSize mode:PHImageRequestOptionsDeliveryModeFastFormat options:options];
+}
+
+
+
+#pragma mark - *************** Catche ***************
+
+- (BOOL)ritl_prefetchImageWithSize:(CGSize)size mode:(PHImageRequestOptionsDeliveryMode)mode options:(nullable PHImageRequestOptions *)options
+{
+    NSMutableDictionary *cacheDict = nil;
+    
+    switch (mode){
+            
+        case PHImageRequestOptionsDeliveryModeFastFormat:{//快速
+            cacheDict = self.fastformatCache;
+        }
+        break;
+            
+        case PHImageRequestOptionsDeliveryModeOpportunistic:{
+            cacheDict = self.normalCache;
+        }break;
+            
+        case PHImageRequestOptionsDeliveryModeHighQualityFormat:break;
+    }
+    
+    //如果存在值
+    id cache = [cacheDict valueForKey:NSStringFromCGSize(size)];
+    
+    if (cache) { /*NSLog(@"已经缓存了");*/ return true; }//表示已经进行了缓存
+    
+    //进行缓存
+    [((PHCachingImageManager *)[PHCachingImageManager defaultManager]) startCachingImagesForAssets:@[self] targetSize:size contentMode:PHImageContentModeAspectFill options:options];
+    
+    /*NSLog(@"正在缓存");*/
+    //追加
+    [cacheDict setValue:@"1" forKey:NSStringFromCGSize(size)];
+    
+    return false;//表示没有过缓存
+}
+
+
 
 @end

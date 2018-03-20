@@ -52,16 +52,17 @@
 {
     [self ritl_layoutSubviews];
 
-    if (!self.ritl_badgeLabel.hidden) {
-        
-        //进行布局
-        self.ritl_badgeLabel.ritl_height = self.ritl_badgeSize.height;
-        self.ritl_badgeLabel.ritl_width = self.ritl_badgeSize.width;
-        self.ritl_badgeLabel.ritl_originY = self.ritl_badgeInset.top;
-        self.ritl_badgeLabel.ritl_originX = self.ritl_width - self.ritl_badgeLabel.ritl_width / 2.0 - self.ritl_badgeInset.right;
-        
-        self.ritl_badgeLabel.layer.cornerRadius = MIN(self.ritl_badgeLabel.ritl_height, self.ritl_badgeLabel.ritl_width) / 2.0;
-    }
+    if(objc_getAssociatedObject(self, @selector(ritl_badgeLabel))) { return; }
+
+    if (self.ritl_badgeLabel.hidden) { return; }
+
+    //进行布局
+    self.ritl_badgeLabel.ritl_height = self.ritl_badgeSize.height;
+    self.ritl_badgeLabel.ritl_width = self.ritl_badgeSize.width;
+    self.ritl_badgeLabel.ritl_originY = self.ritl_badgeInset.top;
+    self.ritl_badgeLabel.ritl_originX = self.ritl_width - self.ritl_badgeLabel.ritl_width / 2.0 - self.ritl_badgeInset.right;
+
+    self.ritl_badgeLabel.layer.cornerRadius = MIN(self.ritl_badgeLabel.ritl_height, self.ritl_badgeLabel.ritl_width) / 2.0;
 }
 
 

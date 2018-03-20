@@ -10,6 +10,7 @@
 #import "RITLPhotoPreviewController.h"
 
 #import "RITLPhotosCell.h"
+#import "RITLPhotosBottomView.h"
 
 #import "PHAsset+RITLPhotos.h"
 #import "NSString+RITLPhotos.h"
@@ -18,11 +19,30 @@
 #import <Masonry.h>
 #import <Photos/Photos.h>
 
-@interface RITLPhotosCollectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIViewControllerPreviewingDelegate>
 
+typedef NSString RITLDifferencesKey;
+static RITLDifferencesKey *const RITLDifferencesKeyAdded = @"RITLDifferencesKeyAdded";
+static RITLDifferencesKey *const RITLDifferencesKeyRemoved = @"RITLDifferencesKeyRemoved";
+
+@interface UICollectionView (RITLPhotosCollectionViewController)
+
+- (NSArray <NSIndexPath *>*)indexPathsForElementsInRect:(CGRect)rect;
+
+@end
+
+
+@interface RITLPhotosCollectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIViewControllerPreviewingDelegate,UICollectionViewDataSourcePrefetching>
+
+// data
 @property (nonatomic, strong)UICollectionView *collectionView;
 @property (nonatomic, strong)PHAssetCollection *assetCollection;
 @property (nonatomic, strong)PHFetchResult <PHAsset *> *assets;
+
+@property (nonatomic, strong) PHCachingImageManager* imageManager;
+@property (nonatomic, assign) CGRect previousPreheatRect;
+
+// view
+@property (nonatomic, strong) RITLPhotosBottomView *bottomView;
 
 @end
 
@@ -36,28 +56,56 @@ static NSString *const reuseIdentifier = @"photo";
 }
 
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+       
+        self.imageManager = [PHCachingImageManager new];
+        self.previousPreheatRect = CGRectZero;
+    }
+    
+    return self;
+}
+
+
+- (void)resetCachedAssets
+{
+    [self.imageManager stopCachingImagesForAllAssets];
+    self.previousPreheatRect = CGRectZero;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = UIColor.whiteColor;
     
     // NavigationItem
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancle" style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
     
-    
     // Register cell classes
     [self.collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
+    self.bottomView = RITLPhotosBottomView.new;
+    self.bottomView.backgroundColor = UIColor.blackColor;
+    
     // Do any additional setup after loading the view.
     [self.view addSubview:self.collectionView];
+    [self.view addSubview:self.bottomView];
     
     // Layout
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.top.right.bottom.offset(0);
+        make.bottom.left.right.offset(0);
+        make.height.mas_equalTo(RITL_DefaultTabBarHeight);
     }];
     
-//    self.collectionView.dataSource = self;
-//    self.collectionView.delegate = self;
-    
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.top.right.offset(0);
+        make.bottom.equalTo(self.bottomView.mas_top).offset(0);
+    }];
+
     //加载数据
     if (!self.localIdentifier) { return; }
     
@@ -67,16 +115,25 @@ static NSString *const reuseIdentifier = @"photo";
     self.assets = [PHAsset fetchAssetsInAssetCollection:self.assetCollection options:nil];
     
     //reload
+    self.collectionView.hidden = true;
     [self.collectionView reloadData];
     
     if (self.assets.count < 1) { return; }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-    
-        //进行滚动
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.assets.count - 1 inSection:0]atScrollPosition:UICollectionViewScrollPositionBottom animated:false];
-        
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//
+//        //进行滚动
+//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.assets.count - 1 inSection:0]atScrollPosition:UICollectionViewScrollPositionBottom animated:false];
+//
+        self.collectionView.hidden = false;
+//
+//    });
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateCachedAssets];
 }
 
 
@@ -84,6 +141,94 @@ static NSString *const reuseIdentifier = @"photo";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - *************** cache ***************
+
+- (void)updateCachedAssets
+{
+    if (!self.isViewLoaded || self.view.window == nil) { return; }
+    
+    //可视化
+    CGRect visibleRect = CGRectMake(self.collectionView.ritl_contentOffSetX, self.collectionView.ritl_contentOffSetY, self.collectionView.ritl_width, self.collectionView.ritl_height);
+    
+    //进行拓展
+    CGRect preheatRect = CGRectInset(visibleRect, 0, -0.5 * visibleRect.size.height);
+    
+    //只有可视化的区域与之前的区域有显著的区域变化才需要更新
+    CGFloat delta = ABS(CGRectGetMidY(preheatRect) - CGRectGetMidY(self.previousPreheatRect));
+    if (delta <= self.view.ritl_height / 3.0) { return; }
+    
+    //获得比较后需要进行预加载以及需要停止缓存的区域
+    NSDictionary *differences = [self differencesBetweenRects:self.previousPreheatRect new:preheatRect];
+    NSArray <NSValue *> *addedRects = differences[RITLDifferencesKeyAdded];
+    NSArray <NSValue *> *removedRects = differences[RITLDifferencesKeyRemoved];
+    
+    ///进行提前缓存的资源
+    NSArray <PHAsset *> *addedAssets = [[[addedRects ritl_map:^id _Nonnull(NSValue * _Nonnull rectValue) {
+        return [self.collectionView indexPathsForElementsInRect:rectValue.CGRectValue];
+        
+    }] ritl_reduce:@[] reduceHandler:^NSArray * _Nonnull(NSArray * _Nonnull result, NSArray <NSIndexPath *>*_Nonnull items) {
+        return [result arrayByAddingObjectsFromArray:items];
+        
+    }] ritl_map:^id _Nonnull(NSIndexPath *_Nonnull index) {
+        return [self.assets objectAtIndex:index.item];
+        
+    }];
+    
+    ///提前停止缓存的资源
+    NSArray <PHAsset *> *removedAssets = [[[removedRects ritl_map:^id _Nonnull(NSValue * _Nonnull rectValue) {
+        return [self.collectionView indexPathsForElementsInRect:rectValue.CGRectValue];
+        
+    }] ritl_reduce:@[] reduceHandler:^NSArray * _Nonnull(NSArray * _Nonnull result, NSArray <NSIndexPath *>* _Nonnull items) {
+        return [result arrayByAddingObjectsFromArray:items];
+        
+    }] ritl_map:^id _Nonnull(NSIndexPath *_Nonnull index) {
+        return [self.assets objectAtIndex:index.item];
+    }];
+    
+    CGSize thimbnailSize = [self collectionView:self.collectionView layout:self.collectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    
+    //更新缓存
+    [self.imageManager startCachingImagesForAssets:addedAssets targetSize:thimbnailSize contentMode:PHImageContentModeAspectFill options:nil];
+    [self.imageManager stopCachingImagesForAssets:removedAssets targetSize:thimbnailSize contentMode:PHImageContentModeAspectFill options:nil];
+    
+    //记录当前位置
+    self.previousPreheatRect = preheatRect;
+}
+
+
+- (NSDictionary <RITLDifferencesKey*,NSArray<NSValue *>*> *)differencesBetweenRects:(CGRect)old new:(CGRect)new
+{
+    if (CGRectIntersectsRect(old, new)) {//如果区域交叉
+        
+        NSMutableArray <NSValue *> * added = [NSMutableArray arrayWithCapacity:10];
+        if (CGRectGetMaxY(new) > CGRectGetMaxY(old)) {//表示上拉
+            [added addObject:[NSValue valueWithCGRect:CGRectMake(new.origin.x, CGRectGetMaxY(old), new.size.width, CGRectGetMaxY(new) - CGRectGetMaxY(old))]];
+        }
+        
+        if(CGRectGetMinY(old) > CGRectGetMinY(new)){//表示下拉
+            
+            [added addObject:[NSValue valueWithCGRect:CGRectMake(new.origin.x, CGRectGetMinY(new), new.size.width, CGRectGetMinY(old) - CGRectGetMinY(new))]];
+        }
+        
+        NSMutableArray <NSValue *> * removed = [NSMutableArray arrayWithCapacity:10];
+        if (CGRectGetMaxY(new) < CGRectGetMaxY(old)) {//表示下拉
+            [removed addObject:[NSValue valueWithCGRect:CGRectMake(new.origin.x, CGRectGetMaxY(new), new.size.width, CGRectGetMaxY(old) - CGRectGetMaxY(new))]];
+        }
+        
+        if (CGRectGetMinY(old) < CGRectGetMinY(new)) {//表示上拉
+            
+            [removed addObject:[NSValue valueWithCGRect:CGRectMake(new.origin.x, CGRectGetMinY(old), new.size.width, CGRectGetMinY(new) - CGRectGetMinY(old))]];
+        }
+        
+        return @{RITLDifferencesKeyAdded:added,
+                 RITLDifferencesKeyRemoved:removed};
+    }else {
+        
+        return @{RITLDifferencesKeyAdded:@[[NSValue valueWithCGRect:new]],
+                 RITLDifferencesKeyRemoved:@[[NSValue valueWithCGRect:old]]};
+    }
 }
 
 #pragma mark - Dismiss
@@ -125,16 +270,18 @@ static NSString *const reuseIdentifier = @"photo";
     CGSize size = [self collectionView:collectionView layout:collectionView.collectionViewLayout sizeForItemAtIndexPath:indexPath];
     
     // Configure the cell
-    [asset ritl_imageWithSize:size complete:^(UIImage * _Nullable image, PHAsset * _Nonnull asset, NSDictionary * _Nonnull info) {
+    cell.representedAssetIdentifier = asset.localIdentifier;
+    [self.imageManager requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         
-        cell.imageView.image = image;
-        
-        //设置时长
-        cell.messageView.hidden = (asset.mediaType == PHAssetMediaTypeImage);
-        
-        if (cell.messageView.hidden) { return; }
-        
-        cell.messageLabel.text = [NSString timeStringWithTimeDuration:asset.duration];
+        if ([cell.representedAssetIdentifier isEqualToString:asset.localIdentifier] && result) {
+            cell.imageView.image = result;
+            
+            cell.messageView.hidden = (asset.mediaType == PHAssetMediaTypeImage);
+            
+            if (cell.imageView.hidden) { return; }
+            
+            cell.messageLabel.text = [NSString timeStringWithTimeDuration:asset.duration];
+        }
     }];
     
     //注册3D Touch
@@ -148,36 +295,14 @@ static NSString *const reuseIdentifier = @"photo";
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
+#pragma mark <UIScrollViewDelegate>
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self updateCachedAssets];
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
 
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 #pragma mark <UICollectionViewDelegateFlowLayout>
 
@@ -185,7 +310,7 @@ static NSString *const reuseIdentifier = @"photo";
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat sizeHeight = (collectionView.ritl_width - 3.0f * 3) / 4;
+    CGFloat sizeHeight = (RITL_SCREEN_WIDTH - 3.0f * 3) / 4;
     
     return CGSizeMake(sizeHeight, sizeHeight);
 }
@@ -237,6 +362,14 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 //    [self.viewModel didSelectItemAtIndexPath:indexPath];
 }
 
+#pragma mark - <UICollectionViewDataSourcePrefetching>
+
+- (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_AVAILABLE_IOS(10_0)
+{
+
+}
+
+
 #pragma mark -
 
 -(UICollectionView *)collectionView
@@ -248,8 +381,11 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
         //protocol
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
+
+        if (@available(iOS 10.0,*)) {
+            _collectionView.prefetchDataSource = self;
+        }
         
-        //
         _collectionView.allowsMultipleSelection = true;
         
 //#ifdef __IPHONE_10_0
@@ -269,6 +405,22 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
     }
     
     return _collectionView;
+}
+
+@end
+
+
+@implementation UICollectionView (RITLPhotosCollectionViewController)
+
+
+- (NSArray<NSIndexPath *> *)indexPathsForElementsInRect:(CGRect)rect
+{
+    NSArray <UICollectionViewLayoutAttributes*> *allLayoutAttributes = [self.collectionViewLayout layoutAttributesForElementsInRect:rect];
+    
+    return [allLayoutAttributes ritl_map:^id _Nonnull(UICollectionViewLayoutAttributes * _Nonnull attribute) {
+        
+        return attribute.indexPath;
+    }];
 }
 
 @end
