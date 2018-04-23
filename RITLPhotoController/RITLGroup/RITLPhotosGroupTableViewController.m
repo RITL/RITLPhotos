@@ -63,9 +63,17 @@
     
     //cell
     [self.tableView registerClass:RITLPhotosGroupCell.class forCellReuseIdentifier:@"group"];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
-    //获取数据
-    [self loadDefaultAblumGroups];
+    if (self.groups.count == 0) {
+        
+        [self loadDefaultAblumGroups];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

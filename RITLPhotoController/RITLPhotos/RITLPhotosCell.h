@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-//typedef void(^RITLPhotosCellOperationBlock)(RITLPhotosCell * __nullable cell);
 
 @interface RITLPhotosCell : UICollectionViewCell
 

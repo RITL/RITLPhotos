@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		16A20F658605C74106DAC503 /* libPods-RITLPhotoDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0C1B984DF64B17C3BF117E /* libPods-RITLPhotoDemo.a */; };
 		DB38E3D820527B83001D550B /* RITLPhotosBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB38E3D720527B83001D550B /* RITLPhotosBottomView.m */; };
-		DB8429BF1FD0110C004E85F7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB8429C11FD0110C004E85F7 /* Localizable.strings */; };
 		DBA276791DED28F6007F4E0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBA276101DED28F5007F4E0B /* Assets.xcassets */; };
 		DBA2767A1DED28F6007F4E0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBA276111DED28F5007F4E0B /* LaunchScreen.storyboard */; };
 		DBA2767C1DED28F6007F4E0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA276141DED28F5007F4E0B /* main.m */; };
@@ -41,8 +40,6 @@
 		DB302F281D35E3C7007B42C3 /* RITLPhotoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RITLPhotoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB38E3D620527B83001D550B /* RITLPhotosBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RITLPhotosBottomView.h; sourceTree = "<group>"; };
 		DB38E3D720527B83001D550B /* RITLPhotosBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RITLPhotosBottomView.m; sourceTree = "<group>"; };
-		DB8429C01FD0110C004E85F7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		DB8429C21FD0110D004E85F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DBA276101DED28F5007F4E0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBA276121DED28F5007F4E0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBA276131DED28F5007F4E0B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,7 +142,6 @@
 		DBA2760F1DED28F5007F4E0B /* RITLPhotoDemo */ = {
 			isa = PBXGroup;
 			children = (
-				DB8429C11FD0110C004E85F7 /* Localizable.strings */,
 				DBA276101DED28F5007F4E0B /* Assets.xcassets */,
 				DBA276111DED28F5007F4E0B /* LaunchScreen.storyboard */,
 				DBA276131DED28F5007F4E0B /* Info.plist */,
@@ -246,8 +242,6 @@
 				DB302F241D35E3C7007B42C3 /* Sources */,
 				DB302F251D35E3C7007B42C3 /* Frameworks */,
 				DB302F261D35E3C7007B42C3 /* Resources */,
-				6B4E25924D1E63257C9B37CF /* [CP] Embed Pods Frameworks */,
-				EEC21D578ACC40EA0459E464 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -300,7 +294,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBA276791DED28F6007F4E0B /* Assets.xcassets in Resources */,
-				DB8429BF1FD0110C004E85F7 /* Localizable.strings in Resources */,
 				DBA2767A1DED28F6007F4E0B /* LaunchScreen.storyboard in Resources */,
 				DBA2767D1DED28F6007F4E0B /* Main.storyboard in Resources */,
 				DBA276A71DED28F6007F4E0B /* LaunchScreen.strings in Resources */,
@@ -327,36 +320,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6B4E25924D1E63257C9B37CF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RITLPhotoDemo/Pods-RITLPhotoDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EEC21D578ACC40EA0459E464 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RITLPhotoDemo/Pods-RITLPhotoDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -389,15 +352,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DB8429C11FD0110C004E85F7 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DB8429C01FD0110C004E85F7 /* zh-Hans */,
-				DB8429C21FD0110D004E85F7 /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
 		DBA276111DED28F5007F4E0B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -23,9 +23,6 @@
         //选出对象
         PHAssetCollection *userLibrary = [sortCollections ritl_filter:^BOOL(PHAssetCollection * _Nonnull item) {
             
-//            NSLog(@"title = %@, item = %@",item.localizedTitle,@(item.assetCollectionSubtype));
-            
-            
             return (item.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary);
             
         }].ritl_safeFirstObject;

@@ -36,7 +36,8 @@
         
         UIButton *view = [UIButton new];
         view.adjustsImageWhenHighlighted = false;
-        view.backgroundColor = [UIColor whiteColor];
+        view.backgroundColor = [UIColor clearColor];
+        view.titleLabel.font = [UIFont systemFontOfSize:15];
         
         [view setTitle:NSLocalizedString(@"预览", @"") forState:UIControlStateNormal];
         [view setTitle:NSLocalizedString(@"预览", @"") forState:UIControlStateDisabled];
@@ -101,6 +102,7 @@
         
         make.centerY.offset(0);
         make.left.offset(10);
+        make.width.mas_equalTo(40);
     }];
     
     [self.fullImageButton mas_makeConstraints:^(MASConstraintMaker *make) {

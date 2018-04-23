@@ -34,9 +34,9 @@ static RITLDifferencesKey *const RITLDifferencesKeyRemoved = @"RITLDifferencesKe
 @interface RITLPhotosCollectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIViewControllerPreviewingDelegate,UICollectionViewDataSourcePrefetching>
 
 // data
-@property (nonatomic, strong)UICollectionView *collectionView;
-@property (nonatomic, strong)PHAssetCollection *assetCollection;
-@property (nonatomic, strong)PHFetchResult <PHAsset *> *assets;
+@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) PHAssetCollection *assetCollection;
+@property (nonatomic, strong) PHFetchResult <PHAsset *> *assets;
 
 @property (nonatomic, strong) PHCachingImageManager* imageManager;
 @property (nonatomic, assign) CGRect previousPreheatRect;
@@ -75,6 +75,17 @@ static NSString *const reuseIdentifier = @"photo";
 }
 
 
+- (PHAssetCollection *)assetCollection
+{
+    if (!_assetCollection) {
+        
+        _assetCollection = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil].firstObject;
+    }
+    
+    return _assetCollection;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -87,7 +98,7 @@ static NSString *const reuseIdentifier = @"photo";
     [self.collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     self.bottomView = RITLPhotosBottomView.new;
-    self.bottomView.backgroundColor = UIColor.blackColor;
+    self.bottomView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.6];
     
     // Do any additional setup after loading the view.
     [self.view addSubview:self.collectionView];
@@ -107,10 +118,11 @@ static NSString *const reuseIdentifier = @"photo";
     }];
 
     //加载数据
-    if (!self.localIdentifier) { return; }
-    
-    //加载
-    self.assetCollection = [PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[self.localIdentifier] options:nil].firstObject;
+    if (self.localIdentifier) {
+        
+        //加载
+        self.assetCollection = [PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[self.localIdentifier] options:nil].firstObject;
+    }
     
     self.assets = [PHAsset fetchAssetsInAssetCollection:self.assetCollection options:nil];
     
@@ -118,24 +130,51 @@ static NSString *const reuseIdentifier = @"photo";
     self.collectionView.hidden = true;
     [self.collectionView reloadData];
     
-    if (self.assets.count < 1) { return; }
+    //设置itemTitle
+    self.navigationItem.title = self.assetCollection.localizedTitle;
     
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//
-//        //进行滚动
-//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.assets.count - 1 inSection:0]atScrollPosition:UICollectionViewScrollPositionBottom animated:false];
-//
-        self.collectionView.hidden = false;
-//
-//    });
+    //计算行数,并滑动到最后一行
+    [self collectionViewScrollToBottomAnimatedNone];
+    self.collectionView.hidden = false;
 }
+
+
+- (void)collectionViewScrollToBottomAnimatedNone
+{
+    //获得所有的数据个数
+    NSInteger itemCount = self.assets.count;
+    
+    if (itemCount < 4) { return; }
+    
+    //获得行数
+    NSInteger row = itemCount % 4 == 0 ? itemCount / 4 : itemCount / 4 + 1;
+    
+    //item
+    CGFloat itemHeight = (RITL_SCREEN_WIDTH - 3.0f * 3) / 4;
+    
+    //进行高度换算
+    CGFloat height = row * itemHeight;
+    height += 3.0 * (row - 1);
+    
+    //扩展contentSize
+    self.collectionView.ritl_contentSizeHeight = height;
+    
+    //底部bottom
+    CGFloat bottomHeight = RITL_DefaultTabBarHeight;
+    
+    //可以显示的区域
+    CGFloat showSapce = RITL_SCREEN_HEIGHT - RITL_DefaultNaviBarHeight - bottomHeight;
+    
+    //进行单位换算
+    self.collectionView.ritl_contentOffSetY = MAX(0,height - showSapce);
+}
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self updateCachedAssets];
 }
-
 
 
 - (void)didReceiveMemoryWarning {
@@ -331,7 +370,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - <UIViewControllerPreviewingDelegate>
-//#warning 会出现内存泄露，临时不使用
+
 - (nullable UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 {
     //获取当前cell的indexPath
@@ -387,6 +426,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
         }
         
         _collectionView.allowsMultipleSelection = true;
+   
         
 //#ifdef __IPHONE_10_0
 //        if ([UIDevice currentDevice].systemVersion.floatValue >= 10.0f)

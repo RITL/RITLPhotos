@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -45,6 +47,43 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 获得逆序的方法
 - (nullable ObjectType)ritl_revertObjectAtIndex:(NSInteger)index;
+
+@end
+
+
+@interface NSArray (CoreGraphic)
+
+/**
+ x,y
+ @[@44] => Point(44,44)
+ @[@44,@50] => Point(44,50)
+ */
+@property (nonatomic, assign, readonly)CGPoint ritl_point;
+
+/**
+ width,height
+ @[@44] => Size(44,44)
+ @[@44,@50] => Size(44,50)
+ */
+@property (nonatomic, assign, readonly)CGSize ritl_size;
+
+/**
+ x,y,width,height
+ @[@10]             => CGRect(10,10,10,10)
+ @[@10,@20]         => CGRect(10,10,20,20)
+ @[@10,@20,@30]     => CGRect(10,20,30,30)
+ @[@10,@20,@30,@40] => CGRect(10,20,30,40)
+ */
+@property (nonatomic, assign, readonly)CGRect ritl_rect;
+
+/**
+ top,left,bottom,right
+ @[@10]             => Insets(10,10,10,10)
+ @[@10,@20]         => Insets(10,20,10,20)
+ @[@10,@20,@30]     => Insets(10,20,30,20)
+ @[@10,@20,@30,@40] => Insets(10,20,30,40)
+ */
+@property (nonatomic, assign, readonly)UIEdgeInsets ritl_insets;
 
 @end
 

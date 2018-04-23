@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PHPhotoLibrary (RITLPhotoStore)
 
 
-
 /// 获取photos提供的所有的智能分类相册组
 - (void)fetchAlbumRegularGroups:(void(^)(NSArray <PHAssetCollection *> *))complete;
 /// 获取的将'胶卷相册'放在第一位

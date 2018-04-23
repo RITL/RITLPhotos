@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,36 +18,29 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yjO-lI-3G4">
-                                <rect key="frame" x="150" y="150" width="300" height="300"/>
-                                <color key="backgroundColor" red="0.40477729919011995" green="1" blue="0.75864266517792567" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="WOq-mL-ky7"/>
-                                    <constraint firstAttribute="height" constant="300" id="sy5-sj-hN3"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hia-xE-cdH">
-                                <rect key="frame" x="277.5" y="289.5" width="45.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="xeI-z9-aGK">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.96470588239999999" green="1" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="1" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="hia-xE-cdH" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="5yS-70-Qst"/>
-                            <constraint firstItem="yjO-lI-3G4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="b5A-Gm-2hQ"/>
-                            <constraint firstItem="yjO-lI-3G4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="s8s-5Y-tKU"/>
-                            <constraint firstItem="hia-xE-cdH" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tVe-K7-en1"/>
+                            <constraint firstItem="xeI-z9-aGK" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="3DC-dM-ldo"/>
+                            <constraint firstItem="xeI-z9-aGK" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="F3m-J3-EAF"/>
+                            <constraint firstAttribute="trailing" secondItem="xeI-z9-aGK" secondAttribute="trailing" id="eV1-Zm-LZM"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="xeI-z9-aGK" secondAttribute="bottom" id="fnp-HH-I1N"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-100" y="302"/>
+            <point key="canvasLocation" x="-314" y="301"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="launch" width="360" height="640"/>
+    </resources>
 </document>

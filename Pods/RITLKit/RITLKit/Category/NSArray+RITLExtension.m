@@ -121,5 +121,105 @@
 @end
 
 
+@implementation NSArray (CoreGraphic)
+
+- (CGSize)ritl_size
+{
+    if (!self.ritl_isCoreGraphic) { return CGSizeZero; }
+    
+    if (self.count == 1) {
+        
+        return CGSizeMake([self.firstObject floatValue], [self.firstObject floatValue]);
+        
+    }else if(self.count == 2){
+        
+        return CGSizeMake([self.firstObject floatValue], [self[1] floatValue]);
+    }
+    
+    return CGSizeZero;
+}
+
+
+- (CGPoint)ritl_point
+{
+    if (!self.ritl_isCoreGraphic) { return CGPointZero; }
+    
+    if (self.count == 1) {
+        
+        return CGPointMake([self.firstObject floatValue], [self.firstObject floatValue]);
+        
+    }else if(self.count == 2){
+        
+        return CGPointMake([self.firstObject floatValue], [self[1] floatValue]);
+    }
+    
+    return CGPointZero;
+}
+
+
+
+- (CGRect)ritl_rect
+{
+    if (!self.ritl_isCoreGraphic) { return CGRectZero; }
+    
+    if (self.count == 1) {
+        
+        return CGRectMake([self.firstObject floatValue], [self.firstObject floatValue], [self.firstObject floatValue], [self.firstObject floatValue]);
+        
+    }else if(self.count == 2){
+        
+        return CGRectMake([self.firstObject floatValue], [self.firstObject floatValue], [self[1] floatValue], [self[1] floatValue]);
+        
+    }else if(self.count == 3){
+        
+        return CGRectMake([self.firstObject floatValue], [self[1] floatValue], [self[2] floatValue], [self[2] floatValue]);
+        
+    }else if(self.count == 4){
+        
+        return CGRectMake([self.firstObject floatValue], [self[1] floatValue], [self[2] floatValue], [self[3] floatValue]);
+    }
+    
+    return CGRectZero;
+}
+
+- (UIEdgeInsets)ritl_insets
+{
+    if (!self.ritl_isCoreGraphic) { return UIEdgeInsetsZero; }
+    
+    if (self.count == 1) {
+        
+        return UIEdgeInsetsMake([self.firstObject floatValue], [self.firstObject floatValue], [self.firstObject floatValue], [self.firstObject floatValue]);
+        
+    }else if(self.count == 2){
+        
+        return UIEdgeInsetsMake([self.firstObject floatValue], [self[1] floatValue], [self.firstObject floatValue], [self[1] floatValue]);
+        
+    }else if(self.count == 3){
+        
+        return UIEdgeInsetsMake([self.firstObject floatValue], [self[1] floatValue], [self[2] floatValue], [self[1] floatValue]);
+        
+    }else if(self.count == 4){
+        
+        return UIEdgeInsetsMake([self.firstObject floatValue], [self[1] floatValue], [self[2] floatValue], [self[3] floatValue]);
+    }
+    
+    return UIEdgeInsetsZero;
+}
+
+
+
+
+- (BOOL)ritl_isCoreGraphic
+{
+    return [self ritl_filter:^BOOL(id _Nonnull item) {
+        
+         return [item isKindOfClass:NSNumber.class];
+        
+    }].count == self.count;
+}
+
+@end
+
+
 
 

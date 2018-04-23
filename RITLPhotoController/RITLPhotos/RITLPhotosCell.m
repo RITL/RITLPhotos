@@ -21,13 +21,6 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
 
 @implementation RITLPhotosCell
 
--(void)dealloc
-{
-#ifdef YDEBUG
-//    NSLog(@"YPPhotosCell Dealloc");
-#endif
-}
-
 -(void)prepareForReuse
 {
     //重置所有数据

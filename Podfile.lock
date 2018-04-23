@@ -1,45 +1,50 @@
 PODS:
   - Masonry (1.1.0)
-  - RITLKit (0.3.2):
+  - RITLKit (0.3.3):
     - Masonry
-    - RITLKit/Category (= 0.3.2)
-    - RITLKit/ImagePicker (= 0.3.2)
-    - RITLKit/ScrollPageController (= 0.3.2)
-    - RITLKit/Utility (= 0.3.2)
-    - RITLKit/View (= 0.3.2)
-    - RITLKit/Web (= 0.3.2)
-  - RITLKit/Category (0.3.2):
+    - RITLKit/Category (= 0.3.3)
+    - RITLKit/ImagePicker (= 0.3.3)
+    - RITLKit/ScrollPageController (= 0.3.3)
+    - RITLKit/Utility (= 0.3.3)
+    - RITLKit/View (= 0.3.3)
+    - RITLKit/Web (= 0.3.3)
+  - RITLKit/Category (0.3.3):
     - Masonry
     - RITLKit/Utility
-  - RITLKit/ImagePicker (0.3.2):
+  - RITLKit/ImagePicker (0.3.3):
     - Masonry
-  - RITLKit/ScrollPageController (0.3.2):
+  - RITLKit/ScrollPageController (0.3.3):
     - Masonry
     - RITLKit/Category
-    - RITLKit/ScrollPageController/LLSegmentBar (= 0.3.2)
+    - RITLKit/ScrollPageController/LLSegmentBar (= 0.3.3)
     - RITLKit/Utility
-  - RITLKit/ScrollPageController/LLSegmentBar (0.3.2):
-    - Masonry
-    - RITLKit/Category
-    - RITLKit/Utility
-  - RITLKit/Utility (0.3.2):
-    - Masonry
-  - RITLKit/View (0.3.2):
+  - RITLKit/ScrollPageController/LLSegmentBar (0.3.3):
     - Masonry
     - RITLKit/Category
     - RITLKit/Utility
-  - RITLKit/Web (0.3.2):
+  - RITLKit/Utility (0.3.3):
+    - Masonry
+  - RITLKit/View (0.3.3):
+    - Masonry
+    - RITLKit/Category
+    - RITLKit/Utility
+  - RITLKit/Web (0.3.3):
     - Masonry
     - RITLKit/Category
     - RITLKit/Utility
 
 DEPENDENCIES:
-  - RITLKit
+  - RITLKit (~> 0.3.3)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Masonry
+    - RITLKit
 
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  RITLKit: f10d653abbab346d02d4ec2e4b5e29e5987563f5
+  RITLKit: e4c2009493d0e14361589f69afbffdfa76a04be3
 
-PODFILE CHECKSUM: 81275162235877d420a935f5c4213ac1b7ee53eb
+PODFILE CHECKSUM: cc2e1701acf4eae069035b419cd7988836fda0eb
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

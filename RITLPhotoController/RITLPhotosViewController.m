@@ -8,6 +8,7 @@
 
 #import "RITLPhotosViewController.h"
 #import "RITLPhotosGroupTableViewController.h"
+#import "RITLPhotosCollectionViewController.h"
 
 @interface RITLPhotosViewController ()
 
@@ -18,15 +19,31 @@
 
 + (RITLPhotosViewController *)photosViewController
 {
-    return [[self alloc]initWithRootViewController:RITLPhotosGroupTableViewController.new];
+    return self.new;
 }
 
 
-- (instancetype)initWithRootViewController:(UIViewController *)rootViewController
+//- (instancetype)init
+//{
+//    if (self = [super init]) {
+//        
+//        self.viewControllers = @[RITLPhotosGroupTableViewController.new,
+//                                 RITLPhotosCollectionViewController.new];
+//    }
+//    
+//    return self;
+//}
+
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    return [super initWithRootViewController:RITLPhotosGroupTableViewController.new];
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        
+        self.viewControllers = @[RITLPhotosGroupTableViewController.new,
+                                 RITLPhotosCollectionViewController.new];
+    }
+    
+    return self;
 }
-
-
 
 @end
