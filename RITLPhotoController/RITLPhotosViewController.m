@@ -23,17 +23,6 @@
 }
 
 
-//- (instancetype)init
-//{
-//    if (self = [super init]) {
-//        
-//        self.viewControllers = @[RITLPhotosGroupTableViewController.new,
-//                                 RITLPhotosCollectionViewController.new];
-//    }
-//    
-//    return self;
-//}
-
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

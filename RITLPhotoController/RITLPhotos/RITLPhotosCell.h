@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class PHAsset;
 @class RITLPhotosCell;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -17,36 +18,37 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 /// 上方的响应按钮被点击
-- (void)photosCellDidTouchUpInSlide:(RITLPhotosCell *)cell;
+- (void)photosCellDidTouchUpInSlide:(RITLPhotosCell *)cell asset:(PHAsset *)asset indexPath:(NSIndexPath *)indexPath;
 
 @end
 
 
 @interface RITLPhotosCell : UICollectionViewCell
 
+/// 避免重复赋值
 @property (nonatomic, copy) NSString *representedAssetIdentifier;
-
 /// 响应源
 @property (nonatomic, weak, nullable)id <RITLPhotosCellActionTarget> actionTarget;
-
-/// display backgroundImage
+/// 显示照片的视图
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
-
-/// default hidden is true
+/// 展示视频出现的信息搭载视图，默认为隐藏
 @property (strong, nonatomic) IBOutlet UIView *messageView;
-
-/// imageView in messageView to show the kind of asset
+/// 显示索引的标签
+@property (strong, nonatomic) IBOutlet UILabel *indexLabel;
+/// 展示视频时的录像小图标
 @property (strong, nonatomic) IBOutlet UIImageView *messageImageView;
-
-/// label in messageVie to show the information
+/// 展示视频时长的小标签
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
 
-/// 负责显示选中的按钮
-@property (strong, nonatomic) UIButton * chooseButton;
 
+/// 负责显示选中的按钮
+@property (strong, nonatomic) UIButton *chooseButton;
 /// 不能点击进行的遮罩层
 @property (nonatomic, strong, readonly)UIView *shadeView;
 
+
+@property (nonatomic, weak, nullable) PHAsset *asset;
+@property (nonatomic, strong, nullable) NSIndexPath *indexPath;
 
 @end
 

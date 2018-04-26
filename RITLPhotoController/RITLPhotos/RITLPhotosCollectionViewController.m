@@ -31,7 +31,14 @@ static RITLDifferencesKey *const RITLDifferencesKeyRemoved = @"RITLDifferencesKe
 @end
 
 
-@interface RITLPhotosCollectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIViewControllerPreviewingDelegate,UICollectionViewDataSourcePrefetching>
+@interface RITLPhotosCollectionViewController ()<UICollectionViewDataSource,
+                                                 UICollectionViewDelegateFlowLayout,
+                                                 UIViewControllerPreviewingDelegate,
+                                                 UICollectionViewDataSourcePrefetching,
+                                                 RITLPhotosCellActionTarget>
+
+// Library
+@property (nonatomic, strong) PHPhotoLibrary *photoLibrary;
 
 // data
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -61,6 +68,7 @@ static NSString *const reuseIdentifier = @"photo";
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
        
         self.imageManager = [PHCachingImageManager new];
+        self.photoLibrary = PHPhotoLibrary.sharedPhotoLibrary;
         self.previousPreheatRect = CGRectZero;
     }
     
@@ -98,7 +106,7 @@ static NSString *const reuseIdentifier = @"photo";
     [self.collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     self.bottomView = RITLPhotosBottomView.new;
-    self.bottomView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.6];
+    self.bottomView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:1];
     
     // Do any additional setup after loading the view.
     [self.view addSubview:self.collectionView];
@@ -313,8 +321,11 @@ static NSString *const reuseIdentifier = @"photo";
     [self.imageManager requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         
         if ([cell.representedAssetIdentifier isEqualToString:asset.localIdentifier] && result) {
-            cell.imageView.image = result;
             
+            cell.actionTarget = self;
+            cell.asset = asset;
+            cell.indexPath = indexPath;
+            cell.imageView.image = result;
             cell.messageView.hidden = (asset.mediaType == PHAssetMediaTypeImage);
             
             if (cell.imageView.hidden) { return; }
@@ -401,12 +412,6 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 //    [self.viewModel didSelectItemAtIndexPath:indexPath];
 }
 
-#pragma mark - <UICollectionViewDataSourcePrefetching>
-
-- (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_AVAILABLE_IOS(10_0)
-{
-
-}
 
 
 #pragma mark -
@@ -420,31 +425,22 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
         //protocol
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-
-        if (@available(iOS 10.0,*)) {
-            _collectionView.prefetchDataSource = self;
-        }
-        
         _collectionView.allowsMultipleSelection = true;
    
-        
-//#ifdef __IPHONE_10_0
-//        if ([UIDevice currentDevice].systemVersion.floatValue >= 10.0f)
-//        {
-//            _collectionView.prefetchDataSource = self;
-//        }
-        
-//#endif
-        
         //property
         _collectionView.backgroundColor = [UIColor whiteColor];
-        
-//        //register View
-//        [_collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:cellIdentifier];
-//        [_collectionView registerClass:[RITLPhotoBottomReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:reusableViewIdentifier];
+
     }
     
     return _collectionView;
+}
+
+
+#pragma mark - <RITLPhotosCellActionTarget>
+
+- (void)photosCellDidTouchUpInSlide:(RITLPhotosCell *)cell asset:(PHAsset *)asset indexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"点击啦! section = %@,item = %@",@(indexPath.section),@(indexPath.item));
 }
 
 @end

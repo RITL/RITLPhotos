@@ -7,16 +7,15 @@
 //
 
 #import "RITLPhotosGroupTableViewController.h"
-
 #import "RITLPhotosGroupCell.h"
-
 #import "PHAssetCollection+RITLPhotos.h"
 #import "PHPhotoLibrary+RITLPhotoStore.h"
+#import "RITLPhotosCollectionViewController.h"
 
 #import <RITLKit.h>
 
-#pragma mark - 跳转
-#import "RITLPhotosCollectionViewController.h"
+
+static NSString *const RITLGroupTableViewControllerPlaceHolderImageName = @"RITLPhotos.bundle/ritl_placeholder";
 
 
 @interface RITLPhotosGroupTableViewController (AssetData)
@@ -119,7 +118,8 @@
         
         //set value
         cell.titleLabel.attributedText = [self titleForCollection:collection count:count];
-        cell.imageView.image = image;
+        
+        cell.imageView.image = count > 0 ? image : RITLGroupTableViewControllerPlaceHolderImageName.ritl_image;
         
     }];
     

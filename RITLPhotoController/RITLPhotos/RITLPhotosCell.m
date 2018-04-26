@@ -29,7 +29,7 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
     self.messageView.hidden = true;
     self.messageImageView.image = nil;
     self.messageLabel.text = @"";
-//    self.chooseImageView.image = RITLPhotoDeselectedImage;
+    self.indexLabel.text = @"";
 }
 
 
@@ -62,6 +62,32 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
     [self addSubMessageView];
     [self addSubMessageImageView];
     [self addSubMessageLabel];
+    [self addChooseControl];
+    
+    self.indexLabel = ({
+        
+        UILabel *label = [UILabel new];
+        label.backgroundColor = RITLColorFromIntRBG(9, 187, 7);
+        label.text = @"0";
+        label.font = RITLUtilityFont(RITLFontPingFangSC_Regular, 12);
+        label.textColor = UIColor.whiteColor;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.layer.cornerRadius = 21 / 2.0;
+        label.layer.masksToBounds = true;
+        
+        label;
+    });
+    
+    [self.contentView addSubview:self.indexLabel];
+    
+    [self.indexLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.width.height.mas_equalTo(21);
+        make.right.inset(5);
+        make.top.offset(4);
+    }];
+    
+    
     
     self.shadeView = ({
         
@@ -79,7 +105,7 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
         make.edges.offset(0);
     }];
     
-    [self addChooseControl];
+
 }
 
 
@@ -199,12 +225,10 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
 /** 选择按钮被点击 */
 - (IBAction)chooseButtonDidTap:(id)sender
 {
-    if (self.actionTarget && [self.actionTarget respondsToSelector:@selector(photosCellDidTouchUpInSlide:)]) {
+    if (self.actionTarget && [self.actionTarget respondsToSelector:@selector(photosCellDidTouchUpInSlide:asset:indexPath:)]) {
         
-        [self.actionTarget photosCellDidTouchUpInSlide:self];
+        [self.actionTarget photosCellDidTouchUpInSlide:self asset:self.asset indexPath:self.indexPath];
     }
-    
-    NSLog(@"点击了！");
 }
 
 

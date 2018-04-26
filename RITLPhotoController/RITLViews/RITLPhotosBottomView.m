@@ -51,14 +51,22 @@
     self.fullImageButton = ({
         
         UIButton *view = [UIButton new];
-        view.adjustsImageWhenHighlighted = false;
-        view.backgroundColor = [UIColor whiteColor];
+//        view.adjustsImageWhenHighlighted = false;
+//        view.backgroundColor = [UIColor whiteColor];
+        view.imageEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 40);
+        view.titleEdgeInsets = UIEdgeInsetsMake(0, -60, 0, 0);
         
+//        [view setImage:@"RITLPhotos.bundle/ritl_bottomUnselected".ritl_image forState:UIControlStateNormal];
+        [view setImage:@"RITLPhotos.bundle/ritl_bottomSelected".ritl_image forState:UIControlStateNormal];
+        
+        view.titleLabel.font = [UIFont systemFontOfSize:14];
         [view setTitle:NSLocalizedString(@"原图", @"") forState:UIControlStateNormal];
         [view setTitle:NSLocalizedString(@"原图", @"") forState:UIControlStateSelected];
         
+ 
+        
         [view setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-        [view setTitleColor:RITLColorFromIntRBG(105, 109, 113) forState:UIControlStateSelected];
+//        [view setTitleColor:RITLColorFromIntRBG(105, 109, 113) forState:UIControlStateSelected];
         
         view;
     });
@@ -67,7 +75,7 @@
         
         UIButton *view = [UIButton new];
         view.adjustsImageWhenHighlighted = false;
-        view.backgroundColor = [UIColor whiteColor];
+//        view.backgroundColor = [UIColor whiteColor];
         
         view.titleLabel.font = RITLUtilityFont(RITLFontPingFangSC_Regular, 13);
         
@@ -108,6 +116,8 @@
     [self.fullImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.center.offset(0);
+        make.height.mas_equalTo(30);
+        make.width.mas_equalTo(60);
     }];
     
     [self.sendButton mas_makeConstraints:^(MASConstraintMaker *make) {

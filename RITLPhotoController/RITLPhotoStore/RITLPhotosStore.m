@@ -411,7 +411,7 @@ typedef void(^PHAssetCollectionBlock)(NSArray<PHAssetCollection *> * groups);
 //    }
 //}
 //
-//@end
+//@endÏ
 
 //
 //@implementation RITLPhotosStore (NSDeprecated)
