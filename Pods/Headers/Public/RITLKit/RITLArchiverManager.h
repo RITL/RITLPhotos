@@ -1,1 +1,1 @@
-../../../RITLKit/RITLKit/Utility/RITLArchiverManager.h
+../../../RITLKit/RITLKit/Utility/Utility/RITLArchiverManager.h

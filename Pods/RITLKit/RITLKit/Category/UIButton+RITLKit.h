@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 目前存在bug,崩溃的代码已经注释
+
 @protocol RITLSetterButton <NSObject>
 
 @optional //只是为了消除警告,实际为`@required`

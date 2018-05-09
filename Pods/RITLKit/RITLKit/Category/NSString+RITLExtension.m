@@ -19,7 +19,7 @@
     NSMutableAttributedString *attibuteResult = [[NSMutableAttributedString alloc]initWithString:@""];
     
     //自身文字
-    NSString * handleString = [NSString stringWithFormat:@"%@ ",self];
+    NSString * handleString = [NSString stringWithFormat:@"%@",self];
     
     NSMutableAttributedString * attributeString = [[NSMutableAttributedString alloc]initWithString:handleString attributes:attributes];
     
@@ -30,13 +30,7 @@
     NSAttributedString * imageAttributeString = [NSAttributedString attributedStringWithAttachment:textAttachement];
     NSMutableAttributedString *imageHandler = [[NSMutableAttributedString alloc]initWithAttributedString:imageAttributeString];
     [imageHandler addAttribute:NSUnderlineColorAttributeName value:[UIColor clearColor] range:NSMakeRange(0, imageHandler.length)];
-    
-//    //替换
-//    [attributeString replaceCharactersInRange:[handleString rangeOfString:@"Y"] withAttributedString:imageAttributeString];
-//
-//    [attributeString addAttribute:NSBaselineOffsetAttributeName value:value range:[handleString rangeOfString:@"Y"]];
-//
-//    [attributeString addAttribute:NSUnderlineColorAttributeName value:[UIColor clearColor] range:NSMakeRange(0, attributeString.length)];
+    [imageHandler addAttribute:NSBaselineOffsetAttributeName value:value range:NSMakeRange(0, imageHandler.length)];
     
     //拼接
     [attibuteResult appendAttributedString:attributeString];

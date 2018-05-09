@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class PHAsset;
 
 /// @brief 响应3D Touch出现的控制器
-@interface RITLPhotoPreviewController : UIViewController
+@interface RITLPhotosPreviewController : UIViewController
 
 /// 资源大小
 @property (nonatomic, readonly, assign) CGSize assetSize;

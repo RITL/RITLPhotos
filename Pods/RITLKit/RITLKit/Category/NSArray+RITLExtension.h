@@ -17,21 +17,21 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSArray<__covariant ObjectType> (RITLExtension)
 
 /// 数组转换的map函数
-- (NSArray *)ritl_detailMap:(id(^)(ObjectType,NSInteger))mapHandler;
-- (NSArray *)ritl_map:(id(^)(ObjectType))mapHander;
+- (NSArray *)ritl_detailMap:(id(^)(ObjectType obj,NSInteger index))mapHandler;
+- (NSArray *)ritl_map:(id(^)(ObjectType obj))mapHander;
 
 
 
 /// 数组过滤器的filter函数
-- (NSArray *)ritl_detailFilter:(BOOL(^)(ObjectType,NSInteger))filterHandler;
-- (NSArray *)ritl_filter:(BOOL(^)(ObjectType))filterHandler;
+- (NSArray *)ritl_detailFilter:(BOOL(^)(ObjectType obj,NSInteger index))filterHandler;
+- (NSArray *)ritl_filter:(BOOL(^)(ObjectType obj))filterHandler;
 
 
 /// 数组变换的reduce函数
 - (NSArray *)ritl_detailReduce:(NSArray *)initial
-                reduceHandler:(NSArray *(^)(NSArray *,id,NSInteger))reduceHandler;
+                reduceHandler:(NSArray *(^)(NSArray *result,id obj,NSInteger index))reduceHandler;
 - (NSArray *)ritl_reduce:(NSArray *)initial
-          reduceHandler:(NSArray *(^)(NSArray *,id))reduceHandler;
+          reduceHandler:(NSArray *(^)(NSArray *result,id obj))reduceHandler;
 
 
 
@@ -51,7 +51,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
+
 @interface NSArray (CoreGraphic)
+
 
 /**
  x,y
@@ -84,6 +86,13 @@ NS_ASSUME_NONNULL_BEGIN
  @[@10,@20,@30,@40] => Insets(10,20,30,40)
  */
 @property (nonatomic, assign, readonly)UIEdgeInsets ritl_insets;
+
+/**
+ loc,length
+ @[@10]         => Range(10,10)
+ @[@10,@20]     => Range(10,20)
+ */
+@property (nonatomic, assign, readonly)NSRange ritl_range;
 
 @end
 

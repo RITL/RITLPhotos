@@ -7,17 +7,21 @@
 //
 
 #import "RITLPhotosCollectionViewController.h"
-#import "RITLPhotoPreviewController.h"
+#import "RITLPhotosPreviewController.h"
+#import "RITLPhotosHorBrowseViewController.h"
 
 #import "RITLPhotosCell.h"
 #import "RITLPhotosBottomView.h"
 
 #import "PHAsset+RITLPhotos.h"
 #import "NSString+RITLPhotos.h"
+#import "PHPhotoLibrary+RITLPhotoStore.h"
 
 #import <RITLKit.h>
 #import <Masonry.h>
 #import <Photos/Photos.h>
+
+
 
 
 typedef NSString RITLDifferencesKey;
@@ -86,7 +90,7 @@ static NSString *const reuseIdentifier = @"photo";
 - (PHAssetCollection *)assetCollection
 {
     if (!_assetCollection) {
-        
+
         _assetCollection = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil].firstObject;
     }
     
@@ -106,7 +110,7 @@ static NSString *const reuseIdentifier = @"photo";
     [self.collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     self.bottomView = RITLPhotosBottomView.new;
-    self.bottomView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:1];
+    self.bottomView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.8];
     
     // Do any additional setup after loading the view.
     [self.view addSubview:self.collectionView];
@@ -127,27 +131,36 @@ static NSString *const reuseIdentifier = @"photo";
 
     //加载数据
     if (self.localIdentifier) {
-        
         //加载
         self.assetCollection = [PHAssetCollection fetchAssetCollectionsWithLocalIdentifiers:@[self.localIdentifier] options:nil].firstObject;
     }
     
-    self.assets = [PHAsset fetchAssetsInAssetCollection:self.assetCollection options:nil];
+    //进行权限检测
+    [self.photoLibrary authorizationStatusAllow:^{
+        
+        self.assets = [PHAsset fetchAssetsInAssetCollection:self.assetCollection options:nil];
+        
+        //reload
+        self.collectionView.hidden = true;
+        [self.collectionView reloadData];
+        
+        //设置itemTitle
+        self.navigationItem.title = self.assetCollection.localizedTitle;
+        
+        //计算行数,并滑动到最后一行
+        self.collectionView.hidden = false;
+        
+        [self collectionViewScrollToBottomAnimatedNoneHandler:^NSInteger(NSInteger row) {
+
+            return row;
+        }];
+        
+    } denied:^{}];
     
-    //reload
-    self.collectionView.hidden = true;
-    [self.collectionView reloadData];
-    
-    //设置itemTitle
-    self.navigationItem.title = self.assetCollection.localizedTitle;
-    
-    //计算行数,并滑动到最后一行
-    [self collectionViewScrollToBottomAnimatedNone];
-    self.collectionView.hidden = false;
 }
 
 
-- (void)collectionViewScrollToBottomAnimatedNone
+- (void)collectionViewScrollToBottomAnimatedNoneHandler:(NSInteger(^)(NSInteger row))handler
 {
     //获得所有的数据个数
     NSInteger itemCount = self.assets.count;
@@ -156,6 +169,8 @@ static NSString *const reuseIdentifier = @"photo";
     
     //获得行数
     NSInteger row = itemCount % 4 == 0 ? itemCount / 4 : itemCount / 4 + 1;
+    
+    if (handler) { row = handler(row); }
     
     //item
     CGFloat itemHeight = (RITL_SCREEN_WIDTH - 3.0f * 3) / 4;
@@ -328,6 +343,11 @@ static NSString *const reuseIdentifier = @"photo";
             cell.imageView.image = result;
             cell.messageView.hidden = (asset.mediaType == PHAssetMediaTypeImage);
             
+            if (@available(iOS 9.1,*)) {
+                
+                cell.liveBadgeImageView.hidden = !(asset.mediaSubtypes == PHAssetMediaSubtypePhotoLive);
+            }
+            
             if (cell.imageView.hidden) { return; }
             
             cell.messageLabel.text = [NSString timeStringWithTimeDuration:asset.duration];
@@ -380,6 +400,24 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
     return 3.f;
 }
 
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    //获取当前的资源
+    PHAsset *asset = [self.assets objectAtIndex:indexPath.item];
+    //跳出控制器
+    [self.navigationController pushViewController:({
+        
+        RITLPhotosHorBrowseViewController *browerController = RITLPhotosHorBrowseViewController.new;
+        
+        browerController.collection = self.assetCollection;
+        browerController.asset = asset;
+        
+        browerController;
+        
+    }) animated:true];
+}
+
 #pragma mark - <UIViewControllerPreviewingDelegate>
 
 - (nullable UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
@@ -397,7 +435,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
         return nil;
     }
     
-    RITLPhotoPreviewController * viewController = [RITLPhotoPreviewController previewWithShowAsset:asset];
+    RITLPhotosPreviewController * viewController = [RITLPhotosPreviewController previewWithShowAsset:asset];
     
     return viewController;
 }
@@ -406,10 +444,22 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 - (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit
 {
     //获取当前cell的indexPath
-//    NSIndexPath * indexPath = [self.collectionView indexPathForCell:(RITLPhotosCell *)previewingContext.sourceView];
+    NSIndexPath * indexPath = [self.collectionView indexPathForCell:(RITLPhotosCell *)previewingContext.sourceView];
     
+    //获取当前的资源
+    PHAsset *asset = [self.assets objectAtIndex:indexPath.item];
     
-//    [self.viewModel didSelectItemAtIndexPath:indexPath];
+    //跳出控制器
+    [self.navigationController pushViewController:({
+        
+        RITLPhotosHorBrowseViewController *browerController = RITLPhotosHorBrowseViewController.new;
+        
+        browerController.collection = self.assetCollection;
+        browerController.asset = asset;
+        
+        browerController;
+        
+    }) animated:true];
 }
 
 
@@ -429,7 +479,6 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
    
         //property
         _collectionView.backgroundColor = [UIColor whiteColor];
-
     }
     
     return _collectionView;
@@ -447,7 +496,6 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
 
 @implementation UICollectionView (RITLPhotosCollectionViewController)
-
 
 - (NSArray<NSIndexPath *> *)indexPathsForElementsInRect:(CGRect)rect
 {

@@ -1,1 +1,1 @@
-../../../RITLKit/RITLKit/Utility/RITLViewExtension.h
+../../../RITLKit/RITLKit/Utility/Utility/RITLViewExtension.h

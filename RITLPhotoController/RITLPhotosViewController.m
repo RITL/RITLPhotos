@@ -17,7 +17,7 @@
 @implementation RITLPhotosViewController
 
 
-+ (RITLPhotosViewController *)photosViewController
++ (instancetype)photosViewController
 {
     return self.new;
 }

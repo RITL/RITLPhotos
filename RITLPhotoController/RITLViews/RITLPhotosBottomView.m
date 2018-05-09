@@ -28,6 +28,7 @@
     self.contentView = ({
         
         UIView *view = [UIView new];
+        view.backgroundColor = UIColor.clearColor;
 
         view;
     });
@@ -51,22 +52,19 @@
     self.fullImageButton = ({
         
         UIButton *view = [UIButton new];
-//        view.adjustsImageWhenHighlighted = false;
-//        view.backgroundColor = [UIColor whiteColor];
+
         view.imageEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 40);
         view.titleEdgeInsets = UIEdgeInsetsMake(0, -60, 0, 0);
         
-//        [view setImage:@"RITLPhotos.bundle/ritl_bottomUnselected".ritl_image forState:UIControlStateNormal];
-        [view setImage:@"RITLPhotos.bundle/ritl_bottomSelected".ritl_image forState:UIControlStateNormal];
+        [view setImage:@"RITLPhotos.bundle/ritl_bottomUnselected".ritl_image forState:UIControlStateNormal];
+        [view setImage:@"RITLPhotos.bundle/ritl_bottomSelected".ritl_image forState:UIControlStateSelected];
         
         view.titleLabel.font = [UIFont systemFontOfSize:14];
         [view setTitle:NSLocalizedString(@"原图", @"") forState:UIControlStateNormal];
         [view setTitle:NSLocalizedString(@"原图", @"") forState:UIControlStateSelected];
         
  
-        
         [view setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-//        [view setTitleColor:RITLColorFromIntRBG(105, 109, 113) forState:UIControlStateSelected];
         
         view;
     });
@@ -75,7 +73,6 @@
         
         UIButton *view = [UIButton new];
         view.adjustsImageWhenHighlighted = false;
-//        view.backgroundColor = [UIColor whiteColor];
         
         view.titleLabel.font = RITLUtilityFont(RITLFontPingFangSC_Regular, 13);
         
@@ -127,14 +124,6 @@
         make.width.mas_equalTo(65);
         make.height.mas_equalTo(30);
     }];
-}
-
-
-
-- (void)setBackgroundColor:(UIColor *)backgroundColor
-{
-    [super setBackgroundColor:backgroundColor];
-    self.contentView.backgroundColor = backgroundColor;
 }
 
 @end

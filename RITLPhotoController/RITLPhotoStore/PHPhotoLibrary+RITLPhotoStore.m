@@ -95,8 +95,11 @@
         {
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
                 
-                if (status == PHAuthorizationStatusAuthorized) { allowHander(); }//允许，进行回调
-                else { deniedHander(); }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if (status == PHAuthorizationStatusAuthorized) { allowHander(); }//允许，进行回调
+                    else { deniedHander(); }
+                });
             }];
         } break;
             

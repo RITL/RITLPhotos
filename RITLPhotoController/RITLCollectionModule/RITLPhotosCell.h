@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIImageView *messageImageView;
 /// 展示视频时长的小标签
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
+/// 支持iOS9.1之后的livePhoto
+@property (nonatomic, strong) UIImageView *liveBadgeImageView;
 
 
 /// 负责显示选中的按钮

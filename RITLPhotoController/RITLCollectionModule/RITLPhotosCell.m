@@ -7,6 +7,7 @@
 //
 
 #import "RITLPhotosCell.h"
+#import <PhotosUI/PhotosUI.h>
 #import <Masonry.h>
 #import <RITLKit.h>
 
@@ -33,8 +34,6 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
 }
 
 
-
-
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])
@@ -45,11 +44,11 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
     return self;
 }
 
+
 -(void)awakeFromNib
 {
     [super awakeFromNib];
     [self photosCellWillLoad];
-
 }
 
 
@@ -74,7 +73,7 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
         label.textAlignment = NSTextAlignmentCenter;
         label.layer.cornerRadius = 21 / 2.0;
         label.layer.masksToBounds = true;
-        
+        label.hidden = true;
         label;
     });
     
@@ -87,7 +86,32 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
         make.top.offset(4);
     }];
     
+    self.liveBadgeImageView = ({
+        
+        UIImageView *imageView = [UIImageView new];
+        imageView.backgroundColor = UIColor.clearColor;
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.hidden = true;
+        
+        if (@available(iOS 9.1,*)) {
+            
+            imageView.image = [PHLivePhotoView livePhotoBadgeImageWithOptions:PHLivePhotoBadgeOptionsOverContent];
+        }
     
+        imageView;
+    });
+    
+    if (RITL_iOS_Version_GreaterThanOrEqualTo(9.1)) {
+        
+        [self.contentView addSubview:self.liveBadgeImageView];
+        
+        [self.liveBadgeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.bottom.inset(3);
+            make.left.offset(3);
+            make.width.and.height.mas_equalTo(28);
+        }];
+    }
     
     self.shadeView = ({
         
@@ -104,7 +128,6 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
        
         make.edges.offset(0);
     }];
-    
 
 }
 

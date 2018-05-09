@@ -6,20 +6,20 @@
 //  Copyright © 2017年 YueWen. All rights reserved.
 //
 
-#import "RITLPhotoPreviewController.h"
+#import "RITLPhotosPreviewController.h"
 
 #import "PHAsset+RITLPhotos.h"
 
 #import <RITLKit.h>
 #import <Masonry.h>
 
-@interface RITLPhotoPreviewController ()
+@interface RITLPhotosPreviewController ()
 
 @property (nonatomic, strong)UIImageView * imageView;
 
 @end
 
-@implementation RITLPhotoPreviewController
+@implementation RITLPhotosPreviewController
 
 -(instancetype)initWithShowAsset:(PHAsset *)showAsset
 {

@@ -208,6 +208,22 @@
 
 
 
+- (NSRange)ritl_range
+{
+    if (!self.ritl_isCoreGraphic) { return NSMakeRange(0, 0); }
+    
+    if (self.count == 1) {
+        
+        return NSMakeRange([self.firstObject floatValue], [self.firstObject floatValue]);
+        
+    }else if(self.count == 2){
+        
+        return NSMakeRange([self.firstObject floatValue], [self[1] floatValue]);
+    }
+    
+    return NSMakeRange(0, 0);
+}
+
 
 - (BOOL)ritl_isCoreGraphic
 {

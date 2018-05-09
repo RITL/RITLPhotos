@@ -1,1 +1,1 @@
-../../../RITLKit/RITLKit/Utility/RITLDictionaryProxy.h
+../../../RITLKit/RITLKit/Utility/Utility/RITLDictionaryProxy.h

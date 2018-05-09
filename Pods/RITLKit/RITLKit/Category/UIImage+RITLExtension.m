@@ -52,7 +52,7 @@
     NSUInteger dataSize = imageData.length;
     
     // 进行KB转换
-    CGFloat sizeKB = dataSize / 1024.0 / 8.0;
+    CGFloat sizeKB = dataSize / 1024 ;
     
     return sizeKB;
 }
@@ -72,14 +72,14 @@
 {
     if (![self ritl_sizeIsGetterThan:size]) {//如果不大于，直接返回自己
         
-        return UIImageJPEGRepresentation(self, 1.0);
+        return UIImagePNGRepresentation(self);
     }
     
     // 进行KB转换
     CGFloat sizeKB = self.ritl_sizeWithKB;
     
     //进行比例兑换
-    CGFloat scale = size / sizeKB;
+    CGFloat scale = MAX(MIN(size / sizeKB,1),0);
     
     // 返回压缩后的图片
     return UIImageJPEGRepresentation(self, scale);
