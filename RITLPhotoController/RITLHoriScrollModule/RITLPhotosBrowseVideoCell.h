@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 用于播放视频的cell
 @interface RITLPhotosBrowseVideoCell : UICollectionViewCell
 
+/// 显示图片的imageView
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
 /// 显示播放的视图
 @property (nonatomic, strong) UIImageView *playImageView;
 

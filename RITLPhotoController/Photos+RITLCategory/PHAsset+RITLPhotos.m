@@ -166,6 +166,25 @@
     return false;//表示没有过缓存
 }
 
+@end
 
+
+@implementation PHAsset (RITLBrowse)
+
+- (NSString *)ritl_type
+{
+    if (self.mediaType == PHAssetMediaTypeVideo) { return @"video"; }
+    
+    else if(self.mediaType == PHAssetMediaTypeImage){
+        
+        if (RITL_iOS_Version_GreaterThanOrEqualTo(9.1)) {
+        
+            return self.mediaSubtypes == PHAssetMediaSubtypePhotoLive ? @"livephoto" : @"photo";
+        }
+        
+        return @"photo";
+    }
+    return @"";
+}
 
 @end

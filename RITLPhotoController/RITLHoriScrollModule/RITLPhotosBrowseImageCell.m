@@ -37,19 +37,13 @@
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
-    if (self = [super initWithFrame:frame])
-    {
+    if (self = [super initWithFrame:frame]) {
         [self browerCellLoad];
     }
     
     return self;
 }
 
--(void)awakeFromNib
-{
-    [super awakeFromNib];
-    [self browerCellLoad];
-}
 
 - (void)browerCellLoad
 {
@@ -58,8 +52,8 @@
     
     [self createBottomScrollView];
     [self createImageView];
-    [self createDoubleTapGesture];
-    [self createSimpleTapGesture];
+//    [self createDoubleTapGesture];
+//    [self createSimpleTapGesture];
 }
 
 
@@ -110,7 +104,6 @@
             make.edges.equalTo(weakSelf.bottomScrollView);
             make.width.equalTo(weakSelf.bottomScrollView.mas_width);
             make.height.equalTo(weakSelf.bottomScrollView.mas_height);
-            
         }];
     }
 }

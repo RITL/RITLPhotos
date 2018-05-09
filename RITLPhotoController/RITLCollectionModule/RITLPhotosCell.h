@@ -25,8 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RITLPhotosCell : UICollectionViewCell
 
-/// 避免重复赋值
-@property (nonatomic, copy) NSString *representedAssetIdentifier;
 /// 响应源
 @property (nonatomic, weak, nullable)id <RITLPhotosCellActionTarget> actionTarget;
 /// 显示照片的视图

@@ -15,10 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RITLPhotosHorBrowseViewController : UIViewController
 
 ///当前预览组的对象
-@property (nonatomic, strong)PHCollection *collection;
-
+@property (nonatomic, strong)PHAssetCollection *collection;
 ///当前点击进入的资源对象
-@property (nonatomic, strong) PHAsset *asset;
+@property (nonatomic, strong)PHAsset *asset;
 
 @end
 

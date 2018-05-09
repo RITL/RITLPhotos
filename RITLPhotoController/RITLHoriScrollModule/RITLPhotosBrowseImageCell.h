@@ -13,11 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 普通图片的cell
 @interface RITLPhotosBrowseImageCell : UICollectionViewCell
 
+/// 显示图片的imageView
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
-
-///// 单击执行的block
-//@property (nonatomic, copy, nullable)void(^ritl_PhotoBrowerSimpleTapHandleBlock)(id);
-//
 
 @end
 

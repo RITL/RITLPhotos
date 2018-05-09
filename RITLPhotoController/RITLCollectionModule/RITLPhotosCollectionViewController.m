@@ -16,6 +16,8 @@
 #import "PHAsset+RITLPhotos.h"
 #import "NSString+RITLPhotos.h"
 #import "PHPhotoLibrary+RITLPhotoStore.h"
+#import "UICollectionView+RITLIndexPathsForElements.h"
+#import "UICollectionViewCell+RITLPhotosAsset.h"
 
 #import <RITLKit.h>
 #import <Masonry.h>
@@ -102,6 +104,7 @@ static NSString *const reuseIdentifier = @"photo";
     [super viewDidLoad];
     
     self.view.backgroundColor = UIColor.whiteColor;
+    [self resetCachedAssets];
     
     // NavigationItem
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancle" style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
@@ -497,14 +500,6 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
 @implementation UICollectionView (RITLPhotosCollectionViewController)
 
-- (NSArray<NSIndexPath *> *)indexPathsForElementsInRect:(CGRect)rect
-{
-    NSArray <UICollectionViewLayoutAttributes*> *allLayoutAttributes = [self.collectionViewLayout layoutAttributesForElementsInRect:rect];
-    
-    return [allLayoutAttributes ritl_map:^id _Nonnull(UICollectionViewLayoutAttributes * _Nonnull attribute) {
-        
-        return attribute.indexPath;
-    }];
-}
+
 
 @end

@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 装载live图片的cell
 @interface RITLPhotosBrowseLiveCell : UICollectionViewCell
 
+/// 显示图片的imageView
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 

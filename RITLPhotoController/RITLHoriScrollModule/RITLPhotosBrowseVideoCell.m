@@ -10,6 +10,8 @@
 #import <RITLKit.h>
 #import <Masonry.h>
 
+static NSString *const RITLPhotosBrowseVideoCellVideoImageName = @"RITLPhotos.bundle/ritl_video_play";
+
 @implementation RITLPhotosBrowseVideoCell
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -27,12 +29,21 @@
 {
     self.contentView.backgroundColor = UIColor.blackColor;
     
+    self.imageView = [[UIImageView alloc]init];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+
+    [self.contentView addSubview:self.imageView];
+    
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.edges.offset(0);
+    }];
+    
     self.playImageView = ({
         
         UIImageView *imageView = [UIImageView new];
-        imageView.backgroundColor = UIColor.whiteColor;
         imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.image = @"ritl_video_play".ritl_image;
+        imageView.image = RITLPhotosBrowseVideoCellVideoImageName.ritl_image;
         
         imageView;
     });

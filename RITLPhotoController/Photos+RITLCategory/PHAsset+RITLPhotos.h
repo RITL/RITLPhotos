@@ -43,4 +43,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+@interface PHAsset (RITLBrowse)
+
+/// 类型
+@property (nonatomic, copy, readonly) NSString *ritl_type;
+
+@end
+
 NS_ASSUME_NONNULL_END
