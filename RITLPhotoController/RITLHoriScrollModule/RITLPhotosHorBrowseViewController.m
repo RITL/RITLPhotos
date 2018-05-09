@@ -17,6 +17,8 @@
 #import "UICollectionViewCell+RITLPhotosAsset.h"
 #import "UICollectionView+RITLIndexPathsForElements.h"
 
+#define RITLPhotosHorBrowseCollectionSpace 3
+
 static NSString *const RITLBrowsePhotoKey = @"photo";
 static NSString *const RITLBrowseLivePhotoKey = @"livephoto";
 static NSString *const RITLBrowseVideoKey = @"video";
@@ -115,8 +117,8 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
 
         make.top.bottom.offset(0);
-        make.left.offset(-5);
-        make.right.offset(5);
+        make.left.offset(-1 * RITLPhotosHorBrowseCollectionSpace);
+        make.right.offset(RITLPhotosHorBrowseCollectionSpace);
     }];
 
     [self.topBar mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -185,6 +187,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 
 - (void)pop
 {
+    [self.collectionView.visibleCells makeObjectsPerformSelector:@selector(stop)];
     [self.navigationController popViewControllerAnimated:true];
 }
 
@@ -278,6 +281,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self updateCachedAssets];
+    [self.collectionView.visibleCells makeObjectsPerformSelector:@selector(stop)];
 }
 
 #pragma mark - <UICollectionViewDataSource>
@@ -307,12 +311,12 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     {
         UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc]init];
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        flowLayout.minimumLineSpacing = 10;
+        flowLayout.minimumLineSpacing = 2 * RITLPhotosHorBrowseCollectionSpace;
         
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, RITLPhotosHorBrowseCollectionSpace, 0, RITLPhotosHorBrowseCollectionSpace);
         flowLayout.itemSize = @[@(RITL_SCREEN_WIDTH),@(RITL_SCREEN_HEIGHT)].ritl_size;
 
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(-5, 0, self.ritl_width + 10, self.ritl_height) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(-1 * RITLPhotosHorBrowseCollectionSpace, 0, self.ritl_width + 2 * RITLPhotosHorBrowseCollectionSpace, self.ritl_height) collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = UIColor.blackColor;
         
         //初始化collectionView属性

@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 更新数据
 - (void)updateAssets:(PHAsset *)asset atIndexPath:(NSIndexPath *)indexPath imageManager:(PHCachingImageManager *)cacheManager;
 
+/// 播放数据，仅适用于live或者video
+- (void)playerAsset;
+- (void)stop;
+
 @end
 
 NS_ASSUME_NONNULL_END

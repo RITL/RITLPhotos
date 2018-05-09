@@ -497,9 +497,3 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
 @end
 
-
-@implementation UICollectionView (RITLPhotosCollectionViewController)
-
-
-
-@end

@@ -10,6 +10,8 @@
 #import "RITLPhotosBrowseImageCell.h"
 #import "RITLPhotosBrowseLiveCell.h"
 #import "RITLPhotosBrowseVideoCell.h"
+#import <PhotosUI/PhotosUI.h>
+#import <Masonry.h>
 #import <objc/runtime.h>
 #import <RITLKit.h>
 
@@ -55,7 +57,8 @@
     }];
 }
 
-
+- (void)playerAsset { }
+- (void)stop { }
 - (void)updateViews:(UIImage *)image info:(NSDictionary *)info { }
 
 @end
@@ -77,7 +80,46 @@
 {
     NSLog(@"我是Live图片");
     self.imageView.image = image;
+    
+    //设置
+    [self.livePhotoView mas_remakeConstraints:^(MASConstraintMaker *make) {
+       
+        make.center.equalTo(self.imageView);
+        make.width.equalTo(self.imageView);
+        make.height.mas_equalTo(RITL_SCREEN_WIDTH * self.currentAsset.pixelHeight / self.currentAsset.pixelWidth);
+    }];
 }
+
+- (void)playerAsset
+{
+    if (!self.currentAsset || self.currentAsset.mediaSubtypes != PHAssetMediaSubtypePhotoLive) {  return; }
+    
+    [self layoutIfNeeded];//重新布局
+    
+    //请求播放
+    PHLivePhotoRequestOptions *options = PHLivePhotoRequestOptions.new;
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    options.networkAccessAllowed = true;
+    
+    [PHImageManager.defaultManager requestLivePhotoForAsset:self.currentAsset targetSize:@[@(self.currentAsset.pixelWidth),@(self.currentAsset.pixelHeight)].ritl_size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(PHLivePhoto * _Nullable livePhoto, NSDictionary * _Nullable info) {
+       
+        if (!livePhoto) { return; }
+        
+        self.livePhotoView.livePhoto = livePhoto;
+        
+        if (!self.isPlaying) {
+            [self.livePhotoView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleHint];
+        }
+    }];
+}
+
+- (void)stop
+{
+    if (self.isPlaying) {
+        [self.livePhotoView stopPlayback];
+    }
+}
+
 
 @end
 
@@ -88,4 +130,11 @@
     NSLog(@"我是视频");
     self.imageView.image = image;
 }
+
+- (void)playerAsset
+{
+    
+}
+
+
 @end

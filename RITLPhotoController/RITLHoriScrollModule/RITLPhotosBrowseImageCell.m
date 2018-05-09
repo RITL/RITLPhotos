@@ -81,9 +81,7 @@
         
         //添加约束
         [self.bottomScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.edges.equalTo(weakSelf.contentView).with.insets(UIEdgeInsetsMake(0, 5, 0, 5));
-            
+            make.edges.equalTo(weakSelf.contentView).offset(0);
         }];
     }
 }
