@@ -7,6 +7,7 @@
 //
 
 #import "RITLPhotosBrowseVideoCell.h"
+#import "UICollectionViewCell+RITLPhotosAsset.h"
 #import <RITLKit.h>
 #import <Masonry.h>
 
@@ -56,6 +57,24 @@ static NSString *const RITLPhotosBrowseVideoCellVideoImageName = @"RITLPhotos.bu
         make.center.offset(0);
     }];
     
+    __weak typeof(self) weak = self;
+    
+    [self.contentView addUIControlHandler:^(UIView * _Nonnull view) {
+        
+        if (!weak.playerLayer) { [weak playerAsset]; return; }//如果是stop，就进行播放
+        [weak stop];
+    }];
+    
+}
+
+
+- (void)prepareForReuse
+{
+    if (self.playerLayer.superlayer) {
+        
+        [self.playerLayer removeFromSuperlayer];
+        self.playerLayer = nil;
+    }
 }
 
 @end

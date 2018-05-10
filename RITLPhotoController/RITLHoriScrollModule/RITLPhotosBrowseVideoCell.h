@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVKit/AVKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,9 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 显示图片的imageView
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
-
 /// 显示播放的视图
 @property (nonatomic, strong) UIImageView *playImageView;
+/// 播放的layer
+@property (nonatomic, strong, nullable) AVPlayerLayer *playerLayer;
 
 @end
 

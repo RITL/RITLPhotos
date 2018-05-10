@@ -80,7 +80,6 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         
         UIView *view = [UIView new];
         view.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.75];
-        
         view;
     });
     
@@ -92,7 +91,6 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         [view addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
         view.imageEdgeInsets = UIEdgeInsetsMake(13, 5, 5, 23);
         [view setImage:@"RITLPhotos.bundle/ritl_browse_back".ritl_image forState:UIControlStateNormal];
-        
         view;
     });
     
@@ -103,7 +101,6 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         view.backgroundColor = [UIColor clearColor];
         view.imageEdgeInsets = UIEdgeInsetsMake(10, 11, 0, 0);
         [view setImage:@"RITLPhotos.bundle/ritl_brower_selected".ritl_image forState:UIControlStateNormal];
-        
         view;
     });
     

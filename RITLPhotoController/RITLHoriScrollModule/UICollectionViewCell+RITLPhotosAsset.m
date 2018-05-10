@@ -78,7 +78,6 @@
 
 - (void)updateViews:(UIImage *)image info:(NSDictionary *)info
 {
-    NSLog(@"我是Live图片");
     self.imageView.image = image;
     
     //设置
@@ -127,14 +126,61 @@
 
 - (void)updateViews:(UIImage *)image info:(NSDictionary *)info
 {
-    NSLog(@"我是视频");
     self.imageView.image = image;
 }
 
 - (void)playerAsset
 {
+    if (!self.currentAsset || self.currentAsset.mediaType != PHAssetMediaTypeVideo) {  return; }
     
+    if (self.playerLayer && self.playerLayer.player) {//直接播放即可
+        
+        //进行对比
+        [self.playerLayer.player play]; return;
+    }
+    
+    PHVideoRequestOptions *options = PHVideoRequestOptions.new;
+    options.networkAccessAllowed = true;
+    options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
+    
+    //开始请求
+    [PHImageManager.defaultManager requestPlayerItemForVideo:self.currentAsset options:options resultHandler:^(AVPlayerItem * _Nullable playerItem, NSDictionary * _Nullable info) {
+        
+        if (!playerItem) { return; }
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+           
+            AVPlayer *player = [[AVPlayer alloc]initWithPlayerItem:playerItem];
+            self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
+            
+            //Notication
+            [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(stop) name:AVPlayerItemDidPlayToEndTimeNotification object:player.currentItem];
+            
+            //config
+            self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+            self.playerLayer.frame = self.imageView.layer.bounds;
+            self.playImageView.hidden = true;
+            [self.imageView.layer addSublayer:self.playerLayer];
+            
+            [player play];//播放
+        });
+    }];
 }
+
+- (void)stop
+{
+    if (self.playerLayer && self.playerLayer.player) {
+        
+        [self.playerLayer.player pause];;
+        [self.playerLayer removeFromSuperlayer];//移除
+        [NSNotificationCenter.defaultCenter removeObserver:self];
+        
+        self.playImageView.hidden = false;
+        self.playerLayer = nil;
+    }
+}
+
+
 
 
 @end
