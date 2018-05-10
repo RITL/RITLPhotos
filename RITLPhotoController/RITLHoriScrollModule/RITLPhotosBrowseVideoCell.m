@@ -59,12 +59,11 @@ static NSString *const RITLPhotosBrowseVideoCellVideoImageName = @"RITLPhotos.bu
     
     __weak typeof(self) weak = self;
     
-    [self.contentView addUIControlHandler:^(UIView * _Nonnull view) {
-        
+    [self.contentView addTapGestureRecognizerNumberOfTap:1 Handler:^(UIView * _Nonnull view) {
         if (!weak.playerLayer) { [weak playerAsset]; return; }//如果是stop，就进行播放
         [weak stop];
     }];
-    
+
 }
 
 

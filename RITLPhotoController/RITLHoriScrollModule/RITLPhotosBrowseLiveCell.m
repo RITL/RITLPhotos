@@ -105,8 +105,7 @@
     __weak typeof(self) weak = self;
     
     //追加点击时间
-    [self.contentView addUIControlHandler:^(UIView * _Nonnull view) {
-       
+    [self.contentView addTapGestureRecognizerNumberOfTap:1 Handler:^(UIView * _Nonnull view) {
         if (weak.isPlaying) { [weak stop]; return; }
         
         else if (!weak.isPlaying && weak.livePhotoView.hidden) {//处理0.2秒的延迟
