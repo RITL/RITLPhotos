@@ -27,8 +27,7 @@ typedef NSString RITLHorBrowseDifferencesKey;
 static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyAdded = @"RITLDifferencesKeyAdded";
 static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @"RITLDifferencesKeyRemoved";
 
-@interface RITLPhotosHorBrowseViewController ()<UICollectionViewDelegateFlowLayout,
-                                                UICollectionViewDataSource>
+@interface RITLPhotosHorBrowseViewController ()<UICollectionViewDelegate>
 
 /// 顶部模拟的导航
 @property (nonatomic, strong) UIView *topBar;
@@ -40,10 +39,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 /// 底部的视图
 @property (nonatomic, strong) RITLPhotosBottomView *bottomView;
-
-/// 数据源
-@property (nonatomic, strong) PHFetchResult<PHAsset *> *assetResult;
-@property (nonatomic, strong) PHCachingImageManager* imageManager;
+/// 用于计算缓存的位置
 @property (nonatomic, assign) CGRect previousPreheatRect;
 
 @end
@@ -55,18 +51,13 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     [super viewDidLoad];
     
     self.previousPreheatRect = CGRectZero;
-    self.imageManager = PHCachingImageManager.new;
     [self resetCachedAssets];
-    
-    //数据源
-    self.assetResult = [PHAsset fetchAssetsInAssetCollection:self.collection options:nil];
     
     self.bottomView = RITLPhotosBottomView.new;
     self.bottomView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.8];
     //暂时屏蔽掉图片编辑功能
     self.bottomView.previewButton.hidden = true;
    
-    
     // Do any additional setup after loading the view.
     [self.view addSubview:self.collectionView];
     
@@ -158,6 +149,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     [self.navigationController setNavigationBarHidden:false animated:true];
 }
 
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -167,7 +159,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 
 - (void)resetCachedAssets
 {
-    [self.imageManager stopCachingImagesForAllAssets];
+    [self.dataSource.imageManager stopCachingImagesForAllAssets];
     self.previousPreheatRect = CGRectZero;
 }
 
@@ -217,7 +209,8 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         return [result arrayByAddingObjectsFromArray:items];
         
     }] ritl_map:^id _Nonnull(NSIndexPath *_Nonnull index) {
-        return [self.assetResult objectAtIndex:index.item];
+
+        return [self.dataSource assetAtIndexPath:index];
         
     }];
     
@@ -229,14 +222,15 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         return [result arrayByAddingObjectsFromArray:items];
         
     }] ritl_map:^id _Nonnull(NSIndexPath *_Nonnull index) {
-        return [self.assetResult objectAtIndex:index.item];
+
+        return [self.dataSource assetAtIndexPath:index];
     }];
     
     CGSize thimbnailSize = ((UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout).itemSize;
     
     //更新缓存
-    [self.imageManager startCachingImagesForAssets:addedAssets targetSize:thimbnailSize contentMode:PHImageContentModeAspectFill options:nil];
-    [self.imageManager stopCachingImagesForAssets:removedAssets targetSize:thimbnailSize contentMode:PHImageContentModeAspectFill options:nil];
+    [self.dataSource.imageManager startCachingImagesForAssets:addedAssets targetSize:thimbnailSize contentMode:PHImageContentModeAspectFill options:nil];
+    [self.dataSource.imageManager stopCachingImagesForAssets:removedAssets targetSize:thimbnailSize contentMode:PHImageContentModeAspectFill options:nil];
     
     //记录当前位置
     self.previousPreheatRect = preheatRect;
@@ -281,25 +275,6 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     [self.collectionView.visibleCells makeObjectsPerformSelector:@selector(stop)];
 }
 
-#pragma mark - <UICollectionViewDataSource>
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.assetResult.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    //获得当前的对象
-    PHAsset *asset = [self.assetResult objectAtIndex:indexPath.item];
-    
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:asset.ritl_type forIndexPath:indexPath];
-    
-    [cell updateAssets:asset atIndexPath:indexPath imageManager:self.imageManager];//即将显示，进行填充
-    
-    return cell;
-}
-
 
 #pragma mark - Getter
 -(UICollectionView *)collectionView
@@ -317,7 +292,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         _collectionView.backgroundColor = UIColor.blackColor;
         
         //初始化collectionView属性
-        _collectionView.dataSource = self;
+        _collectionView.dataSource = self.dataSource;
         _collectionView.delegate = self;
         
         _collectionView.pagingEnabled = true;

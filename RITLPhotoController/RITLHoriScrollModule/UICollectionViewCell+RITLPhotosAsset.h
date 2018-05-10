@@ -11,11 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification;
+
 @interface UICollectionViewCell (RITLPhotosAsset)
 
 /// 标志位，避免重复赋值
 @property (nonatomic, copy) NSString *representedAssetIdentifier;
-
 /// 当前展示的资源
 @property (nonatomic, weak, nullable)PHAsset *currentAsset;
 
@@ -25,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 播放数据，仅适用于live或者video
 - (void)playerAsset;
 - (void)stop;
+
+/// 用于普通图片，恢复缩放
+- (void)reset;
 
 @end
 

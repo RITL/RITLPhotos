@@ -7,6 +7,7 @@
 //
 
 #import "RITLPhotosBrowseImageCell.h"
+#import "UICollectionViewCell+RITLPhotosAsset.h"
 #import <RITLKit.h>
 #import <Masonry.h>
 
@@ -16,7 +17,7 @@
 @property (nonatomic, assign)BOOL isScale;
 
 /// @brief 底部负责滚动的滚动视图
-@property (strong, nonatomic) IBOutlet UIScrollView *bottomScrollView;
+@property (strong, nonatomic, readwrite) IBOutlet UIScrollView *bottomScrollView;
 
 //手势
 @property (nonatomic, strong) UITapGestureRecognizer * simpleTapGesture;
@@ -52,8 +53,8 @@
     
     [self createBottomScrollView];
     [self createImageView];
-//    [self createDoubleTapGesture];
-//    [self createSimpleTapGesture];
+    [self createDoubleTapGesture];
+    [self createSimpleTapGesture];
 }
 
 
@@ -75,7 +76,6 @@
         self.bottomScrollView.minimumZoomScale = self.minScaleZoome;
         self.bottomScrollView.maximumZoomScale = self.maxScaleZoome;
         [self.contentView addSubview:self.bottomScrollView];
-        
         
         __weak typeof(self) weakSelf = self;
         
@@ -148,7 +148,6 @@
                 
                 //进行缩放
                 [strongSelf.bottomScrollView zoomToRect:rect animated:true];
-                
             }
         }];
     }
@@ -164,30 +163,9 @@
         [self.simpleTapGesture requireGestureRecognizerToFail:self.doubleTapGesture];
         [self.bottomScrollView addGestureRecognizer:self.simpleTapGesture];
         
-        __weak typeof(self) weakSelf = self;
-        
         [self.simpleTapGesture gestureRecognizerHandle:^(UIGestureRecognizer * _Nonnull sender) {
            
-            __strong typeof(weakSelf) stongSelf = weakSelf;
-            
-            NSLog(@"单击了!");
-            
-            //执行单击block
-//            if (stongSelf.ritl_PhotoBrowerSimpleTapHandleBlock)
-//            {
-//                stongSelf.ritl_PhotoBrowerSimpleTapHandleBlock(stongSelf);
-//            }
-            
-/********** 此处不再返回原始比例，如需此功能，请清除此处注释 2017-01-04 ***********/
-            /*
-            if (stongSelf.bottomScrollView.zoomScale != 1.0f)
-            {
-                //单击缩小
-                [stongSelf.bottomScrollView setZoomScale:1.0f animated:true];
-            }
-             */
-/*************************************************************************/
-            
+            [NSNotificationCenter.defaultCenter postNotificationName:RITLHorBrowseTooBarChangedHiddenStateNotification object:nil];
         }];
     }
 }

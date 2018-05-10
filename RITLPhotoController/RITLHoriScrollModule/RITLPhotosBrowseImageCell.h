@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 显示图片的imageView
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
+/// 底部负责滚动的滚动视图
+@property (strong, nonatomic, readonly) IBOutlet UIScrollView *bottomScrollView;
+
 @end
 
 NS_ASSUME_NONNULL_END

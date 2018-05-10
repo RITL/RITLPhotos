@@ -8,16 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <Photos/Photos.h>
+#import "RITLPhotosHorBrowseDataSource.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 
 @interface RITLPhotosHorBrowseViewController : UIViewController
 
-///当前预览组的对象
-@property (nonatomic, strong)PHAssetCollection *collection;
-///当前点击进入的资源对象
-@property (nonatomic, strong)PHAsset *asset;
+/// 数据源
+@property (nonatomic, strong) id<RITLPhotosHorBrowseDataSource> dataSource;
 
 @end
 

@@ -12,6 +12,7 @@
 
 #import "RITLPhotosCell.h"
 #import "RITLPhotosBottomView.h"
+#import "RITLPhotosBrowseAllDataSource.h"
 
 #import "PHAsset+RITLPhotos.h"
 #import "NSString+RITLPhotos.h"
@@ -368,6 +369,9 @@ static NSString *const reuseIdentifier = @"photo";
     return cell;
 }
 
+
+
+
 #pragma mark <UIScrollViewDelegate>
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -409,17 +413,10 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
     //获取当前的资源
     PHAsset *asset = [self.assets objectAtIndex:indexPath.item];
     //跳出控制器
-    [self.navigationController pushViewController:({
-        
-        RITLPhotosHorBrowseViewController *browerController = RITLPhotosHorBrowseViewController.new;
-        
-        browerController.collection = self.assetCollection;
-        browerController.asset = asset;
-        
-        browerController;
-        
-    }) animated:true];
+    [self pushHorAllBrowseViewControllerWithAsset:asset];
 }
+
+
 
 #pragma mark - <UIViewControllerPreviewingDelegate>
 
@@ -453,18 +450,29 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
     PHAsset *asset = [self.assets objectAtIndex:indexPath.item];
     
     //跳出控制器
+    [self pushHorAllBrowseViewControllerWithAsset:asset];
+}
+
+
+
+#pragma mark - Browse All Assets Display
+
+/// Push 出所有的资源浏览
+- (void)pushHorAllBrowseViewControllerWithAsset:(PHAsset *)asset
+{
     [self.navigationController pushViewController:({
         
         RITLPhotosHorBrowseViewController *browerController = RITLPhotosHorBrowseViewController.new;
         
-        browerController.collection = self.assetCollection;
-        browerController.asset = asset;
+        RITLPhotosBrowseAllDataSource *dataSource = RITLPhotosBrowseAllDataSource.new;
+        dataSource.collection = self.assetCollection;
+        dataSource.asset = asset;
         
+        browerController.dataSource = dataSource;
         browerController;
         
     }) animated:true];
 }
-
 
 
 #pragma mark -

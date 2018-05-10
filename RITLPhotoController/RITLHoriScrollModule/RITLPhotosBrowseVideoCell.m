@@ -67,6 +67,7 @@ static NSString *const RITLPhotosBrowseVideoCellVideoImageName = @"RITLPhotos.bu
 }
 
 
+
 - (void)prepareForReuse
 {
     if (self.playerLayer.superlayer) {

@@ -15,14 +15,14 @@
 #import <objc/runtime.h>
 #import <RITLKit.h>
 
-@implementation UICollectionViewCell (RITLPhotosAsset)
+NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHorBrowseTooBarChangedHiddenStateNSNotification";
 
+@implementation UICollectionViewCell (RITLPhotosAsset)
 
 - (NSString *)representedAssetIdentifier
 {
     return objc_getAssociatedObject(self, _cmd);
 }
-
 
 - (void)setRepresentedAssetIdentifier:(NSString *)representedAssetIdentifier
 {
@@ -59,6 +59,7 @@
 
 - (void)playerAsset { }
 - (void)stop { }
+- (void)reset {}
 - (void)updateViews:(UIImage *)image info:(NSDictionary *)info { }
 
 @end
@@ -69,6 +70,12 @@
 {
     NSLog(@"我是普通图片");
     self.imageView.image = image;
+}
+
+
+- (void)reset
+{
+    [self.bottomScrollView setZoomScale:1.0];
 }
 
 @end
@@ -162,15 +169,19 @@
             self.playImageView.hidden = true;
             [self.imageView.layer addSublayer:self.playerLayer];
             
+            [[NSNotificationCenter defaultCenter]postNotificationName:RITLHorBrowseTooBarChangedHiddenStateNotification object:@(true)];
             [player play];//播放
         });
     }];
 }
 
+
+
 - (void)stop
 {
     if (self.playerLayer && self.playerLayer.player) {
         
+        [[NSNotificationCenter defaultCenter]postNotificationName:RITLHorBrowseTooBarChangedHiddenStateNotification object:@(false)];
         [self.playerLayer.player pause];;
         [self.playerLayer removeFromSuperlayer];//移除
         [NSNotificationCenter.defaultCenter removeObserver:self];
