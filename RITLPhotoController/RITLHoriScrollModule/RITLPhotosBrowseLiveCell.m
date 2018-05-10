@@ -14,6 +14,10 @@
 
 @interface RITLPhotosBrowseLiveCell() <PHLivePhotoViewDelegate>
 
+/// 是否是按压唤醒
+@property (nonatomic, assign)BOOL isForce;
+@property (nonatomic, strong)UITapGestureRecognizer *tapGestureRecognizer;
+
 @end
 
 @implementation RITLPhotosBrowseLiveCell
@@ -24,7 +28,6 @@
         
         [self buildViews];
     }
-    
     return self;
 }
 
@@ -105,13 +108,14 @@
     __weak typeof(self) weak = self;
     
     //追加点击时间
-    [self.contentView addTapGestureRecognizerNumberOfTap:1 Handler:^(UIView * _Nonnull view) {
+    self.tapGestureRecognizer = [self.contentView addTapGestureRecognizerNumberOfTap:1 Handler:^(UIView * _Nonnull view) {
         if (weak.isPlaying) { [weak stop]; return; }
         
         else if (!weak.isPlaying && weak.livePhotoView.hidden) {//处理0.2秒的延迟
             [weak playerAsset];
         }
     }];
+
 }
 
 
@@ -130,5 +134,7 @@
         self.livePhotoView.hidden = true;
     });
 }
+
+
 
 @end

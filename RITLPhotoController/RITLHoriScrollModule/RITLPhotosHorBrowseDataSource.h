@@ -16,10 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 请求图片的对象
 @property (nonatomic, strong, readonly) PHCachingImageManager* imageManager;
-
 /// 当前位置的资源对象
 - (PHAsset *)assetAtIndexPath:(NSIndexPath *)indexPath;
 
+@optional
+
+/// 默认的第一次进入显示的item
+- (NSIndexPath *)defaultItemIndexPath;
 
 @end
 

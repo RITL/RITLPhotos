@@ -134,6 +134,12 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         make.bottom.left.right.offset(0);
         make.height.mas_equalTo(RITL_DefaultTabBarHeight);
     }];
+    
+    //如果存在默认方法
+    if ([self.dataSource respondsToSelector:@selector(defaultItemIndexPath)]) {
+        
+       [self.collectionView scrollToItemAtIndexPath:self.dataSource.defaultItemIndexPath atScrollPosition:UICollectionViewScrollPositionRight animated:false];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

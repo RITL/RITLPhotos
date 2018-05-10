@@ -62,4 +62,9 @@
     return [self.assetResult objectAtIndex:indexPath.item];
 }
 
+- (NSIndexPath *)defaultItemIndexPath
+{
+    return [NSIndexPath indexPathForItem:[self.assetResult indexOfObject:self.asset] inSection:0];
+}
+
 @end

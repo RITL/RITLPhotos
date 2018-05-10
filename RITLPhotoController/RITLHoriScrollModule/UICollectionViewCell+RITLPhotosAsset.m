@@ -99,20 +99,20 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
 - (void)playerAsset
 {
     if (!self.currentAsset || self.currentAsset.mediaSubtypes != PHAssetMediaSubtypePhotoLive) {  return; }
-    
+
     [self layoutIfNeeded];//重新布局
     
     //请求播放
     PHLivePhotoRequestOptions *options = PHLivePhotoRequestOptions.new;
     options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
     options.networkAccessAllowed = true;
-    
+
     [PHImageManager.defaultManager requestLivePhotoForAsset:self.currentAsset targetSize:@[@(self.currentAsset.pixelWidth),@(self.currentAsset.pixelHeight)].ritl_size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(PHLivePhoto * _Nullable livePhoto, NSDictionary * _Nullable info) {
-       
+
         if (!livePhoto) { return; }
-        
+
         self.livePhotoView.livePhoto = livePhoto;
-        
+
         if (!self.isPlaying) {
             [self.livePhotoView startPlaybackWithStyle:PHLivePhotoViewPlaybackStyleHint];
         }
