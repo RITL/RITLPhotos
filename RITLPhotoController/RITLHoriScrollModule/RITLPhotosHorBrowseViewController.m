@@ -41,6 +41,8 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 @property (nonatomic, strong) RITLPhotosBottomView *bottomView;
 /// 用于计算缓存的位置
 @property (nonatomic, assign) CGRect previousPreheatRect;
+/// 预览的collectionView
+@property (nonatomic, strong) UICollectionView *browseCollectionView;
 
 @end
 
@@ -97,9 +99,21 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     
     [self.view addSubview:self.topBar];
     [self.view addSubview:self.bottomView];
+    [self.view addSubview:self.browseCollectionView];
     [self.topBar addSubview:self.backButton];
     [self.topBar addSubview:self.statusButton];
     
+    UIView *lineView = ({
+        
+        UIView *view = [UIView new];
+        view.backgroundColor = RITLColorSimpleFromIntRBG(66);
+        view.frame = @[@0,@79.3,@(RITL_SCREEN_WIDTH),@0.7].ritl_rect;
+        
+        view;
+    });
+    
+    //模拟横线
+    [self.browseCollectionView addSubview:lineView];
     
     //进行布局
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -132,14 +146,25 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.bottom.left.right.offset(0);
-        make.height.mas_equalTo(RITL_DefaultTabBarHeight);
+        make.height.mas_equalTo(RITL_DefaultTabBarHeight - 3);
     }];
+    
+    [self.browseCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.bottom.equalTo(self.bottomView.mas_top).offset(0);
+        make.left.right.offset(0);
+        make.height.mas_equalTo(80);
+    }];
+
     
     //如果存在默认方法
     if ([self.dataSource respondsToSelector:@selector(defaultItemIndexPath)]) {
         
        [self.collectionView scrollToItemAtIndexPath:self.dataSource.defaultItemIndexPath atScrollPosition:UICollectionViewScrollPositionRight animated:false];
     }
+    
+    //接收cell的单击通知
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(horBrowseTooBarChangedHiddenStateNotificationationHandler:) name:RITLHorBrowseTooBarChangedHiddenStateNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -179,6 +204,10 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     return true;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)pop
 {
@@ -312,5 +341,57 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     
     return _collectionView;
 }
+
+
+- (UICollectionView *)browseCollectionView
+{
+    if (_browseCollectionView == nil)
+    {
+        UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc]init];
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+//        flowLayout.minimumLineSpacing = 2 * RITLPhotosHorBrowseCollectionSpace;
+        
+//        flowLayout.sectionInset = UIEdgeInsetsMake(0, RITLPhotosHorBrowseCollectionSpace, 0, RITLPhotosHorBrowseCollectionSpace);
+//        flowLayout.itemSize = @[@(RITL_SCREEN_WIDTH),@(RITL_SCREEN_HEIGHT)].ritl_size;
+        
+        _browseCollectionView = [[UICollectionView alloc]initWithFrame:@[].ritl_rect collectionViewLayout:flowLayout];
+        _browseCollectionView.backgroundColor = self.bottomView.backgroundColor;
+        
+        //初始化collectionView属性
+//        _browseCollectionView.dataSource = self.dataSource;
+//        _browseCollectionView.delegate = self;
+        
+        _browseCollectionView.hidden = true;
+        _browseCollectionView.pagingEnabled = true;
+        _browseCollectionView.showsHorizontalScrollIndicator = false;
+        
+        //不使用自动适配
+        if (@available(iOS 11.0,*)) {
+            _browseCollectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+    }
+    
+    return _browseCollectionView;
+}
+
+
+#pragma mark - Notification
+
+- (void)horBrowseTooBarChangedHiddenStateNotificationationHandler:(NSNotification *)notification
+{
+    NSNumber *hiddenResult = [notification.userInfo valueForKey:@"hidden"];
+    
+    if (hiddenResult) {
+        
+        self.topBar.hidden = self.bottomView.hidden = hiddenResult.boolValue;
+        
+    }else {
+        
+        BOOL beforeStatus = self.topBar.hidden;
+        self.topBar.hidden = self.bottomView.hidden = !beforeStatus;
+    }
+}
+
+
 
 @end

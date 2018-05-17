@@ -68,7 +68,6 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
 
 - (void)updateViews:(UIImage *)image info:(NSDictionary *)info
 {
-    NSLog(@"我是普通图片");
     self.imageView.image = image;
 }
 
@@ -169,7 +168,7 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
             self.playImageView.hidden = true;
             [self.imageView.layer addSublayer:self.playerLayer];
             
-            [[NSNotificationCenter defaultCenter]postNotificationName:RITLHorBrowseTooBarChangedHiddenStateNotification object:@(true)];
+            [[NSNotificationCenter defaultCenter]postNotificationName:RITLHorBrowseTooBarChangedHiddenStateNotification object:self userInfo:@{@"hidden":@(true)}];
             [player play];//播放
         });
     }];
@@ -181,7 +180,7 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
 {
     if (self.playerLayer && self.playerLayer.player) {
         
-        [[NSNotificationCenter defaultCenter]postNotificationName:RITLHorBrowseTooBarChangedHiddenStateNotification object:@(false)];
+        [[NSNotificationCenter defaultCenter]postNotificationName:RITLHorBrowseTooBarChangedHiddenStateNotification object:nil userInfo:@{@"hidden":@(false)}];
         [self.playerLayer.player pause];;
         [self.playerLayer removeFromSuperlayer];//移除
         [NSNotificationCenter.defaultCenter removeObserver:self];

@@ -111,7 +111,6 @@
 {
     if (self.doubleTapGesture == nil)
     {
-
         self.doubleTapGesture = [UITapGestureRecognizer new];
         self.doubleTapGesture.numberOfTapsRequired = 2;
         [self.bottomScrollView addGestureRecognizer:self.doubleTapGesture];
@@ -157,7 +156,6 @@
 {
     if (self.simpleTapGesture == nil)
     {
-        
         self.simpleTapGesture = [UITapGestureRecognizer new];
         self.simpleTapGesture.numberOfTapsRequired = 1;
         [self.simpleTapGesture requireGestureRecognizerToFail:self.doubleTapGesture];

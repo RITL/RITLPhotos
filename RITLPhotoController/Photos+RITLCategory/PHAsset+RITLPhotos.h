@@ -19,8 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param size 获取图片的大小
  @param completeBlock
  */
-- (void)ritl_imageWithSize:(CGSize)size
-                  complete:(void (^)(UIImage * __nullable image,PHAsset * asset,NSDictionary *info))completeBlock;
+//- (void)ritl_imageWithSize:(CGSize)size
+//                  complete:(void (^)(UIImage * __nullable image,PHAsset * asset,NSDictionary *info))completeBlock;
 
 /**
  
@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param completeBlock
  */
-- (void)ritl_hignQualityDataSizeComplete:(void(^)(NSString *imageSize))completeBlock;
+//- (void)ritl_hignQualityDataSizeComplete:(void(^)(NSString *imageSize))completeBlock;
 
 
 
@@ -38,8 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param size 获取图片的大小
  @param completeBlock 
  */
-- (void)ritl_fastFormatImageWithSize:(CGSize)size
-                            complete:(void(^)(UIImage * __nullable image,PHAsset * asset,NSDictionary *info))completeBlock;
+//- (void)ritl_fastFormatImageWithSize:(CGSize)size
+//                            complete:(void(^)(UIImage * __nullable image,PHAsset * asset,NSDictionary *info))completeBlock;
 
 @end
 

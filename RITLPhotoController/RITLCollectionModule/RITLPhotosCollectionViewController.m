@@ -24,6 +24,9 @@
 #import <Masonry.h>
 #import <Photos/Photos.h>
 
+//Data
+#import "RITLPhotosDataManager.h"
+
 
 
 
@@ -46,6 +49,8 @@ static RITLDifferencesKey *const RITLDifferencesKeyRemoved = @"RITLDifferencesKe
 
 // Library
 @property (nonatomic, strong) PHPhotoLibrary *photoLibrary;
+// Datamanager
+@property (nonatomic, strong) RITLPhotosDataManager *dataManager;
 
 // data
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -77,6 +82,7 @@ static NSString *const reuseIdentifier = @"photo";
         self.imageManager = [PHCachingImageManager new];
         self.photoLibrary = PHPhotoLibrary.sharedPhotoLibrary;
         self.previousPreheatRect = CGRectZero;
+        self.dataManager = [RITLPhotosDataManager sharedInstance];
     }
     
     return self;
@@ -105,6 +111,10 @@ static NSString *const reuseIdentifier = @"photo";
     [super viewDidLoad];
     
     self.view.backgroundColor = UIColor.whiteColor;
+    
+    //进行KVO观察
+    [self.dataManager addObserver:self forKeyPath:@"count" options:NSKeyValueObservingOptionNew context:nil];
+    
     [self resetCachedAssets];
     
     // NavigationItem
@@ -114,6 +124,8 @@ static NSString *const reuseIdentifier = @"photo";
     [self.collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     self.bottomView = RITLPhotosBottomView.new;
+    self.bottomView.previewButton.enabled = false;
+    self.bottomView.sendButton.enabled = false;
     self.bottomView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.8];
     
     // Do any additional setup after loading the view.
@@ -124,7 +136,7 @@ static NSString *const reuseIdentifier = @"photo";
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.bottom.left.right.offset(0);
-        make.height.mas_equalTo(RITL_DefaultTabBarHeight);
+        make.height.mas_equalTo(RITL_DefaultTabBarHeight - 3);
     }];
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -161,6 +173,14 @@ static NSString *const reuseIdentifier = @"photo";
         
     } denied:^{}];
     
+}
+
+
+- (void)dealloc
+{
+    if (self.isViewLoaded) {
+        [self.dataManager removeObserver:self forKeyPath:@"count"];
+    }
 }
 
 
@@ -352,6 +372,15 @@ static NSString *const reuseIdentifier = @"photo";
                 cell.liveBadgeImageView.hidden = !(asset.mediaSubtypes == PHAssetMediaSubtypePhotoLive);
             }
             
+            BOOL isSelected = [self.dataManager.assetIdentiers containsObject:asset.localIdentifier];
+            //进行属性隐藏设置
+            cell.indexLabel.hidden = !isSelected;
+            
+            if (isSelected) {
+                
+                cell.indexLabel.text = @([self.dataManager.assetIdentiers indexOfObject:asset.localIdentifier] + 1).stringValue;
+            }
+            
             if (cell.imageView.hidden) { return; }
             
             cell.messageLabel.text = [NSString timeStringWithTimeDuration:asset.duration];
@@ -371,14 +400,12 @@ static NSString *const reuseIdentifier = @"photo";
 
 
 
-
 #pragma mark <UIScrollViewDelegate>
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self updateCachedAssets];
 }
-
 
 
 #pragma mark <UICollectionViewDelegateFlowLayout>
@@ -413,7 +440,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
     //获取当前的资源
     PHAsset *asset = [self.assets objectAtIndex:indexPath.item];
     //跳出控制器
-    [self pushHorAllBrowseViewControllerWithAsset:asset];
+//    [self pushHorAllBrowseViewControllerWithAsset:asset];
 }
 
 
@@ -450,7 +477,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
     PHAsset *asset = [self.assets objectAtIndex:indexPath.item];
     
     //跳出控制器
-    [self pushHorAllBrowseViewControllerWithAsset:asset];
+//    [self pushHorAllBrowseViewControllerWithAsset:asset];
 }
 
 
@@ -498,9 +525,33 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
 #pragma mark - <RITLPhotosCellActionTarget>
 
-- (void)photosCellDidTouchUpInSlide:(RITLPhotosCell *)cell asset:(PHAsset *)asset indexPath:(NSIndexPath *)indexPath
+- (void)photosCellDidTouchUpInSlide:(RITLPhotosCell *)cell asset:(PHAsset *)asset indexPath:(NSIndexPath *)indexPath complete:(RITLPhotosCellStatusAction)animated
 {
-    NSLog(@"点击啦! section = %@,item = %@",@(indexPath.section),@(indexPath.item));
+    NSInteger index = [self.dataManager addOrRemoveAsset:asset].integerValue;
+    
+    animated(RITLPhotosCellAnimatedStatusPermit,index > 0,MAX(0,index));
+    
+    if (index < 0) {//表示进行了取消操作
+        [self.collectionView reloadData];
+    }
+}
+
+
+#pragma mark - <KVO>
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"count"] && [object isEqual:self.dataManager]) {
+
+        NSInteger count = [change[NSKeyValueChangeNewKey] integerValue];
+        
+        self.bottomView.previewButton.enabled = !(count == 0);
+        
+        UIControlState state = (count == 0 ? UIControlStateDisabled : UIControlStateNormal);
+        NSString *title = (count == 0 ? @"发送" : [NSString stringWithFormat:@"发送(%@)",@(count)]);
+        [self.bottomView.sendButton setTitle:title forState:state];
+        self.bottomView.sendButton.enabled = !(count == 0);
+    }
 }
 
 @end

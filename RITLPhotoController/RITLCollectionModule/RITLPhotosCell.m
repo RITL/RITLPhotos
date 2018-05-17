@@ -68,7 +68,7 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
         UILabel *label = [UILabel new];
         label.backgroundColor = RITLColorFromIntRBG(9, 187, 7);
         label.text = @"0";
-        label.font = RITLUtilityFont(RITLFontPingFangSC_Regular, 12);
+        label.font = RITLUtilityFont(RITLFontPingFangSC_Regular, 13);
         label.textColor = UIColor.whiteColor;
         label.textAlignment = NSTextAlignmentCenter;
         label.layer.cornerRadius = 21 / 2.0;
@@ -248,73 +248,41 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
 /** 选择按钮被点击 */
 - (IBAction)chooseButtonDidTap:(id)sender
 {
-    if (self.actionTarget && [self.actionTarget respondsToSelector:@selector(photosCellDidTouchUpInSlide:asset:indexPath:)]) {
+    if (self.actionTarget && [self.actionTarget respondsToSelector:@selector(photosCellDidTouchUpInSlide:asset:indexPath:complete:)]) {
         
-        [self.actionTarget photosCellDidTouchUpInSlide:self asset:self.asset indexPath:self.indexPath];
+        [self.actionTarget photosCellDidTouchUpInSlide:self asset:self.asset indexPath:self.indexPath complete:^(RITLPhotosCellAnimatedStatus status, BOOL selected,NSUInteger count) {
+            
+            if (status == RITLPhotosCellAnimatedStatusPermit) {//允许使用动画
+                [self selectedStatusDidChanged:selected count:count];
+            }
+        }];
     }
 }
 
 
+- (void)selectedStatusDidChanged:(BOOL)selected count:(NSUInteger)count
+{
+    self.indexLabel.hidden = !selected;
+    
+    if (!selected) {
+        self.indexLabel.text = @"";
+        return;
+    }
+    
+    self.indexLabel.text = @(count).stringValue;
 
-//- (void)addChooseImageView
-//{
-//    _chooseImageView = [UIImageView new];
-//
-//    [_chooseControl addSubview:_chooseImageView];
-//
-//    [_chooseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.size.mas_equalTo(CGSizeMake(25, 25));
-//        make.right.and.bottom.mas_equalTo(0);
-//
-//    }];
-//
-//    _chooseImageView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-//    _chooseImageView.layer.cornerRadius = 25 / 2.0;
-//    _chooseImageView.clipsToBounds = true;
-//
-//}
+    [UIView animateWithDuration:0.15 animations:^{//anmiation
+
+        self.indexLabel.transform = CGAffineTransformMakeScale(1.3f, 1.3f);//放大
+
+    } completion:^(BOOL finished) {//变回
+
+        [UIView animateWithDuration:0.1 animations:^{
+
+            self.indexLabel.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+        }];
+    }];
+}
 
 @end
-
-
-//@implementation RITLPhotosCell (RITLPhotosViewModel)
-//
-//-(void)cellSelectedAction:(BOOL)isSelected
-//{
-////    NSString * imageName = !isSelected ? @"未选中" : @"选中";
-//
-////    self.chooseImageView.image = [UIImage imageNamed:imageName];
-//
-//    self.chooseImageView.image = !isSelected ? RITLPhotoDeselectedImage : RITLPhotoSelectedImage;
-//
-//
-//    if (isSelected)
-//    {
-//        [self startSelectedAnimation];
-//    }
-//
-//}
-//
-//
-//- (void)startSelectedAnimation
-//{
-//    //anmiation
-//    [UIView animateWithDuration:0.2 animations:^{
-//
-//        //放大
-//        self.chooseImageView.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
-//
-//    } completion:^(BOOL finished) {//变回
-//
-//        [UIView animateWithDuration:0.2 animations:^{
-//
-//            self.chooseImageView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-//
-//        }];
-//
-//    }];
-//}
-
-//@end
 

@@ -13,12 +13,25 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger,RITLPhotosCellAnimatedStatus){
+    
+    RITLPhotosCellAnimatedStatusPermit//允许使用动画
+};
+
+typedef void(^RITLPhotosCellStatusAction)(RITLPhotosCellAnimatedStatus,BOOL,NSUInteger);
+
 @protocol RITLPhotosCellActionTarget <NSObject>
 
 @optional
-
-/// 上方的响应按钮被点击
-- (void)photosCellDidTouchUpInSlide:(RITLPhotosCell *)cell asset:(PHAsset *)asset indexPath:(NSIndexPath *)indexPath;
+/**
+ 上方的响应按钮被点击
+ 
+ action必须调用
+ */
+- (void)photosCellDidTouchUpInSlide:(RITLPhotosCell *)cell
+                              asset:(PHAsset *)asset
+                          indexPath:(NSIndexPath *)indexPath
+                           complete:(RITLPhotosCellStatusAction)animated;
 
 @end
 

@@ -63,7 +63,6 @@
         [view setTitle:NSLocalizedString(@"原图", @"") forState:UIControlStateNormal];
         [view setTitle:NSLocalizedString(@"原图", @"") forState:UIControlStateSelected];
         
- 
         [view setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         
         view;
@@ -76,14 +75,14 @@
         
         view.titleLabel.font = RITLUtilityFont(RITLFontPingFangSC_Regular, 13);
         
-        [view setTitle:NSLocalizedString(@"Send(99)", @"") forState:UIControlStateNormal];
+        [view setTitle:NSLocalizedString(@"发送", @"") forState:UIControlStateNormal];
         [view setTitle:NSLocalizedString(@"发送", @"") forState:UIControlStateDisabled];
         
         [view setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         [view setTitleColor:RITLColorFromIntRBG(92, 134, 90) forState:UIControlStateDisabled];
         
         [view setBackgroundImage:RITLColorFromIntRBG(9, 187, 7).ritl_image forState:UIControlStateNormal];
-        [view setBackgroundImage:RITLColorFromIntRBG(23, 22, 82).ritl_image forState:UIControlStateDisabled];
+        [view setBackgroundImage:RITLColorFromIntRBG(23, 83, 23).ritl_image forState:UIControlStateDisabled];
         
         view.layer.cornerRadius = 5;
         view.clipsToBounds = true;
@@ -99,7 +98,7 @@
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.top.left.right.offset(0);
-        make.height.mas_equalTo(RITL_NormalTabBarHeight);
+        make.height.mas_equalTo(RITL_NormalTabBarHeight - 5);
         
     }];
     
