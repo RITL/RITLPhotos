@@ -102,8 +102,12 @@ photoController.thumbnailSize = self.assetSize;//缩略图的尺寸
 
 # 更新日志
 
-- 2018-05-18 `version2.0` 增加了图片多选库中对`Live`以及`Video`的支持，增加了对顺序获取图片的支持
+- 2018-05-18  `Version 2.0` 增加了图片多选库中对`Live`以及`Video`的支持，增加了对顺序获取图片的支持。
+- 2017-11-30  取出必须使用的`Objective-C++`模式，新增代理方法替代`Block`。
+- 2017-05-19  `Version 1.0`
+- 2016-09-24  支持`3D Touch`。
+- 2016-04-05  `Version 0.1`。
 
 # 之前版本
 
-- 请前往`version1.0`分值获得之前版本的代码以及`README`
+- 请前往`version1.0`分支获得之前版本的代码以及`README.md`
