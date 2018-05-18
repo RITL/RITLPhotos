@@ -14,6 +14,9 @@
 #import "PHAsset+RITLPhotos.h"
 #import <RITLKit.h>
 #import <Masonry.h>
+#import "RITLPhotosMaker.h"
+#import "RITLPhotosDataManager.h"
+#import "RITLPhotosConfiguration.h"
 #import "UICollectionViewCell+RITLPhotosAsset.h"
 #import "UICollectionView+RITLIndexPathsForElements.h"
 
@@ -35,6 +38,8 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 @property (nonatomic, strong) UIButton *backButton;
 /// 状态按钮
 @property (nonatomic, strong) UIButton *statusButton;
+/// 显示索引的标签
+@property (strong, nonatomic) IBOutlet UILabel *indexLabel;
 /// 展示图片的collectionView
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 /// 底部的视图
@@ -44,30 +49,52 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 /// 预览的collectionView
 @property (nonatomic, strong) UICollectionView *browseCollectionView;
 
+// Data
+@property (nonatomic, strong) RITLPhotosDataManager *dataManager;
+
 @end
 
 @implementation RITLPhotosHorBrowseViewController
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        
+        self.dataManager = RITLPhotosDataManager.sharedInstance;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
     
     self.previousPreheatRect = CGRectZero;
     [self resetCachedAssets];
     
     self.bottomView = RITLPhotosBottomView.new;
     self.bottomView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.8];
-    //暂时屏蔽掉图片编辑功能
-    self.bottomView.previewButton.hidden = true;
-   
-    // Do any additional setup after loading the view.
+    
+    self.bottomView.previewButton.hidden = true;//暂时屏蔽掉图片编辑功能
+    
+    self.bottomView.fullImageButton.selected = self.dataManager.isHightQuality;
+    [self.bottomView.fullImageButton addTarget:self
+                                        action:@selector(hightQualityShouldChanged:)
+                              forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.bottomView.sendButton addTarget:self
+                                   action:@selector(sendButtonDidClick:)
+                         forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:self.collectionView];
     
     //进行注册
     [self.collectionView registerClass:RITLPhotosBrowseImageCell.class forCellWithReuseIdentifier:RITLBrowsePhotoKey];
     [self.collectionView registerClass:RITLPhotosBrowseVideoCell.class forCellWithReuseIdentifier:RITLBrowseVideoKey];
     [self.collectionView registerClass:RITLPhotosBrowseLiveCell.class forCellWithReuseIdentifier:RITLBrowseLivePhotoKey];
-
+    
     //初始化视图
     self.topBar = ({
         
@@ -94,14 +121,31 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         view.backgroundColor = [UIColor clearColor];
         view.imageEdgeInsets = UIEdgeInsetsMake(10, 11, 0, 0);
         [view setImage:@"RITLPhotos.bundle/ritl_brower_selected".ritl_image forState:UIControlStateNormal];
+        [view addTarget:self action:@selector(assetStatusDidChanged:) forControlEvents:UIControlEventTouchUpInside];
         view;
     });
+    
+    self.indexLabel = ({
+        
+        UILabel *label = [UILabel new];
+        label.backgroundColor = RITLColorFromIntRBG(9, 187, 7);
+        label.text = @"0";
+        label.font = RITLUtilityFont(RITLFontPingFangSC_Regular, 15);
+        label.textColor = UIColor.whiteColor;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.layer.cornerRadius = 30 / 2.0;
+        label.layer.masksToBounds = true;
+        label.hidden = true;
+        label;
+    });
+    
     
     [self.view addSubview:self.topBar];
     [self.view addSubview:self.bottomView];
     [self.view addSubview:self.browseCollectionView];
     [self.topBar addSubview:self.backButton];
     [self.topBar addSubview:self.statusButton];
+    [self.topBar addSubview:self.indexLabel];
     
     UIView *lineView = ({
         
@@ -117,30 +161,37 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     
     //进行布局
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-
+        
         make.top.bottom.offset(0);
         make.left.offset(-1 * RITLPhotosHorBrowseCollectionSpace);
         make.right.offset(RITLPhotosHorBrowseCollectionSpace);
     }];
-
+    
     [self.topBar mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.left.top.right.offset(0);
         make.height.mas_equalTo(RITL_DefaultNaviBarHeight);
     }];
     
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.left.offset(15);
         make.width.height.mas_equalTo(40);
         make.bottom.inset(10);
     }];
     
     [self.statusButton mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.right.inset(10);
+        
+        make.right.inset(15);
         make.width.height.mas_equalTo(40);
         make.bottom.inset(10);
+    }];
+    
+    [self.indexLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.width.height.mas_equalTo(30);
+        make.bottom.inset(10);
+        make.right.inset(15);
     }];
     
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -150,21 +201,30 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     }];
     
     [self.browseCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.bottom.equalTo(self.bottomView.mas_top).offset(0);
         make.left.right.offset(0);
         make.height.mas_equalTo(80);
     }];
-
     
     //如果存在默认方法
     if ([self.dataSource respondsToSelector:@selector(defaultItemIndexPath)]) {
         
-       [self.collectionView scrollToItemAtIndexPath:self.dataSource.defaultItemIndexPath atScrollPosition:UICollectionViewScrollPositionRight animated:false];
+        [self.collectionView scrollToItemAtIndexPath:self.dataSource.defaultItemIndexPath atScrollPosition:UICollectionViewScrollPositionRight animated:false];
+        
+        [self updateTopViewWithAsset:[self.dataSource assetAtIndexPath:self.dataSource.defaultItemIndexPath]];
     }
     
     //接收cell的单击通知
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(horBrowseTooBarChangedHiddenStateNotificationationHandler:) name:RITLHorBrowseTooBarChangedHiddenStateNotification object:nil];
+    
+    //KVO
+    [self.dataManager addObserver:self forKeyPath:@"count" options:NSKeyValueObservingOptionNew context:nil];
+    [self.dataManager addObserver:self forKeyPath:@"hightQuality" options:NSKeyValueObservingOptionNew context:nil];
+    
+    //更新发送按钮
+    [self updateBottomSendButton];
+    [self updateBrowseCollectionView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -178,6 +238,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:false animated:true];
+    self.backHandler();
 }
 
 
@@ -206,7 +267,14 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (self.isViewLoaded) {
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        [self.dataManager removeObserver:self forKeyPath:@"count"];
+        [self.dataManager removeObserver:self forKeyPath:@"hightQuality"];
+    }
+    
+    NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
 }
 
 - (void)pop
@@ -215,7 +283,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     [self.navigationController popViewControllerAnimated:true];
 }
 
-#pragma mark - *************** cache ***************
+#pragma mark - Cache
 
 - (void)updateCachedAssets
 {
@@ -244,7 +312,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         return [result arrayByAddingObjectsFromArray:items];
         
     }] ritl_map:^id _Nonnull(NSIndexPath *_Nonnull index) {
-
+        
         return [self.dataSource assetAtIndexPath:index];
         
     }];
@@ -257,7 +325,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         return [result arrayByAddingObjectsFromArray:items];
         
     }] ritl_map:^id _Nonnull(NSIndexPath *_Nonnull index) {
-
+        
         return [self.dataSource assetAtIndexPath:index];
     }];
     
@@ -308,8 +376,82 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 {
     [self updateCachedAssets];
     [self.collectionView.visibleCells makeObjectsPerformSelector:@selector(stop)];
+    
+    //进行计算当前第几个位置
+    [self adjustScrollIndexWithContentOffset:scrollView.contentOffset scrollView:scrollView];
 }
 
+
+/// 进行计算当前第几个位置
+- (void)adjustScrollIndexWithContentOffset:(CGPoint)contentOffset scrollView:(UIScrollView *)scrollView
+{
+    //根据四舍五入获得的index
+    NSInteger index = [self indexOfCurrentAsset:scrollView];
+    
+    //获得资源
+    PHAsset *currentAsset = [self.dataSource assetAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
+    
+    [self updateTopViewWithAsset:currentAsset];
+}
+
+
+/// 根据偏移量获得当前响应到资源
+- (NSInteger)indexOfCurrentAsset:(UIScrollView *)scrollView
+{
+    //获得当前正常位置的偏移量
+    CGFloat contentOffsetX = MIN(MAX(0,scrollView.contentOffset.x),scrollView.contentSize.width);
+    
+    CGFloat space = 2 * RITLPhotosHorBrowseCollectionSpace;
+    
+    //根据四舍五入获得的index
+    NSInteger index = @(round((contentOffsetX + space) * 1.0 / (space + RITL_SCREEN_WIDTH))).integerValue;
+    
+    return index;
+}
+
+#pragma mark - Update View
+
+- (void)updateTopViewWithAsset:(PHAsset *)asset
+{
+    BOOL isSelected = [self.dataManager containAsset:asset];
+    
+    RITLPhotosConfiguration *configuration = RITLPhotosConfiguration.defaultConfiguration;
+    
+    if (!configuration.containVideo) {  //如果不包含视频
+        
+        self.statusButton.hidden = (asset.mediaType == PHAssetMediaTypeVideo);
+    }
+    
+    //进行属性隐藏设置
+    self.indexLabel.hidden = !isSelected;
+    
+    if (isSelected) {
+        
+        self.indexLabel.text = @([self.dataManager.assetIdentiers indexOfObject:asset.localIdentifier] + 1).stringValue;
+    }
+}
+
+
+/// 更新发送按钮
+- (void)updateBottomSendButton
+{
+    NSInteger count = self.dataManager.count;
+    
+    UIControlState state = (count == 0 ? UIControlStateDisabled : UIControlStateNormal);
+    
+    NSString *title = (count == 0 ? @"发送" : [NSString stringWithFormat:@"发送(%@)",@(count)]);
+    
+    self.bottomView.sendButton.enabled = !(count == 0);
+    [self.bottomView.sendButton setTitle:title forState:state];
+}
+
+
+/// 更新排版集合视图的状态
+- (void)updateBrowseCollectionView
+{
+//    NSInteger count = self.dataManager.count;
+//    self.browseCollectionView.hidden = (count == 0);
+}
 
 #pragma mark - Getter
 -(UICollectionView *)collectionView
@@ -322,7 +464,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         
         flowLayout.sectionInset = UIEdgeInsetsMake(0, RITLPhotosHorBrowseCollectionSpace, 0, RITLPhotosHorBrowseCollectionSpace);
         flowLayout.itemSize = @[@(RITL_SCREEN_WIDTH),@(RITL_SCREEN_HEIGHT)].ritl_size;
-
+        
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(-1 * RITLPhotosHorBrowseCollectionSpace, 0, self.ritl_width + 2 * RITLPhotosHorBrowseCollectionSpace, self.ritl_height) collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = UIColor.blackColor;
         
@@ -349,17 +491,17 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     {
         UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc]init];
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-//        flowLayout.minimumLineSpacing = 2 * RITLPhotosHorBrowseCollectionSpace;
+        //        flowLayout.minimumLineSpacing = 2 * RITLPhotosHorBrowseCollectionSpace;
         
-//        flowLayout.sectionInset = UIEdgeInsetsMake(0, RITLPhotosHorBrowseCollectionSpace, 0, RITLPhotosHorBrowseCollectionSpace);
-//        flowLayout.itemSize = @[@(RITL_SCREEN_WIDTH),@(RITL_SCREEN_HEIGHT)].ritl_size;
+        //        flowLayout.sectionInset = UIEdgeInsetsMake(0, RITLPhotosHorBrowseCollectionSpace, 0, RITLPhotosHorBrowseCollectionSpace);
+        //        flowLayout.itemSize = @[@(RITL_SCREEN_WIDTH),@(RITL_SCREEN_HEIGHT)].ritl_size;
         
         _browseCollectionView = [[UICollectionView alloc]initWithFrame:@[].ritl_rect collectionViewLayout:flowLayout];
         _browseCollectionView.backgroundColor = self.bottomView.backgroundColor;
         
         //初始化collectionView属性
-//        _browseCollectionView.dataSource = self.dataSource;
-//        _browseCollectionView.delegate = self;
+        //        _browseCollectionView.dataSource = self.dataSource;
+        //        _browseCollectionView.delegate = self;
         
         _browseCollectionView.hidden = true;
         _browseCollectionView.pagingEnabled = true;
@@ -381,17 +523,76 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 {
     NSNumber *hiddenResult = [notification.userInfo valueForKey:@"hidden"];
     
-    if (hiddenResult) {
+    if (hiddenResult) {//存在控制
         
-        self.topBar.hidden = self.bottomView.hidden = hiddenResult.boolValue;
+        /*self.browseCollectionView.hidden = */self.topBar.hidden = self.bottomView.hidden = hiddenResult.boolValue;
+        
+        if (hiddenResult.boolValue == false) {//如果是显示，需要更新状态
+            [self updateBrowseCollectionView];
+        }
         
     }else {
         
         BOOL beforeStatus = self.topBar.hidden;
-        self.topBar.hidden = self.bottomView.hidden = !beforeStatus;
+        /*self.browseCollectionView.hidden = */self.topBar.hidden = self.bottomView.hidden = !beforeStatus;
+        
+        if (beforeStatus) {//如果是需要展示
+            [self updateBrowseCollectionView];
+        }
     }
 }
 
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"count"] && [object isEqual:self.dataManager]) {
+
+        // 预览功能现在是屏蔽状态
+        //self.bottomView.previewButton.enabled = !(count == 0);
+        
+        //发送按钮
+        [self updateBottomSendButton];
+        
+        //选中的排版视图
+        [self updateBrowseCollectionView];
+    }
+    
+    else if([keyPath isEqualToString:@"hightQuality"] && [object isEqual:self.dataManager]){
+        
+        BOOL hightQuality = [change[NSKeyValueChangeNewKey] boolValue];
+        self.bottomView.fullImageButton.selected = hightQuality;
+    }
+}
+
+
+#pragma mark - action
+
+- (void)hightQualityShouldChanged:(UIButton *)sender
+{
+    self.dataManager.hightQuality = !self.dataManager.hightQuality;
+}
+
+
+- (void)sendButtonDidClick:(UIButton *)sender
+{
+    [RITLPhotosMaker.sharedInstance startMakePhotosComplete:^{
+       
+        [self.collectionView.visibleCells makeObjectsPerformSelector:@selector(stop)];
+        [self.navigationController dismissViewControllerAnimated:true completion:nil];
+    }];
+}
+
+
+- (void)assetStatusDidChanged:(UIButton *)sender
+{
+    //获得当前的资源
+    PHAsset *asset = [self.dataSource assetAtIndexPath:[NSIndexPath indexPathForItem:[self indexOfCurrentAsset:self.collectionView] inSection:0]];
+    
+    //进行修正
+    [self.dataManager addOrRemoveAsset:asset];
+    
+    //更新top
+    [self updateTopViewWithAsset:asset];
+}
 
 @end

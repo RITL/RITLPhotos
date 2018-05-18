@@ -13,6 +13,8 @@
 #import "RITLPhotosCell.h"
 #import "RITLPhotosBottomView.h"
 #import "RITLPhotosBrowseAllDataSource.h"
+#import "RITLPhotosBrowseDataSource.h"
+#import "RITLPhotosConfiguration.h"
 
 #import "PHAsset+RITLPhotos.h"
 #import "NSString+RITLPhotos.h"
@@ -25,7 +27,9 @@
 #import <Photos/Photos.h>
 
 //Data
+#import "RITLPhotosMaker.h"
 #import "RITLPhotosDataManager.h"
+#import "RITLPhotosConfiguration.h"
 
 
 
@@ -42,10 +46,10 @@ static RITLDifferencesKey *const RITLDifferencesKeyRemoved = @"RITLDifferencesKe
 
 
 @interface RITLPhotosCollectionViewController ()<UICollectionViewDataSource,
-                                                 UICollectionViewDelegateFlowLayout,
-                                                 UIViewControllerPreviewingDelegate,
-                                                 UICollectionViewDataSourcePrefetching,
-                                                 RITLPhotosCellActionTarget>
+UICollectionViewDelegateFlowLayout,
+UIViewControllerPreviewingDelegate,
+UICollectionViewDataSourcePrefetching,
+RITLPhotosCellActionTarget>
 
 // Library
 @property (nonatomic, strong) PHPhotoLibrary *photoLibrary;
@@ -78,7 +82,7 @@ static NSString *const reuseIdentifier = @"photo";
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-       
+        
         self.imageManager = [PHCachingImageManager new];
         self.photoLibrary = PHPhotoLibrary.sharedPhotoLibrary;
         self.previousPreheatRect = CGRectZero;
@@ -99,7 +103,7 @@ static NSString *const reuseIdentifier = @"photo";
 - (PHAssetCollection *)assetCollection
 {
     if (!_assetCollection) {
-
+        
         _assetCollection = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil].firstObject;
     }
     
@@ -114,11 +118,12 @@ static NSString *const reuseIdentifier = @"photo";
     
     //进行KVO观察
     [self.dataManager addObserver:self forKeyPath:@"count" options:NSKeyValueObservingOptionNew context:nil];
+    [self.dataManager addObserver:self forKeyPath:@"hightQuality" options:NSKeyValueObservingOptionNew context:nil];
     
     [self resetCachedAssets];
     
     // NavigationItem
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancle" style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Cancle", @"") style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
     
     // Register cell classes
     [self.collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:reuseIdentifier];
@@ -126,6 +131,19 @@ static NSString *const reuseIdentifier = @"photo";
     self.bottomView = RITLPhotosBottomView.new;
     self.bottomView.previewButton.enabled = false;
     self.bottomView.sendButton.enabled = false;
+    
+    [self.bottomView.previewButton addTarget:self
+                                      action:@selector(pushPreviewViewController)
+                            forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.bottomView.fullImageButton addTarget:self
+                                        action:@selector(hightQualityShouldChanged:)
+                              forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.bottomView.sendButton addTarget:self
+                                   action:@selector(pushPhotosMaker)
+                         forControlEvents:UIControlEventTouchUpInside];
+    
     self.bottomView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.8];
     
     // Do any additional setup after loading the view.
@@ -134,17 +152,17 @@ static NSString *const reuseIdentifier = @"photo";
     
     // Layout
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.bottom.left.right.offset(0);
         make.height.mas_equalTo(RITL_DefaultTabBarHeight - 3);
     }];
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.left.top.right.offset(0);
         make.bottom.equalTo(self.bottomView.mas_top).offset(0);
     }];
-
+    
     //加载数据
     if (self.localIdentifier) {
         //加载
@@ -167,20 +185,24 @@ static NSString *const reuseIdentifier = @"photo";
         self.collectionView.hidden = false;
         
         [self collectionViewScrollToBottomAnimatedNoneHandler:^NSInteger(NSInteger row) {
-
+            
             return row;
         }];
         
     } denied:^{}];
-    
 }
+
 
 
 - (void)dealloc
 {
     if (self.isViewLoaded) {
         [self.dataManager removeObserver:self forKeyPath:@"count"];
+        [self.dataManager removeObserver:self forKeyPath:@"hightQuality"];
     }
+    
+    [self.dataManager removeAllPHAssets];
+    NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
 }
 
 
@@ -367,9 +389,14 @@ static NSString *const reuseIdentifier = @"photo";
             cell.imageView.image = result;
             cell.messageView.hidden = (asset.mediaType == PHAssetMediaTypeImage);
             
-            if (@available(iOS 9.1,*)) {
+            if (@available(iOS 9.1,*)) {//Live图片
                 
                 cell.liveBadgeImageView.hidden = !(asset.mediaSubtypes == PHAssetMediaSubtypePhotoLive);
+            }
+            
+            if(!RITLPhotosConfiguration.defaultConfiguration.containVideo){//是否允许选择视频-不允许选择视频，去掉选择符
+                
+                cell.chooseButton.hidden = (asset.mediaType == PHAssetMediaTypeVideo);
             }
             
             BOOL isSelected = [self.dataManager.assetIdentiers containsObject:asset.localIdentifier];
@@ -394,7 +421,6 @@ static NSString *const reuseIdentifier = @"photo";
             [self registerForPreviewingWithDelegate:self sourceView:cell];
         }
     }
-    
     return cell;
 }
 
@@ -414,7 +440,7 @@ static NSString *const reuseIdentifier = @"photo";
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat sizeHeight = (RITL_SCREEN_WIDTH - 3.0f * 3) / 4;
+    CGFloat sizeHeight = (MIN(RITL_SCREEN_WIDTH,RITL_SCREEN_HEIGHT) - 3.0f * 3) / 4;
     
     return CGSizeMake(sizeHeight, sizeHeight);
 }
@@ -440,7 +466,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
     //获取当前的资源
     PHAsset *asset = [self.assets objectAtIndex:indexPath.item];
     //跳出控制器
-//    [self pushHorAllBrowseViewControllerWithAsset:asset];
+    [self pushHorAllBrowseViewControllerWithAsset:asset];
 }
 
 
@@ -477,9 +503,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
     PHAsset *asset = [self.assets objectAtIndex:indexPath.item];
     
     //跳出控制器
-//    [self pushHorAllBrowseViewControllerWithAsset:asset];
+    [self pushHorAllBrowseViewControllerWithAsset:asset];
 }
-
 
 
 #pragma mark - Browse All Assets Display
@@ -496,11 +521,47 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
         dataSource.asset = asset;
         
         browerController.dataSource = dataSource;
+        browerController.backHandler = ^{
+            
+            [self.collectionView reloadData];
+        };
+        
         browerController;
         
     }) animated:true];
 }
 
+
+/// Push出已经选择的资源浏览
+- (void)pushPreviewViewController
+{
+    [self.navigationController pushViewController:({
+        
+        RITLPhotosHorBrowseViewController *browerController = RITLPhotosHorBrowseViewController.new;
+        
+        RITLPhotosBrowseDataSource *dataSource = RITLPhotosBrowseDataSource.new;
+        dataSource.assets = self.dataManager.assets;
+        
+        browerController.dataSource = dataSource;
+        browerController.backHandler = ^{
+            
+            [self.collectionView reloadData];
+        };
+        
+        browerController;
+        
+    }) animated:true];
+}
+
+#pragma mark - Send
+
+- (void)pushPhotosMaker
+{
+    [RITLPhotosMaker.sharedInstance startMakePhotosComplete:^{
+       
+        [self dismissPhotoControllers];
+    }];
+}
 
 #pragma mark -
 
@@ -513,8 +574,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
         //protocol
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.allowsMultipleSelection = true;
-   
+        
         //property
         _collectionView.backgroundColor = [UIColor whiteColor];
     }
@@ -527,6 +587,9 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)photosCellDidTouchUpInSlide:(RITLPhotosCell *)cell asset:(PHAsset *)asset indexPath:(NSIndexPath *)indexPath complete:(RITLPhotosCellStatusAction)animated
 {
+    if (self.dataManager.count >= RITLPhotosConfiguration.defaultConfiguration.maxCount &&
+        ![self.dataManager containAsset:asset]/*是添加*/) { return; }//不能进行选择
+    
     NSInteger index = [self.dataManager addOrRemoveAsset:asset].integerValue;
     
     animated(RITLPhotosCellAnimatedStatusPermit,index > 0,MAX(0,index));
@@ -542,7 +605,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"count"] && [object isEqual:self.dataManager]) {
-
+        
         NSInteger count = [change[NSKeyValueChangeNewKey] integerValue];
         
         self.bottomView.previewButton.enabled = !(count == 0);
@@ -552,6 +615,20 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
         [self.bottomView.sendButton setTitle:title forState:state];
         self.bottomView.sendButton.enabled = !(count == 0);
     }
+    
+    else if([keyPath isEqualToString:@"hightQuality"] && [object isEqual:self.dataManager]){
+        
+        BOOL hightQuality = [change[NSKeyValueChangeNewKey] boolValue];
+        self.bottomView.fullImageButton.selected = hightQuality;
+    }
+}
+
+
+#pragma mark - action
+
+- (void)hightQualityShouldChanged:(UIButton *)sender
+{
+    self.dataManager.hightQuality = !self.dataManager.hightQuality;
 }
 
 @end

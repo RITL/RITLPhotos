@@ -7,15 +7,18 @@
 //
 
 #import "RITLPhotosViewController.h"
+#import "RITLPhotosMaker.h"
 #import "RITLPhotosGroupTableViewController.h"
 #import "RITLPhotosCollectionViewController.h"
 
 @interface RITLPhotosViewController ()
 
+@property (nonatomic, strong, readwrite) RITLPhotosConfiguration *configuration;
+@property (nonatomic, strong) RITLPhotosMaker *maker;
+
 @end
 
 @implementation RITLPhotosViewController
-
 
 + (instancetype)photosViewController
 {
@@ -23,16 +26,28 @@
 }
 
 
-
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         
+        self.maker = RITLPhotosMaker.sharedInstance;
+        self.configuration = RITLPhotosConfiguration.defaultConfiguration;
         self.viewControllers = @[RITLPhotosGroupTableViewController.new,
                                  RITLPhotosCollectionViewController.new];
     }
     
     return self;
+}
+
+- (void)setThumbnailSize:(CGSize)thumbnailSize
+{
+    self.maker.thumbnailSize = thumbnailSize;
+}
+
+- (void)setPhoto_delegate:(id<RITLPhotosViewControllerDelegate>)photo_delegate
+{
+    self.maker.delegate = photo_delegate;
+    self.maker.bindViewController = self;
 }
 
 @end
