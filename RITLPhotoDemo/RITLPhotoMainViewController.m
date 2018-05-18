@@ -7,16 +7,14 @@
 //
 
 #import "RITLPhotoMainViewController.h"
-
-#import <Photos/Photos.h>
-//#import "RITLPhotosCell.h"
-//#import "RITLPhotos.h"
-
-
 #import "RITLPhotosViewController.h"
+#import "RITLPhotosCell.h"
+#import <Photos/Photos.h>
+#import <RITLKit.h>
+
 
 @interface RITLPhotoMainViewController ()
-<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,RITLPhotosViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, assign) CGSize assetSize;
@@ -30,118 +28,104 @@
 {
     [super viewDidLoad];
     
-    
-    CGFloat sizeHeight = (self.collectionView.frame.size.width - 3) / 4;
+    CGFloat sizeHeight = (self.collectionView.frame.size.width - 3.0) / 4;
     _assetSize = CGSizeMake(sizeHeight, sizeHeight);
     
     [self.view addSubview:self.collectionView];
     
-//    //检测是否存在new的相册
-//    RITLPhotoStore * store = [RITLPhotoStore new];
-//    
-//    [store checkGroupExist:@"new" result:^(BOOL isExist, PHAssetCollection * _Nullable collection) {
-//       
-////        if (isExist)  NSLog(@"exist!");
-//        
-////        else NSLog(@"not exist!");
-//        
-//    }];
-    
 }
+
 - (IBAction)refresh:(id)sender
 {
     self.assets = @[];
-    
     [self.collectionView reloadData];
 }
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 
 - (IBAction)photosItemDidTap:(id)sender
 {
-//    RITLPhotoNavigationViewModel * viewModel = [RITLPhotoNavigationViewModel new];
-
-//    viewModel.bridgeDelegate = self;//优先级高于block回调
-
-//    __weak typeof(self) weakSelf = self;
-
-    //设置需要图片剪切的大小，不设置为图片的原比例大小
-//    viewModel.imageSize = _assetSize;
-//
-//    viewModel.RITLBridgeGetImageBlock = ^(NSArray <UIImage *> * images){
-//
-//        //获得图片
-//        __strong typeof(weakSelf) strongSelf = weakSelf;
-//
-//        strongSelf.assets = images;
-//
-//        [strongSelf.collectionView reloadData];
-//
-//    };
-//
-//    viewModel.RITLBridgeGetImageDataBlock = ^(NSArray <NSData *> * datas){
-//
-//        //可以进行数据上传操作..
-//
-//
-//    };
-
-//     RITLPhotoNavigationViewController * viewController = [RITLPhotoNavigationViewController photosViewModelInstance:viewModel];
-
-    [self presentViewController:RITLPhotosViewController.photosViewController animated:true completion:^{}];
+    
+    RITLPhotosViewController *photoController = RITLPhotosViewController.photosViewController;
+    photoController.configuration.maxCount = 5;//最大的选择数目
+    photoController.configuration.containVideo = false;//选择类型，目前只选择图片不选择视频
+    photoController.photo_delegate = self;
+    photoController.thumbnailSize = self.assetSize;//缩略图的尺寸
+    
+    [self presentViewController:photoController animated:true completion:^{}];
 }
 
 
-#pragma mark - RITLPhotoBridgeDelegate
+#pragma mark - RITLPhotosViewControllerDelegate
+/**** 为了提高相关性能，如果用不到的代理方法，不需要多实现  ****/
 
 /**
- 初始化时设置imageSize时，回调获得响应大小图片的方法
- 如果没有设置图片大小，返回的数据与ritl_bridgeGetImage:相同
+ 选中图片以及视频等资源的本地identifer
+ 可用于设置默认选好的资源
  
- @param images 缩略图数组
+ @param viewController RITLPhotosViewController
+ @param identifiers 选中资源的本地标志位
  */
-- (void)ritl_bridgeGetThumImage:(NSArray <UIImage *> *)images
+- (void)photosViewController:(UIViewController *)viewController
+            assetIdentifiers:(NSArray <NSString *> *)identifiers
 {
-    self.assets = images;
     
+}
+
+/**
+ 选中图片以及视频等资源的默认缩略图
+ 根据thumbnailSize设置所得，如果thumbnailSize为.Zero,则不进行回调
+ 与是否原图无关
+ 
+ @param viewController RITLPhotosViewController
+ @param thumbnailImages 选中资源的缩略图
+ */
+- (void)photosViewController:(UIViewController *)viewController
+             thumbnailImages:(NSArray <UIImage *> *)thumbnailImages
+{
+    self.assets = thumbnailImages;
     [self.collectionView reloadData];
 }
 
 
 /**
- 获得原尺寸比例大小的图片
+ 选中图片以及视频等资源的原比例图片
+ 适用于不使用缩略图，或者展示高清图片
+ 与是否原图无关
  
- @param images 原比例大小的图片
+ @param viewController RITLPhotosViewController
+ @param images 选中资源的原比例图
  */
-- (void)ritl_bridgeGetImage:(NSArray <UIImage *>*)images
+- (void)photosViewController:(UIViewController *)viewController
+                      images:(NSArray <UIImage *> *)images
+{
+    //获得原比例的图片
+
+}
+
+/**
+ 选中图片以及视频等资源的数据
+ 根据是否选中原图所得
+ 如果为原图，则返回原图大小的数据
+ 如果不是原图，则返回原始比例的数据
+ 注: 不会返回thumbnailImages的数据大小
+ 
+ @param viewController RITLPhotosViewController
+ @param datas 选中资源的数据
+ */
+- (void)photosViewController:(UIViewController *)viewController
+                       datas:(NSArray <NSData *> *)datas
 {
     
 }
 
-
 /**
- 获得所选图片的data数组
+ 选中图片以及视频等资源的源资源对象
+ 如果需要使用源资源对象进行相关操作，请实现该方法
  
- @param datas 获得原图或者ritl_bridgeGetImage:数据的数据对象
+ @param viewController RITLPhotosViewController
+ @param assets 选中的源资源
  */
-- (void)ritl_bridgeGetImageData:(NSArray <NSData *>*)datas
-{
-    //可以进行数据上传操作..
-}
-
-
-
-/**
- 获得所选图片原资源对象(PHAsset)
- 
- @param assets 所选图片原资源对象(PHAsset)
- */
-- (void)ritl_bridgeGetAsset:(NSArray <PHAsset *>*)assets
+- (void)photosViewController:(UIViewController *)viewController
+                      assets:(NSArray <PHAsset *> *)assets
 {
     
 }
@@ -151,106 +135,59 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
-    return 0;
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 0;
     return self.assets.count;
 }
 
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    RITLPhotosCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-//
-//    cell.imageView.image = self.assets[indexPath.item];
-//    cell.chooseImageView.hidden = true;
-//
-//    return cell;
-//}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    RITLPhotosCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
 
-//#pragma mark - <UICollectionViewDelegateFlowLayout>
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return self.assetSize;
-//}
-//
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-//{
-//    return 1.0f;
-//}
-//
-//
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-//{
-//    return 1.0f;
-//}
+    cell.chooseButton.hidden = true;
+    
+    //设置属性
+    cell.imageView.image = self.assets[indexPath.item];
 
-//
-//-(UICollectionView *)collectionView
-//{
-//    if (_collectionView == nil)
-//    {
-//        _collectionView = [[UICollectionView alloc]initWithFrame:self.view.bounds collectionViewLayout:[UICollectionViewFlowLayout new]];
-//        _collectionView.delegate = self;
-//        _collectionView.dataSource = self;
-//        _collectionView.backgroundColor = RITLColorFromRGB(0xF6FFB7);
-//
-//        [_collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:@"Cell"];
-//    }
-//
-//    return _collectionView;
-//}
+    return cell;
+}
+
+#pragma mark - <UICollectionViewDelegateFlowLayout>
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.assetSize;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 1.0f;
+}
 
 
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 1.0f;
+}
 
-//#pragma mark - Action
-//- (IBAction)addGroupDidTap:(id)sender
-//{
-//    //弹出AlertController
-//    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"新建相册" message:nil preferredStyle:UIAlertControllerStyleAlert];
-//
-//    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-//
-//        textField.placeholder = @"新建相册名字";
-//
-//    }];
-//
-//
-//    __weak typeof(alertController) weakAlert = alertController;
-//
-//    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//
-//        //获得textFiled
-//        UITextField * textField = weakAlert.textFields.firstObject;
-//
-//        if (textField.text.length == 0) {
-//            return ;
-//        }
-//
-//
-//        //创建新的相册
-//        RITLPhotoStore * photoStore = [RITLPhotoStore new];
-//
-//        [photoStore addCustomGroupWithTitle:textField.text completionHandler:^{
-//            ;
-//        } failture:^(NSString * _Nonnull error) {
-//            ;
-//        }];
-//
-//    }]];
-//
-//
-//    [alertController addAction:[UIAlertAction actionWithTitle:@"改变主意了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//
-//    }]];
-//
-//    [self presentViewController:alertController animated:true completion:^{}];
-//
-//}
-//
+
+-(UICollectionView *)collectionView
+{
+    if (_collectionView == nil)
+    {
+        _collectionView = [[UICollectionView alloc]initWithFrame:self.view.bounds collectionViewLayout:[UICollectionViewFlowLayout new]];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.backgroundColor = RITLColorFromRGB(0xF6FFB7);
+
+        [_collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:@"Cell"];
+    }
+
+    return _collectionView;
+}
 
 
 @end

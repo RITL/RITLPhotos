@@ -8,75 +8,6 @@
 
 #import "RITLPhotosDataManager.h"
 #import <Photos/Photos.h>
-//
-//@interface RITLPhotosResult<__covariant ObjectType>: NSObject
-//
-///// 数量
-//@property (nonatomic, assign, readonly)NSInteger count;
-//
-///// 存储数量的数组
-//@property (nonatomic, strong) NSMutableArray <ObjectType>*results;
-//
-///// 支持KVO的方法
-//- (void)addObject:(ObjectType)anObject;
-//- (void)removeObjectAtIndex:(NSUInteger)index;
-//- (void)exchangeObjectAtIndex:(NSUInteger)idx1 withObjectAtIndex:(NSUInteger)idx2;
-//- (void)removeAllObjects;
-//
-//@end
-//
-//@implementation RITLPhotosResult
-//
-//- (instancetype)init
-//{
-//    if (self = [super init]) {
-//        self.results = [NSMutableArray arrayWithCapacity:10];
-//    }
-//    return self;
-//}
-//
-//
-//+ (instancetype)resultWithCapacity:(NSUInteger)numItems
-//{
-//    RITLPhotosResult *result = [[self alloc]init];
-//    result.results = [NSMutableArray arrayWithCapacity:numItems];
-//    return result;
-//}
-//
-//
-//- (NSInteger)count
-//{
-//    return self.results.count;
-//}
-//
-//- (void)addObject:(id)anObject
-//{
-//    [self.results addObject:anObject];
-//    [self didChangeValueForKey:@"count"];
-//}
-//
-//
-//- (void)removeObjectAtIndex:(NSUInteger)index
-//{
-//    [self.results removeObjectAtIndex:index];
-//    [self didChangeValueForKey:@"count"];
-//}
-//
-//- (void)exchangeObjectAtIndex:(NSUInteger)idx1 withObjectAtIndex:(NSUInteger)idx2
-//{
-//    [self.results exchangeObjectAtIndex:idx1 withObjectAtIndex:idx2];
-//    [self didChangeValueForKey:@"count"];
-//}
-//
-//- (void)removeAllObjects
-//{
-//    [self.results removeAllObjects];
-//    [self didChangeValueForKey:@"count"];
-//}
-//
-//@end
-
-
 
 @interface RITLPhotosDataManager ()
 
@@ -172,13 +103,29 @@
     return self.phassetsIds;
 }
 
-
 - (void)setCount:(NSInteger)count
 {
-//    [self willChangeValueForKey:@"count"];
     _count = count;
     [self didChangeValueForKey:@"count"];
 }
+
+- (void)setHightQuality:(BOOL)hightQuality
+{
+    _hightQuality = hightQuality;
+    [self didChangeValueForKey:@"hightQuality"];
+}
+
+
+- (BOOL)containAsset:(PHAsset *)asset
+{
+    return [self.assetIdentiers containsObject:asset.localIdentifier];
+}
+
+- (void)dealloc
+{
+    NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
+}
+
 
 @end
 

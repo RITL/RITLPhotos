@@ -12,7 +12,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+typedef void(^RITLPhotosHorBrowseWillBack)(void);
+
 @interface RITLPhotosHorBrowseViewController : UIViewController
+
+/// 返回的block
+@property (nonatomic, copy) RITLPhotosHorBrowseWillBack backHandler;
 
 /// 数据源
 @property (nonatomic, strong) id<RITLPhotosHorBrowseDataSource> dataSource;
