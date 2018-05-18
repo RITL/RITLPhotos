@@ -31,6 +31,7 @@
 		DBA276A71DED28F6007F4E0B /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBA276771DED28F6007F4E0B /* LaunchScreen.strings */; };
 		DBC05A9720AC1569000213E4 /* RITLPhotosDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC05A9620AC1569000213E4 /* RITLPhotosDataManager.m */; };
 		DBC3E4DC1D4845F9002FD0C7 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC3E4DB1D4845F9002FD0C7 /* Photos.framework */; };
+		DBC7FFE920AEDC6300F9F9D9 /* RITLPhotos.gif in Resources */ = {isa = PBXBuildFile; fileRef = DBC7FFE820AEDC6300F9F9D9 /* RITLPhotos.gif */; };
 		DBCFFDEF204F8A1400D5DAE5 /* RITLPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCFFDEE204F8A1400D5DAE5 /* RITLPhotosViewController.m */; };
 		DBCFFE07204F911700D5DAE5 /* PHAssetCollection+RITLPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCFFDFF204F911600D5DAE5 /* PHAssetCollection+RITLPhotos.m */; };
 		DBCFFE08204F911700D5DAE5 /* PHFetchResult+RITLPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = DBCFFE00204F911700D5DAE5 /* PHFetchResult+RITLPhotos.m */; };
@@ -91,6 +92,7 @@
 		DBC05A9520AC1569000213E4 /* RITLPhotosDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RITLPhotosDataManager.h; sourceTree = "<group>"; };
 		DBC05A9620AC1569000213E4 /* RITLPhotosDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RITLPhotosDataManager.m; sourceTree = "<group>"; };
 		DBC3E4DB1D4845F9002FD0C7 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		DBC7FFE820AEDC6300F9F9D9 /* RITLPhotos.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = RITLPhotos.gif; sourceTree = "<group>"; };
 		DBCFFDED204F8A1400D5DAE5 /* RITLPhotosViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RITLPhotosViewController.h; sourceTree = "<group>"; };
 		DBCFFDEE204F8A1400D5DAE5 /* RITLPhotosViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RITLPhotosViewController.m; sourceTree = "<group>"; };
 		DBCFFDFF204F911600D5DAE5 /* PHAssetCollection+RITLPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PHAssetCollection+RITLPhotos.m"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 		DBA2760F1DED28F5007F4E0B /* RITLPhotoDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DBC7FFE820AEDC6300F9F9D9 /* RITLPhotos.gif */,
 				DBA276101DED28F5007F4E0B /* Assets.xcassets */,
 				DBA276111DED28F5007F4E0B /* LaunchScreen.storyboard */,
 				DBA276131DED28F5007F4E0B /* Info.plist */,
@@ -376,6 +379,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBC7FFE920AEDC6300F9F9D9 /* RITLPhotos.gif in Resources */,
 				DBA276791DED28F6007F4E0B /* Assets.xcassets in Resources */,
 				DBA2767A1DED28F6007F4E0B /* LaunchScreen.storyboard in Resources */,
 				DBA2767D1DED28F6007F4E0B /* Main.storyboard in Resources */,
