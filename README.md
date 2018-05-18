@@ -1,112 +1,109 @@
 
 
----
+# 2018-05-18更新
 
 
-<div align="center"><img src="http://7xruse.com1.z0.glb.clouddn.com/RITLPhotos.gif" height=500></img></div>
-<br>
 
-- 请不要忘记将`Localizable.strings`下的多语言化复制到自己的多语言文件中
+<div align="center"><img src="https://github.com/RITL/RITLImagePickerDemo/blob/master/RITLPhotoDemo/RITLPhotos.gif" height=500></img></div>
 
-- swift版本:[Swift-RITLImagePickerDemo](https://github.com/RITL/Swift-RITLImagePickerDemo)
-
-- 用法比较简单:
+# 使用方法
 ```
-RITLPhotoNavigationViewModel * viewModel = [RITLPhotoNavigationViewModel new];
+RITLPhotosViewController *photoController = RITLPhotosViewController.photosViewController;
+photoController.configuration.maxCount = 5;//最大的选择数目
+photoController.configuration.containVideo = false;//选择类型，目前只选择图片不选择视频
+photoController.photo_delegate = self;
+photoController.thumbnailSize = self.assetSize;//缩略图的尺寸
 
-__weak typeof(self) weakSelf = self;
-
-//    设置需要图片剪切的大小，不设置为图片的原比例大小
-//    viewModel.imageSize = _assetSize;
-
-viewModel.RITLBridgeGetImageBlock = ^(NSArray <UIImage *> * images){
-    
-    //获得图片
-    
-};
-
-viewModel.RITLBridgeGetImageDataBlock = ^(NSArray <NSData *> * datas){
-  
-    //可以进行数据上传操作..
-    
-    
-};
-
- RITLPhotoNavigationViewController * viewController = [RITLPhotoNavigationViewController photosViewModelInstance:viewModel];
-
-[self presentViewController:viewController animated:true completion:^{}];
-
+[self presentViewController:photoController animated:true completion:^{}];
 ```
 
-
-
-# 2017-11-30 更新
-
-由于近期一直很忙，其实我也在一直用这个库，稍微在项目里面完善了一下
-
-- 去掉了必须使用Objc++模式
-- 增加了代理，并且代理方法的优先级位于block之上
-
-
-
+# 回调方法
 ```
-//设置代理如下
-RITLPhotoNavigationViewModel * viewModel = [RITLPhotoNavigationViewModel new];
-    
-viewModel.bridgeDelegate = self;//优先级高于block回调
-```
-
-```
-/// 代理方法
-
-#pragma mark - RITLPhotoBridgeDelegate
+#pragma mark - RITLPhotosViewControllerDelegate
+/**** 为了提高相关性能，如果用不到的代理方法，不需要多实现  ****/
 
 /**
- 初始化时设置imageSize时，回调获得响应大小图片的方法
- 如果没有设置图片大小，返回的数据与ritl_bridgeGetImage:相同
+ 选中图片以及视频等资源的本地identifer
+ 可用于设置默认选好的资源
  
- @param images 缩略图数组
+ @param viewController RITLPhotosViewController
+ @param identifiers 选中资源的本地标志位
  */
-- (void)ritl_bridgeGetThumImage:(NSArray <UIImage *> *)images
-{
-    self.assets = images;
-    
-    [self.collectionView reloadData];
-}
-
-
-/**
- 获得原尺寸比例大小的图片
- 
- @param images 原比例大小的图片
- */
-- (void)ritl_bridgeGetImage:(NSArray <UIImage *>*)images
+- (void)photosViewController:(UIViewController *)viewController
+            assetIdentifiers:(NSArray <NSString *> *)identifiers
 {
     
 }
-
-
+```
+```
 /**
- 获得所选图片的data数组
+ 选中图片以及视频等资源的默认缩略图
+ 根据thumbnailSize设置所得，如果thumbnailSize为.Zero,则不进行回调
+ 与是否原图无关
  
- @param datas 获得原图或者ritl_bridgeGetImage:数据的数据对象
+ @param viewController RITLPhotosViewController
+ @param thumbnailImages 选中资源的缩略图
  */
-- (void)ritl_bridgeGetImageData:(NSArray <NSData *>*)datas
+- (void)photosViewController:(UIViewController *)viewController
+             thumbnailImages:(NSArray <UIImage *> *)thumbnailImages
 {
-    //可以进行数据上传操作..
+
 }
-
-
-
+```
+```
 /**
- 获得所选图片原资源对象(PHAsset)
+ 选中图片以及视频等资源的原比例图片
+ 适用于不使用缩略图，或者展示高清图片
+ 与是否原图无关
  
- @param assets 所选图片原资源对象(PHAsset)
+ @param viewController RITLPhotosViewController
+ @param images 选中资源的原比例图
  */
-- (void)ritl_bridgeGetAsset:(NSArray <PHAsset *>*)assets
+- (void)photosViewController:(UIViewController *)viewController
+                      images:(NSArray <UIImage *> *)images
+{
+    //获得原比例的图片
+
+}
+```
+```
+/**
+ 选中图片以及视频等资源的数据
+ 根据是否选中原图所得
+ 如果为原图，则返回原图大小的数据
+ 如果不是原图，则返回原始比例的数据
+ 注: 不会返回thumbnailImages的数据大小
+ 
+ @param viewController RITLPhotosViewController
+ @param datas 选中资源的数据
+ */
+- (void)photosViewController:(UIViewController *)viewController
+                       datas:(NSArray <NSData *> *)datas
+{
+    
+}
+```
+```
+/**
+ 选中图片以及视频等资源的源资源对象
+ 如果需要使用源资源对象进行相关操作，请实现该方法
+ 
+ @param viewController RITLPhotosViewController
+ @param assets 选中的源资源
+ */
+- (void)photosViewController:(UIViewController *)viewController
+                      assets:(NSArray <PHAsset *> *)assets
 {
     
 }
 
 ```
 
+
+# 更新日志
+
+- 2018-05-18 `version2.0` 增加了图片多选库中对`Live`以及`Video`的支持，增加了对顺序获取图片的支持
+
+# 之前版本
+
+- 请前往`version1.0`分值获得之前版本的代码以及`README`
