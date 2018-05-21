@@ -6,9 +6,7 @@ Pod::Spec.new do |s|
   s.summary       = "PhotosPicker"
   s.description   = "一个基于Photos.framework的图片多选，模仿微信，还有很多不足，正在改进和优化."
 
-
   s.homepage      = "https://github.com/RITL/RITLImagePickerDemo"
-  s.screenshots   = "https://github.com/RITL/RITLImagePickerDemo/blob/master/RITLPhotoDemo/RITLPhotos.gif"
 
   s.license       = { :type => "MIT", :file => "LICENSE" }
 
