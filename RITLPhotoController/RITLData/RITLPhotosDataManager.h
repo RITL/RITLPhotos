@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 选中的资源个数，可以用于KVO:NSKeyValueObservingOptionNew
 @property (nonatomic, assign, readonly) NSInteger count;
 
+/// 默认选中的标志位,用来二次进入默认选中的标志位
+@property (nonatomic, copy)NSArray <NSString *> *defaultIdentifers;
+
 /// 可自动销毁的单例对象
 + (instancetype)sharedInstance;
 

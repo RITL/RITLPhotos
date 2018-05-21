@@ -8,6 +8,7 @@
 
 #import "RITLPhotosViewController.h"
 #import "RITLPhotosMaker.h"
+#import "RITLPhotosDataManager.h"
 #import "RITLPhotosGroupTableViewController.h"
 #import "RITLPhotosCollectionViewController.h"
 
@@ -15,6 +16,7 @@
 
 @property (nonatomic, strong, readwrite) RITLPhotosConfiguration *configuration;
 @property (nonatomic, strong) RITLPhotosMaker *maker;
+@property (nonatomic, strong) RITLPhotosDataManager *dataManager;
 
 @end
 
@@ -31,6 +33,7 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         
         self.maker = RITLPhotosMaker.sharedInstance;
+        self.dataManager = RITLPhotosDataManager.sharedInstance;
         self.configuration = RITLPhotosConfiguration.defaultConfiguration;
         self.viewControllers = @[RITLPhotosGroupTableViewController.new,
                                  RITLPhotosCollectionViewController.new];
@@ -44,10 +47,17 @@
     self.maker.thumbnailSize = thumbnailSize;
 }
 
+
 - (void)setPhoto_delegate:(id<RITLPhotosViewControllerDelegate>)photo_delegate
 {
     self.maker.delegate = photo_delegate;
     self.maker.bindViewController = self;
+}
+
+
+- (void)setDefaultIdentifers:(NSArray<NSString *> *)defaultIdentifers
+{
+    self.dataManager.defaultIdentifers = defaultIdentifers;
 }
 
 @end

@@ -31,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign)CGSize thumbnailSize;
 
+#pragma mark - 记录当前选择过的图片
+
+/// 默认选中的标志位
+@property (nonatomic, copy)NSArray < NSString *> *defaultIdentifers;
+
 @end
 
 NS_ASSUME_NONNULL_END

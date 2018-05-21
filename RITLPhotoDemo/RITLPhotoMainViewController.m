@@ -14,11 +14,15 @@
 
 
 @interface RITLPhotoMainViewController ()
-<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,RITLPhotosViewControllerDelegate>
+<UICollectionViewDataSource,
+UICollectionViewDelegateFlowLayout,
+RITLPhotosViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @property (nonatomic, assign) CGSize assetSize;
 @property (nonatomic, copy)NSArray <UIImage *> * assets;
+@property (nonatomic, copy)NSArray <NSString *> *saveAssetIds;
 
 @end
 
@@ -43,12 +47,12 @@
 
 - (IBAction)photosItemDidTap:(id)sender
 {
-    
     RITLPhotosViewController *photoController = RITLPhotosViewController.photosViewController;
     photoController.configuration.maxCount = 5;//最大的选择数目
     photoController.configuration.containVideo = false;//选择类型，目前只选择图片不选择视频
     photoController.photo_delegate = self;
     photoController.thumbnailSize = self.assetSize;//缩略图的尺寸
+    photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的资源
     
     [self presentViewController:photoController animated:true completion:^{}];
 }
@@ -67,7 +71,7 @@
 - (void)photosViewController:(UIViewController *)viewController
             assetIdentifiers:(NSArray <NSString *> *)identifiers
 {
-    
+    self.saveAssetIds = identifiers;
 }
 
 /**
@@ -85,7 +89,6 @@
     [self.collectionView reloadData];
 }
 
-
 /**
  选中图片以及视频等资源的原比例图片
  适用于不使用缩略图，或者展示高清图片
@@ -98,7 +101,7 @@
                       images:(NSArray <UIImage *> *)images
 {
     //获得原比例的图片
-
+    
 }
 
 /**
@@ -147,12 +150,12 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RITLPhotosCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-
+    
     cell.chooseButton.hidden = true;
     
     //设置属性
     cell.imageView.image = self.assets[indexPath.item];
-
+    
     return cell;
 }
 
@@ -182,10 +185,10 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = RITLColorFromRGB(0xF6FFB7);
-
+        
         [_collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:@"Cell"];
     }
-
+    
     return _collectionView;
 }
 

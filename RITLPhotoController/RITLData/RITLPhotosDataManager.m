@@ -7,6 +7,7 @@
 //
 
 #import "RITLPhotosDataManager.h"
+#import "PHFetchResult+RITLPhotos.h"
 #import <Photos/Photos.h>
 
 @interface RITLPhotosDataManager ()
@@ -115,6 +116,15 @@
     [self didChangeValueForKey:@"hightQuality"];
 }
 
+- (void)setDefaultIdentifers:(NSArray<NSString *> *)defaultIdentifers
+{
+    if (defaultIdentifers.count  == 0 || !defaultIdentifers) { return; }
+ 
+    [self.phassetsIds addObjectsFromArray:defaultIdentifers];
+    
+    //追加资源对象
+    [self.phassets addObjectsFromArray:[PHAsset fetchAssetsWithLocalIdentifiers:defaultIdentifers options:nil].array];
+}
 
 - (BOOL)containAsset:(PHAsset *)asset
 {
