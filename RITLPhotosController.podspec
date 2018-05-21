@@ -30,6 +30,15 @@ Pod::Spec.new do |s|
     ss.source_files = 'RITLPhotoController/RITLConfig/*.{h,m}'
   end
 
+  s.subspec 'Photos+RITLCategory' do |ss|
+    ss.source_files = 'RITLPhotoController/Photos+RITLCategory/*.{h,m}'
+  end
+
+
+  s.subspec 'RITLViews' do |ss|
+    ss.source_files = 'RITLPhotoController/RITLViews/*.{h,m}'
+  end
+
   s.subspec 'RITLData' do |ss|
     ss.source_files = 'RITLPhotoController/RITLData/*.{h,m}'
     ss.dependency 'RITLPhotoController/Photos+RITLCategory'
@@ -41,21 +50,21 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'RITLGroupModule' do |ss|
-    ss.source_files = 'RITLPhotoController/RITLGroupModule/**/*.{h,m}'
+    ss.source_files = 'RITLPhotoController/RITLGroupModule/*.{h,m}'
     ss.dependency 'RITLPhotoController/Photos+RITLCategory'
     ss.dependency 'RITLPhotoController/RITLCollectionModule'
     ss.dependency 'RITLPhotoController/RITLPhotoStore'
   end
 
   s.subspec 'RITLCollectionModule' do |ss|
-    ss.source_files = 'RITLPhotoController/RITLGroupModule/**/*.{h,m}'
+    ss.source_files = 'RITLPhotoController/RITLCollectionModule/*.{h,m}'
     ss.dependency 'RITLPhotoController/Photos+RITLCategory'
     ss.dependency 'RITLPhotoController/RITLHoriScrollModule'
     ss.dependency 'RITLPhotoController/RITLPhotoStore'
   end
 
   s.subspec 'RITLHoriScrollModule' do |ss|
-    ss.source_files = 'RITLPhotoController/RITLGroupModule/**/*.{h,m}'
+    ss.source_files = 'RITLPhotoController/RITLHoriScrollModule/*.{h,m}'
     ss.dependency 'RITLPhotoController/Photos+RITLCategory'
     ss.dependency 'RITLPhotoController/RITLCollectionModule'
     ss.dependency 'RITLPhotoController/RITLConfig'
@@ -64,12 +73,6 @@ Pod::Spec.new do |s|
     ss.dependency 'RITLPhotoController/RITLViews'
   end
 
-  s.subspec 'RITLViews' do |ss|
-    ss.source_files = 'RITLPhotoController/RITLViews/*.{h,m}'
-  end
 
-  s.subspec 'Photos+RITLCategory' do |ss|
-    ss.source_files = 'RITLPhotoController/RITLCategory/*.{h,m}'
-  end
 
 end
