@@ -12,8 +12,8 @@
 #import "RITLPhotosBrowseLiveCell.h"
 #import "RITLPhotosBottomView.h"
 #import "PHAsset+RITLPhotos.h"
-#import <RITLKit.h>
-#import <Masonry.h>
+#import <RITLKit/RITLKit.h>
+#import <Masonry/Masonry.h>
 #import "RITLPhotosMaker.h"
 #import "RITLPhotosDataManager.h"
 #import "RITLPhotosConfiguration.h"
@@ -93,7 +93,11 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     //进行注册
     [self.collectionView registerClass:RITLPhotosBrowseImageCell.class forCellWithReuseIdentifier:RITLBrowsePhotoKey];
     [self.collectionView registerClass:RITLPhotosBrowseVideoCell.class forCellWithReuseIdentifier:RITLBrowseVideoKey];
-    [self.collectionView registerClass:RITLPhotosBrowseLiveCell.class forCellWithReuseIdentifier:RITLBrowseLivePhotoKey];
+    if (@available(iOS 9.1,*)) {
+        
+        [self.collectionView registerClass:RITLPhotosBrowseLiveCell.class forCellWithReuseIdentifier:RITLBrowseLivePhotoKey];
+    }
+
     
     //初始化视图
     self.topBar = ({

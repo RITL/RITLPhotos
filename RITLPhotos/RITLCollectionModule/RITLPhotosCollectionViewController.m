@@ -22,8 +22,8 @@
 #import "UICollectionView+RITLIndexPathsForElements.h"
 #import "UICollectionViewCell+RITLPhotosAsset.h"
 
-#import <RITLKit.h>
-#import <Masonry.h>
+#import <RITLKit/RITLKit.h>
+#import <Masonry/Masonry.h>
 #import <Photos/Photos.h>
 
 //Data
@@ -475,7 +475,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
 #pragma mark - <UIViewControllerPreviewingDelegate>
 
-- (nullable UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
+- (nullable UIViewController *)previewingContext:(id <UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location NS_AVAILABLE_IOS(9_0)
 {
     //获取当前cell的indexPath
     NSIndexPath * indexPath = [self.collectionView indexPathForCell:(RITLPhotosCell *)previewingContext.sourceView];
@@ -496,7 +496,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 }
 
 
-- (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit
+- (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit NS_AVAILABLE_IOS(9_0)
 {
     //获取当前cell的indexPath
     NSIndexPath * indexPath = [self.collectionView indexPathForCell:(RITLPhotosCell *)previewingContext.sourceView];

@@ -7,8 +7,8 @@
 //
 
 #import "RITLPhotosGroupCell.h"
-#import <RITLKit.h>
-#import <Masonry.h>
+#import <RITLKit/RITLKit.h>
+#import <Masonry/Masonry.h>
 
 static NSString *const RITLGroupTableViewControllerRightArrowImageName = @"RITLPhotos.bundle/ritl_arrow_right";
 

@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PHAsset (RITLPhotos)
 
+// 存在内存风险，暂时不建议使用
 
 /**
  获取PHAsset的照片资源

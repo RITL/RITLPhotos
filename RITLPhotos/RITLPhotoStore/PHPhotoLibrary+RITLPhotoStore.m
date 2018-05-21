@@ -8,7 +8,7 @@
 
 #import "PHPhotoLibrary+RITLPhotoStore.h"
 #import "PHFetchResult+RITLPhotos.h"
-#import <RITLKit.h>
+#import <RITLKit/RITLKit.h>
 
 @implementation PHPhotoLibrary (RITLPhotoStore)
 

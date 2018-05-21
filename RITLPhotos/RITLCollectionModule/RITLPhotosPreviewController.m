@@ -8,8 +8,8 @@
 
 #import "RITLPhotosPreviewController.h"
 #import <Photos/Photos.h>
-#import <RITLKit.h>
-#import <Masonry.h>
+#import <RITLKit/RITLKit.h>
+#import <Masonry/Masonry.h>
 
 @interface RITLPhotosPreviewController ()
 

@@ -7,7 +7,7 @@
 //
 
 #import "UICollectionView+RITLIndexPathsForElements.h"
-#import <RITLKit.h>
+#import <RITLKit/RITLKit.h>
 
 @implementation UICollectionView (RITLIndexPathsForElements)
 

@@ -10,7 +10,7 @@
 #import "RITLPhotosViewController.h"
 #import "RITLPhotosCell.h"
 #import <Photos/Photos.h>
-#import <RITLKit.h>
+#import <RITLKit/RITLKit.h>
 
 
 @interface RITLPhotoMainViewController ()

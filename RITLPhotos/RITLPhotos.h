@@ -10,5 +10,10 @@
 #define RITLPhotos_h
 
 #import "RITLPhotosViewController.h"
+#import "RITLPhotosGroupTableViewController.h"
+#import "RITLPhotosCollectionViewController.h"
+#import "RITLPhotosHorBrowseViewController.h"
+#import "RITLPhotosPreviewController.h"
+
 
 #endif /* RITLPhotos_h */

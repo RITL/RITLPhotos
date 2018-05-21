@@ -7,8 +7,8 @@
 //
 
 #import "RITLPhotosBottomView.h"
-#import <RITLKit.h>
-#import <Masonry.h>
+#import <RITLKit/RITLKit.h>
+#import <Masonry/Masonry.h>
 
 @implementation RITLPhotosBottomView
 

@@ -43,10 +43,10 @@ PODS:
     - RITLKit/Utility
 
 DEPENDENCIES:
-  - RITLKit (~> 0.3.3)
+  - RITLKit
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Masonry
     - RITLKit
 
@@ -54,6 +54,6 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   RITLKit: 212ec8c0360147b32af997e8f306f9344a5b7018
 
-PODFILE CHECKSUM: cc2e1701acf4eae069035b419cd7988836fda0eb
+PODFILE CHECKSUM: 628c536142495857d9c8f2a74159f02c73aeb9fb
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2

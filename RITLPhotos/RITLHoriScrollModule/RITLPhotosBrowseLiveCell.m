@@ -8,9 +8,9 @@
 
 #import "RITLPhotosBrowseLiveCell.h"
 #import "UICollectionViewCell+RITLPhotosAsset.h"
-#import <RITLKit.h>
+#import <RITLKit/RITLKit.h>
 #import <PhotosUI/PhotosUI.h>
-#import <Masonry.h>
+#import <Masonry/Masonry.h>
 
 @interface RITLPhotosBrowseLiveCell() <PHLivePhotoViewDelegate>
 

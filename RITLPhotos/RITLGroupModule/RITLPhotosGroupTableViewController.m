@@ -11,8 +11,7 @@
 #import "PHAssetCollection+RITLPhotos.h"
 #import "PHPhotoLibrary+RITLPhotoStore.h"
 #import "RITLPhotosCollectionViewController.h"
-
-#import <RITLKit.h>
+#import <RITLKit/RITLKit.h>
 
 
 static NSString *const RITLGroupTableViewControllerPlaceHolderImageName = @"RITLPhotos.bundle/ritl_placeholder";

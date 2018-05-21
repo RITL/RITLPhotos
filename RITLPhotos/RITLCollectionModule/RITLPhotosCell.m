@@ -8,8 +8,8 @@
 
 #import "RITLPhotosCell.h"
 #import <PhotosUI/PhotosUI.h>
-#import <Masonry.h>
-#import <RITLKit.h>
+#import <Masonry/Masonry.h>
+#import <RITLKit/RITLKit.h>
 
 static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.bundle/ritl_deselect";
 

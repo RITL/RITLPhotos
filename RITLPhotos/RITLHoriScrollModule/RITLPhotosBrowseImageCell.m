@@ -8,8 +8,8 @@
 
 #import "RITLPhotosBrowseImageCell.h"
 #import "UICollectionViewCell+RITLPhotosAsset.h"
-#import <RITLKit.h>
-#import <Masonry.h>
+#import <RITLKit/RITLKit.h>
+#import <Masonry/Masonry.h>
 
 @interface RITLPhotosBrowseImageCell ()<UIScrollViewDelegate>
 

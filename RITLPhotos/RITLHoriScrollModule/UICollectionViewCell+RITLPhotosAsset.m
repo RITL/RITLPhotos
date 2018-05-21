@@ -11,9 +11,9 @@
 #import "RITLPhotosBrowseLiveCell.h"
 #import "RITLPhotosBrowseVideoCell.h"
 #import <PhotosUI/PhotosUI.h>
-#import <Masonry.h>
+#import <Masonry/Masonry.h>
 #import <objc/runtime.h>
-#import <RITLKit.h>
+#import <RITLKit/RITLKit.h>
 
 NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHorBrowseTooBarChangedHiddenStateNSNotification";
 

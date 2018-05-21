@@ -9,7 +9,7 @@
 #import "PHAsset+RITLPhotos.h"
 #import "PHImageRequestOptions+RITLPhotos.h"
 #import <objc/runtime.h>
-#import <RITLKit.h>
+#import <RITLKit/RITLKit.h>
 
 
 @implementation PHAsset (RITLPhotos)
@@ -177,8 +177,8 @@
     
     else if(self.mediaType == PHAssetMediaTypeImage){
         
-        if (RITL_iOS_Version_GreaterThanOrEqualTo(9.1)) {
-        
+        if (@available(iOS 9.1,*)) {
+            
             return self.mediaSubtypes == PHAssetMediaSubtypePhotoLive ? @"livephoto" : @"photo";
         }
         

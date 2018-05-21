@@ -8,8 +8,8 @@
 
 #import "RITLPhotosBrowseVideoCell.h"
 #import "UICollectionViewCell+RITLPhotosAsset.h"
-#import <RITLKit.h>
-#import <Masonry.h>
+#import <RITLKit/RITLKit.h>
+#import <Masonry/Masonry.h>
 
 static NSString *const RITLPhotosBrowseVideoCellVideoImageName = @"RITLPhotos.bundle/ritl_video_play";
 
