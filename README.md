@@ -15,6 +15,9 @@ pod 'Masonry'
 ```
 pod 'RITLPhotos', '~> 2.1.0'
 ```
+```
+#import <RITLPhotos/RITLPhotos.h>
+```
 
 # 使用方法
 ```
