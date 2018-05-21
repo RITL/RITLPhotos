@@ -6,6 +6,11 @@
 
 <div align="center"><img src="https://github.com/RITL/RITLImagePickerDemo/blob/master/RITLPhotoDemo/RITLPhotos.gif" height=500></img></div>
 
+# 依赖的库
+```
+pod 'RITLKit'
+```
+
 # 使用方法
 ```
 RITLPhotosViewController *photoController = RITLPhotosViewController.photosViewController;
