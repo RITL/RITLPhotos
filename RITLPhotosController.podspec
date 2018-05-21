@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.source        = { :git => "https://github.com/RITL/RITLImagePickerDemo.git", :tag => "#{s.version}" }
   s.source_files  = "RITLPhotoController/*.{h,m}"
 
-  s.frameworks    = "Foundation", "UIKit","Photos"
+  s.frameworks    = "Foundation","UIKit","Photos","PhotosUI"
   s.requires_arc  = true
   s.resource     = 'RITLPhotoController/Resource/RITLPhotos.bundle'
 
@@ -30,8 +30,8 @@ Pod::Spec.new do |s|
     ss.source_files = 'RITLPhotoController/RITLConfig/*.{h,m}'
   end
 
-  s.subspec 'Photos+RITLCategory' do |ss|
-    ss.source_files = 'RITLPhotoController/Photos+RITLCategory/*.{h,m}'
+  s.subspec 'RITLPhotosCategory' do |ss|
+    ss.source_files = 'RITLPhotoController/RITLPhotosCategory/*.{h,m}'
   end
 
 
@@ -41,38 +41,36 @@ Pod::Spec.new do |s|
 
   s.subspec 'RITLData' do |ss|
     ss.source_files = 'RITLPhotoController/RITLData/*.{h,m}'
-    ss.dependency 'RITLPhotoController/Photos+RITLCategory'
+    ss.dependency 'RITLPhotoController/RITLPhotosCategory'
   end
 
    s.subspec 'RITLPhotoStore' do |ss|
     ss.source_files = 'RITLPhotoController/RITLPhotoStore/*.{h,m}'
-    ss.dependency 'RITLPhotoController/Photos+RITLCategory'
+    ss.dependency 'RITLPhotoController/RITLPhotosCategory'
   end
 
   s.subspec 'RITLGroupModule' do |ss|
     ss.source_files = 'RITLPhotoController/RITLGroupModule/*.{h,m}'
-    ss.dependency 'RITLPhotoController/Photos+RITLCategory'
+    ss.dependency 'RITLPhotoController/RITLPhotosCategory'
     ss.dependency 'RITLPhotoController/RITLCollectionModule'
     ss.dependency 'RITLPhotoController/RITLPhotoStore'
   end
 
   s.subspec 'RITLCollectionModule' do |ss|
     ss.source_files = 'RITLPhotoController/RITLCollectionModule/*.{h,m}'
-    ss.dependency 'RITLPhotoController/Photos+RITLCategory'
+    ss.dependency 'RITLPhotoController/RITLPhotosCategory'
     ss.dependency 'RITLPhotoController/RITLHoriScrollModule'
-    ss.dependency 'RITLPhotoController/RITLPhotoStore'
+    ss.dependency 'RITLPhotoController/RITLConfig'
+    ss.dependency 'RITLPhotoController/RITLData'
+    ss.dependency 'RITLPhotoController/RITLViews'
   end
 
   s.subspec 'RITLHoriScrollModule' do |ss|
     ss.source_files = 'RITLPhotoController/RITLHoriScrollModule/*.{h,m}'
-    ss.dependency 'RITLPhotoController/Photos+RITLCategory'
-    ss.dependency 'RITLPhotoController/RITLCollectionModule'
+    ss.dependency 'RITLPhotoController/RITLPhotosCategory'
     ss.dependency 'RITLPhotoController/RITLConfig'
     ss.dependency 'RITLPhotoController/RITLData'
     ss.dependency 'RITLPhotoController/RITLViews'
-    ss.dependency 'RITLPhotoController/RITLViews'
   end
-
-
 
 end
