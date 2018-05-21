@@ -11,14 +11,20 @@
 pod 'RITLKit'
 pod 'Masonry'
 ```
+# CocoaPod
+```
+pod 'RITLPhotos', '~> 2.1.0'
+```
 
 # 使用方法
 ```
 RITLPhotosViewController *photoController = RITLPhotosViewController.photosViewController;
 photoController.configuration.maxCount = 5;//最大的选择数目
 photoController.configuration.containVideo = false;//选择类型，目前只选择图片不选择视频
+
 photoController.photo_delegate = self;
 photoController.thumbnailSize = self.assetSize;//缩略图的尺寸
+photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的资源
 
 [self presentViewController:photoController animated:true completion:^{}];
 ```
@@ -107,7 +113,7 @@ photoController.thumbnailSize = self.assetSize;//缩略图的尺寸
 
 
 # 更新日志
-- 2018-05-21 使用`defaultIdentifers`属性可以记录选中的资源，可通过代理回调获得
+- 2018-05-21 使用`defaultIdentifers`属性可以记录选中的资源，可通过代理回调获得，支持Pod
 - 2018-05-18 `Version 2.0` 增加了图片多选库中对`Live`以及`Video`的支持，增加了对顺序获取图片的支持
 - 2017-11-30 取出必须使用的`Objective-C++`模式，新增代理方法替代`Block`
 - 2017-05-19 `Version 1.0`
