@@ -9,6 +9,7 @@
 # 依赖的库
 ```
 pod 'RITLKit'
+pod 'Masonry'
 ```
 
 # 使用方法
