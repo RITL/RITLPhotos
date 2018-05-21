@@ -190,6 +190,8 @@ static NSString *const reuseIdentifier = @"photo";
         }];
         
     } denied:^{}];
+    
+    [self changedBottomViewStatus];
 }
 
 
@@ -606,14 +608,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     if ([keyPath isEqualToString:@"count"] && [object isEqual:self.dataManager]) {
         
-        NSInteger count = [change[NSKeyValueChangeNewKey] integerValue];
-        
-        self.bottomView.previewButton.enabled = !(count == 0);
-        
-        UIControlState state = (count == 0 ? UIControlStateDisabled : UIControlStateNormal);
-        NSString *title = (count == 0 ? @"发送" : [NSString stringWithFormat:@"发送(%@)",@(count)]);
-        [self.bottomView.sendButton setTitle:title forState:state];
-        self.bottomView.sendButton.enabled = !(count == 0);
+        [self changedBottomViewStatus];
     }
     
     else if([keyPath isEqualToString:@"hightQuality"] && [object isEqual:self.dataManager]){
@@ -621,6 +616,22 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
         BOOL hightQuality = [change[NSKeyValueChangeNewKey] boolValue];
         self.bottomView.fullImageButton.selected = hightQuality;
     }
+}
+
+
+#pragma mark - 检测
+
+/// 检测底部视图的状态
+- (void)changedBottomViewStatus
+{
+    NSInteger count = self.dataManager.count;
+    
+    self.bottomView.previewButton.enabled = !(count == 0);
+    
+    UIControlState state = (count == 0 ? UIControlStateDisabled : UIControlStateNormal);
+    NSString *title = (count == 0 ? @"发送" : [NSString stringWithFormat:@"发送(%@)",@(count)]);
+    [self.bottomView.sendButton setTitle:title forState:state];
+    self.bottomView.sendButton.enabled = !(count == 0);
 }
 
 

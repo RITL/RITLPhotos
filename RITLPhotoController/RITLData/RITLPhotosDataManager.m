@@ -124,6 +124,8 @@
     
     //追加资源对象
     [self.phassets addObjectsFromArray:[PHAsset fetchAssetsWithLocalIdentifiers:defaultIdentifers options:nil].array];
+    
+    self.count = self.phassetsIds.count;
 }
 
 - (BOOL)containAsset:(PHAsset *)asset
