@@ -137,4 +137,4 @@ photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的
 
 # 之前版本
 
-- 请前往`version1.0`分支获得之前版本的代码以及`README.md`
+- 请前往[version1.0](https://github.com/RITL/RITLImagePickerDemo/tree/version1.0)分支获得之前版本的代码以及`README.md`
