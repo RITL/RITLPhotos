@@ -8,7 +8,7 @@
 
 #import "LLSegmentBar.h"
 #import "UIView+LLSegmentBar.h"
-#import "UIView+RITLFrameChanged.h"
+#import <RITLViewFrame/UIView+RITLFrameChanged.h>
 
 #define KMinMargin (/*TKScale(23)*/self.buttonsMargin)
 

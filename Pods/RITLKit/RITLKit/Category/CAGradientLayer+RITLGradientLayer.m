@@ -9,6 +9,11 @@
 #import "CAGradientLayer+RITLGradientLayer.h"
 #import "NSArray+RITLExtension.h"
 
+/// 控制ritl_GradientLayer的第一个色值
+#define RITLCAGradientLayerBeginColor ([UIColor.blackColor colorWithAlphaComponent:0])
+/// 控制ritl_GradientLayer的第二个色值
+#define RITLCAGradientLayerEndColor   ([UIColor.blackColor colorWithAlphaComponent:0.8])
+
 @implementation CAGradientLayer (RITL)
 
 
@@ -31,6 +36,23 @@
     gradientLayer.endPoint = CGPointMake(1, 0.5);
     
     return gradientLayer;
+}
+
+@end
+
+
+@implementation NSArray (CAGradientLayer)
+
+- (NSArray *)gradientColors
+{
+    return [[self ritl_filter:^BOOL(id  _Nonnull obj) {
+       
+        return [obj isKindOfClass:UIColor.class];
+        
+    }] ritl_map:^id _Nonnull(id  _Nonnull obj) {
+        
+        return (id)(((UIColor *)obj).CGColor);
+    }];
 }
 
 @end

@@ -16,6 +16,10 @@
 #import "RITLViewExtension.h"
 #import "RITLArchiverManager.h"
 #import "RITLDictionaryProxy.h"
+#import "RITLFilter.h"
+#import "RITLDownLoaderFileManager.h"
+#import "RITLFileDownloader.h"
+#import "AppleReachability.h"
 
 
 #import "RITLButtonItem.h"
@@ -34,9 +38,7 @@
 #import "UIImage+RITLExtension.h"
 #import "UIButton+RITLKit.h"
 #import "NSObject+RITLExtension.h"
-#import "NSNumber+RITLExtension.h"
 #import "NSString+RITLExtension.h"
-#import "UIView+RITLFrameChanged.h"
 #import "UIControl+RITLBlockButton.h"
 #import "NSDictionary+RITLExtension.h"
 #import "UISearchBar+RITLCustomColor.h"

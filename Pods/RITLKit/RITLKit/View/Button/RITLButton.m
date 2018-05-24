@@ -7,7 +7,7 @@
 //
 
 #import "RITLButton.h"
-#import "UIView+RITLFrameChanged.h"
+#import <RITLViewFrame/UIView+RITLFrameChanged.h>
 #import <Masonry/Masonry.h>
 
 

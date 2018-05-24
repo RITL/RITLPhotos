@@ -8,8 +8,8 @@
 
 #import "RITLSearchView.h"
 #import "RITLSearchTextField.h"
-#import "UIView+RITLFrameChanged.h"
 #import "RITLUtility.h"
+#import <RITLViewFrame/UIView+RITLFrameChanged.h>
 
 @interface RITLSearchView()<UITextFieldDelegate>
 

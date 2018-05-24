@@ -23,6 +23,7 @@
 #import "UICollectionViewCell+RITLPhotosAsset.h"
 
 #import <RITLKit/RITLKit.h>
+#import <RITLViewFrame/UIView+RITLFrameChanged.h>
 #import <Masonry/Masonry.h>
 #import <Photos/Photos.h>
 

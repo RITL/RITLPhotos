@@ -8,7 +8,7 @@
 
 #import "RITLWebViewController.h"
 #import "RITLScriptMessageHandler.h"
-#import "UIView+RITLFrameChanged.h"
+#import <RITLViewFrame/UIView+RITLFrameChanged.h>
 #import "RITLUtility.h"
 #import "RITLWebScriptMessageHandler.h"
 #import <objc/runtime.h>

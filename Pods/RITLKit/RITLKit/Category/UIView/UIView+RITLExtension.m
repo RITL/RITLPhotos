@@ -8,7 +8,7 @@
 
 #import "UIView+RITLExtension.h"
 #import "RITLUtility.h"
-#import "UIView+RITLFrameChanged.h"
+#import <RITLViewFrame/UIView+RITLFrameChanged.h>
 #import <RITLRuntimeTool.h>
 #import <objc/runtime.h>
 

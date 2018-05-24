@@ -11,10 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 控制ritl_GradientLayer的第一个色值
-#define RITLCAGradientLayerBeginColor ([UIColor.blackColor colorWithAlphaComponent:0])
-/// 控制ritl_GradientLayer的第二个色值
-#define RITLCAGradientLayerEndColor   ([UIColor.blackColor colorWithAlphaComponent:0.8])
 
 /// 渐变色
 @interface CAGradientLayer (RITL)
@@ -25,6 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///通用渐变色设置
 +(instancetype)ritl_GradientLayer:(CGRect)bounds FirstColor:(UIColor *)firstColor SecondColor:(UIColor *)secondColor;
 
+
+@end
+
+@interface NSArray (CAGradientLayer)
+
+/// 获得CGColors的数组
+@property (nonatomic, copy, readonly)NSArray* gradientColors;
 
 @end
 

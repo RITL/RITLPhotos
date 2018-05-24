@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 涵盖的viewControllers
 @property (nonatomic, copy)NSArray <__kindof UIViewController *> *contentViewControllers;
 
-
 @end
 
 
@@ -60,6 +59,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 导航栏的pop手势,默认为navigationController.interactivePopGestureRecognizer
 @property (nonatomic, weak)UIGestureRecognizer *popPanGestureRecognizer;
+
+
 
 @end
 
