@@ -23,7 +23,6 @@
 {
     if (self = [super init]) {
         
-        self.imageManager = PHImageManager.new;
         self.thumbnailSize = CGSizeZero;
     }
     
@@ -166,6 +165,17 @@
 - (void)dealloc
 {
     NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
+}
+
+
+- (PHImageManager *)imageManager
+{
+    if (PHPhotoLibrary.authorizationStatus == PHAuthorizationStatusAuthorized && !_imageManager) {
+        
+        _imageManager = PHImageManager.new;
+    }
+    
+    return _imageManager;
 }
 
 

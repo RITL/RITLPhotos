@@ -62,7 +62,7 @@
 /// 获得SmartAlbum
 - (void)fetchAssetAlbumRegularCollection:(void(^)(PHFetchResult * _Nullable albumRegular))albumRegular
 {
-    [self handlerWithAuthorizationAllow:^{
+    [self.class handlerWithAuthorizationAllow:^{
         
         PHFetchOptions *fetchOptions = PHFetchOptions.new;
         
@@ -73,7 +73,7 @@
 #pragma mark - 进行权限检测后的操作
 
 ///
-- (void)handlerWithAuthorizationAllow:(void(^)(void))hander
++ (void)handlerWithAuthorizationAllow:(void(^)(void))hander
 {
     [self authorizationStatusAllow:^{
         
@@ -83,7 +83,7 @@
 }
 
 #pragma mark - 权限检测
-- (void)authorizationStatusAllow:(void(^)(void))allowHander denied:(void(^)(void))deniedHander
++ (void)authorizationStatusAllow:(void(^)(void))allowHander denied:(void(^)(void))deniedHander
 {
     switch (PHPhotoLibrary.authorizationStatus)
     {

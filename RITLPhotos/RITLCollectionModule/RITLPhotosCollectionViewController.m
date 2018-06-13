@@ -84,8 +84,6 @@ static NSString *const reuseIdentifier = @"photo";
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         
-        self.imageManager = [PHCachingImageManager new];
-        self.photoLibrary = PHPhotoLibrary.sharedPhotoLibrary;
         self.previousPreheatRect = CGRectZero;
         self.dataManager = [RITLPhotosDataManager sharedInstance];
     }
@@ -121,7 +119,6 @@ static NSString *const reuseIdentifier = @"photo";
     [self.dataManager addObserver:self forKeyPath:@"count" options:NSKeyValueObservingOptionNew context:nil];
     [self.dataManager addObserver:self forKeyPath:@"hightQuality" options:NSKeyValueObservingOptionNew context:nil];
     
-    [self resetCachedAssets];
     
     // NavigationItem
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Cancle", @"") style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
@@ -171,7 +168,12 @@ static NSString *const reuseIdentifier = @"photo";
     }
     
     //进行权限检测
-    [self.photoLibrary authorizationStatusAllow:^{
+    [PHPhotoLibrary authorizationStatusAllow:^{
+        
+        self.imageManager = [PHCachingImageManager new];
+        self.photoLibrary = PHPhotoLibrary.sharedPhotoLibrary;
+        
+        [self resetCachedAssets];
         
         self.assets = [PHAsset fetchAssetsInAssetCollection:self.assetCollection options:nil];
         
@@ -203,7 +205,7 @@ static NSString *const reuseIdentifier = @"photo";
         [self.dataManager removeObserver:self forKeyPath:@"count"];
         [self.dataManager removeObserver:self forKeyPath:@"hightQuality"];
     }
-    
+
     [self.dataManager removeAllPHAssets];
     NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
 }
@@ -259,6 +261,9 @@ static NSString *const reuseIdentifier = @"photo";
 - (void)updateCachedAssets
 {
     if (!self.isViewLoaded || self.view.window == nil) { return; }
+    
+    //没有权限，关闭
+    if (PHPhotoLibrary.authorizationStatus != PHAuthorizationStatusAuthorized) { return; }
     
     //可视化
     CGRect visibleRect = CGRectMake(self.collectionView.ritl_contentOffSetX, self.collectionView.ritl_contentOffSetY, self.collectionView.ritl_width, self.collectionView.ritl_height);

@@ -22,9 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// 权限检测
-- (void)authorizationStatusAllow:(void(^)(void))allowHander denied:(void(^)(void))deniedHander;
++ (void)authorizationStatusAllow:(void(^)(void))allowHander denied:(void(^)(void))deniedHander;
 /// 权限通过进行的handler
-- (void)handlerWithAuthorizationAllow:(void(^)(void))hander;
++ (void)handlerWithAuthorizationAllow:(void(^)(void))hander;
 
 @end
 
