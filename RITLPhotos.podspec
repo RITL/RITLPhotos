@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
   s.dependency 'Masonry'
 
 
+
   s.subspec 'RITLConfig' do |ss|
     ss.source_files = 'RITLPhotos/RITLConfig/*.{h,m}'
   end
