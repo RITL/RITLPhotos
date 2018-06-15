@@ -240,7 +240,7 @@ static NSString *const reuseIdentifier = @"photo";
     CGFloat showSapce = RITL_SCREEN_HEIGHT - RITL_DefaultNaviBarHeight - bottomHeight;
     
     //进行单位换算
-    self.collectionView.ritl_contentOffSetY = MAX(0,height - showSapce);
+    self.collectionView.ritl_contentOffSetY = MIN(MAX(0,height - showSapce),-1 * RITL_DefaultNaviBarHeight);
 }
 
 
