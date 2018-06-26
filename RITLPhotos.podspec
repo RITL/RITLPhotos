@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'RITLViews' do |ss|
     ss.source_files = 'RITLPhotos/RITLViews/*.{h,m}'
+    ss.dependency 'RITLPhotos/RITLPhotosCategory'
   end
 
   s.subspec 'RITLData' do |ss|
