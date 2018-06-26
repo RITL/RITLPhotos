@@ -7,6 +7,7 @@
 //
 
 #import "RITLPhotosBottomView.h"
+#import "NSBundle+RITLPhotos.h"
 #import <RITLKit/RITLKit.h>
 #import <Masonry/Masonry.h>
 
@@ -55,8 +56,8 @@
         view.imageEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 40);
         view.titleEdgeInsets = UIEdgeInsetsMake(0, -60, 0, 0);
         
-        [view setImage:@"RITLPhotos.bundle/ritl_bottomUnselected".ritl_image forState:UIControlStateNormal];
-        [view setImage:@"RITLPhotos.bundle/ritl_bottomSelected".ritl_image forState:UIControlStateSelected];
+        [view setImage:/*@"RITLPhotos.bundle/ritl_bottomUnselected".ritl_image*/NSBundle.ritl_bottomUnselected forState:UIControlStateNormal];
+        [view setImage:/*@"RITLPhotos.bundle/ritl_bottomSelected".ritl_image*/NSBundle.ritl_bottomSelected forState:UIControlStateSelected];
         
         view.titleLabel.font = [UIFont systemFontOfSize:14];
         [view setTitle:NSLocalizedString(@"原图", @"") forState:UIControlStateNormal];

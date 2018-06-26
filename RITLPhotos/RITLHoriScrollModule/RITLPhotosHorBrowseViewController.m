@@ -11,6 +11,7 @@
 #import "RITLPhotosBrowseImageCell.h"
 #import "RITLPhotosBrowseLiveCell.h"
 #import "RITLPhotosBottomView.h"
+#import "NSBundle+RITLPhotos.h"
 #import "PHAsset+RITLPhotos.h"
 #import <RITLKit/RITLKit.h>
 #import <RITLViewFrame/UIView+RITLFrameChanged.h>
@@ -21,6 +22,7 @@
 #import "UICollectionViewCell+RITLPhotosAsset.h"
 #import "UICollectionView+RITLIndexPathsForElements.h"
 
+
 #define RITLPhotosHorBrowseCollectionSpace 3
 
 static NSString *const RITLBrowsePhotoKey = @"photo";
@@ -30,6 +32,7 @@ static NSString *const RITLBrowseVideoKey = @"video";
 typedef NSString RITLHorBrowseDifferencesKey;
 static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyAdded = @"RITLDifferencesKeyAdded";
 static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @"RITLDifferencesKeyRemoved";
+
 
 @interface RITLPhotosHorBrowseViewController ()<UICollectionViewDelegate>
 
@@ -115,7 +118,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         view.backgroundColor = [UIColor clearColor];
         [view addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
         view.imageEdgeInsets = UIEdgeInsetsMake(13, 5, 5, 23);
-        [view setImage:@"RITLPhotos.bundle/ritl_browse_back".ritl_image forState:UIControlStateNormal];
+        [view setImage:NSBundle.ritl_browse_back/*@"RITLPhotos.bundle/ritl_browse_back".ritl_image*/ forState:UIControlStateNormal];
         view;
     });
     
@@ -125,7 +128,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
         view.adjustsImageWhenHighlighted = false;
         view.backgroundColor = [UIColor clearColor];
         view.imageEdgeInsets = UIEdgeInsetsMake(10, 11, 0, 0);
-        [view setImage:@"RITLPhotos.bundle/ritl_brower_selected".ritl_image forState:UIControlStateNormal];
+        [view setImage:NSBundle.ritl_brower_selected/*@"RITLPhotos.bundle/ritl_brower_selected".ritl_image*/ forState:UIControlStateNormal];
         [view addTarget:self action:@selector(assetStatusDidChanged:) forControlEvents:UIControlEventTouchUpInside];
         view;
     });
@@ -601,3 +604,5 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 }
 
 @end
+
+

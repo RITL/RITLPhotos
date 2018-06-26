@@ -8,10 +8,11 @@
 
 #import "RITLPhotosBrowseVideoCell.h"
 #import "UICollectionViewCell+RITLPhotosAsset.h"
+#import "NSBundle+RITLPhotos.h"
 #import <RITLKit/RITLKit.h>
 #import <Masonry/Masonry.h>
 
-static NSString *const RITLPhotosBrowseVideoCellVideoImageName = @"RITLPhotos.bundle/ritl_video_play";
+//static NSString *const RITLPhotosBrowseVideoCellVideoImageName = @"RITLPhotos.bundle/ritl_video_play";
 
 @implementation RITLPhotosBrowseVideoCell
 
@@ -44,7 +45,7 @@ static NSString *const RITLPhotosBrowseVideoCellVideoImageName = @"RITLPhotos.bu
         
         UIImageView *imageView = [UIImageView new];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.image = RITLPhotosBrowseVideoCellVideoImageName.ritl_image;
+        imageView.image = /*RITLPhotosBrowseVideoCellVideoImageName.ritl_image*/NSBundle.ritl_video_play;
         
         imageView;
     });

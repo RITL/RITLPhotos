@@ -7,11 +7,12 @@
 //
 
 #import "RITLPhotosCell.h"
+#import "NSBundle+RITLPhotos.h"
 #import <PhotosUI/PhotosUI.h>
 #import <Masonry/Masonry.h>
 #import <RITLKit/RITLKit.h>
 
-static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.bundle/ritl_deselect";
+//static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.bundle/ritl_deselect";
 
 @interface RITLPhotosCell ()
 
@@ -232,7 +233,7 @@ static NSString *const RITLPhotosCollectionCellDeselectImageName = @"RITLPhotos.
     _chooseButton.imageEdgeInsets = UIEdgeInsetsMake(4, 14, 15, 5);
     
     /// normal
-    [_chooseButton setImage:RITLPhotosCollectionCellDeselectImageName.ritl_image forState:UIControlStateNormal];
+    [_chooseButton setImage:/*RITLPhotosCollectionCellDeselectImageName.ritl_image*/NSBundle.ritl_deselect forState:UIControlStateNormal];
 
     /// selected
     [_chooseButton setTitle:@"1" forState:UIControlStateSelected];
