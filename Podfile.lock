@@ -1,12 +1,73 @@
 PODS:
-  - Masonry (1.0.2)
+  - Masonry (1.1.0)
+  - RITLKit (0.3.7):
+    - Masonry
+    - RITLKit/Category (= 0.3.7)
+    - RITLKit/ImagePicker (= 0.3.7)
+    - RITLKit/ScrollPageController (= 0.3.7)
+    - RITLKit/Utility (= 0.3.7)
+    - RITLKit/View (= 0.3.7)
+    - RITLKit/Web (= 0.3.7)
+    - RITLViewFrame
+  - RITLKit/Category (0.3.7):
+    - Masonry
+    - RITLKit/Utility
+    - RITLViewFrame
+  - RITLKit/ImagePicker (0.3.7):
+    - Masonry
+    - RITLViewFrame
+  - RITLKit/ScrollPageController (0.3.7):
+    - Masonry
+    - RITLKit/Category
+    - RITLKit/ScrollPageController/LLSegmentBar (= 0.3.7)
+    - RITLKit/Utility
+    - RITLViewFrame
+  - RITLKit/ScrollPageController/LLSegmentBar (0.3.7):
+    - Masonry
+    - RITLKit/Category
+    - RITLKit/Utility
+    - RITLViewFrame
+  - RITLKit/Utility (0.3.7):
+    - Masonry
+    - RITLKit/Utility/DownLoader (= 0.3.7)
+    - RITLKit/Utility/Filter (= 0.3.7)
+    - RITLKit/Utility/Reachability (= 0.3.7)
+    - RITLViewFrame
+  - RITLKit/Utility/DownLoader (0.3.7):
+    - Masonry
+    - RITLViewFrame
+  - RITLKit/Utility/Filter (0.3.7):
+    - Masonry
+    - RITLViewFrame
+  - RITLKit/Utility/Reachability (0.3.7):
+    - Masonry
+    - RITLViewFrame
+  - RITLKit/View (0.3.7):
+    - Masonry
+    - RITLKit/Category
+    - RITLKit/Utility
+    - RITLViewFrame
+  - RITLKit/Web (0.3.7):
+    - Masonry
+    - RITLKit/Category
+    - RITLKit/Utility
+    - RITLViewFrame
+  - RITLViewFrame (0.0.1)
 
 DEPENDENCIES:
-  - Masonry (~> 1.0.2)
+  - RITLKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Masonry
+    - RITLKit
+    - RITLViewFrame
 
 SPEC CHECKSUMS:
-  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  RITLKit: 30acf3faa58249d892d4a61eb606c9f5b7898b4d
+  RITLViewFrame: 4e38e6333e6b4691c1980c3fcda9ff4d08f0d2c8
 
-PODFILE CHECKSUM: 8f8b1458de0695aebe4f878bf7a349bcbba5a336
+PODFILE CHECKSUM: 628c536142495857d9c8f2a74159f02c73aeb9fb
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.2

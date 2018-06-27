@@ -1,9 +1,7 @@
 platform :ios, '8.0'
 #use_frameworks!个需要用到它，比如reactiveCocoa
-
-
 target 'RITLPhotoDemo' do
 
-pod 'Masonry', '~> 1.0.2'
+pod 'RITLKit'
 
 end
