@@ -116,6 +116,7 @@ photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的
 
 
 # 更新日志
+- 2018-06-26 修复部分系统加载bundle图片失败的问题
 - 2018-06-15 修复拒绝权限崩溃的问题
 - 2018-05-21 使用`defaultIdentifers`属性可以记录选中的资源，可通过代理回调获得，支持Pod
 - 2018-05-18 `Version 2.0` 增加了图片多选库中对`Live`以及`Video`的支持，增加了对顺序获取图片的支持
