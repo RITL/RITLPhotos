@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name          = "RITLPhotos"
-  s.version       = "2.1.3"
+  s.version       = "2.1.5"
   s.summary       = "PhotosPicker"
   s.description   = "一个基于Photos.framework的图片多选，模仿微信，还有很多不足，正在改进和优化."
   s.homepage      = "https://github.com/RITL/RITLImagePickerDemo"
@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'RITLViews' do |ss|
     ss.source_files = 'RITLPhotos/RITLViews/*.{h,m}'
+    ss.dependency 'RITLPhotos/RITLPhotosCategory'
   end
 
   s.subspec 'RITLData' do |ss|

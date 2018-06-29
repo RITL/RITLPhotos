@@ -45,6 +45,7 @@
 		DBA276A71DED28F6007F4E0B /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBA276771DED28F6007F4E0B /* LaunchScreen.strings */; };
 		DBC3E4DC1D4845F9002FD0C7 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC3E4DB1D4845F9002FD0C7 /* Photos.framework */; };
 		DBC7FFE920AEDC6300F9F9D9 /* RITLPhotos.gif in Resources */ = {isa = PBXBuildFile; fileRef = DBC7FFE820AEDC6300F9F9D9 /* RITLPhotos.gif */; };
+		DBD4081620E276110074205C /* NSBundle+RITLPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD4081520E276110074205C /* NSBundle+RITLPhotos.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,8 @@
 		DBA276781DED28F6007F4E0B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		DBC3E4DB1D4845F9002FD0C7 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		DBC7FFE820AEDC6300F9F9D9 /* RITLPhotos.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = RITLPhotos.gif; sourceTree = "<group>"; };
+		DBD4081420E276110074205C /* NSBundle+RITLPhotos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+RITLPhotos.h"; sourceTree = "<group>"; };
+		DBD4081520E276110074205C /* NSBundle+RITLPhotos.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+RITLPhotos.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +280,8 @@
 				DB6BFFBF20B2CD2B003C68AF /* PHImageRequestOptions+RITLPhotos.m */,
 				DB6BFFBA20B2CD2B003C68AF /* PHFetchResult+RITLPhotos.h */,
 				DB6BFFC020B2CD2B003C68AF /* PHFetchResult+RITLPhotos.m */,
+				DBD4081420E276110074205C /* NSBundle+RITLPhotos.h */,
+				DBD4081520E276110074205C /* NSBundle+RITLPhotos.m */,
 			);
 			path = RITLPhotosCategory;
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 				DB6BFFF720B2CD2B003C68AF /* RITLPhotosHorBrowseViewController.m in Sources */,
 				DB6BFFFB20B2CD2B003C68AF /* RITLPhotosCollectionViewController.m in Sources */,
 				DB6BFFE720B2CD2B003C68AF /* RITLPhotosDataManager.m in Sources */,
+				DBD4081620E276110074205C /* NSBundle+RITLPhotos.m in Sources */,
 				DB6BFFF820B2CD2B003C68AF /* RITLPhotosBrowseImageCell.m in Sources */,
 				DB6BFFE620B2CD2B003C68AF /* RITLPhotosMaker.m in Sources */,
 				DB6BFFE420B2CD2B003C68AF /* RITLPhotosGroupTableViewController.m in Sources */,
@@ -636,12 +642,13 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = " $(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yue.RITLPhotos;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yue.RITLPhotos-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -668,11 +675,12 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = " $(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yue.RITLPhotos;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yue.RITLPhotos-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

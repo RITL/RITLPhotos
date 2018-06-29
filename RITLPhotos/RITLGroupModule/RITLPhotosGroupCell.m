@@ -7,10 +7,11 @@
 //
 
 #import "RITLPhotosGroupCell.h"
+#import "NSBundle+RITLPhotos.h"
 #import <RITLKit/RITLKit.h>
 #import <Masonry/Masonry.h>
 
-static NSString *const RITLGroupTableViewControllerRightArrowImageName = @"RITLPhotos.bundle/ritl_arrow_right";
+//static NSString *const RITLGroupTableViewControllerRightArrowImageName = @"RITLPhotos.bundle/ritl_arrow_right";
 
 
 
@@ -105,7 +106,7 @@ static NSString *const RITLGroupTableViewControllerRightArrowImageName = @"RITLP
 - (void)addSubArrowImageView
 {
     _arrowImageView = [[UIImageView alloc]init];
-    _arrowImageView.image = RITLGroupTableViewControllerRightArrowImageName.ritl_image;
+    _arrowImageView.image = /*RITLGroupTableViewControllerRightArrowImageName.ritl_image*/NSBundle.ritl_arrow_right;
     
     [self.contentView addSubview:_arrowImageView];
     
