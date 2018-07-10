@@ -47,7 +47,10 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
     self.representedAssetIdentifier = asset.localIdentifier;
     self.currentAsset = asset;
     
-    [cacheManager requestImageForAsset:asset targetSize:@[@(asset.pixelWidth),@(asset.pixelHeight)].ritl_size contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    PHImageRequestOptions *options = PHImageRequestOptions.new;
+    options.networkAccessAllowed = true;
+    
+    [cacheManager requestImageForAsset:asset targetSize:@[@(asset.pixelWidth),@(asset.pixelHeight)].ritl_size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
 
         //如果标志位一样
         if ([self.representedAssetIdentifier isEqualToString:asset.localIdentifier]) {//进行赋值操作

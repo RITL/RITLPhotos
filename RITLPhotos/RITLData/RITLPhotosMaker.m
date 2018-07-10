@@ -94,6 +94,7 @@
     
     PHImageRequestOptions *options = [PHImageRequestOptions new];
     options.synchronous = true;
+    options.networkAccessAllowed = true;
     
     //进行图片请求
     for (PHAsset *asset in assets) {
@@ -120,6 +121,7 @@
     
     PHImageRequestOptions *options = [PHImageRequestOptions new];
     options.synchronous = true;
+    options.networkAccessAllowed = true;
     
     //进行图片请求
     for (PHAsset *asset in assets) {
@@ -149,6 +151,7 @@
     
     PHImageRequestOptions *options = PHImageRequestOptions.new;
     options.deliveryMode = hightQuality ? PHImageRequestOptionsDeliveryModeHighQualityFormat : PHImageRequestOptionsDeliveryModeOpportunistic;
+    options.networkAccessAllowed = true;
     
     for (PHAsset *asset in assets) {
         

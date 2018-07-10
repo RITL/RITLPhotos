@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RITLPhotosTransitionDriver : NSObject
+NS_CLASS_AVAILABLE_IOS(10_0) @interface RITLPhotosTransitionDriver : NSObject
 
 /// 是否交互
 @property (nonatomic, assign, readonly)BOOL isInteractive;
