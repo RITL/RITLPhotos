@@ -385,9 +385,12 @@ static NSString *const reuseIdentifier = @"photo";
     //Size
     CGSize size = [self collectionView:collectionView layout:collectionView.collectionViewLayout sizeForItemAtIndexPath:indexPath];
     
+    PHImageRequestOptions *options = PHImageRequestOptions.new;
+    options.networkAccessAllowed = true;
+    
     // Configure the cell
     cell.representedAssetIdentifier = asset.localIdentifier;
-    [self.imageManager requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    [self.imageManager requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         
         if ([cell.representedAssetIdentifier isEqualToString:asset.localIdentifier] && result) {
             
