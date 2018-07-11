@@ -116,6 +116,7 @@ photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的
 
 
 # 更新日志
+- 2018-07-10 修复部分`icloud`图片获得失败的问题
 - 2018-06-26 修复部分系统加载bundle图片失败的问题
 - 2018-06-15 修复拒绝权限崩溃的问题
 - 2018-05-21 使用`defaultIdentifers`属性可以记录选中的资源，可通过代理回调获得，支持Pod
