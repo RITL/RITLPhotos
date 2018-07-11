@@ -121,7 +121,7 @@ photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的
 - 2018-06-15 修复拒绝权限崩溃的问题
 - 2018-05-21 使用`defaultIdentifers`属性可以记录选中的资源，可通过代理回调获得，支持Pod
 - 2018-05-18 `Version 2.0` 增加了图片多选库中对`Live`以及`Video`的支持，增加了对顺序获取图片的支持
-- 2017-11-30 取出必须使用的`Objective-C++`模式，新增代理方法替代`Block`
+- 2017-11-30 去除必须使用的`Objective-C++`模式，新增代理方法替代`Block`
 - 2017-05-19 `Version 1.0`
 - 2016-09-24 支持`3D Touch`
 - 2016-04-05 `Version 0.1`
