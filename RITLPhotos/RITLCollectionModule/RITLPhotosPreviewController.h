@@ -17,13 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 资源大小
 @property (nonatomic, readonly, assign) CGSize assetSize;
-
 /// 当前显示的Image
 @property (nonatomic, readonly, strong) PHAsset * showAsset;
 
 /// 便利初始化方法
 -(instancetype)initWithShowAsset:(PHAsset *)showAsset;
-
 /// 便利构造器
 +(instancetype)previewWithShowAsset:(PHAsset *)showAsset;
 

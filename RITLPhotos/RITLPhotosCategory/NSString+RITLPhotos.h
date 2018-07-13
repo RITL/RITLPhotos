@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param timeInterval 转换的时间戳
  @return 转换后的格式化字符串
  */
-+ (NSString *) timeStringWithTimeDuration:(NSTimeInterval)timeInterval;
++ (NSString *)timeStringWithTimeDuration:(NSTimeInterval)timeInterval;
 
 @end
 
