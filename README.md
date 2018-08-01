@@ -58,11 +58,14 @@ photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的
  
  @param viewController RITLPhotosViewController
  @param thumbnailImages 选中资源的缩略图
+ @param infos 选中资源的缩略图的相关信息
  */
-- (void)photosViewController:(UIViewController *)viewController
-             thumbnailImages:(NSArray <UIImage *> *)thumbnailImages
+- (void)photosViewController:(UIViewController *)viewController thumbnailImages:(NSArray<UIImage *> *)thumbnailImages infos:(NSArray<NSDictionary *> *)infos
 {
-
+    self.assets = thumbnailImages;
+    [self.collectionView reloadData];
+    
+    NSLog(@"%@",infos);
 }
 ```
 ```
@@ -73,12 +76,11 @@ photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的
  
  @param viewController RITLPhotosViewController
  @param images 选中资源的原比例图
+ @param infos 选中资源的原比例图的相关信息
  */
-- (void)photosViewController:(UIViewController *)viewController
-                      images:(NSArray <UIImage *> *)images
+- (void)photosViewController:(UIViewController *)viewController images:(NSArray<UIImage *> *)images infos:(NSArray<NSDictionary *> *)infos
 {
     //获得原比例的图片
-
 }
 ```
 ```
