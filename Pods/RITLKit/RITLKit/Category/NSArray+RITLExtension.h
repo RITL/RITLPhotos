@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)ritl_map:(id(^)(ObjectType obj))mapHander;
 
 
-
 /// 数组过滤器的filter函数
 - (NSArray *)ritl_detailFilter:(BOOL(^)(ObjectType obj,NSInteger index))filterHandler;
 - (NSArray *)ritl_filter:(BOOL(^)(ObjectType obj))filterHandler;
@@ -34,7 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
           reduceHandler:(NSArray *(^)(NSArray *result,id obj))reduceHandler;
 
 
-
 /// 逆序数组
 - (NSArray <ObjectType> *)ritl_revert;
 
@@ -43,8 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 获得object的方法
 - (nullable ObjectType)ritl_safeObjectAtIndex:(NSInteger)index;
-
-
 /// 获得逆序的方法
 - (nullable ObjectType)ritl_revertObjectAtIndex:(NSInteger)index;
 
@@ -53,7 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface NSArray (CoreGraphic)
-
 
 /**
  x,y

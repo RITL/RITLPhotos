@@ -103,7 +103,7 @@
         self.titleLabel.ritl_width = (NSInteger)labelWidth;
         
         //调整title高度
-        self.titleLabel.ritl_height = self.ritl_height - self.imageView.ritl_maxY - self.titleLabelEdgeInsets.bottom - imageTitlePadding;
+        self.titleLabel.ritl_height = (NSInteger)(self.ritl_height - self.imageView.ritl_maxY - self.titleLabelEdgeInsets.bottom - imageTitlePadding);
 
         
     }
@@ -118,7 +118,7 @@
         CGFloat imageViewHeight = self.ritl_height - labelHeight - self.titleLabelEdgeInsets.bottom - self.titleLabelEdgeInsets.top - self.imageViewEdgeInsets.bottom - self.imageViewEdgeInsets.top;
         self.imageView.ritl_height = imageViewHeight;
         
-        self.titleLabel.ritl_height = labelHeight;
+        self.titleLabel.ritl_height = (NSInteger)(labelHeight);
         self.titleLabel.ritl_originX = self.titleLabelEdgeInsets.left;
         self.titleLabel.ritl_originY = self.imageView.ritl_maxY + self.titleLabelEdgeInsets.top + self.imageViewEdgeInsets.bottom + 3;
         self.titleLabel.ritl_width = (NSInteger)(self.ritl_width - space);

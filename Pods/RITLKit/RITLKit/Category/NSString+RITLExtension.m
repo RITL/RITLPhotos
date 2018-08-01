@@ -70,6 +70,11 @@
 
 -(NSURL *)ritl_url
 {
+    if (self.ritl_containChinese) {
+        
+       return [NSURL URLWithString:[self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+    }
+    
     return [NSURL URLWithString:self];
 }
 
@@ -315,6 +320,38 @@
     
     return [nspredicate evaluateWithObject:self];
 }
+
+@end
+
+
+@implementation NSString (RITLNumber)
+
+- (NSString *)ritl_limitLettersMaxLength:(NSInteger)maxLength
+{
+    if (maxLength < 0 || self.length <= maxLength) { return self; }
+    
+    //开始截取
+    NSString *sub = [self substringToIndex:maxLength];
+    
+    return [sub stringByAppendingString:@"..."];
+    
+}
+
+
+- (NSString *)ritl_unitNumber
+{
+    NSInteger count = self.integerValue;
+    
+    if (count <= 999) { return self; }
+    
+    if (count > 999 && count < 10000)
+    {
+        return [NSString stringWithFormat:@"%.1fk",self.floatValue];
+    }
+    
+    return [NSString stringWithFormat:@"%.1fw",self.floatValue];
+}
+
 
 @end
 

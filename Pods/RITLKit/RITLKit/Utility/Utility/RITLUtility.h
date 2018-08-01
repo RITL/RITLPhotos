@@ -73,7 +73,6 @@ RITLRGBACOLOR(((float)((rgbValue & 0xFF0000) >> 16)),((float)((rgbValue & 0xFF00
 #define RITLColorSimpleFromIntRBG(x) (RITLSimpleColorFromIntRBG(x))
 
 
-
 /// font
 static NSString *const RITLFontPingFangSC_Regular = @"PingFangSC-Regular";
 static NSString *const RITLFontPingFangSC_Medium = @"PingFangSC-Medium";
@@ -150,5 +149,8 @@ extern void RITLCall(NSString *telephoneNumber);
 @end
 
 RITLEXTERN UIFont *RITLUtilityFont(NSString *fontName,CGFloat size);
+RITLEXTERN UIFont *RITLRegularFont(CGFloat size);
+RITLEXTERN UIFont *RITLMediumFont(CGFloat size);
+RITLEXTERN UIFont *RITLBoldFont(CGFloat size);
 
 NS_ASSUME_NONNULL_END

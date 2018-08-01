@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @import WebKit;
 
-
 /// 默认的ScriptMessageHandler
 @interface RITLWebScriptMessageHandler : NSObject <WKScriptMessageHandler,RITLScriptMessageHandler>
 

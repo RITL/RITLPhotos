@@ -32,7 +32,6 @@ typedef UIViewController* _Nonnull (^RITLControllerMutableHandler)(__kindof UIVi
 @end
 
 
-
 @interface UIViewController (RITLMutable)
 
 - (instancetype)ritl_mutable:(RITLControllerMutableHandler)handler;

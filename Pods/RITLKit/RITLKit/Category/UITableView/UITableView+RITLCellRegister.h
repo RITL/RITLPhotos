@@ -23,7 +23,6 @@ typedef void(^RITLReusableCellInitHandler)(__kindof UITableViewCell *cell);
 - (void)ritl_registeCellWithIdentidiers:(NSSet *)identifiers;
 
 
-
 /**
  批量注册cell
  
@@ -34,7 +33,6 @@ typedef void(^RITLReusableCellInitHandler)(__kindof UITableViewCell *cell);
    forCellReuseIdentifiers:(NSArray<NSString *>*)identifiers;
 
 
-
 @end
 
 
@@ -43,12 +41,10 @@ typedef void(^RITLReusableCellInitHandler)(__kindof UITableViewCell *cell);
 
 - (__kindof UITableViewCell *)ritl_dequeueReusableCellWithIdentifier:(NSString *)identifier class:(Class)cellClass;
 
-
 /// handler为第一次创建cell时候进行的设置
 - (__kindof UITableViewCell *)ritl_dequeueReusableCellWithIdentifier:(NSString *)identifier
                                                                class:(Class)cellClass
                                                        buildComplete:(nullable RITLReusableCellInitHandler)handler;
-
 
 @end
 

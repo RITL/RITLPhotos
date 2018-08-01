@@ -60,4 +60,10 @@
     self.dataManager.defaultIdentifers = defaultIdentifers;
 }
 
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
+}
+
 @end

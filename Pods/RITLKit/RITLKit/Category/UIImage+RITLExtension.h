@@ -33,13 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 以KB为单位的大小
 @property (nonatomic, assign, readonly)CGFloat ritl_sizeWithKB;
-
 /// 大小是否大于`size`(KB)
 - (BOOL)ritl_sizeIsGetterThan:(CGFloat)size;
-
 /// 获得压缩为最大大小为size的data
 - (NSData *)ritl_imageDataWithMaxSize:(CGFloat)size;
-
 /// 获得压缩为最大大小为size的图片
 - (UIImage *)ritl_imageWithMaxSize:(CGFloat)size;
 

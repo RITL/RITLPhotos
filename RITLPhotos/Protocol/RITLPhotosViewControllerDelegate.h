@@ -35,7 +35,21 @@ NS_ASSUME_NONNULL_BEGIN
  @param thumbnailImages 选中资源的缩略图
  */
 - (void)photosViewController:(UIViewController *)viewController
-            thumbnailImages:(NSArray <UIImage *> *)thumbnailImages;
+             thumbnailImages:(NSArray <UIImage *> *)thumbnailImages __deprecated_msg("Use photosViewController:thumbnailImages:infos instead.");
+
+
+/**
+ 选中图片以及视频等资源的默认缩略图
+ 根据thumbnailSize设置所得，如果thumbnailSize为.Zero,则不进行回调
+ 与是否原图无关
+ 
+ @param viewController RITLPhotosViewController
+ @param thumbnailImages 选中资源的缩略图
+ @param infos 选中图片的缩略图信息
+ */
+- (void)photosViewController:(UIViewController *)viewController
+             thumbnailImages:(NSArray <UIImage *> *)thumbnailImages
+                       infos:(NSArray <NSDictionary *> *)infos;
 
 
 /**
@@ -47,7 +61,22 @@ NS_ASSUME_NONNULL_BEGIN
  @param images 选中资源的原比例图
  */
 - (void)photosViewController:(UIViewController *)viewController
-             images:(NSArray <UIImage *> *)images;
+                      images:(NSArray <UIImage *> *)images __deprecated_msg("Use photosViewController:images:infos instead.");
+
+
+
+/**
+ 选中图片以及视频等资源的原比例图片
+ 适用于不使用缩略图，或者展示高清图片
+ 与是否原图无关
+
+ @param viewController RITLPhotosViewController
+ @param images 选中资源的原比例图
+ @param infos 选中图片的原比例图信息
+ */
+- (void)photosViewController:(UIViewController *)viewController
+                      images:(NSArray <UIImage *> *)images
+                       infos:(NSArray <NSDictionary *> *)infos;
 
 /**
  选中图片以及视频等资源的数据
@@ -71,6 +100,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)photosViewController:(UIViewController *)viewController
                        assets:(NSArray <PHAsset *> *)assets;
+
+
 
 @end
 

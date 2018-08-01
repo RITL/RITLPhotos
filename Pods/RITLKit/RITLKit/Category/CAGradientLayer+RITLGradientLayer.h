@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 默认渐变色
 + (instancetype)ritl_GradientLayer:(CGRect)bounds;
-
 ///通用渐变色设置
 +(instancetype)ritl_GradientLayer:(CGRect)bounds FirstColor:(UIColor *)firstColor SecondColor:(UIColor *)secondColor;
 
@@ -36,7 +35,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 当前navigationBar上的所有渐变layer
 @property (nonatomic, copy, readonly, nullable)NSArray < CAGradientLayer *> *ritl_gradinentLayers;
-
 /// 默认的第一个
 @property (nonatomic, strong, readonly, nullable)CAGradientLayer *ritl_firstGradientLayer;
 

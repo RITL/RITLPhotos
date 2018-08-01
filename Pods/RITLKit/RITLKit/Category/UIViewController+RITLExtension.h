@@ -13,12 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// UIViewController的拓展
 @interface UIViewController (RITLInitializeHandler)
 
-
-
 /// 初始化方法
 + (instancetype)viewController:(void(^)(__kindof UIViewController *viewController))initializeHandler;
-
-
 
 @end
 
@@ -28,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 除navigationController、tabBarViewController的顶层视图
 @property (nonatomic, weak, nullable, readonly)UIViewController *ritl_topLevelController;
-
 
 
 /**
