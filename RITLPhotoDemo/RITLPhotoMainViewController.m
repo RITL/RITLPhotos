@@ -72,6 +72,7 @@ RITLPhotosViewControllerDelegate>
             assetIdentifiers:(NSArray <NSString *> *)identifiers
 {
     self.saveAssetIds = identifiers;
+    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 /**
@@ -105,7 +106,9 @@ RITLPhotosViewControllerDelegate>
     self.assets = thumbnailImages;
     [self.collectionView reloadData];
     
-    NSLog(@"%@",infos);
+//    NSLog(@"%@",infos);
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+
 }
 
 
@@ -138,6 +141,8 @@ RITLPhotosViewControllerDelegate>
 - (void)photosViewController:(UIViewController *)viewController images:(NSArray<UIImage *> *)images infos:(NSArray<NSDictionary *> *)infos
 {
     //获得原比例的图片
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+
 }
 
 
@@ -155,7 +160,8 @@ RITLPhotosViewControllerDelegate>
 - (void)photosViewController:(UIViewController *)viewController
                        datas:(NSArray <NSData *> *)datas
 {
-    
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+
 }
 
 /**
@@ -168,7 +174,8 @@ RITLPhotosViewControllerDelegate>
 - (void)photosViewController:(UIViewController *)viewController
                       assets:(NSArray <PHAsset *> *)assets
 {
-    
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+
 }
 
 
