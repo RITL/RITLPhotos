@@ -13,7 +13,7 @@ pod 'Masonry'
 ```
 # CocoaPod
 ```
-pod 'RITLPhotos', '~> 2.1.0'
+pod 'RITLPhotos'
 ```
 ```
 #import <RITLPhotos/RITLPhotos.h>
