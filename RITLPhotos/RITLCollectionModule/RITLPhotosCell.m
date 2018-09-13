@@ -26,12 +26,12 @@
 -(void)prepareForReuse
 {
     //重置所有数据
-    self.imageView.image = nil;
-    self.chooseButton.hidden = false;
-    self.messageView.hidden = true;
-    self.messageImageView.image = nil;
-    self.messageLabel.text = @"";
-    self.indexLabel.text = @"";
+//    self.imageView.image = nil;
+//    self.chooseButton.hidden = false;
+//    self.messageView.hidden = true;
+//    self.messageImageView.image = nil;
+//    self.messageLabel.text = @"";
+//    self.indexLabel.text = @"";
 }
 
 

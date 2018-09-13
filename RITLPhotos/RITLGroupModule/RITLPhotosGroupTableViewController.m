@@ -7,15 +7,23 @@
 //
 
 #import "RITLPhotosGroupTableViewController.h"
-#import "RITLPhotosGroupCell.h"
-#import "PHAssetCollection+RITLPhotos.h"
-#import "NSBundle+RITLPhotos.h"
-#import "PHPhotoLibrary+RITLPhotoStore.h"
 #import "RITLPhotosCollectionViewController.h"
+
+#import "RITLPhotosGroupCell.h"
+
+#import "RITLPhotosConfiguration.h"
+
+#import "NSBundle+RITLPhotos.h"
+#import "NSArray+RITLPhotos.h"
+#import "PHAssetCollection+RITLPhotos.h"
+#import "PHFetchResult+RITLPhotos.h"
+#import "PHPhotoLibrary+RITLPhotoStore.h"
+
 #import <RITLKit/RITLKit.h>
 
+@interface RITLPhotosGroupTableViewController (PHPhotoLibraryChangeObserver)<PHPhotoLibraryChangeObserver>
 
-//static NSString *const RITLGroupTableViewControllerPlaceHolderImageName = @"RITLPhotos.bundle/ritl_placeholder";
+@end
 
 
 @interface RITLPhotosGroupTableViewController (AssetData)
@@ -40,7 +48,15 @@
 
 @interface RITLPhotosGroupTableViewController ()
 
-@property (nonatomic, copy)NSArray <PHAssetCollection *> *groups;
+@property (nonatomic, strong)NSMutableArray<NSArray<PHAssetCollection *>*>*groups;
+
+/// 用于比较变化的原生相册
+@property (nonatomic, strong)PHFetchResult *regular;
+@property (nonatomic, strong)PHFetchResult *moment;
+
+@property (nonatomic, strong)RITLPhotosConfiguration *configuration;
+/// 图片库
+@property (nonatomic, strong)PHPhotoLibrary *photoLibrary;
 
 @end
 
@@ -51,11 +67,16 @@
     
     //navigationItem
     self.navigationItem.title = @"照片";
+    self.configuration = RITLPhotosConfiguration.defaultConfiguration;
+    
+    //register
+    self.photoLibrary = PHPhotoLibrary.sharedPhotoLibrary;
+    [self.photoLibrary registerChangeObserver:self];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancle" style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
     
     //data
-    self.groups = @[];
+    self.groups = [NSMutableArray arrayWithCapacity:10];
     
     //tableView
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -68,9 +89,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
     if (self.groups.count == 0) {
-        
         [self loadDefaultAblumGroups];
     }
 }
@@ -78,6 +97,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    if ([self isViewLoaded]) {
+        [self.photoLibrary unregisterChangeObserver:self];//消除注册
+    }
 }
 
 
@@ -99,12 +125,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.groups.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.groups.count;
+    return self.groups[section].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -112,14 +138,13 @@
     RITLPhotosGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"group" forIndexPath:indexPath];
     
     // Configure the cell...
-    PHAssetCollection *collection = self.groups[indexPath.row];
+    PHAssetCollection *collection = self.groups[indexPath.section][indexPath.row];
     
     [collection ritl_headerImageWithSize:CGSizeMake(30, 30) mode:PHImageRequestOptionsDeliveryModeOpportunistic complete:^(NSString * _Nonnull title, NSUInteger count, UIImage * _Nullable image) {
         
         //set value
         cell.titleLabel.attributedText = [self titleForCollection:collection count:count];
-        
-        cell.imageView.image = count > 0 ? image : /*RITLGroupTableViewControllerPlaceHolderImageName.ritl_image*/NSBundle.ritl_placeholder;
+        cell.imageView.image = count > 0 ? image : NSBundle.ritl_placeholder;
         
     }];
     
@@ -147,17 +172,45 @@
 
 - (void)loadDefaultAblumGroups
 {
-    [PHPhotoLibrary.sharedPhotoLibrary fetchAlbumRegularGroupsByUserLibrary:^(NSArray<PHAssetCollection *> * _Nonnull groups) {
-       
-        //set
-        self.groups = groups;
+    [PHPhotoLibrary.sharedPhotoLibrary fetchAblumRegularAndTopLevelUserResults:^(PHFetchResult<PHAssetCollection *> * _Nonnull regular, PHFetchResult<PHAssetCollection *> * _Nullable moment) {
         
+        self.regular = regular;
+        self.moment = moment;
+        [self filterGroups];
         if (NSThread.isMainThread) {
             [self.tableView reloadData];//reload
         }else {
             [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:false];
         }
     }];
+}
+
+
+- (NSArray<PHAssetCollection *> *)filterGroupsWhenHiddenNoPhotos:(NSArray<PHAssetCollection *> *)groups
+{
+    return [groups ritl_filter:^BOOL(PHAssetCollection * _Nonnull obj) {
+       
+        PHFetchResult * assetResult = [PHAsset fetchAssetsInAssetCollection:obj options:nil];
+        return assetResult != nil && assetResult.count > 0;
+    }];
+}
+
+
+/// 进行筛选
+- (void)filterGroups
+{
+    NSArray <PHAssetCollection *> *regularCollections = self.regular.array.sortRegularAblumsWithUserLibraryFirst;
+    NSArray <PHAssetCollection *> *momentCollections = self.moment.array;
+    
+    [self.groups removeAllObjects];//移除所有的，进行重新添加
+    
+    if (self.configuration.hiddenGroupWhenNoPhotos == false) {
+        [self.groups addObject:regularCollections];
+        [self.groups addObject:momentCollections];
+    }else {//进行数量的二次筛选
+        [self.groups addObject:[self filterGroupsWhenHiddenNoPhotos:regularCollections]];
+        [self.groups addObject:[self filterGroupsWhenHiddenNoPhotos:momentCollections]];
+    }
 }
 
 @end
@@ -200,7 +253,7 @@
 
 - (void)pushPhotosCollectionViewController:(NSIndexPath *)indexPath animated:(BOOL)animated
 {
-    PHAssetCollection *collection = self.groups[indexPath.row];
+    PHAssetCollection *collection = self.groups[indexPath.section][indexPath.row];
     
     [self.navigationController pushViewController:({
         
@@ -213,6 +266,34 @@
         collectionViewController;
         
     }) animated:animated];
+}
+
+@end
+
+
+@implementation RITLPhotosGroupTableViewController (PHPhotoLibraryChangeObserver)
+
+- (void)photoLibraryDidChange:(PHChange *)changeInstance
+{
+    // 刷新UI
+    dispatch_sync(dispatch_get_main_queue(), ^{
+
+        // 还能相册发生变化
+        PHFetchResultChangeDetails *regularChangeDetails = [changeInstance changeDetailsForFetchResult:self.regular];
+        if (regularChangeDetails != nil) {
+            self.regular = regularChangeDetails.fetchResultAfterChanges;
+            [self filterGroups];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+
+        // 个人组相册发生变化
+        PHFetchResultChangeDetails *momentChangeDetails = [changeInstance changeDetailsForFetchResult:self.moment];
+        if (momentChangeDetails != nil) {
+            self.moment = momentChangeDetails.fetchResultAfterChanges;
+            [self filterGroups];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    });
 }
 
 @end

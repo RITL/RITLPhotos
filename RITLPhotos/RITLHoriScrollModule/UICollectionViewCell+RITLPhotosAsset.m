@@ -71,12 +71,25 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
 
 - (void)updateViews:(UIImage *)image info:(NSDictionary *)info
 {
+    //适配长图
     self.imageView.image = image;
+    
+    //对缩放进行适配
+    CGFloat height = self.currentAsset.pixelHeight / 2;
+    CGFloat width = self.currentAsset.pixelWidth / 2;
+    CGFloat max = MAX(width, height);
+    CGFloat scale = 2.0;
+    if (height > width) {
+        scale = max / MAX(1,self.imageView.bounds.size.height);
+    }else {
+        scale = max / MAX(1,self.imageView.bounds.size.width);
+    }
+    self.bottomScrollView.maximumZoomScale = MAX(2.0,scale);
 }
 
 
-- (void)reset
-{
+- (void)reset {
+    self.bottomScrollView.maximumZoomScale = 2.0;
     [self.bottomScrollView setZoomScale:1.0];
 }
 
@@ -192,8 +205,5 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
         self.playerLayer = nil;
     }
 }
-
-
-
 
 @end

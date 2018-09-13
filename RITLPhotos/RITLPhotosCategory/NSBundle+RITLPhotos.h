@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 确保使用自己的bundle
 @property (nonatomic, strong, readonly, class)NSBundle *ritl_bundle;
 
-
 /*Group*/
 @property (nonatomic, strong, readonly, class)UIImage *ritl_placeholder;
 @property (nonatomic, strong, readonly, class)UIImage *ritl_arrow_right;
