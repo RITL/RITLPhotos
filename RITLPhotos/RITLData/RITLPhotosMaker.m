@@ -15,6 +15,8 @@
 //@property (nonatomic, copy, nullable)RITLCompleteReaderHandle complete;
 @property (nonatomic, strong) PHImageManager *imageManager;
 
+
+
 @end
 
 @implementation RITLPhotosMaker

@@ -524,6 +524,13 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     return _browseCollectionView;
 }
 
+#pragma mark - < UICollectionViewDelegate >
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell reset];
+}
+
 
 #pragma mark - Notification
 

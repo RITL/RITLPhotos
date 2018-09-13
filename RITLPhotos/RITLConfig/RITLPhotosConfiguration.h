@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger maxCount;
 /// 是否支持视频,默认为true
 @property (nonatomic, assign)BOOL containVideo;
+/// 是否隐藏没有图片的分组，默认为false
+@property (nonatomic, assign)BOOL hiddenGroupWhenNoPhotos;
 
 @end
 

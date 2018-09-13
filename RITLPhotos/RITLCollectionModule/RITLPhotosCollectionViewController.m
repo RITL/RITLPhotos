@@ -67,6 +67,10 @@ RITLPhotosCellActionTarget>
 
 // view
 @property (nonatomic, strong) RITLPhotosBottomView *bottomView;
+/// 用于iOS 10的缓存的队列
+@property (nonatomic, strong) dispatch_queue_t photo_queue NS_AVAILABLE_IOS(10_0);
+/// 用图存储时间的字典
+@property (nonatomic, strong) NSMutableDictionary *timeCache;
 
 @end
 
@@ -114,11 +118,15 @@ static NSString *const reuseIdentifier = @"photo";
     [super viewDidLoad];
     
     self.view.backgroundColor = UIColor.whiteColor;
+    self.timeCache = [NSMutableDictionary dictionaryWithCapacity:80];
     
     //进行KVO观察
     [self.dataManager addObserver:self forKeyPath:@"count" options:NSKeyValueObservingOptionNew context:nil];
     [self.dataManager addObserver:self forKeyPath:@"hightQuality" options:NSKeyValueObservingOptionNew context:nil];
     
+    if (@available(iOS 10.0,*)) {
+        self.photo_queue = dispatch_queue_create("com.ritl.photos", DISPATCH_QUEUE_CONCURRENT);
+    }
     
     // NavigationItem
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Cancle", @"") style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
@@ -240,14 +248,20 @@ static NSString *const reuseIdentifier = @"photo";
     CGFloat showSapce = RITL_SCREEN_HEIGHT - RITL_DefaultNaviBarHeight - bottomHeight;
     
     //进行单位换算
-    self.collectionView.ritl_contentOffSetY = MIN(MAX(0,height - showSapce),-1 * RITL_DefaultNaviBarHeight);
+    self.collectionView.ritl_contentOffSetY = MAX(MAX(0,height - showSapce),-1 * RITL_DefaultNaviBarHeight);
 }
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self updateCachedAssets];
+    
+    if (!RITL_iOS_Version_GreaterThanOrEqualTo(10.0)) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+       [self updateCachedAssets];
+#pragma clang diagnostic pop
+    }
 }
 
 
@@ -256,96 +270,6 @@ static NSString *const reuseIdentifier = @"photo";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - *************** cache ***************
-
-- (void)updateCachedAssets
-{
-    if (!self.isViewLoaded || self.view.window == nil) { return; }
-    
-    //没有权限，关闭
-    if (PHPhotoLibrary.authorizationStatus != PHAuthorizationStatusAuthorized) { return; }
-    
-    //可视化
-    CGRect visibleRect = CGRectMake(self.collectionView.ritl_contentOffSetX, self.collectionView.ritl_contentOffSetY, self.collectionView.ritl_width, self.collectionView.ritl_height);
-    
-    //进行拓展
-    CGRect preheatRect = CGRectInset(visibleRect, 0, -0.5 * visibleRect.size.height);
-    
-    //只有可视化的区域与之前的区域有显著的区域变化才需要更新
-    CGFloat delta = ABS(CGRectGetMidY(preheatRect) - CGRectGetMidY(self.previousPreheatRect));
-    if (delta <= self.view.ritl_height / 3.0) { return; }
-    
-    //获得比较后需要进行预加载以及需要停止缓存的区域
-    NSDictionary *differences = [self differencesBetweenRects:self.previousPreheatRect new:preheatRect];
-    NSArray <NSValue *> *addedRects = differences[RITLDifferencesKeyAdded];
-    NSArray <NSValue *> *removedRects = differences[RITLDifferencesKeyRemoved];
-    
-    ///进行提前缓存的资源
-    NSArray <PHAsset *> *addedAssets = [[[addedRects ritl_map:^id _Nonnull(NSValue * _Nonnull rectValue) {
-        return [self.collectionView indexPathsForElementsInRect:rectValue.CGRectValue];
-        
-    }] ritl_reduce:@[] reduceHandler:^NSArray * _Nonnull(NSArray * _Nonnull result, NSArray <NSIndexPath *>*_Nonnull items) {
-        return [result arrayByAddingObjectsFromArray:items];
-        
-    }] ritl_map:^id _Nonnull(NSIndexPath *_Nonnull index) {
-        return [self.assets objectAtIndex:index.item];
-        
-    }];
-    
-    ///提前停止缓存的资源
-    NSArray <PHAsset *> *removedAssets = [[[removedRects ritl_map:^id _Nonnull(NSValue * _Nonnull rectValue) {
-        return [self.collectionView indexPathsForElementsInRect:rectValue.CGRectValue];
-        
-    }] ritl_reduce:@[] reduceHandler:^NSArray * _Nonnull(NSArray * _Nonnull result, NSArray <NSIndexPath *>* _Nonnull items) {
-        return [result arrayByAddingObjectsFromArray:items];
-        
-    }] ritl_map:^id _Nonnull(NSIndexPath *_Nonnull index) {
-        return [self.assets objectAtIndex:index.item];
-    }];
-    
-    CGSize thimbnailSize = [self collectionView:self.collectionView layout:self.collectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-    
-    //更新缓存
-    [self.imageManager startCachingImagesForAssets:addedAssets targetSize:thimbnailSize contentMode:PHImageContentModeAspectFill options:nil];
-    [self.imageManager stopCachingImagesForAssets:removedAssets targetSize:thimbnailSize contentMode:PHImageContentModeAspectFill options:nil];
-    
-    //记录当前位置
-    self.previousPreheatRect = preheatRect;
-}
-
-
-- (NSDictionary <RITLDifferencesKey*,NSArray<NSValue *>*> *)differencesBetweenRects:(CGRect)old new:(CGRect)new
-{
-    if (CGRectIntersectsRect(old, new)) {//如果区域交叉
-        
-        NSMutableArray <NSValue *> * added = [NSMutableArray arrayWithCapacity:10];
-        if (CGRectGetMaxY(new) > CGRectGetMaxY(old)) {//表示上拉
-            [added addObject:[NSValue valueWithCGRect:CGRectMake(new.origin.x, CGRectGetMaxY(old), new.size.width, CGRectGetMaxY(new) - CGRectGetMaxY(old))]];
-        }
-        
-        if(CGRectGetMinY(old) > CGRectGetMinY(new)){//表示下拉
-            
-            [added addObject:[NSValue valueWithCGRect:CGRectMake(new.origin.x, CGRectGetMinY(new), new.size.width, CGRectGetMinY(old) - CGRectGetMinY(new))]];
-        }
-        
-        NSMutableArray <NSValue *> * removed = [NSMutableArray arrayWithCapacity:10];
-        if (CGRectGetMaxY(new) < CGRectGetMaxY(old)) {//表示下拉
-            [removed addObject:[NSValue valueWithCGRect:CGRectMake(new.origin.x, CGRectGetMaxY(new), new.size.width, CGRectGetMaxY(old) - CGRectGetMaxY(new))]];
-        }
-        
-        if (CGRectGetMinY(old) < CGRectGetMinY(new)) {//表示上拉
-            
-            [removed addObject:[NSValue valueWithCGRect:CGRectMake(new.origin.x, CGRectGetMinY(old), new.size.width, CGRectGetMinY(new) - CGRectGetMinY(old))]];
-        }
-        
-        return @{RITLDifferencesKeyAdded:added,
-                 RITLDifferencesKeyRemoved:removed};
-    }else {
-        
-        return @{RITLDifferencesKeyAdded:@[[NSValue valueWithCGRect:new]],
-                 RITLDifferencesKeyRemoved:@[[NSValue valueWithCGRect:old]]};
-    }
-}
 
 #pragma mark - Dismiss
 
@@ -381,58 +305,74 @@ static NSString *const reuseIdentifier = @"photo";
     
     //Asset
     PHAsset *asset = [self.assets objectAtIndex:indexPath.item];
-    
+
     //Size
     CGSize size = [self collectionView:collectionView layout:collectionView.collectionViewLayout sizeForItemAtIndexPath:indexPath];
-    
+
     PHImageRequestOptions *options = PHImageRequestOptions.new;
     options.networkAccessAllowed = true;
-    
+
     // Configure the cell
     cell.representedAssetIdentifier = asset.localIdentifier;
     [self.imageManager requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-        
+
         if ([cell.representedAssetIdentifier isEqualToString:asset.localIdentifier] && result) {
-            
+
             cell.actionTarget = self;
             cell.asset = asset;
             cell.indexPath = indexPath;
             cell.imageView.image = result;
-            cell.messageView.hidden = (asset.mediaType == PHAssetMediaTypeImage);
-            
-            if (@available(iOS 9.1,*)) {//Live图片
-                
-                cell.liveBadgeImageView.hidden = !(asset.mediaSubtypes == PHAssetMediaSubtypePhotoLive);
-            }
-            
-            if(!RITLPhotosConfiguration.defaultConfiguration.containVideo){//是否允许选择视频-不允许选择视频，去掉选择符
-                
-                cell.chooseButton.hidden = (asset.mediaType == PHAssetMediaTypeVideo);
-            }
-            
-            BOOL isSelected = [self.dataManager.assetIdentiers containsObject:asset.localIdentifier];
-            //进行属性隐藏设置
-            cell.indexLabel.hidden = !isSelected;
-            
-            if (isSelected) {
-                
-                cell.indexLabel.text = @([self.dataManager.assetIdentiers indexOfObject:asset.localIdentifier] + 1).stringValue;
-            }
-            
-            if (cell.imageView.hidden) { return; }
-            
-            cell.messageLabel.text = [NSString timeStringWithTimeDuration:asset.duration];
         }
     }];
     
     //注册3D Touch
     if (@available(iOS 9.0,*)) {
         if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable){
-            
             [self registerForPreviewingWithDelegate:self sourceView:cell];
         }
     }
+    
     return cell;
+}
+
+// set value
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    //Asset
+    PHAsset *asset = [self.assets objectAtIndex:indexPath.item];
+    //强转
+    if (![cell isKindOfClass:RITLPhotosCell.class]) { return; }
+    
+    RITLPhotosCell *photoCell = (RITLPhotosCell *)cell;
+    
+    photoCell.messageView.hidden = (asset.mediaType == PHAssetMediaTypeImage);
+
+    if(!RITLPhotosConfiguration.defaultConfiguration.containVideo){//是否允许选择视频-不允许选择视频，去掉选择符
+        photoCell.chooseButton.hidden = (asset.mediaType == PHAssetMediaTypeVideo);
+    }
+
+    BOOL isSelected = [self.dataManager.assetIdentiers containsObject:asset.localIdentifier];
+    //进行属性隐藏设置
+    photoCell.indexLabel.hidden = !isSelected;
+
+    if (isSelected) {
+        photoCell.indexLabel.text = @([self.dataManager.assetIdentiers indexOfObject:asset.localIdentifier] + 1).stringValue;
+    }
+
+    if (photoCell.imageView.hidden) { return; }
+
+    NSString *time = [self.timeCache valueForKey:[NSString stringWithFormat:@"%@",@(asset.duration)]];
+    if (time != nil){
+        photoCell.messageLabel.text = time; return;
+    }
+
+    time = [NSString timeStringWithTimeDuration:asset.duration];
+    photoCell.messageLabel.text = time;
+    [self.timeCache addEntriesFromDictionary:@{@(asset.duration) : time}];//追加缓存
+
+    if (@available(iOS 9.1,*)) {//Live图片
+        photoCell.liveBadgeImageView.hidden = !(asset.mediaSubtypes == PHAssetMediaSubtypePhotoLive);
+    }
 }
 
 
@@ -441,7 +381,12 @@ static NSString *const reuseIdentifier = @"photo";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self updateCachedAssets];
+    if (!RITL_iOS_Version_GreaterThanOrEqualTo(10.0)) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [self updateCachedAssets];
+#pragma clang diagnostic pop
+    }
 }
 
 
@@ -518,6 +463,37 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 }
 
 
+#pragma mark - <UICollectionViewDataSourcePrefetching>
+
+- (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_AVAILABLE_IOS(10_0)
+{
+           CGSize thimbnailSize = [self collectionView:collectionView layout:collectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    
+    dispatch_async(self.photo_queue, ^{
+       
+        [self.imageManager startCachingImagesForAssets:[indexPaths ritl_map:^id _Nonnull(NSIndexPath * _Nonnull obj) {
+            return [self.assets objectAtIndex:obj.item];
+            
+        }] targetSize:thimbnailSize contentMode:PHImageContentModeAspectFill options:nil];
+    });
+}
+
+
+- (void)collectionView:(UICollectionView *)collectionView cancelPrefetchingForItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths  NS_AVAILABLE_IOS(10_0)
+{
+    CGSize thimbnailSize = [self collectionView:collectionView layout:collectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    
+    dispatch_async(self.photo_queue, ^{
+       
+        [self.imageManager stopCachingImagesForAssets:[indexPaths ritl_map:^id _Nonnull(NSIndexPath * _Nonnull obj) {
+            
+            return [self.assets objectAtIndex:obj.item];
+            
+        }] targetSize:thimbnailSize contentMode:PHImageContentModeAspectFill options:nil];
+    });
+}
+
+
 #pragma mark - Browse All Assets Display
 
 /// Push 出所有的资源浏览
@@ -586,6 +562,10 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         
+        if (@available(iOS 10.0,*)) {
+            _collectionView.prefetchDataSource = self;
+        }
+        
         //property
         _collectionView.backgroundColor = [UIColor whiteColor];
     }
@@ -626,6 +606,100 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
         self.bottomView.fullImageButton.selected = hightQuality;
     }
 }
+
+#pragma mark - *************** cache ***************
+#pragma mark - iOS 10 之前进行的手动计算，iOS 10 以后使用 UICollectionViewDataSourcePrefetching
+
+
+- (void)updateCachedAssets __deprecated_msg("iOS 10 Use collectionView:prefetchItemsAtIndexPaths: and collectionView:cancelPrefetchingForItemsAtIndexPaths: instead.")
+{
+    if (!self.isViewLoaded || self.view.window == nil) { return; }
+    
+    //没有权限，关闭
+    if (PHPhotoLibrary.authorizationStatus != PHAuthorizationStatusAuthorized) { return; }
+    
+    //可视化
+    CGRect visibleRect = CGRectMake(self.collectionView.ritl_contentOffSetX, self.collectionView.ritl_contentOffSetY, self.collectionView.ritl_width, self.collectionView.ritl_height);
+    
+    //进行拓展
+    CGRect preheatRect = CGRectInset(visibleRect, 0, -0.5 * visibleRect.size.height);
+    
+    //只有可视化的区域与之前的区域有显著的区域变化才需要更新
+    CGFloat delta = ABS(CGRectGetMidY(preheatRect) - CGRectGetMidY(self.previousPreheatRect));
+    if (delta <= self.view.ritl_height / 3.0) { return; }
+    
+    //获得比较后需要进行预加载以及需要停止缓存的区域
+    NSDictionary *differences = [self differencesBetweenRects:self.previousPreheatRect new:preheatRect];
+    NSArray <NSValue *> *addedRects = differences[RITLDifferencesKeyAdded];
+    NSArray <NSValue *> *removedRects = differences[RITLDifferencesKeyRemoved];
+    
+    ///进行提前缓存的资源
+    NSArray <PHAsset *> *addedAssets = [[[addedRects ritl_map:^id _Nonnull(NSValue * _Nonnull rectValue) {
+        return [self.collectionView indexPathsForElementsInRect:rectValue.CGRectValue];
+        
+    }] ritl_reduce:@[] reduceHandler:^NSArray * _Nonnull(NSArray * _Nonnull result, NSArray <NSIndexPath *>*_Nonnull items) {
+        return [result arrayByAddingObjectsFromArray:items];
+        
+    }] ritl_map:^id _Nonnull(NSIndexPath *_Nonnull index) {
+        return [self.assets objectAtIndex:index.item];
+        
+    }];
+    
+    ///提前停止缓存的资源
+    NSArray <PHAsset *> *removedAssets = [[[removedRects ritl_map:^id _Nonnull(NSValue * _Nonnull rectValue) {
+        return [self.collectionView indexPathsForElementsInRect:rectValue.CGRectValue];
+        
+    }] ritl_reduce:@[] reduceHandler:^NSArray * _Nonnull(NSArray * _Nonnull result, NSArray <NSIndexPath *>* _Nonnull items) {
+        return [result arrayByAddingObjectsFromArray:items];
+        
+    }] ritl_map:^id _Nonnull(NSIndexPath *_Nonnull index) {
+        return [self.assets objectAtIndex:index.item];
+    }];
+    
+    CGSize thimbnailSize = [self collectionView:self.collectionView layout:self.collectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    
+    //更新缓存
+    [self.imageManager startCachingImagesForAssets:addedAssets targetSize:thimbnailSize contentMode:PHImageContentModeAspectFill options:nil];
+    [self.imageManager stopCachingImagesForAssets:removedAssets targetSize:thimbnailSize contentMode:PHImageContentModeAspectFill options:nil];
+    
+    //记录当前位置
+    self.previousPreheatRect = preheatRect;
+}
+
+
+- (NSDictionary <RITLDifferencesKey*,NSArray<NSValue *>*> *)differencesBetweenRects:(CGRect)old new:(CGRect)new __deprecated_msg("iOS 10 Use collectionView:prefetchItemsAtIndexPaths: and collectionView:cancelPrefetchingForItemsAtIndexPaths: instead.")
+{
+    if (CGRectIntersectsRect(old, new)) {//如果区域交叉
+        
+        NSMutableArray <NSValue *> * added = [NSMutableArray arrayWithCapacity:10];
+        if (CGRectGetMaxY(new) > CGRectGetMaxY(old)) {//表示上拉
+            [added addObject:[NSValue valueWithCGRect:CGRectMake(new.origin.x, CGRectGetMaxY(old), new.size.width, CGRectGetMaxY(new) - CGRectGetMaxY(old))]];
+        }
+        
+        if(CGRectGetMinY(old) > CGRectGetMinY(new)){//表示下拉
+            
+            [added addObject:[NSValue valueWithCGRect:CGRectMake(new.origin.x, CGRectGetMinY(new), new.size.width, CGRectGetMinY(old) - CGRectGetMinY(new))]];
+        }
+        
+        NSMutableArray <NSValue *> * removed = [NSMutableArray arrayWithCapacity:10];
+        if (CGRectGetMaxY(new) < CGRectGetMaxY(old)) {//表示下拉
+            [removed addObject:[NSValue valueWithCGRect:CGRectMake(new.origin.x, CGRectGetMaxY(new), new.size.width, CGRectGetMaxY(old) - CGRectGetMaxY(new))]];
+        }
+        
+        if (CGRectGetMinY(old) < CGRectGetMinY(new)) {//表示上拉
+            
+            [removed addObject:[NSValue valueWithCGRect:CGRectMake(new.origin.x, CGRectGetMinY(old), new.size.width, CGRectGetMinY(new) - CGRectGetMinY(old))]];
+        }
+        
+        return @{RITLDifferencesKeyAdded:added,
+                 RITLDifferencesKeyRemoved:removed};
+    }else {
+        
+        return @{RITLDifferencesKeyAdded:@[[NSValue valueWithCGRect:new]],
+                 RITLDifferencesKeyRemoved:@[[NSValue valueWithCGRect:old]]};
+    }
+}
+
 
 
 #pragma mark - 检测

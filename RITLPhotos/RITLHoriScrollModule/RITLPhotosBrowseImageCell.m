@@ -11,7 +11,7 @@
 #import <RITLKit/RITLKit.h>
 #import <Masonry/Masonry.h>
 
-@interface RITLPhotosBrowseImageCell ()<UIScrollViewDelegate>
+@interface RITLPhotosBrowseImageCell ()<UIScrollViewDelegate,UIGestureRecognizerDelegate>
 
 /// @brief 是否已经缩放的标志位
 @property (nonatomic, assign)BOOL isScale;
@@ -22,6 +22,8 @@
 //手势
 @property (nonatomic, strong) UITapGestureRecognizer * simpleTapGesture;
 @property (nonatomic, strong) UITapGestureRecognizer * doubleTapGesture;
+/// 滑动手势
+@property (nonatomic, strong) UIPanGestureRecognizer * panTapGesture;
 
 /// @brief 缩放比例
 @property (nonatomic, assign) CGFloat minScaleZoome;
@@ -73,9 +75,14 @@
         self.bottomScrollView = [[UIScrollView alloc]init];
         self.bottomScrollView.backgroundColor = [UIColor blackColor];
         self.bottomScrollView.delegate = self;
+        self.bottomScrollView.bounces = false;
         self.bottomScrollView.minimumZoomScale = self.minScaleZoome;
         self.bottomScrollView.maximumZoomScale = self.maxScaleZoome;
         [self.contentView addSubview:self.bottomScrollView];
+        
+//        self.panTapGesture = UIPanGestureRecognizer.new;
+//        self.panTapGesture.delegate = self;
+//        [self.bottomScrollView addGestureRecognizer:self.panTapGesture];
         
         __weak typeof(self) weakSelf = self;
         
@@ -117,26 +124,18 @@
         
         __weak typeof(self) weakSelf = self;
         
-        
         [self.doubleTapGesture gestureRecognizerHandle:^(UIGestureRecognizer * _Nonnull sender) {
            
             __strong typeof(weakSelf) strongSelf = weakSelf;
             
-            if (strongSelf.bottomScrollView.zoomScale != 1.0f)
-            {
+            if (strongSelf.bottomScrollView.zoomScale != 1.0f){
                 [strongSelf.bottomScrollView setZoomScale:1.0f animated:true];
             }
             
             else{
-                
-                //获得Cell的宽度
-                CGFloat width = strongSelf.frame.size.width;
-                
-                //触及范围
-                CGFloat scale = width / strongSelf.maxScaleZoome;
-                
-                //获取当前的触摸点
-                CGPoint point = [sender locationInView:strongSelf.imageView];
+                CGFloat width = strongSelf.frame.size.width;//获得Cell的宽度
+                CGFloat scale = width / strongSelf.maxScaleZoome;//触及范围
+                CGPoint point = [sender locationInView:strongSelf.imageView];//获取当前的触摸点
                 
                 //对点进行处理
                 CGFloat originX = MAX(0, point.x - width / scale);
@@ -144,13 +143,12 @@
                 
                 //进行位置的计算
                 CGRect rect = CGRectMake(originX, originY, width / scale , width / scale);
-                
-                //进行缩放
-                [strongSelf.bottomScrollView zoomToRect:rect animated:true];
+                [strongSelf.bottomScrollView zoomToRect:rect animated:true];//进行缩放
             }
         }];
     }
 }
+
 
 - (void)createSimpleTapGesture
 {
@@ -178,9 +176,28 @@
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale
 {
+    NSLog(@"scale - zoom = %@",@(scale));
     [scrollView setZoomScale:scale animated:true];
+    NSLog(@"imageView = %@",@(self.imageView.bounds));
+    
+    
 }
 
+//#pragma mark - UIGestureRecognizerDelegate
 
+//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+//{
+//    return self.bottomScrollView.zoomScale != self.bottomScrollView.minimumZoomScale;
+//}
+//
+//
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+//{
+//    if (self.bottomScrollView.zoomScale == self.bottomScrollView.minimumZoomScale) {
+//        return true;
+//    }
+//
+//    return ![otherGestureRecognizer.view isKindOfClass:UICollectionView.class];
+//}
 
 @end

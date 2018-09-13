@@ -8,6 +8,7 @@
 
 #import "PHPhotoLibrary+RITLPhotoStore.h"
 #import "PHFetchResult+RITLPhotos.h"
+#import "NSArray+RITLPhotos.h"
 #import <RITLKit/RITLKit.h>
 
 @implementation PHPhotoLibrary (RITLPhotoStore)
@@ -18,21 +19,7 @@
     [self fetchAlbumRegularGroups:^(NSArray<PHAssetCollection *> * _Nonnull collections) {
         
         //进行排序
-        NSMutableArray <PHAssetCollection *> *sortCollections = [NSMutableArray arrayWithArray:collections];
-        
-        //选出对象
-        PHAssetCollection *userLibrary = [sortCollections ritl_filter:^BOOL(PHAssetCollection * _Nonnull item) {
-            
-            return (item.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary);
-            
-        }].ritl_safeFirstObject;
-        
-        if (userLibrary) {
-            
-            //进行变换
-            [sortCollections removeObject:userLibrary];
-            [sortCollections insertObject:userLibrary atIndex:0];
-        }
+        NSArray <PHAssetCollection *> *sortCollections = collections.sortRegularAblumsWithUserLibraryFirst.copy;
         
         complete([sortCollections ritl_filter:^BOOL(PHAssetCollection * _Nonnull item) {
             
@@ -110,4 +97,20 @@
 }
 
 
+- (void)fetchAblumRegularAndTopLevelUserResults:(void (^)(PHFetchResult<PHAssetCollection *> * _Nonnull,
+                                                     PHFetchResult<PHCollection *> *))complete
+{
+    [self.class handlerWithAuthorizationAllow:^{
+        
+        /// 智能相册
+        PHFetchResult<PHAssetCollection *> *smartAlbum = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+
+        /// 个人相册
+        PHFetchResult <PHCollection *> *topLevelUser = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
+        
+        complete(smartAlbum,topLevelUser);
+    }];
+}
+
 @end
+

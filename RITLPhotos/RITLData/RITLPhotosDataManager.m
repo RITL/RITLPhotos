@@ -119,7 +119,7 @@
 - (void)setDefaultIdentifers:(NSArray<NSString *> *)defaultIdentifers
 {
     if (defaultIdentifers.count  == 0 || !defaultIdentifers) { return; }
- 
+    
     [self.phassetsIds addObjectsFromArray:defaultIdentifers];
     
     //追加资源对象

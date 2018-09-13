@@ -50,9 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 泛型数组
 @property (nonatomic, copy, readonly)NSArray <id> *array;
-
 ///泛型数组
 - (void)transToArrayComplete:(void(^)(NSArray <id> *, PHFetchResult *)) arrayObject;
+
 
 @end
 
