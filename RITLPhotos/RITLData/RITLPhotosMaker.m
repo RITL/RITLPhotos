@@ -10,12 +10,11 @@
 #import "RITLPhotosDataManager.h"
 #import <Photos/Photos.h>
 
+
 @interface RITLPhotosMaker ()
 
 //@property (nonatomic, copy, nullable)RITLCompleteReaderHandle complete;
 @property (nonatomic, strong) PHImageManager *imageManager;
-
-
 
 @end
 
@@ -26,10 +25,14 @@
     if (self = [super init]) {
         
         self.thumbnailSize = CGSizeZero;
+        
+        //追加通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(photosControllerDidDismiss) name:PhotosControllerDidDismissNotificationName object:nil];
     }
     
     return self;
 }
+
 
 + (instancetype)sharedInstance
 {
@@ -43,6 +46,7 @@
     }
     return strongInstance;
 }
+
 
 /// 开始执行各种方法
 - (void)startMakePhotosComplete:(RITLCompleteReaderHandle)complete
@@ -61,10 +65,25 @@
     [self dataCallBack];
     
     if (complete) { complete(); }//OK
+    
+    //进行消失回调
+    [self photosControllerDidDismiss];
 }
 
 
+
+
 #pragma mark - 代理方法
+
+
+- (void)photosControllerDidDismiss {
+    
+    if ([self.delegate respondsToSelector:@selector(photosViewControllerWillDismiss:)]){
+        [self.delegate photosViewControllerWillDismiss:self.bindViewController];
+    }
+}
+
+
 
 - (void)identifersCallBack
 {
@@ -176,6 +195,7 @@
     
     PHImageRequestOptions *options = PHImageRequestOptions.new;
     options.deliveryMode = hightQuality ? PHImageRequestOptionsDeliveryModeHighQualityFormat : PHImageRequestOptionsDeliveryModeOpportunistic;
+    options.synchronous = true;
     options.networkAccessAllowed = true;
     
     for (PHAsset *asset in assets) {
@@ -192,6 +212,7 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
 }
 
@@ -199,10 +220,8 @@
 - (PHImageManager *)imageManager
 {
     if (PHPhotoLibrary.authorizationStatus == PHAuthorizationStatusAuthorized && !_imageManager) {
-        
         _imageManager = PHImageManager.new;
     }
-    
     return _imageManager;
 }
 

@@ -129,7 +129,7 @@ static NSString *const reuseIdentifier = @"photo";
     }
     
     // NavigationItem
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Cancle", @"") style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Cancle", @"") style:UIBarButtonItemStyleDone target:self action:@selector(cancleItemDidTap)];
     
     // Register cell classes
     [self.collectionView registerClass:[RITLPhotosCell class] forCellWithReuseIdentifier:reuseIdentifier];
@@ -272,6 +272,13 @@ static NSString *const reuseIdentifier = @"photo";
 
 
 #pragma mark - Dismiss
+
+- (void)cancleItemDidTap {
+    
+    [NSNotificationCenter.defaultCenter postNotificationName:@"PhotosControllerDidDismissNotification" object:nil];
+    [self dismissPhotoControllers];
+}
+
 
 - (void)dismissPhotoControllers
 {
@@ -467,7 +474,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)collectionView:(UICollectionView *)collectionView prefetchItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths NS_AVAILABLE_IOS(10_0)
 {
-           CGSize thimbnailSize = [self collectionView:collectionView layout:collectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    CGSize thimbnailSize = [self collectionView:collectionView layout:collectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     
     dispatch_async(self.photo_queue, ^{
        

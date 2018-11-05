@@ -12,9 +12,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class PHAsset;
 
+static NSString *const PhotosControllerDidDismissNotificationName = @"PhotosControllerDidDismissNotification";
+
+
 @protocol RITLPhotosViewControllerDelegate <NSObject>
 
 @optional
+
+/**
+ 即将消失的回调
+
+ @param viewController RITLPhotosViewController
+ */
+- (void)photosViewControllerWillDismiss:(UIViewController *)viewController;
+
 
 /**
  选中图片以及视频等资源的本地identifer
@@ -25,17 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)photosViewController:(UIViewController *)viewController
             assetIdentifiers:(NSArray <NSString *> *)identifiers;
-
-/**
- 选中图片以及视频等资源的默认缩略图
- 根据thumbnailSize设置所得，如果thumbnailSize为.Zero,则不进行回调
- 与是否原图无关
-
- @param viewController RITLPhotosViewController
- @param thumbnailImages 选中资源的缩略图
- */
-- (void)photosViewController:(UIViewController *)viewController
-             thumbnailImages:(NSArray <UIImage *> *)thumbnailImages __deprecated_msg("Use photosViewController:thumbnailImages:infos instead.");
 
 
 /**
@@ -50,19 +50,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)photosViewController:(UIViewController *)viewController
              thumbnailImages:(NSArray <UIImage *> *)thumbnailImages
                        infos:(NSArray <NSDictionary *> *)infos;
-
-
-/**
- 选中图片以及视频等资源的原比例图片
- 适用于不使用缩略图，或者展示高清图片
- 与是否原图无关
- 
- @param viewController RITLPhotosViewController
- @param images 选中资源的原比例图
- */
-- (void)photosViewController:(UIViewController *)viewController
-                      images:(NSArray <UIImage *> *)images __deprecated_msg("Use photosViewController:images:infos instead.");
-
 
 
 /**
@@ -100,6 +87,36 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)photosViewController:(UIViewController *)viewController
                        assets:(NSArray <PHAsset *> *)assets;
+
+
+
+
+#pragma mark - Deprecated
+
+
+/**
+ 选中图片以及视频等资源的原比例图片
+ 适用于不使用缩略图，或者展示高清图片
+ 与是否原图无关
+ 
+ @param viewController RITLPhotosViewController
+ @param images 选中资源的原比例图
+ */
+- (void)photosViewController:(UIViewController *)viewController
+                      images:(NSArray <UIImage *> *)images __deprecated_msg("Use photosViewController:images:infos instead.");
+
+
+
+/**
+ 选中图片以及视频等资源的默认缩略图
+ 根据thumbnailSize设置所得，如果thumbnailSize为.Zero,则不进行回调
+ 与是否原图无关
+ 
+ @param viewController RITLPhotosViewController
+ @param thumbnailImages 选中资源的缩略图
+ */
+- (void)photosViewController:(UIViewController *)viewController
+             thumbnailImages:(NSArray <UIImage *> *)thumbnailImages __deprecated_msg("Use photosViewController:thumbnailImages:infos instead.");
 
 
 

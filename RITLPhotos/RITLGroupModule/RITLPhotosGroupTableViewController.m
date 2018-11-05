@@ -111,6 +111,9 @@
 
 - (void)dismissPhotoControllers
 {
+    //获得绑定viewController
+    [NSNotificationCenter.defaultCenter postNotificationName:@"PhotosControllerDidDismissNotification" object:nil];
+    
     if(self.navigationController.presentingViewController){//如果是模态弹出
         
         [self.navigationController dismissViewControllerAnimated:true completion:nil];

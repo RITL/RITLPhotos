@@ -73,7 +73,7 @@ RITLPhotosViewControllerDelegate>
             assetIdentifiers:(NSArray <NSString *> *)identifiers
 {
     self.saveAssetIds = identifiers;
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+//    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 /**
@@ -108,7 +108,7 @@ RITLPhotosViewControllerDelegate>
     [self.collectionView reloadData];
     
 //    NSLog(@"%@",infos);
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+//    NSLog(@"%@", NSStringFromSelector(_cmd));
 
 }
 
@@ -142,7 +142,7 @@ RITLPhotosViewControllerDelegate>
 - (void)photosViewController:(UIViewController *)viewController images:(NSArray<UIImage *> *)images infos:(NSArray<NSDictionary *> *)infos
 {
     //获得原比例的图片
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+//    NSLog(@"%@", NSStringFromSelector(_cmd));
 
 }
 
@@ -161,7 +161,7 @@ RITLPhotosViewControllerDelegate>
 - (void)photosViewController:(UIViewController *)viewController
                        datas:(NSArray <NSData *> *)datas
 {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSLog(@"%@ - datas: %lu", NSStringFromSelector(_cmd),(unsigned long)datas.count);
 
 }
 
@@ -175,8 +175,14 @@ RITLPhotosViewControllerDelegate>
 - (void)photosViewController:(UIViewController *)viewController
                       assets:(NSArray <PHAsset *> *)assets
 {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+//    NSLog(@"%@", NSStringFromSelector(_cmd));
 
+}
+
+
+
+- (void)photosViewControllerWillDismiss:(UIViewController *)viewController {
+    NSLog(@"\n\n\n\n %@ is dismiss \n\n\n\n",viewController);
 }
 
 

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef dispatch_block_t RITLCompleteReaderHandle;
 
+
 /// 图片的生成者
 @interface RITLPhotosMaker : NSObject
 
