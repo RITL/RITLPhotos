@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 字符戳字符串
 @property (nonatomic, copy, readonly, nullable, class)NSString *ritl_timeIntervalSince1970;
-
 /// yyyyMMddHHmmss格式下的时间
 @property (nonatomic, copy, readonly, nullable, class)NSString *ritl_uploadTime;
 

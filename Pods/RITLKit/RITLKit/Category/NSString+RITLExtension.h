@@ -51,7 +51,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 带下划线的字符串
 @property (nonatomic, copy, readonly)NSAttributedString *ritl_underLineString;
-
 /// 带中划线的字符窜
 - (NSAttributedString *)ritl_middleLineStringWithColor:(UIColor *)lineColor font:(UIFont *)font;
 
@@ -62,10 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 格式 yyyy-MM-dd 格式的日期 - (本身为时间戳)
 @property (nonatomic, copy, readonly, nullable) NSString *ritl_dayDate;
-
 /// 格式 yyyy-MM-dd HH:mm:ss
 @property (nonatomic, copy, readonly, nullable) NSString *ritl_detailDate;
-
 /// 自动识别"今天"的格式 格式：yyyy-MM-dd HH:mm 如果日期为今天，表现为"今天 HH:mm"
 @property (nonatomic, copy, readonly, nullable) NSString *ritl_AutoDiscriminatingTodayDate;
 
@@ -100,10 +97,8 @@ NS_ASSUME_NONNULL_BEGIN
  检测字符串属性是否符合上传标准,放置字符串因为空格占位而出现空白
  */
 @property (nonatomic, assign, readonly)BOOL ritl_hasSpaceWord;
-
 /// 是否为整数
 @property (nonatomic, assign, readonly)BOOL ritl_isInteger;
-
 /// 是否包含中文字
 @property (nonatomic, assign, readonly)BOOL ritl_containChinese;
 
@@ -114,6 +109,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 是否符合该正则表达式
 - (BOOL)ritl_evaluatePredicate:(NSString *)predicate;
+
+@end
+
+@interface NSString (RITLNumber)
+
+/// 获得最大字数限制的字符串，多余的部分使用...
+- (NSString *)ritl_limitLettersMaxLength:(NSInteger)maxLength;
+/// 数量处理
+- (NSString *)ritl_unitNumber;
 
 @end
 

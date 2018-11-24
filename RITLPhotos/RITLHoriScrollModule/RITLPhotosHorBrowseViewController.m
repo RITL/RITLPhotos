@@ -524,6 +524,13 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     return _browseCollectionView;
 }
 
+#pragma mark - < UICollectionViewDelegate >
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell reset];
+}
+
 
 #pragma mark - Notification
 
@@ -595,6 +602,10 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
 {
     //获得当前的资源
     PHAsset *asset = [self.dataSource assetAtIndexPath:[NSIndexPath indexPathForItem:[self indexOfCurrentAsset:self.collectionView] inSection:0]];
+    
+    //如果是添加，需要坚持数量
+    if (self.dataManager.count >= RITLPhotosConfiguration.defaultConfiguration.maxCount &&
+        ![self.dataManager containAsset:asset]/*是添加*/) { return; }//不能进行选择
     
     //进行修正
     [self.dataManager addOrRemoveAsset:asset];

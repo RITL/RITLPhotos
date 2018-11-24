@@ -17,6 +17,7 @@
 
         self.maxCount = 9;
         self.containVideo = true;
+        self.hiddenGroupWhenNoPhotos = false;
     }
     
     return self;

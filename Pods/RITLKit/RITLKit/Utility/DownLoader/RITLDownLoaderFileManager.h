@@ -34,6 +34,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)saveDataInCachePathWithData:(NSData *)data urlKey:(NSString *)url;
 
 
+#pragma mark - 删除
+
+/**
+ 移除储存的到已经下载完毕的文件
+ 
+ @param url 文件下载的路径
+ */
++ (void)removeDataWithUrl:(NSString *)url;
+
 #pragma mark - 判断以及获取路径
 
 /// 根据url获得当前文件存储的本地路径

@@ -19,36 +19,27 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-/// 自定义的搜索视图 - 本质为textField,为模拟
+/// 自定义的搜索视图 - 本质为textField
 @interface RITLSearchView : UIView
 
 /// 代理对象
 @property (nonatomic, weak, nullable) id<RITLSearchViewDelegate> delegate;
-
 /// 占位图
 @property (nonatomic, copy) NSString *placeholder;
-
 /// 搜索框位于当前view的inset
 @property (nonatomic, assign)UIEdgeInsets searchInsets;
-
 /// 搜索图标位于搜索框的inset
 @property (nonatomic, assign)UIEdgeInsets searchIconInsets;
-
 /// 左侧的图片
-@property (nonatomic, strong, nullable) UIImage * leftImage;
-
+@property (nonatomic, strong, nullable) UIImage *leftImage;
 /// 搜索的字体
-@property (nonatomic, strong) UIFont * searchFont;
-
+@property (nonatomic, strong) UIFont *searchFont;
 /// 默认为nil
 @property (nonatomic, strong) UIFont *placeholderFont;
-
 /// 默认为nil
 @property (nonatomic, strong) UIColor *placeholderColor;
-
 /// 文本域的背景色,默认为[219,219,219]
 @property (nonatomic, strong) UIColor * textFieldBackgroundColor;
-
 /// 负责搜索textField
 @property (nonatomic, strong, readonly) UITextField *searchTextField;
 

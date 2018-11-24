@@ -50,6 +50,7 @@ RITLPhotosViewControllerDelegate>
     RITLPhotosViewController *photoController = RITLPhotosViewController.photosViewController;
     photoController.configuration.maxCount = 5;//最大的选择数目
     photoController.configuration.containVideo = false;//选择类型，目前只选择图片不选择视频
+    photoController.configuration.hiddenGroupWhenNoPhotos = true;//当相册不存在照片的时候隐藏
     photoController.photo_delegate = self;
     photoController.thumbnailSize = self.assetSize;//缩略图的尺寸
     photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的资源
@@ -72,7 +73,25 @@ RITLPhotosViewControllerDelegate>
             assetIdentifiers:(NSArray <NSString *> *)identifiers
 {
     self.saveAssetIds = identifiers;
+//    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
+
+/**
+ Deprecated
+ 选中图片以及视频等资源的默认缩略图
+ 根据thumbnailSize设置所得，如果thumbnailSize为.Zero,则不进行回调
+ 与是否原图无关
+ 
+ @param viewController RITLPhotosViewController
+ @param thumbnailImages 选中资源的缩略图
+ */
+//- (void)photosViewController:(UIViewController *)viewController
+//             thumbnailImages:(NSArray <UIImage *> *)thumbnailImages
+//{
+//    self.assets = thumbnailImages;
+//    [self.collectionView reloadData];
+//}
+
 
 /**
  选中图片以及视频等资源的默认缩略图
@@ -81,13 +100,35 @@ RITLPhotosViewControllerDelegate>
  
  @param viewController RITLPhotosViewController
  @param thumbnailImages 选中资源的缩略图
+ @param infos 选中资源的缩略图的相关信息
  */
-- (void)photosViewController:(UIViewController *)viewController
-             thumbnailImages:(NSArray <UIImage *> *)thumbnailImages
+- (void)photosViewController:(UIViewController *)viewController thumbnailImages:(NSArray<UIImage *> *)thumbnailImages infos:(NSArray<NSDictionary *> *)infos
 {
     self.assets = thumbnailImages;
     [self.collectionView reloadData];
+    
+//    NSLog(@"%@",infos);
+//    NSLog(@"%@", NSStringFromSelector(_cmd));
+
 }
+
+
+/**
+ Deprecated
+ 选中图片以及视频等资源的原比例图片
+ 适用于不使用缩略图，或者展示高清图片
+ 与是否原图无关
+ 
+ @param viewController RITLPhotosViewController
+ @param images 选中资源的原比例图
+ */
+//- (void)photosViewController:(UIViewController *)viewController
+//                      images:(NSArray <UIImage *> *)images
+//{
+//    //获得原比例的图片
+//
+//}
+
 
 /**
  选中图片以及视频等资源的原比例图片
@@ -96,13 +137,16 @@ RITLPhotosViewControllerDelegate>
  
  @param viewController RITLPhotosViewController
  @param images 选中资源的原比例图
+ @param infos 选中资源的原比例图的相关信息
  */
-- (void)photosViewController:(UIViewController *)viewController
-                      images:(NSArray <UIImage *> *)images
+- (void)photosViewController:(UIViewController *)viewController images:(NSArray<UIImage *> *)images infos:(NSArray<NSDictionary *> *)infos
 {
     //获得原比例的图片
-    
+//    NSLog(@"%@", NSStringFromSelector(_cmd));
+
 }
+
+
 
 /**
  选中图片以及视频等资源的数据
@@ -117,7 +161,8 @@ RITLPhotosViewControllerDelegate>
 - (void)photosViewController:(UIViewController *)viewController
                        datas:(NSArray <NSData *> *)datas
 {
-    
+    NSLog(@"%@ - datas: %lu", NSStringFromSelector(_cmd),(unsigned long)datas.count);
+
 }
 
 /**
@@ -130,7 +175,14 @@ RITLPhotosViewControllerDelegate>
 - (void)photosViewController:(UIViewController *)viewController
                       assets:(NSArray <PHAsset *> *)assets
 {
-    
+//    NSLog(@"%@", NSStringFromSelector(_cmd));
+
+}
+
+
+
+- (void)photosViewControllerWillDismiss:(UIViewController *)viewController {
+    NSLog(@"\n\n\n\n %@ is dismiss \n\n\n\n",viewController);
 }
 
 

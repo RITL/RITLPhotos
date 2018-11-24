@@ -16,10 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 当前的控制器
 @property (nonatomic, weak, nullable) UIViewController *currentViewController;
-
 /// 当前控制器的索引
 @property (nonatomic, assign, readonly) NSInteger currentIndex;
-
 /// 涵盖的viewControllers
 @property (nonatomic, copy)NSArray <__kindof UIViewController *> *contentViewControllers;
 
@@ -36,13 +34,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- ETScrollHorizontalPageViewController 将要变为第几个控制器
+ RITLScrollHorizontalPageViewController 将要变为第几个控制器
 
- @param viewController ETScrollHorizontalPageViewController
+ @param viewController RITLScrollHorizontalPageViewController
  @param index 当前控制器的index
  */
 - (void)ritl_scrollHorizontalPageViewController:(RITLScrollHorizontalPageViewController *)viewController
                                   willToIndex:(NSInteger)index;
+
+
+
+///**
+// RITLScrollHorizontalPageViewController 将要变为第几个控制器
+//
+// @param viewController RITLScrollHorizontalPageViewController
+// @param fromViewController 初始控制器
+// @param toViewController 跳入的控制器
+// @param fromIndex 初始的位置
+// @param toIndex 跳入的位置
+// */
+//- (void)ritl_scrollHorizontalPageViewController:(RITLScrollHorizontalPageViewController *)viewController
+//                                 fromController:(UIViewController *)fromViewController
+//                                   toController:(UIViewController *)toViewController
+//                                           from:(NSInteger)fromIndex
+//                                    willToIndex:(NSInteger)toIndex;
 
 
 @end
@@ -53,14 +68,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 代理
 @property (nonatomic, weak, nullable) id<RITLScrollHorizontalPageDelegate> ritl_delegate;
-
 /// 控制器
 @property (nonatomic, strong) LLSegmentBar * segmentBar;
-
 /// 导航栏的pop手势,默认为navigationController.interactivePopGestureRecognizer
 @property (nonatomic, weak)UIGestureRecognizer *popPanGestureRecognizer;
-
-
 
 @end
 
@@ -80,10 +91,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 滚动视图
 @property (nonatomic, weak, nullable, readonly) UIScrollView *ritl_scrollView;
-
 /// 滚动视图的滑动手势
 @property (nonatomic, strong, nullable, readonly) UIPanGestureRecognizer *ritl_scrollPanGestureRecongnizer;
-
 /// 滚动视图的所有手势
 @property (nonatomic, copy, nullable, readonly) NSArray <UIGestureRecognizer *> *ritl_gestureRecongnizers;
 

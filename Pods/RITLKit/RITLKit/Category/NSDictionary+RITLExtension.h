@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 当前App的版本号
 @property (nonatomic, copy, nullable, readonly) NSString *ritl_version;
-
 /// 当前App的版本号
 @property (nonatomic, copy, nullable, readonly, class) NSString *ritl_version;
 
@@ -25,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 获得的不带换位符json字符串
 @property (nonatomic, copy, nullable, readonly) NSString *ritl_json;
-
 /// 传递javascript的json字符串
 @property (nonatomic, copy, nullable, readonly) NSString *ritl_javascript_json;
 

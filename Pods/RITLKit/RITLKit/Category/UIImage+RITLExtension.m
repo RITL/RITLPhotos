@@ -52,7 +52,7 @@
     NSUInteger dataSize = imageData.length;
     
     // 进行KB转换
-    CGFloat sizeKB = dataSize / 1024 ;
+    CGFloat sizeKB = dataSize / 1000 ;
     
     return sizeKB;
 }

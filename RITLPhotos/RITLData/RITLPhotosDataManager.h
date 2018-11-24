@@ -34,8 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addPHAsset:(PHAsset *)asset;
 - (void)removePHAsset:(PHAsset *)asset;
 - (void)removePHAssetAtIndex:(NSUInteger)index;
-- (void)exchangePHAssetAtIndex:(NSUInteger)idx1 withPHAssetAtIndex:(NSUInteger)idx2;
 - (void)removeAllPHAssets;
+- (void)exchangePHAssetAtIndex:(NSUInteger)idx1 withPHAssetAtIndex:(NSUInteger)idx2;
+
 
 /**
  * 进行自动添加或者删除的操作

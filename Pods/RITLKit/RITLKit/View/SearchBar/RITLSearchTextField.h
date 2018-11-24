@@ -14,10 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 左侧搜索图标距离左边距 默认为0
 @property (nonatomic, assign) CGFloat searchIconLeftMargin;
-
 /// 文本域距离左侧搜索框或者左边距，默认为0
 @property (nonatomic, assign) CGFloat textLeftMargin;
-
 /// 占位符距离距离左侧搜索框或者左边距，默认为0
 @property (nonatomic, assign) CGFloat placeholderLeftMargin;
 

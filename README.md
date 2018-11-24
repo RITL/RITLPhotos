@@ -13,7 +13,7 @@ pod 'Masonry'
 ```
 # CocoaPod
 ```
-pod 'RITLPhotos', '~> 2.1.0'
+pod 'RITLPhotos'
 ```
 ```
 #import <RITLPhotos/RITLPhotos.h>
@@ -37,6 +37,13 @@ photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的
 #pragma mark - RITLPhotosViewControllerDelegate
 /**** 为了提高相关性能，如果用不到的代理方法，不需要多实现  ****/
 
+
+/// 图片选择器消失的回调方法
+- (void)photosViewControllerWillDismiss:(UIViewController *)viewController {
+    NSLog(@"%@ is dismiss",viewController);
+}
+
+
 /**
  选中图片以及视频等资源的本地identifer
  可用于设置默认选好的资源
@@ -58,11 +65,14 @@ photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的
  
  @param viewController RITLPhotosViewController
  @param thumbnailImages 选中资源的缩略图
+ @param infos 选中资源的缩略图的相关信息
  */
-- (void)photosViewController:(UIViewController *)viewController
-             thumbnailImages:(NSArray <UIImage *> *)thumbnailImages
+- (void)photosViewController:(UIViewController *)viewController thumbnailImages:(NSArray<UIImage *> *)thumbnailImages infos:(NSArray<NSDictionary *> *)infos
 {
-
+    self.assets = thumbnailImages;
+    [self.collectionView reloadData];
+    
+    NSLog(@"%@",infos);
 }
 ```
 ```
@@ -73,12 +83,11 @@ photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的
  
  @param viewController RITLPhotosViewController
  @param images 选中资源的原比例图
+ @param infos 选中资源的原比例图的相关信息
  */
-- (void)photosViewController:(UIViewController *)viewController
-                      images:(NSArray <UIImage *> *)images
+- (void)photosViewController:(UIViewController *)viewController images:(NSArray<UIImage *> *)images infos:(NSArray<NSDictionary *> *)infos
 {
     //获得原比例的图片
-
 }
 ```
 ```
@@ -116,11 +125,13 @@ photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的
 
 
 # 更新日志
+- 2018-11-05 修复`datas`回调返回数据永远为空数组问题，新增代理`- (void)photosViewControllerWillDismiss:(UIViewController *)viewController;`
+- 2018-07-10 修复部分`icloud`图片获得失败的问题
 - 2018-06-26 修复部分系统加载bundle图片失败的问题
 - 2018-06-15 修复拒绝权限崩溃的问题
 - 2018-05-21 使用`defaultIdentifers`属性可以记录选中的资源，可通过代理回调获得，支持Pod
 - 2018-05-18 `Version 2.0` 增加了图片多选库中对`Live`以及`Video`的支持，增加了对顺序获取图片的支持
-- 2017-11-30 取出必须使用的`Objective-C++`模式，新增代理方法替代`Block`
+- 2017-11-30 去除必须使用的`Objective-C++`模式，新增代理方法替代`Block`
 - 2017-05-19 `Version 1.0`
 - 2016-09-24 支持`3D Touch`
 - 2016-04-05 `Version 0.1`

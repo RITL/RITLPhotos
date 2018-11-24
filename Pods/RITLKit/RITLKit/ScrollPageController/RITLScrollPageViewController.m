@@ -64,10 +64,7 @@
 
 -(NSInteger)currentIndex
 {
-    if (!self.currentViewController) {
-        
-        return NSNotFound;
-    }
+    if (!self.currentViewController) { return NSNotFound; }
     
     return [self.contentViewControllers indexOfObject:self.currentViewController];
 }
@@ -172,6 +169,8 @@
         
          [self.view addSubview:self.segmentBar];
     }
+    
+    self.translateFinish = true;
     
     //初始化手势
     self.ritl_panGestureRecognizer = [UIPanGestureRecognizer new];
@@ -345,11 +344,7 @@
 }
 
 
-
-
-
 @end
-
 
 
 
@@ -363,12 +358,6 @@
 
 
 @end
-
-
-
-
-
-
 
 
 
@@ -417,23 +406,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @implementation RITLScrollPageViewController (UIPageViewControllerDataSource)
 
 //前一页
@@ -473,7 +445,6 @@
 
 
 
-
 @implementation RITLScrollPageViewController (UIPageViewControllerDelegate)
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed
@@ -483,19 +454,5 @@
     
 }
 
-
 @end
 
-
-
-
-//@interface UIQueuingScrollView (ETScrollHorizontalPageViewController)
-//
-//@end
-//
-//
-//@implementation UIQueuingScrollView(ETScrollHorizontalPageViewController)
-//
-//
-//
-//@end

@@ -47,7 +47,10 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
     self.representedAssetIdentifier = asset.localIdentifier;
     self.currentAsset = asset;
     
-    [cacheManager requestImageForAsset:asset targetSize:@[@(asset.pixelWidth),@(asset.pixelHeight)].ritl_size contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    PHImageRequestOptions *options = PHImageRequestOptions.new;
+    options.networkAccessAllowed = true;
+    
+    [cacheManager requestImageForAsset:asset targetSize:@[@(asset.pixelWidth),@(asset.pixelHeight)].ritl_size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
 
         //如果标志位一样
         if ([self.representedAssetIdentifier isEqualToString:asset.localIdentifier]) {//进行赋值操作
@@ -68,12 +71,25 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
 
 - (void)updateViews:(UIImage *)image info:(NSDictionary *)info
 {
+    //适配长图
     self.imageView.image = image;
+    
+    //对缩放进行适配
+    CGFloat height = self.currentAsset.pixelHeight / 2;
+    CGFloat width = self.currentAsset.pixelWidth / 2;
+    CGFloat max = MAX(width, height);
+    CGFloat scale = 2.0;
+    if (height > width) {
+        scale = max / MAX(1,self.imageView.bounds.size.height);
+    }else {
+        scale = max / MAX(1,self.imageView.bounds.size.width);
+    }
+    self.bottomScrollView.maximumZoomScale = MAX(2.0,scale);
 }
 
 
-- (void)reset
-{
+- (void)reset {
+    self.bottomScrollView.maximumZoomScale = 2.0;
     [self.bottomScrollView setZoomScale:1.0];
 }
 
@@ -189,8 +205,5 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
         self.playerLayer = nil;
     }
 }
-
-
-
 
 @end

@@ -41,7 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (RITLBlockRecognizer)
 
-
 /**
  UIView添加轻击手势
 
@@ -54,8 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (UITapGestureRecognizer *)addTapGestureRecognizerNumberOfTap:(NSUInteger)numberOfTap Handler:(nullable void(^)(UIView *view)) actionHandler ;
 
 
-
-
 /**
  UIView添加UIControl相应对象
 
@@ -63,7 +60,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return 添加的响应Control
  */
 - (UIControl *)addUIControlHandler:(nullable void(^)(UIView *view)) actionHandler;
-
 
 
 /// 使用target action添加

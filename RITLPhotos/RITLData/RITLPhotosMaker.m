@@ -10,6 +10,7 @@
 #import "RITLPhotosDataManager.h"
 #import <Photos/Photos.h>
 
+
 @interface RITLPhotosMaker ()
 
 //@property (nonatomic, copy, nullable)RITLCompleteReaderHandle complete;
@@ -24,10 +25,14 @@
     if (self = [super init]) {
         
         self.thumbnailSize = CGSizeZero;
+        
+        //追加通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(photosControllerDidDismiss) name:PhotosControllerDidDismissNotificationName object:nil];
     }
     
     return self;
 }
+
 
 + (instancetype)sharedInstance
 {
@@ -41,6 +46,7 @@
     }
     return strongInstance;
 }
+
 
 /// 开始执行各种方法
 - (void)startMakePhotosComplete:(RITLCompleteReaderHandle)complete
@@ -59,10 +65,25 @@
     [self dataCallBack];
     
     if (complete) { complete(); }//OK
+    
+    //进行消失回调
+    [self photosControllerDidDismiss];
 }
 
 
+
+
 #pragma mark - 代理方法
+
+
+- (void)photosControllerDidDismiss {
+    
+    if ([self.delegate respondsToSelector:@selector(photosViewControllerWillDismiss:)]){
+        [self.delegate photosViewControllerWillDismiss:self.bindViewController];
+    }
+}
+
+
 
 - (void)identifersCallBack
 {
@@ -84,16 +105,19 @@
 - (void)thumbnailImagesCallBack
 {
     if (CGSizeEqualToSize(self.thumbnailSize, CGSizeZero)) { return; }//不使用缩略图
-    if (![self.delegate respondsToSelector:@selector(photosViewController:thumbnailImages:)]) { return; }//不存在该代理方法
+    if (![self.delegate respondsToSelector:@selector(photosViewController:thumbnailImages:)]
+        && ![self.delegate respondsToSelector:@selector(photosViewController:thumbnailImages:infos:)]) { return; }//不存在该代理方法
     
     //选中的资源对象
     NSArray <PHAsset *> *assets = RITLPhotosDataManager.sharedInstance.assets;
     
     //获得所有的图片资源
-    __block NSMutableArray <UIImage *> *thumbnailImages = [NSMutableArray arrayWithCapacity:assets.count];
+    NSMutableArray <UIImage *> *thumbnailImages = [NSMutableArray arrayWithCapacity:assets.count];
+    NSMutableArray <NSDictionary *> *infos = [NSMutableArray arrayWithCapacity:assets.count];
     
     PHImageRequestOptions *options = [PHImageRequestOptions new];
     options.synchronous = true;
+    options.networkAccessAllowed = true;
     
     //进行图片请求
     for (PHAsset *asset in assets) {
@@ -101,25 +125,38 @@
         [self.imageManager requestImageForAsset:asset targetSize:self.thumbnailSize contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
            
             [thumbnailImages addObject:result];
+            [infos addObject:info];
         }];
     }
     
-    [self.delegate photosViewController:self.bindViewController thumbnailImages:thumbnailImages];
+    if ([self.delegate respondsToSelector:@selector(photosViewController:thumbnailImages:infos:)]) {
+        
+        [self.delegate photosViewController:self.bindViewController thumbnailImages:thumbnailImages infos:infos];
+    }else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [self.delegate photosViewController:self.bindViewController thumbnailImages:thumbnailImages];
+#pragma clang diagnostic pop
+    }
 }
+
 
 
 - (void)imagesCallBack
 {
-    if (![self.delegate respondsToSelector:@selector(photosViewController:images:)]) { return; }//不存在该代理方法
+    if (![self.delegate respondsToSelector:@selector(photosViewController:images:)]
+          && ![self.delegate respondsToSelector:@selector(photosViewController:images:infos:)]) { return; }//不存在该代理方法
     
     //选中的资源对象
     NSArray <PHAsset *> *assets = RITLPhotosDataManager.sharedInstance.assets;
     
     //获得所有的图片资源
-    __block NSMutableArray <UIImage *> *images = [NSMutableArray arrayWithCapacity:assets.count];
+    NSMutableArray <UIImage *> *images = [NSMutableArray arrayWithCapacity:assets.count];
+    NSMutableArray <NSDictionary *> *infos = [NSMutableArray arrayWithCapacity:assets.count];
     
     PHImageRequestOptions *options = [PHImageRequestOptions new];
     options.synchronous = true;
+    options.networkAccessAllowed = true;
     
     //进行图片请求
     for (PHAsset *asset in assets) {
@@ -127,10 +164,19 @@
         [self.imageManager requestImageForAsset:asset targetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
             
             [images addObject:result];
+            [infos addObject:info];
         }];
     }
     
-    [self.delegate photosViewController:self.bindViewController images:images];
+    if ([self.delegate respondsToSelector:@selector(photosViewController:images:infos:)]) {
+        [self.delegate photosViewController:self.bindViewController images:images infos:infos];
+    }else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [self.delegate photosViewController:self.bindViewController images:images];
+#pragma clang diagnostic pop
+    }
+
 }
 
 
@@ -149,6 +195,8 @@
     
     PHImageRequestOptions *options = PHImageRequestOptions.new;
     options.deliveryMode = hightQuality ? PHImageRequestOptionsDeliveryModeHighQualityFormat : PHImageRequestOptionsDeliveryModeOpportunistic;
+    options.synchronous = true;
+    options.networkAccessAllowed = true;
     
     for (PHAsset *asset in assets) {
         
@@ -164,6 +212,7 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"[%@] is dealloc",NSStringFromClass(self.class));
 }
 
@@ -171,10 +220,8 @@
 - (PHImageManager *)imageManager
 {
     if (PHPhotoLibrary.authorizationStatus == PHAuthorizationStatusAuthorized && !_imageManager) {
-        
         _imageManager = PHImageManager.new;
     }
-    
     return _imageManager;
 }
 

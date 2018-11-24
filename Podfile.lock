@@ -1,53 +1,53 @@
 PODS:
   - Masonry (1.1.0)
-  - RITLKit (0.3.7):
+  - RITLKit (1.1):
     - Masonry
-    - RITLKit/Category (= 0.3.7)
-    - RITLKit/ImagePicker (= 0.3.7)
-    - RITLKit/ScrollPageController (= 0.3.7)
-    - RITLKit/Utility (= 0.3.7)
-    - RITLKit/View (= 0.3.7)
-    - RITLKit/Web (= 0.3.7)
+    - RITLKit/Category (= 1.1)
+    - RITLKit/ImagePicker (= 1.1)
+    - RITLKit/ScrollPageController (= 1.1)
+    - RITLKit/Utility (= 1.1)
+    - RITLKit/View (= 1.1)
+    - RITLKit/Web (= 1.1)
     - RITLViewFrame
-  - RITLKit/Category (0.3.7):
+  - RITLKit/Category (1.1):
     - Masonry
     - RITLKit/Utility
     - RITLViewFrame
-  - RITLKit/ImagePicker (0.3.7):
+  - RITLKit/ImagePicker (1.1):
     - Masonry
     - RITLViewFrame
-  - RITLKit/ScrollPageController (0.3.7):
+  - RITLKit/ScrollPageController (1.1):
     - Masonry
     - RITLKit/Category
-    - RITLKit/ScrollPageController/LLSegmentBar (= 0.3.7)
+    - RITLKit/ScrollPageController/LLSegmentBar (= 1.1)
     - RITLKit/Utility
     - RITLViewFrame
-  - RITLKit/ScrollPageController/LLSegmentBar (0.3.7):
-    - Masonry
-    - RITLKit/Category
-    - RITLKit/Utility
-    - RITLViewFrame
-  - RITLKit/Utility (0.3.7):
-    - Masonry
-    - RITLKit/Utility/DownLoader (= 0.3.7)
-    - RITLKit/Utility/Filter (= 0.3.7)
-    - RITLKit/Utility/Reachability (= 0.3.7)
-    - RITLViewFrame
-  - RITLKit/Utility/DownLoader (0.3.7):
-    - Masonry
-    - RITLViewFrame
-  - RITLKit/Utility/Filter (0.3.7):
-    - Masonry
-    - RITLViewFrame
-  - RITLKit/Utility/Reachability (0.3.7):
-    - Masonry
-    - RITLViewFrame
-  - RITLKit/View (0.3.7):
+  - RITLKit/ScrollPageController/LLSegmentBar (1.1):
     - Masonry
     - RITLKit/Category
     - RITLKit/Utility
     - RITLViewFrame
-  - RITLKit/Web (0.3.7):
+  - RITLKit/Utility (1.1):
+    - Masonry
+    - RITLKit/Utility/DownLoader (= 1.1)
+    - RITLKit/Utility/Filter (= 1.1)
+    - RITLKit/Utility/Reachability (= 1.1)
+    - RITLViewFrame
+  - RITLKit/Utility/DownLoader (1.1):
+    - Masonry
+    - RITLViewFrame
+  - RITLKit/Utility/Filter (1.1):
+    - Masonry
+    - RITLViewFrame
+  - RITLKit/Utility/Reachability (1.1):
+    - Masonry
+    - RITLViewFrame
+  - RITLKit/View (1.1):
+    - Masonry
+    - RITLKit/Category
+    - RITLKit/Utility
+    - RITLViewFrame
+  - RITLKit/Web (1.1):
     - Masonry
     - RITLKit/Category
     - RITLKit/Utility
@@ -65,7 +65,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  RITLKit: 30acf3faa58249d892d4a61eb606c9f5b7898b4d
+  RITLKit: a80dcb914135d39c033f7852895bad692753bfdb
   RITLViewFrame: 4e38e6333e6b4691c1980c3fcda9ff4d08f0d2c8
 
 PODFILE CHECKSUM: 628c536142495857d9c8f2a74159f02c73aeb9fb

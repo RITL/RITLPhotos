@@ -99,3 +99,18 @@ UIFont *RITLUtilityFont(NSString *fontName,CGFloat size)
     return [RITLUtility checkWhetherExistFontWithName:fontName AndSize:size];
 }
 
+UIFont *RITLRegularFont(CGFloat size)
+{
+    return RITLUtilityFont(RITLFontPingFangSC_Regular, size);
+}
+
+UIFont *RITLMediumFont(CGFloat size)
+{
+    return RITLUtilityFont(RITLFontPingFangSC_Medium, size);
+}
+
+UIFont *RITLBoldFont(CGFloat size)
+{
+    return RITLUtilityFont(RITLFontPingFangSC_Bold, size);
+}
+

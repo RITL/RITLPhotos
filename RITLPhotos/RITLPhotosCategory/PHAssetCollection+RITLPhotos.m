@@ -37,6 +37,9 @@
     CGFloat scale = [UIScreen mainScreen].scale;
     CGSize newSize = CGSizeMake(size.width * scale, size.height * scale);
     
+    PHImageRequestOptions *options = [PHImageRequestOptions requestOptionsWithDeliveryMode:mode];
+    options.networkAccessAllowed = true;
+    
     //开始截取照片
     [[PHCachingImageManager defaultManager] requestImageForAsset:assetResult.lastObject targetSize:newSize contentMode:PHImageContentModeAspectFill options:[PHImageRequestOptions requestOptionsWithDeliveryMode:mode] resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         

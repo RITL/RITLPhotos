@@ -19,7 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 #define RITL_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 
-#define RITL_iPhoneX ((RITL_SCREEN_WIDTH == 375) && (RITL_SCREEN_HEIGHT == 812))
+#define RITL_IS_IPHONEX ((RITL_SCREEN_WIDTH == 375) && (RITL_SCREEN_HEIGHT == 812))
+#define RITL_IS_IPHONEXR ((RITL_SCREEN_WIDTH == 414) && (RITL_SCREEN_HEIGHT == 896))
+#define RITL_IS_IPHONEXS ((RITL_SCREEN_WIDTH == 375) && (RITL_SCREEN_HEIGHT == 812))
+#define RITL_IS_IPHONEXS_MAX ((RITL_SCREEN_WIDTH == 414) && (RITL_SCREEN_HEIGHT == 896))
+#define RITL_HAVE_PHONE_HEADER (RITL_IS_IPHONEX || RITL_IS_IPHONEXR || RITL_IS_IPHONEXS || RITL_IS_IPHONEXS_MAX)
+#define RITL_iPhoneX RITL_HAVE_PHONE_HEADER //为了适配之前的，建议进行判定使用上面方法
 
 #define RITL_NormalNavigationBarHeight (64)
 #define RITL_iPhoneXNavigationBarHeight (88)
@@ -71,7 +76,6 @@ RITLRGBACOLOR(((float)((rgbValue & 0xFF0000) >> 16)),((float)((rgbValue & 0xFF00
 #define RITLColorFromIntRBG(RED, GREEN, BLUE) RITLRGBACOLOR(RED,GREEN,BLUE,1.0)
 #define RITLSimpleColorFromIntRBG(x) (RITLColorFromIntRBG(x,x,x))
 #define RITLColorSimpleFromIntRBG(x) (RITLSimpleColorFromIntRBG(x))
-
 
 
 /// font
@@ -150,5 +154,8 @@ extern void RITLCall(NSString *telephoneNumber);
 @end
 
 RITLEXTERN UIFont *RITLUtilityFont(NSString *fontName,CGFloat size);
+RITLEXTERN UIFont *RITLRegularFont(CGFloat size);
+RITLEXTERN UIFont *RITLMediumFont(CGFloat size);
+RITLEXTERN UIFont *RITLBoldFont(CGFloat size);
 
 NS_ASSUME_NONNULL_END
