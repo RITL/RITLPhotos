@@ -283,11 +283,8 @@ static NSString *const reuseIdentifier = @"photo";
 - (void)dismissPhotoControllers
 {
     if(self.navigationController.presentingViewController){//如果是模态弹出
-        
         [self.navigationController dismissViewControllerAnimated:true completion:nil];
-        
     }else if(self.navigationController){
-        
         [self.navigationController popViewControllerAnimated:true];
     }
 }
@@ -295,14 +292,12 @@ static NSString *const reuseIdentifier = @"photo";
 
 #pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.assets ? self.assets.count : 0;
 }
 
@@ -343,8 +338,7 @@ static NSString *const reuseIdentifier = @"photo";
 }
 
 // set value
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     //Asset
     PHAsset *asset = [self.assets objectAtIndex:indexPath.item];
     //强转
