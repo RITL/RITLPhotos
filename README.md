@@ -37,6 +37,13 @@ photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的
 #pragma mark - RITLPhotosViewControllerDelegate
 /**** 为了提高相关性能，如果用不到的代理方法，不需要多实现  ****/
 
+
+/// 图片选择器消失的回调方法
+- (void)photosViewControllerWillDismiss:(UIViewController *)viewController {
+    NSLog(@"%@ is dismiss",viewController);
+}
+
+
 /**
  选中图片以及视频等资源的本地identifer
  可用于设置默认选好的资源
@@ -118,6 +125,7 @@ photoController.defaultIdentifers = self.saveAssetIds;//记录已经选择过的
 
 
 # 更新日志
+- 2018-11-05 修复`datas`回调返回数据永远为空数组问题，新增代理`- (void)photosViewControllerWillDismiss:(UIViewController *)viewController;`
 - 2018-07-10 修复部分`icloud`图片获得失败的问题
 - 2018-06-26 修复部分系统加载bundle图片失败的问题
 - 2018-06-15 修复拒绝权限崩溃的问题
