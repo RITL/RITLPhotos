@@ -40,7 +40,7 @@
     RITLPhotosMaker *strongInstance = instance;
     @synchronized(self){
         if (strongInstance == nil) {
-            strongInstance = self.new;
+            strongInstance = self.new; 
             instance = strongInstance;
         }
     }
