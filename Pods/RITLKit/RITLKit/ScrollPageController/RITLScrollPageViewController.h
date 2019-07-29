@@ -72,6 +72,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) LLSegmentBar * segmentBar;
 /// 导航栏的pop手势,默认为navigationController.interactivePopGestureRecognizer
 @property (nonatomic, weak)UIGestureRecognizer *popPanGestureRecognizer;
+/// 一个放置在segmentBar下方的视图，默认为隐藏
+@property (nonatomic, strong, readonly) UIView *bottomView;
+/// 默认为 .zero
+@property (nonatomic, assign) UIEdgeInsets bottomEdgeInsets;
 
 @end
 
@@ -114,17 +118,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface RITLScrollPageViewController (UIPageViewControllerDataSource) <UIPageViewControllerDataSource>
-
-
-
 @end
 
 
 
 @interface RITLScrollPageViewController (UIPageViewControllerDelegate) <UIPageViewControllerDelegate>
-
-
-
 @end
 
 

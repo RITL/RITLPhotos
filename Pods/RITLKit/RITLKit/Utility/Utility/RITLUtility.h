@@ -13,12 +13,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 #define RITLEXTERN extern
 
+
+//TODO: Screen
 #define RITL_SCREEN_WIDTH_SCALE ([UIScreen mainScreen].bounds.size.width/320.0f)
 #define RITL_SCREEN_HEIGHT_SCALE ([UIScreen mainScreen].bounds.size.height/568.0f)
 #define RITL_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define RITL_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
-
+//TODO: iPhoneX~
 #define RITL_IS_IPHONEX ((RITL_SCREEN_WIDTH == 375) && (RITL_SCREEN_HEIGHT == 812))
 #define RITL_IS_IPHONEXR ((RITL_SCREEN_WIDTH == 414) && (RITL_SCREEN_HEIGHT == 896))
 #define RITL_IS_IPHONEXS ((RITL_SCREEN_WIDTH == 375) && (RITL_SCREEN_HEIGHT == 812))
@@ -26,19 +28,23 @@ NS_ASSUME_NONNULL_BEGIN
 #define RITL_HAVE_PHONE_HEADER (RITL_IS_IPHONEX || RITL_IS_IPHONEXR || RITL_IS_IPHONEXS || RITL_IS_IPHONEXS_MAX)
 #define RITL_iPhoneX RITL_HAVE_PHONE_HEADER //为了适配之前的，建议进行判定使用上面方法
 
+//TODO: Height for navigationBar
 #define RITL_NormalNavigationBarHeight (64)
 #define RITL_iPhoneXNavigationBarHeight (88)
 #define RITL_iPhoneXNavigationBarSafeDistance (88 - 44)
 #define RITL_iPhoneXNavigationBarDistance (RITL_iPhoneX ? RITL_iPhoneXNavigationBarSafeDistance : 0)
 #define RITL_DefaultNaviBarHeight (RITL_iPhoneX ? RITL_iPhoneXNavigationBarHeight : RITL_NormalNavigationBarHeight)
 
+//TODO: Height for tabBar
 #define RITL_NormalTabBarHeight (49)
 #define RITL_iPhoneXTabBarHeight (83)
 #define RITL_iPhoneXTabBarSafeDistance (34)
+#define RITL_iPhoneXTabBarDistance (RITL_iPhoneX ? RITL_iPhoneXTabBarSafeDistance : 0)
 #define RITL_iPhoneXDistance (RITL_iPhoneXTabBarHeight - RITL_NormalTabBarHeight)
 #define RITL_DefaultTabBarHeight (RITL_iPhoneX ? RITL_iPhoneXTabBarHeight : RITL_NormalTabBarHeight)
 
 
+//TODO: Safe main thread
 #define RITL_dispatch_main_sync_safe(block)\
 if ([NSThread isMainThread]) {\
 block();\
@@ -53,6 +59,7 @@ block();\
 } else {\
 dispatch_async(dispatch_get_main_queue(), block);\
 }
+
 
 
 #define RITLSafeString(x) (x ? x : @"")
@@ -73,15 +80,11 @@ RITLRGBACOLOR(((float)((rgbValue & 0xFF0000) >> 16)),((float)((rgbValue & 0xFF00
 
 
 // RGB颜色转换
-#define RITLColorFromIntRBG(RED, GREEN, BLUE) RITLRGBACOLOR(RED,GREEN,BLUE,1.0)
 #define RITLSimpleColorFromIntRBG(x) (RITLColorFromIntRBG(x,x,x))
 #define RITLColorSimpleFromIntRBG(x) (RITLSimpleColorFromIntRBG(x))
+#define RITLColorFromIntRBG(RED, GREEN, BLUE) RITLRGBACOLOR(RED,GREEN,BLUE,1.0)
 
 
-/// font
-static NSString *const RITLFontPingFangSC_Regular = @"PingFangSC-Regular";
-static NSString *const RITLFontPingFangSC_Medium = @"PingFangSC-Medium";
-static NSString *const RITLFontPingFangSC_Bold = @"PingFangSC-Bold";
 
 
 /**
@@ -153,9 +156,22 @@ extern void RITLCall(NSString *telephoneNumber);
 
 @end
 
-RITLEXTERN UIFont *RITLUtilityFont(NSString *fontName,CGFloat size);
-RITLEXTERN UIFont *RITLRegularFont(CGFloat size);
-RITLEXTERN UIFont *RITLMediumFont(CGFloat size);
-RITLEXTERN UIFont *RITLBoldFont(CGFloat size);
+//TODO: Font
+
+/// font
+static NSString *const RITLFontPingFangSC_Light = @"PingFangSC-Light";
+static NSString *const RITLFontPingFangSC_Regular = @"PingFangSC-Regular";
+static NSString *const RITLFontPingFangSC_Medium = @"PingFangSC-Medium";
+static NSString *const RITLFontPingFangSC_Bold = @"PingFangSC-Bold";
+static NSString *const RITLFontPingFangSC_Semibold = @"PingFangSC-Semibold";
+
+
+
+FOUNDATION_EXTERN UIFont *RITLUtilityFont(NSString *fontName,CGFloat size);
+FOUNDATION_EXTERN UIFont *RITLLightFont(CGFloat size);
+FOUNDATION_EXTERN UIFont *RITLRegularFont(CGFloat size);
+FOUNDATION_EXTERN UIFont *RITLMediumFont(CGFloat size);
+FOUNDATION_EXTERN UIFont *RITLBoldFont(CGFloat size);
+FOUNDATION_EXTERN UIFont *RITLSemiboldFont(CGFloat size);
 
 NS_ASSUME_NONNULL_END

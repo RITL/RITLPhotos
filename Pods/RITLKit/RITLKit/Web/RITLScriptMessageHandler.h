@@ -18,10 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 当前的delegate
 @property (nonatomic, weak)id <WKScriptMessageHandler> delegate;
-
 /** 创建方法 */
 - (instancetype)initWithDelegate:(id <WKScriptMessageHandler>)delegate;
-
 /** 便利构造器 */
 + (instancetype)scriptWithDelegate:(id <WKScriptMessageHandler>)delegate;;
 

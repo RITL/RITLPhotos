@@ -7,13 +7,29 @@
 //
 
 #import "UISearchBar+RITLCustomColor.h"
-
 @import ObjectiveC;
 
 static NSString const * ConstCustomBottomView;
 static NSString const * ConstTextField;
 
-@implementation UISearchBar (YCustomColor)
+
+@implementation UITextField (RITLCustomColor)
+
+
+/// 修改占位符的字体颜色
+- (void)ritl_setPlaceholderColor:(UIColor *)color {
+    [self setValue:color forKeyPath:@"_placeholderLabel.textColor"];
+}
+/// 设置占位符的字体大小
+- (void)ritl_setPlaceholderFont:(UIFont *)font {
+    id object = [self valueForKey:@"placeholderLabel"];
+    [object setValue:font forKey:@"font"];
+}
+
+@end
+
+
+@implementation UISearchBar (RITLCustomColor)
 
 
 -(void)dealloc

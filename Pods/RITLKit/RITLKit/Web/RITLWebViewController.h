@@ -32,27 +32,20 @@ typedef void(^RITLWebControllerTapHandler)(RITLWebViewController *viewController
 
 /// 信息交互的handler
 @property (nonatomic, copy, nullable)NSArray<id <WKScriptMessageHandler,RITLScriptMessageHandler> > * scriptMessageHandlers;
-
 /// 加载的控制器
 @property (nonatomic, strong, readonly) WKWebView *webView;
-
 /// 设置独立的代理
 @property (nonatomic, weak, nullable)id <WKNavigationDelegate> navigationDelegate;
-
 /// 网页加载的url
 @property (nonatomic, copy, nullable) NSString *url;
-
 /// 网页的标题
 @property (nonatomic, copy, nullable) NSString *webTitle;
-
 /// 是否抓取webView的title，默认为true
 @property (nonatomic, assign) BOOL autoTitle;
 
 
-
 /// 进度条视图
 @property (nonatomic, strong) UIProgressView *progressView;
-
 /// 控制器当做自己的WKScriptMessageHandler进行注册的names - 默认为nil
 @property (nonatomic, copy, readonly, nullable)NSArray < NSString *> *messageHanderNames;
 
@@ -65,10 +58,8 @@ typedef void(^RITLWebControllerTapHandler)(RITLWebViewController *viewController
  */
 + (instancetype)ritl_WebControllerHandler:(RITLWebControllerConfigHandler)configHandler;
 
-
 /// 是否在初始化时自动加载url信息，默认为true
 - (BOOL)autoRequestUrlAtViewDidLoad;
-
 /// 加载url
 - (void)requestUrl;
 
@@ -106,7 +97,7 @@ typedef void(^RITLWebControllerTapHandler)(RITLWebViewController *viewController
  关闭的itemButton的图片
  即将废弃 --- 使用rightCloseImage
  */
-@property (nonatomic, strong) UIImage *closeImage;
+@property (nonatomic, strong) UIImage *closeImage __deprecated_msg("Please use rightCloseImage instead.");
 
 @end
 

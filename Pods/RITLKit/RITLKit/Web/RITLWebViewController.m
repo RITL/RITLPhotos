@@ -55,7 +55,6 @@
     
     //进行配置
     configHandler(viewController);
-    
     return viewController;
 }
 
@@ -69,13 +68,11 @@
     self.backItem = self.navigationItem.leftBarButtonItems.firstObject;
     
     if (!RITL_iOS_Version_GreaterThanOrEqualTo(11.0)) {
-        
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
     //设置导航
     if (self.webTitle) {
-        
         self.navigationItem.title = self.webTitle;
     }
     
@@ -83,14 +80,12 @@
     [self.view addSubview:self.webView];
     
     if (self.p_hasNavigationBar) {
-
         //限制titleView的宽度
         self.navigationItem.titleView.ritl_width = self.ritl_width - (40 * 2);
         [self.navigationController.navigationBar addSubview:self.progressView];
     }
 
     else {
-
         [self.view addSubview:self.progressView];
     }
 
@@ -111,10 +106,8 @@
     
     // 如果存在交互
     if (self.scriptMessageHandlers) {
-        
         //添加
         for (id <WKScriptMessageHandler,RITLScriptMessageHandler> handler in self.scriptMessageHandlers) {
-            
             [self.webView.configuration.userContentController addScriptMessageHandler:[RITLScriptMessageHandler scriptWithDelegate:handler] name:handler.name];
         }
     }
@@ -123,44 +116,25 @@
     if (self.messageHanderNames) {
         
         for (NSString *name in self.messageHanderNames) {
-            
             [self.webView.configuration.userContentController addScriptMessageHandler:[RITLScriptMessageHandler scriptWithDelegate:self] name:name];
         }
     }
     
-    
     //进行加载
     if (self.url && self.autoRequestUrlAtViewDidLoad) {
-        
         [self requestUrl];
     }
-    
 }
 
 
 
-
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    
-    if (!RITL_iOS_Version_GreaterThanOrEqualTo(11.0)) {
-        
-        self.view.frame = CGRectMake(self.view.ritl_originX, self.view.ritl_originY, self.ritl_width, self.ritl_height + 49);
-        
-    }
-}
-
--(void)viewDidLayoutSubviews
-{
+-(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
     if (self.p_hasNavigationBar) {
         
         self.progressView.frame = CGRectMake(0, self.progressView.superview.ritl_height - 1, self.progressView.superview.ritl_width, 1);
-        
         CGFloat height = RITL_iOS_Version_GreaterThanOrEqualTo(11.0) ? 0 : 0;
-        
         self.webView.frame = CGRectMake(0, 0, self.ritl_width, self.ritl_height + height);
     }
     
@@ -174,14 +148,12 @@
 }
 
 
-- (BOOL)autoRequestUrlAtViewDidLoad
-{
+- (BOOL)autoRequestUrlAtViewDidLoad {
     return true;
 }
 
 
-- (void)requestUrl
-{
+- (void)requestUrl {
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
 
@@ -198,11 +170,8 @@
         [self.webView goBack];
         
         if (title) {
-            
             self.navigationItem.title = title;
         }
-        
-
     }else {
         
     }
@@ -221,7 +190,6 @@
 -(void)dealloc
 {
     if (self.viewLoaded) {
-        
         [self.progressView removeFromSuperview];
         [self.webView.configuration.userContentController removeAllUserScripts];
         [self.webView removeObserver:self forKeyPath:@"estimatedProgress" context:@"webView_estimatedProgress"];
@@ -234,17 +202,14 @@
 
 
 
-- (BOOL)p_hasNavigationBar
-{
+- (BOOL)p_hasNavigationBar {
     return self.navigationController.navigationBar && self.navigationController.navigationBar.hidden == false;
 }
 
 
 
--(WKWebView *)webView
-{
+-(WKWebView *)webView {
     if (!_webView) {
-
         _webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, self.ritl_width, self.ritl_height) configuration:[WKWebViewConfiguration new]];
     }
     
@@ -254,13 +219,10 @@
 
 
 
--(UIProgressView *)progressView
-{
+-(UIProgressView *)progressView {
     if (!_progressView) {
-        
         _progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(0, 0, 0, 1)];
         _progressView.progress = 0.0;
-        
     }
     
     return _progressView;
@@ -268,10 +230,8 @@
 
 
 
-- (NSArray<id<WKScriptMessageHandler,RITLScriptMessageHandler>> *)scriptMessageHandlers
-{
+- (NSArray<id<WKScriptMessageHandler,RITLScriptMessageHandler>> *)scriptMessageHandlers {
     if (!_scriptMessageHandlers) {
-        
         _scriptMessageHandlers = @[[RITLWebScriptMessageHandler new]];
     }
     
@@ -289,30 +249,23 @@
     
     // 进度条
     if ([keyPath isEqualToString:@"estimatedProgress"]) {
-        
         self.progressView.progress = [changedNew floatValue];
-        
     }
     
     // 是否正在加载
     else if([keyPath isEqualToString:@"loading"]){
-        
         self.progressView.hidden = ![changedNew boolValue];
     }
-    
     
     // 是否可以回退
     else if([keyPath isEqualToString:@"canGoBack"]){
         
         //获得值
         BOOL hasBackWeb = [changedNew boolValue];
-        
         //获得旧值
         NSNumber *origin = objc_getAssociatedObject(self.webView, _cmd);
-        
         //记录旧值
         if (origin && origin.boolValue == hasBackWeb) {
-            
             return;//没有变化
         }
         
@@ -320,16 +273,12 @@
         objc_setAssociatedObject(self.webView, _cmd, @(hasBackWeb), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
         if (self.useLeftCloseItem) {
-            
             self.navigationItem.leftBarButtonItems = [self backItemsWithCanGoBack:hasBackWeb left:true];
-            
         }
         
         if(self.useRightCloseItem){
-            
             self.navigationItem.rightBarButtonItems = [self backItemsWithCanGoBack:hasBackWeb left:false];
         }
-        
     }
     
     // 进度条展示
@@ -339,9 +288,7 @@
         if (![self.progressView.superview isKindOfClass:[UINavigationBar class]]) {
             
             BOOL isHidden = [changedNew boolValue];
-            
             CGFloat height = RITL_iOS_Version_GreaterThanOrEqualTo(11.0) ? 0 : 0;
-            
             //变换frame
             self.webView.ritl_originY = isHidden ? 0 : 1;
             self.webView.ritl_height = isHidden ? self.ritl_height + height : self.ritl_height - 1 + height;
@@ -366,12 +313,10 @@
             closeItem.width = self.closeWidth;
             
             if (backItem) { return @[backItem,closeItem]; }//存在默认返回
-            
             return @[closeItem];//不存在默认返回
         }
         
         if (backItem) {  return @[backItem]; }//不能返回，只返回默认返回按钮
-        
         return nil;
     }
     
@@ -399,7 +344,6 @@
         if (self.leftCloseButtonTap) { self.leftCloseButtonTap(self, sender); return; }
         
         if([self.webView canGoBack]){//返回主页
-            
             [self.webView goToBackForwardListItem:self.webView.backForwardList.backList.firstObject];
         }
     }
@@ -409,7 +353,6 @@
         if (self.rightCloseButtonTap) { self.rightCloseButtonTap(self, sender); return; }
         
         if([self.webView canGoBack]){//返回主页
-            
             [self.webView goToBackForwardListItem:self.webView.backForwardList.backList.firstObject];
         }
     }
@@ -419,19 +362,16 @@
 #pragma mark - WKNavigationDelegate
 
 // 开始
-- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation
-{
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"开始加载!");
 }
 
 
 // 完成
-- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation
-{
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"开始完成!");
     //设置title
     if (self.autoTitle && webView.title) {
-        
         self.navigationItem.title = webView.title;
     }
     
@@ -440,12 +380,10 @@
 }
 
 // 失败
-- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error
-{
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
     self.progressView.progress = 0.0;
     self.progressView.hidden = true;
 }
-
 
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
@@ -457,12 +395,10 @@
     if ([url.absoluteString containsString:@"https://itunes.apple.com/cn/app/"])
     {
         if ([app canOpenURL:url]) {
-            
 
             if ([UIDevice currentDevice].systemVersion.floatValue >= 10.0 && [app respondsToSelector:@selector(openURL:options:completionHandler:)]) {
                 
                 if (@available(iOS 10.0, *)) {
-                    
                     [app openURL:url options:@{UIApplicationOpenURLOptionUniversalLinksOnly:@(false)}completionHandler:^(BOOL success) {}];
                 } else {
                     // Fallback on earlier versions
@@ -471,15 +407,12 @@
                 decisionHandler(WKNavigationActionPolicyCancel); return;
                 
             }else {
-                
                 [app openURL:url];
                 decisionHandler(WKNavigationActionPolicyCancel); return;
             }
         }
-        
         decisionHandler(WKNavigationActionPolicyAllow);
     }
-    
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 
@@ -500,14 +433,12 @@
 
 #pragma mark - Deprecated
 
-- (UIImage *)closeImage
-{
+- (UIImage *)closeImage {
     return self.rightCloseImage;
 }
 
 
-- (void)setCloseImage:(UIImage *)closeImage
-{
+- (void)setCloseImage:(UIImage *)closeImage {
     self.rightCloseImage = closeImage;
 }
 

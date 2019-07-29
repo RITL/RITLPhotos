@@ -87,7 +87,6 @@
 -(id)ritl_safeObjectAtIndex:(NSInteger)index
 {
     if (index >= self.count || index < 0) {
-        
         return nil;
     }
     
@@ -98,7 +97,6 @@
 -(id)ritl_revertObjectAtIndex:(NSInteger)index
 {
     if (index < 0 || index >= self.count) {
-        
         return nil;
     }
     
@@ -111,7 +109,6 @@
     NSMutableArray * array = [NSMutableArray arrayWithCapacity:self.count];
     
     for(NSInteger i = self.count - 1; i >= 0; i--) {
-        
         [array addObject:self[i]];
     }
 
@@ -128,11 +125,9 @@
     if (!self.ritl_isCoreGraphic) { return CGSizeZero; }
     
     if (self.count == 1) {
-        
         return CGSizeMake([self.firstObject floatValue], [self.firstObject floatValue]);
         
     }else if(self.count == 2){
-        
         return CGSizeMake([self.firstObject floatValue], [self[1] floatValue]);
     }
     
@@ -145,11 +140,9 @@
     if (!self.ritl_isCoreGraphic) { return CGPointZero; }
     
     if (self.count == 1) {
-        
         return CGPointMake([self.firstObject floatValue], [self.firstObject floatValue]);
         
     }else if(self.count == 2){
-        
         return CGPointMake([self.firstObject floatValue], [self[1] floatValue]);
     }
     
@@ -163,19 +156,15 @@
     if (!self.ritl_isCoreGraphic) { return CGRectZero; }
     
     if (self.count == 1) {
-        
         return CGRectMake([self.firstObject floatValue], [self.firstObject floatValue], [self.firstObject floatValue], [self.firstObject floatValue]);
         
     }else if(self.count == 2){
-        
         return CGRectMake([self.firstObject floatValue], [self.firstObject floatValue], [self[1] floatValue], [self[1] floatValue]);
         
     }else if(self.count == 3){
-        
         return CGRectMake([self.firstObject floatValue], [self[1] floatValue], [self[2] floatValue], [self[2] floatValue]);
         
     }else if(self.count == 4){
-        
         return CGRectMake([self.firstObject floatValue], [self[1] floatValue], [self[2] floatValue], [self[3] floatValue]);
     }
     
@@ -187,19 +176,15 @@
     if (!self.ritl_isCoreGraphic) { return UIEdgeInsetsZero; }
     
     if (self.count == 1) {
-        
         return UIEdgeInsetsMake([self.firstObject floatValue], [self.firstObject floatValue], [self.firstObject floatValue], [self.firstObject floatValue]);
         
     }else if(self.count == 2){
-        
         return UIEdgeInsetsMake([self.firstObject floatValue], [self[1] floatValue], [self.firstObject floatValue], [self[1] floatValue]);
         
     }else if(self.count == 3){
-        
         return UIEdgeInsetsMake([self.firstObject floatValue], [self[1] floatValue], [self[2] floatValue], [self[1] floatValue]);
         
     }else if(self.count == 4){
-        
         return UIEdgeInsetsMake([self.firstObject floatValue], [self[1] floatValue], [self[2] floatValue], [self[3] floatValue]);
     }
     
@@ -213,11 +198,9 @@
     if (!self.ritl_isCoreGraphic) { return NSMakeRange(0, 0); }
     
     if (self.count == 1) {
-        
         return NSMakeRange([self.firstObject floatValue], [self.firstObject floatValue]);
         
     }else if(self.count == 2){
-        
         return NSMakeRange([self.firstObject floatValue], [self[1] floatValue]);
     }
     

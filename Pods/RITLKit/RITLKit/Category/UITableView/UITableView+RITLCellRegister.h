@@ -17,11 +17,11 @@ typedef void(^RITLReusableCellInitHandler)(__kindof UITableViewCell *cell);
 
 /**
  根据标志位进行注册cell
-
- @param identifiers 存放标志位的集合
+ @param identifiers 存放cell的类或者类名
  */
-- (void)ritl_registeCellWithIdentidiers:(NSSet *)identifiers;
-
+- (void)ritl_registeCellWithIdentifiers:(NSSet <NSString *>*)identifiers;
+- (void)ritl_registeCellWithClasses:(NSSet <Class>*)classes;
+- (void)ritl_registeCellWithIdentidiers:(NSSet *)identifiers __deprecated_msg("Please use -ritl_registeCellWithIdentifiers: instead.");
 
 /**
  批量注册cell
@@ -36,6 +36,7 @@ typedef void(^RITLReusableCellInitHandler)(__kindof UITableViewCell *cell);
 @end
 
 
+/// 不需要注册cell
 @interface UITableView (RITLDequeueCell)
 
 

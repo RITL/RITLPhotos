@@ -13,12 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 图片单选控制器，全局采用单例模式
 @interface RITLImagePickerController : UIImagePickerController
 
-
+/// 当前图片控制器的statusStyle
 @property (nonatomic, assign)UIStatusBarStyle statusStyle;
-
 /// 区别的标志位
 @property (nonatomic, copy, nullable) NSString * identifier;
-
 /// 单例方法
 +(instancetype)sharedInstance;
 

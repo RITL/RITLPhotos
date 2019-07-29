@@ -37,7 +37,7 @@
 {
     return ^BOOL(NSString *text){
       
-        return [text ritl_predicatedMatches:@"0?(13|14|15|17|18|19)[0-9]{9}"];
+        return [text ritl_predicatedMatches:@"0?(13|14|15|16|17|18|19)[0-9]{9}"];
     };
 }
 

@@ -12,15 +12,12 @@
 
 - (void)ritl_setContentInsetAdjustmentBehaviorToNeverBeforeiOS11Handler:(dispatch_block_t)handler
 {
-    if (UIDevice.currentDevice.systemVersion.floatValue >= 11.0)
-    {
-        if (@available(iOS 11.0, *))
-        {
+    if (UIDevice.currentDevice.systemVersion.floatValue >= 11.0) {
+        if (@available(iOS 11.0, *)) {
             self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
     }
-    else
-    {
+    else {
         handler();
     }
 }
@@ -31,15 +28,12 @@
 
 - (void)ritl_setContentInsetAdjustmentBehaviorToNeverBeforeiOS11Handler:(dispatch_block_t)handler
 {
-    if (UIDevice.currentDevice.systemVersion.floatValue >= 11.0)
-    {
-        if (@available(iOS 11.0, *))
-        {
+    if (UIDevice.currentDevice.systemVersion.floatValue >= 11.0) {
+        if (@available(iOS 11.0, *)) {
             self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
     }
-    else
-    {
+    else {
         handler();
     }
 }

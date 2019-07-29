@@ -15,10 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 默认的ScriptMessageHandler
 @interface RITLWebScriptMessageHandler : NSObject <WKScriptMessageHandler,RITLScriptMessageHandler>
-
 /// 注册的名字
 @property (nonatomic, copy) NSString *name;
-
 
 @end
 

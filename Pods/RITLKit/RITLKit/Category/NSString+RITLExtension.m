@@ -8,7 +8,7 @@
 
 #import "NSString+RITLExtension.h"
 #import <CommonCrypto/CommonDigest.h>
-#import "NSObject+RITLExtension.h"
+//#import "NSObject+ RITLExtension.h"
 
 
 @implementation NSString (RITLImageAttributeString)
@@ -147,10 +147,16 @@
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.integerValue];
 
-    NSDateFormatter *formatter = [NSDateFormatter ritl_object:^(__kindof NSDateFormatter *  _Nonnull object) {
+    NSDateFormatter *formatter = ({
+        
+        NSDateFormatter *formatter = NSDateFormatter.new;
+        formatter.dateFormat = @"yyyy-MM-dd";
+        formatter;
+        
+    })/*[NSDateFormatter ritl_object:^(__kindof NSDateFormatter *  _Nonnull object) {
         
         object.dateFormat = @"yyyy-MM-dd";
-    }];
+    }]*/;
     
     
     //设置转换
@@ -167,11 +173,14 @@
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.integerValue];
     
-    NSDateFormatter *formatter = [NSDateFormatter ritl_object:^(__kindof NSDateFormatter *  _Nonnull object) {
-        
-        object.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    }];
+    NSDateFormatter *formatter = NSDateFormatter.new;
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     
+//    [NSDateFormatter ritl_object:^(__kindof NSDateFormatter *  _Nonnull object) {
+//
+//        object.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//    }];
+//
     
     //设置转换
     return [formatter stringFromDate:date];
@@ -187,17 +196,28 @@
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.integerValue];
     
-    NSDateFormatter *formatter1 = [NSDateFormatter ritl_object:^(__kindof NSDateFormatter *  _Nonnull object) {
+    NSDateFormatter *formatter1 = ({
+        
+        NSDateFormatter *formatter = NSDateFormatter.new;
+        formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+        formatter;
+        
+    })/*[NSDateFormatter ritl_object:^(__kindof NSDateFormatter *  _Nonnull object) {
         
         object.dateFormat = @"yyyy-MM-dd HH:mm";
         
-    }];
+    }]*/;
     
-    NSDateFormatter *formatter2 = [NSDateFormatter ritl_object:^(__kindof NSDateFormatter *  _Nonnull object) {
+    NSDateFormatter *formatter2 = ({
+        
+        NSDateFormatter *formatter = NSDateFormatter.new;
+        formatter.dateFormat = @"yyyy-MM-dd";
+        formatter;
+    })/*[NSDateFormatter ritl_object:^(__kindof NSDateFormatter *  _Nonnull object) {
         
         object.dateFormat = @"yyyy-MM-dd";
         
-    }];
+    }]*/;
     
     //获得字符串
     NSString *date1 = [formatter1 stringFromDate:date];
@@ -280,9 +300,7 @@
 - (BOOL)ritl_isInteger
 {
     NSScanner* scan = [NSScanner scannerWithString:self];
-    
     int val;
-    
     return[scan scanInt:&val] && [scan isAtEnd];
 }
 
@@ -293,13 +311,10 @@
     for(int i = 0; i< [self length]; i++)
     {
         unichar a = [self characterAtIndex:i];
-        
         if( a >= 0x4E00 && a <= 0x9FA5){
-            
             return true;
         }
     }
-    
     return false;
 }
 
@@ -344,8 +359,7 @@
     
     if (count <= 999) { return self; }
     
-    if (count > 999 && count < 10000)
-    {
+    if (count > 999 && count < 10000){
         return [NSString stringWithFormat:@"%.1fk",self.floatValue];
     }
     

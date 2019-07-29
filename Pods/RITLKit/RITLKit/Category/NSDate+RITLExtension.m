@@ -13,7 +13,6 @@
 + (NSString *)ritl_timeIntervalSince1970
 {
     NSDate *date = [NSDate new];
-    
     return [NSString stringWithFormat:@"%@",@(date.timeIntervalSince1970)];
 }
 
@@ -23,7 +22,6 @@
     NSDate * timeDate = [NSDate date];
     
     NSDateFormatter * dateformatter = [[NSDateFormatter alloc] init];
-    
     [dateformatter setDateFormat:@"yyyyMMddHHmmss"];
     
     NSString *  locationString =[dateformatter stringFromDate:timeDate];

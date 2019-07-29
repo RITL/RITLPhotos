@@ -10,7 +10,6 @@
 #import <objc/runtime.h>
 
 
-
 void RITL_swizzledInstanceSelector(Class classObject,SEL originSel,SEL swizzledSel)
 {
     Method originMethod = class_getInstanceMethod(classObject, originSel);

@@ -13,7 +13,6 @@
 - (NSString *)name
 {
     if (!_name) {
-        
         _name = @"onJsCallBack";
     }
     

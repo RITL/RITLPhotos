@@ -11,11 +11,21 @@
 #import <netinet/in.h>
 
 
+
+/// Deprecated: 避免与其他的枚举冲突,将在后面的版本删除
+//typedef enum : NSInteger {
+//    NotReachable = 0,
+//    ReachableViaWiFi,
+//    ReachableViaWWAN
+//} AppleNetworkStatus;
+//
+//
+
 typedef enum : NSInteger {
-	NotReachable = 0,
-	ReachableViaWiFi,
-	ReachableViaWWAN
-} NetworkStatus;
+    AppleNotReachable = 0,
+    AppleReachableViaWiFi,
+    AppleReachableViaWWAN
+} AppleNetworkStatus;
 
 #pragma mark IPv6 Support
 //Reachability fully support IPv6.  For full details, see ReadMe.md.
@@ -52,7 +62,7 @@ extern NSString *AppleReachabilityChangedNotification;
 - (BOOL)startNotifier;
 - (void)stopNotifier;
 
-- (NetworkStatus)currentReachabilityStatus;
+- (AppleNetworkStatus)currentReachabilityStatus;
 
 /*!
  * WWAN may be available, but not active until a connection has been established. WiFi may require a connection for VPN on Demand.

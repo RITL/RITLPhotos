@@ -10,6 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface UITextField (RITLCustomColor)
+
+/// 修改占位符的字体颜色
+- (void)ritl_setPlaceholderColor:(UIColor *)color;
+/// 设置占位符的字体大小
+- (void)ritl_setPlaceholderFont:(UIFont *)font;
+
+@end
+
 @interface UISearchBar (RITLCustomColor)
 
 /// 设置背景颜色

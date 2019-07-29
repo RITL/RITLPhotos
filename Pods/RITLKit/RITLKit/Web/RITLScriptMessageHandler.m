@@ -12,8 +12,7 @@
 
 -(instancetype)initWithDelegate:(id<WKScriptMessageHandler>)delegate
 {
-    if (self = [super init])
-    {
+    if (self = [super init]) {
         _delegate = delegate;
     }
     
@@ -22,8 +21,7 @@
 
 
 
-+(instancetype)scriptWithDelegate:(id<WKScriptMessageHandler>)delegate
-{
++(instancetype)scriptWithDelegate:(id<WKScriptMessageHandler>)delegate {
     return [[RITLScriptMessageHandler alloc]initWithDelegate:delegate];
 }
 
@@ -31,8 +29,7 @@
 
 
 #pragma mark - <WKScriptMessageHandler>
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
-{
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
     [self.delegate userContentController:userContentController didReceiveScriptMessage:message];
 }
 

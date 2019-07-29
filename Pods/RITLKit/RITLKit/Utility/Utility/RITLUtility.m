@@ -49,7 +49,7 @@
 //检测是否是手机号码
 + (BOOL)isStringMobileNumber:(NSString *)mobileNum
 {
-    NSString * mobile = @"^1[34578]\\d{9}$";
+    NSString * mobile = @"0?(13|14|15|16|17|18|19)[0-9]{9}";
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", mobile];
     if ([regextestmobile evaluateWithObject:mobileNum] == YES) {
         return YES;
@@ -94,23 +94,31 @@ void RITLCall(NSString *telephoneNumber)
 }
 
 
-UIFont *RITLUtilityFont(NSString *fontName,CGFloat size)
-{
+
+
+UIFont *RITLUtilityFont(NSString *fontName,CGFloat size){
     return [RITLUtility checkWhetherExistFontWithName:fontName AndSize:size];
 }
 
-UIFont *RITLRegularFont(CGFloat size)
-{
+
+UIFont *RITLLightFont(CGFloat size) {
+    return RITLUtilityFont(RITLFontPingFangSC_Light, size);
+}
+
+
+UIFont *RITLRegularFont(CGFloat size){
     return RITLUtilityFont(RITLFontPingFangSC_Regular, size);
 }
 
-UIFont *RITLMediumFont(CGFloat size)
-{
+UIFont *RITLMediumFont(CGFloat size){
     return RITLUtilityFont(RITLFontPingFangSC_Medium, size);
 }
 
-UIFont *RITLBoldFont(CGFloat size)
-{
+UIFont *RITLBoldFont(CGFloat size){
     return RITLUtilityFont(RITLFontPingFangSC_Bold, size);
+}
+
+UIFont *RITLSemiboldFont(CGFloat size) {
+    return RITLUtilityFont(RITLFontPingFangSC_Semibold, size);
 }
 
