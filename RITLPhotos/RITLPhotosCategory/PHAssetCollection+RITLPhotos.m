@@ -9,6 +9,7 @@
 #import "PHAssetCollection+RITLPhotos.h"
 #import "PHImageRequestOptions+RITLPhotos.h"
 #import <objc/runtime.h>
+#import <UIKit/UIKit.h>
 
 @implementation PHAssetCollection (RITLPhotos)
 

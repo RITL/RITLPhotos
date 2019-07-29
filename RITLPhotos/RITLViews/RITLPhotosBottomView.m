@@ -53,8 +53,9 @@
         
         UIButton *view = [UIButton new];
 
+        CGFloat titleLeft = UIDevice.currentDevice.systemVersion.floatValue < 13 ? -60 : 5;
         view.imageEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 40);
-        view.titleEdgeInsets = UIEdgeInsetsMake(0, -60, 0, 0);
+        view.titleEdgeInsets = UIEdgeInsetsMake(0, titleLeft, 0, 0);
         
         [view setImage:/*@"RITLPhotos.bundle/ritl_bottomUnselected".ritl_image*/NSBundle.ritl_bottomUnselected forState:UIControlStateNormal];
         [view setImage:/*@"RITLPhotos.bundle/ritl_bottomSelected".ritl_image*/NSBundle.ritl_bottomSelected forState:UIControlStateSelected];

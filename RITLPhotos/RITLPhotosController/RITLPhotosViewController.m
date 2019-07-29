@@ -32,6 +32,7 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         
+        self.modalPresentationStyle = UIModalPresentationFullScreen;
         self.maker = RITLPhotosMaker.sharedInstance;
         self.dataManager = RITLPhotosDataManager.sharedInstance;
         self.configuration = RITLPhotosConfiguration.defaultConfiguration;

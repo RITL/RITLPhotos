@@ -183,7 +183,10 @@ static NSString *const reuseIdentifier = @"photo";
         
         [self resetCachedAssets];
         
-        self.assets = [PHAsset fetchAssetsInAssetCollection:self.assetCollection options:nil];
+        PHFetchOptions *option = [PHFetchOptions new];
+        option.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:false] ];
+        
+        self.assets = [PHAsset fetchAssetsInAssetCollection:self.assetCollection options:option];//逆序排列
         
         //reload
         self.collectionView.hidden = true;
@@ -194,11 +197,11 @@ static NSString *const reuseIdentifier = @"photo";
         
         //计算行数,并滑动到最后一行
         self.collectionView.hidden = false;
-        
-        [self collectionViewScrollToBottomAnimatedNoneHandler:^NSInteger(NSInteger row) {
-            
-            return row;
-        }];
+//
+//        [self collectionViewScrollToBottomAnimatedNoneHandler:^NSInteger(NSInteger row) {
+//
+//            return row;
+//        }];
         
     } denied:^{}];
     

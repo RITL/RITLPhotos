@@ -385,7 +385,7 @@
 			};
 			buildConfigurationList = DB302F231D35E3C7007B42C3 /* Build configuration list for PBXProject "RITLPhotoDemo" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -628,7 +628,7 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = " $(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yue.RITLPhotos-1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yue.photo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -661,7 +661,7 @@
 					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = " $(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yue.RITLPhotos-1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yue.photo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
