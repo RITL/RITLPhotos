@@ -34,7 +34,6 @@
             </Actions>
             <Locations>
                <Location
-                  uuid = "DE848E01-6DA1-4864-B0ED-FA54A4FCDEBB - dc2f8c5e001177f0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"

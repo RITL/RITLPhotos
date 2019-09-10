@@ -22,6 +22,15 @@ NS_ASSUME_NONNULL_BEGIN
 ///进行资源化的Manager
 @property (nonatomic, strong, readonly) PHCachingImageManager* imageManager;
 
+/**
+ 设置collection
+
+ @param isReverse 是否逆向排序
+ */
+- (void)setCollection:(PHAssetCollection *)collection isReverse:(BOOL)isReverse;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

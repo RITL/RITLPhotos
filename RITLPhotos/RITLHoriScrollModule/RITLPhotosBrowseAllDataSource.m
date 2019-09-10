@@ -36,6 +36,14 @@
     self.assetResult = [PHAsset fetchAssetsInAssetCollection:self.collection options:nil];
 }
 
+- (void)setCollection:(PHAssetCollection *)collection isReverse:(BOOL)isReverse {
+    if (!isReverse) { [self setCollection:collection]; return;  }
+    PHFetchOptions *option = [PHFetchOptions new];
+    option.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:false] ];
+    _collection = collection;
+    self.assetResult = [PHAsset fetchAssetsInAssetCollection:self.collection options:option];
+}
+
 #pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

@@ -508,7 +508,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
         RITLPhotosHorBrowseViewController *browerController = RITLPhotosHorBrowseViewController.new;
         
         RITLPhotosBrowseAllDataSource *dataSource = RITLPhotosBrowseAllDataSource.new;
-        dataSource.collection = self.assetCollection;
+        [dataSource setCollection:self.assetCollection isReverse:true];
         dataSource.asset = asset;
         
         browerController.dataSource = dataSource;
