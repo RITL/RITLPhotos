@@ -15,21 +15,21 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSBundle (RITLPhotos)
 
 /// 确保使用自己的bundle
-@property (nonatomic, strong, readonly, class)NSBundle *ritl_bundle;
+@property (nonatomic, strong, readonly, class, nullable)NSBundle *ritl_bundle;
 
 /*Group*/
-@property (nonatomic, strong, readonly, class)UIImage *ritl_placeholder;
-@property (nonatomic, strong, readonly, class)UIImage *ritl_arrow_right;
+@property (nonatomic, strong, readonly, class, nullable)UIImage *ritl_placeholder;
+@property (nonatomic, strong, readonly, class, nullable)UIImage *ritl_arrow_right;
 
 /*Collection*/
-@property (nonatomic, strong, readonly, class)UIImage *ritl_deselect;
+@property (nonatomic, strong, readonly, class, nullable)UIImage *ritl_deselect;
 
 /*Horiscroll --  Browse*/
-@property (nonatomic, strong, readonly, class)UIImage *ritl_brower_selected;
-@property (nonatomic, strong, readonly ,class)UIImage *ritl_browse_back;
-@property (nonatomic, strong, readonly ,class)UIImage *ritl_bottomSelected;
-@property (nonatomic, strong, readonly ,class)UIImage *ritl_bottomUnselected;
-@property (nonatomic, strong, readonly ,class)UIImage *ritl_video_play;
+@property (nonatomic, strong, readonly, class, nullable)UIImage *ritl_brower_selected;
+@property (nonatomic, strong, readonly ,class, nullable)UIImage *ritl_browse_back;
+@property (nonatomic, strong, readonly ,class, nullable)UIImage *ritl_bottomSelected;
+@property (nonatomic, strong, readonly ,class, nullable)UIImage *ritl_bottomUnselected;
+@property (nonatomic, strong, readonly ,class, nullable)UIImage *ritl_video_play;
 
 @end
 

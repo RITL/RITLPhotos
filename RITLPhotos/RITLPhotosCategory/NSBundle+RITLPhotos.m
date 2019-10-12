@@ -31,6 +31,11 @@
     
     if (ritl_bundle == nil) {
         
+        //修复bundle
+        NSString *path = [[NSBundle bundleForClass:NSClassFromString(@"RITLPhotosViewController")] pathForResource:@"RITLPhotos" ofType:@"bundle"];
+           
+        if (!path) { return nil; }//如果路径不存在，返回nil
+        
         ritl_bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:NSClassFromString(@"RITLPhotosViewController")]pathForResource:@"RITLPhotos" ofType:@"bundle"]];
     }
     
