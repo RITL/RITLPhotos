@@ -40,7 +40,6 @@
 #import "NSString+RITLExtension.h"
 #import "UIControl+RITLBlockButton.h"
 #import "NSDictionary+RITLExtension.h"
-#import "UISearchBar+RITLCustomColor.h"
 #import "UITableView+RITLCellRegister.h"
 #import "UIViewController+RITLExtension.h"
 #import "CAGradientLayer+RITLGradientLayer.h"

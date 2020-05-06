@@ -96,6 +96,7 @@
     [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:@"webView_estimatedProgress"];
     [self.webView addObserver:self forKeyPath:@"loading" options:NSKeyValueObservingOptionNew context:@"webView_loading"];
     [self.webView addObserver:self forKeyPath:@"canGoBack" options:NSKeyValueObservingOptionNew context:@"webView_canGoBack"];
+    [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:@"webView_title"];
 
     //监听进度条
     [self.progressView addObserver:self forKeyPath:@"hidden" options:NSKeyValueObservingOptionNew context:@"progressView_hidden"];
@@ -195,7 +196,25 @@
         [self.webView removeObserver:self forKeyPath:@"estimatedProgress" context:@"webView_estimatedProgress"];
         [self.webView removeObserver:self forKeyPath:@"loading" context:@"webView_loading"];
         [self.webView removeObserver:self forKeyPath:@"canGoBack" context:@"webView_canGoBack"];
+        [self.webView removeObserver:self forKeyPath:@"title" context:@"webView_title"];
         [self.progressView removeObserver:self forKeyPath:@"hidden"];
+        
+        //移除所有的RITLScriptMessageHandler
+        
+        // 如果存在交互
+        if (self.scriptMessageHandlers) {
+            //添加
+            for (id <WKScriptMessageHandler,RITLScriptMessageHandler> handler in self.scriptMessageHandlers) {
+                [self.webView.configuration.userContentController removeScriptMessageHandlerForName:handler.name];
+            }
+        }
+        
+        //进行name注册
+        if (self.messageHanderNames) {
+            for (NSString *name in self.messageHanderNames) {
+                [self.webView.configuration.userContentController removeScriptMessageHandlerForName:name];
+            }
+        }
     }
 }
 
@@ -294,6 +313,14 @@
             self.webView.ritl_height = isHidden ? self.ritl_height + height : self.ritl_height - 1 + height;
         }
     }
+    
+    // 标题
+    else if ([keyPath isEqualToString:@"title"]){
+        //设置title
+        if (self.autoTitle && changedNew) {
+            self.navigationItem.title = changedNew;
+        }
+    }
 }
 
 
@@ -370,11 +397,7 @@
 // 完成
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
     NSLog(@"开始完成!");
-    //设置title
-    if (self.autoTitle && webView.title) {
-        self.navigationItem.title = webView.title;
-    }
-    
+
     self.progressView.progress = 0.0;
     self.progressView.hidden = true;
 }

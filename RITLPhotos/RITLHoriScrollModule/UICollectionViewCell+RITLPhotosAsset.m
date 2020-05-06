@@ -170,7 +170,7 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
         
         if (!playerItem) { return; }
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
            
             AVPlayer *player = [[AVPlayer alloc]initWithPlayerItem:playerItem];
             self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];

@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 32位小写的md5
 @property (nonatomic, copy, readonly)NSString *ritl_md5ForLower32Bate;
+/// 32位大写的md5
+@property (nonatomic, copy, readonly)NSString *ritl_md5ForUpper32Bate;
 
 @end
 

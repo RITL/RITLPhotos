@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name          = "RITLPhotos"
-  s.version       = "2.3.1"
+  s.version       = "2.3.2"
   s.summary       = "PhotosPicker"
   s.description   = "一个基于Photos.framework的图片多选，模仿微信，还有很多不足，正在改进和优化."
   s.homepage      = "https://github.com/RITL/RITLImagePickerDemo"

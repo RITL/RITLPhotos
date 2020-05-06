@@ -12,7 +12,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    UIViewController *viewController = self.topViewController;
+    UIViewController *viewController = self.visibleViewController;
     return viewController.preferredStatusBarStyle;
 }
 

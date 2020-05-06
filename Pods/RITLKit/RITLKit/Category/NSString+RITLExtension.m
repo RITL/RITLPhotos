@@ -63,6 +63,25 @@
     return digest;
 }
 
+
+-(NSString *)ritl_md5ForUpper32Bate
+{
+    const char *input = self.UTF8String;//转成C字符串
+    unsigned char result[CC_MD5_DIGEST_LENGTH];//存放结果
+    
+    CC_MD5(input, (CC_LONG)strlen(input), result);//进行加密
+    
+    // 拼接成字符串
+    NSMutableString *digest = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    
+    for(NSInteger i = 0; i < CC_MD5_DIGEST_LENGTH; i++){
+        
+        [digest appendFormat:@"%02X",result[i]];
+    }
+    
+    return digest;
+}
+
 @end
 
 
