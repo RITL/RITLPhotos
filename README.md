@@ -6,6 +6,8 @@
 
 <div align="center"><img src="https://github.com/RITL/RITLImagePickerDemo/blob/master/RITLPhotoDemo/RITLPhotos.gif" height=500></img></div>
 
+# [RITLPhotos-Swift](https://github.com/RITL/Swift-RITLImagePickerDemo)
+
 # 依赖的库
 ```
 pod 'RITLKit'
