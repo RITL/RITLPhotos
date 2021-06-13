@@ -73,7 +73,7 @@
     self.photoLibrary = PHPhotoLibrary.sharedPhotoLibrary;
     [self.photoLibrary registerChangeObserver:self];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancle" style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"取消", @"") style:UIBarButtonItemStyleDone target:self action:@selector(dismissPhotoControllers)];
     
     //data
     self.groups = [NSMutableArray arrayWithCapacity:10];
@@ -189,12 +189,22 @@
 }
 
 
-- (NSArray<PHAssetCollection *> *)filterGroupsWhenHiddenNoPhotos:(NSArray<PHAssetCollection *> *)groups
+- (NSArray<PHAssetCollection *> *)filterGroupsWhenHiddenNoPhotos:(NSArray<PHAssetCollection *> *)groups isHiddenOnlyVideo: (BOOL)isHiddenOnlyVideo
 {
     return [groups ritl_filter:^BOOL(PHAssetCollection * _Nonnull obj) {
        
         PHFetchResult * assetResult = [PHAsset fetchAssetsInAssetCollection:obj options:nil];
-        return assetResult != nil && assetResult.count > 0;
+        
+        //如果不额外的参数
+        if (!isHiddenOnlyVideo) {
+            return assetResult != nil && assetResult.count > 0;
+        }
+        //获得不是视频的资源
+        NSArray *result = [assetResult.array ritl_filter:^BOOL(PHAsset *_Nonnull obj) {
+            return obj.mediaType != PHAssetMediaTypeVideo;
+        }];
+        
+        return isHiddenOnlyVideo && result.count > 0;
     }];
 }
 
@@ -211,8 +221,8 @@
         [self.groups addObject:regularCollections];
         [self.groups addObject:momentCollections];
     }else {//进行数量的二次筛选
-        [self.groups addObject:[self filterGroupsWhenHiddenNoPhotos:regularCollections]];
-        [self.groups addObject:[self filterGroupsWhenHiddenNoPhotos:momentCollections]];
+        [self.groups addObject:[self filterGroupsWhenHiddenNoPhotos:regularCollections isHiddenOnlyVideo:self.configuration.hiddenGroupAllVideo]];
+        [self.groups addObject:[self filterGroupsWhenHiddenNoPhotos:momentCollections isHiddenOnlyVideo:self.configuration.hiddenGroupAllVideo]];
     }
 }
 

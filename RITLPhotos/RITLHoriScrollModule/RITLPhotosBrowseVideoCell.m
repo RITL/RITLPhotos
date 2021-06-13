@@ -71,6 +71,7 @@
 
 - (void)prepareForReuse
 {
+    [super prepareForReuse];
     if (self.playerLayer.superlayer) {
         
         [self.playerLayer removeFromSuperlayer];

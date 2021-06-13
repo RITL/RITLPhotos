@@ -62,6 +62,7 @@
 
 -(void)prepareForReuse
 {
+    [super prepareForReuse];
     _imageView.image = nil;
     _bottomScrollView.zoomScale = 1.0f;
 }

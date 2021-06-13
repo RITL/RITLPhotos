@@ -33,16 +33,6 @@
                </BreakpointActionProxy>
             </Actions>
             <Locations>
-               <Location
-                  uuid = "DE848E01-6DA1-4864-B0ED-FA54A4FCDEBB - dc2f8c5e001177f0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "UIApplicationMain"
-                  moduleName = "UIKitCore"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,8 +47,8 @@
             timestampString = "563104428.510267"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "-photosViewController:datas:"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,8 +64,8 @@
             timestampString = "563104428.510648"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "-photosViewController:images:infos:"
             landmarkType = "7">
          </BreakpointContent>

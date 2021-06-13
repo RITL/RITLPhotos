@@ -50,6 +50,7 @@ RITLPhotosViewControllerDelegate>
     RITLPhotosViewController *photoController = RITLPhotosViewController.photosViewController;
     photoController.configuration.maxCount = 5;//最大的选择数目
     photoController.configuration.containVideo = false;//选择类型，目前只选择图片不选择视频
+    photoController.configuration.hiddenGroupAllVideo = true;//如果不支持视频，相册中只存在视频的相册组将隐藏
     photoController.configuration.hiddenGroupWhenNoPhotos = true;//当相册不存在照片的时候隐藏
     photoController.photo_delegate = self;
     photoController.thumbnailSize = self.assetSize;//缩略图的尺寸
