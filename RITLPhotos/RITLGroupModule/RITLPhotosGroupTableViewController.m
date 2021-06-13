@@ -48,7 +48,7 @@
 
 @interface RITLPhotosGroupTableViewController ()
 
-@property (nonatomic, strong)NSMutableArray<NSArray<PHAssetCollection *>*>*groups;
+@property (nonatomic, strong)NSMutableArray<NSArray<PHCollection *>*>*groups;
 
 /// 用于比较变化的原生相册
 @property (nonatomic, strong)PHFetchResult *regular;
@@ -141,15 +141,19 @@
     RITLPhotosGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"group" forIndexPath:indexPath];
     
     // Configure the cell...
-    PHAssetCollection *collection = self.groups[indexPath.section][indexPath.row];
+    PHCollection *collection = self.groups[indexPath.section][indexPath.row];
+    if ([collection isKindOfClass:PHAssetCollection.class]) {
+        //强转即可
+        PHAssetCollection * assetCollection = (PHAssetCollection *)collection;
+        [assetCollection ritl_headerImageWithSize:CGSizeMake(30, 30) mode:PHImageRequestOptionsDeliveryModeOpportunistic complete:^(NSString * _Nonnull title, NSUInteger count, UIImage * _Nullable image) {
+            
+            //set value
+            cell.titleLabel.attributedText = [self titleForCollection:assetCollection count:count];
+            cell.imageView.image = count > 0 ? image : NSBundle.ritl_placeholder;
+        }];
+    }
     
-    [collection ritl_headerImageWithSize:CGSizeMake(30, 30) mode:PHImageRequestOptionsDeliveryModeOpportunistic complete:^(NSString * _Nonnull title, NSUInteger count, UIImage * _Nullable image) {
-        
-        //set value
-        cell.titleLabel.attributedText = [self titleForCollection:collection count:count];
-        cell.imageView.image = count > 0 ? image : NSBundle.ritl_placeholder;
-        
-    }];
+
     
     return cell;
 }
@@ -189,22 +193,27 @@
 }
 
 
-- (NSArray<PHAssetCollection *> *)filterGroupsWhenHiddenNoPhotos:(NSArray<PHAssetCollection *> *)groups isHiddenOnlyVideo: (BOOL)isHiddenOnlyVideo
+- (NSArray<PHAssetCollection *> *)filterGroupsWhenHiddenNoPhotos:(NSArray<PHCollection *> *)groups
+                                               isHiddenOnlyVideo: (BOOL)isHiddenOnlyVideo
 {
-    return [groups ritl_filter:^BOOL(PHAssetCollection * _Nonnull obj) {
-       
-        PHFetchResult * assetResult = [PHAsset fetchAssetsInAssetCollection:obj options:nil];
-        
-        //如果不额外的参数
-        if (!isHiddenOnlyVideo) {
-            return assetResult != nil && assetResult.count > 0;
+    return [groups ritl_filter:^BOOL(PHCollection * _Nonnull obj) {
+       //如果是AssetCollection
+        if ([obj isKindOfClass:PHAssetCollection.class]) {
+            //读取类型
+            PHFetchResult * assetResult = [PHAsset fetchAssetsInAssetCollection:(PHAssetCollection *)obj options:nil];
+            //如果不额外的参数
+            if (!isHiddenOnlyVideo) {
+                return assetResult != nil && assetResult.count > 0;
+            }
+            //获得不是视频的资源
+            NSArray *result = [assetResult.array ritl_filter:^BOOL(PHAsset *_Nonnull obj) {
+                return obj.mediaType != PHAssetMediaTypeVideo;
+            }];
+            
+            return isHiddenOnlyVideo && result.count > 0;
         }
-        //获得不是视频的资源
-        NSArray *result = [assetResult.array ritl_filter:^BOOL(PHAsset *_Nonnull obj) {
-            return obj.mediaType != PHAssetMediaTypeVideo;
-        }];
         
-        return isHiddenOnlyVideo && result.count > 0;
+        return false;
     }];
 }
 
@@ -213,16 +222,23 @@
 - (void)filterGroups
 {
     NSArray <PHAssetCollection *> *regularCollections = self.regular.array.sortRegularAblumsWithUserLibraryFirst;
-    NSArray <PHAssetCollection *> *momentCollections = self.moment.array;
+    NSArray <PHCollection *> *momentCollections = self.moment.array;
     
     [self.groups removeAllObjects];//移除所有的，进行重新添加
     
     if (self.configuration.hiddenGroupWhenNoPhotos == false) {
         [self.groups addObject:regularCollections];
-        [self.groups addObject:momentCollections];
+        [self.groups addObject: [momentCollections ritl_filter:^BOOL(PHCollection * _Nonnull obj) {
+            return [obj isKindOfClass:PHAssetCollection.class];
+        }]];
     }else {//进行数量的二次筛选
-        [self.groups addObject:[self filterGroupsWhenHiddenNoPhotos:regularCollections isHiddenOnlyVideo:self.configuration.hiddenGroupAllVideo]];
-        [self.groups addObject:[self filterGroupsWhenHiddenNoPhotos:momentCollections isHiddenOnlyVideo:self.configuration.hiddenGroupAllVideo]];
+        [self.groups addObject:
+         [self filterGroupsWhenHiddenNoPhotos:regularCollections
+                            isHiddenOnlyVideo:self.configuration.hiddenGroupAllVideo]];
+        [self.groups addObject:
+         [self filterGroupsWhenHiddenNoPhotos:momentCollections
+                            isHiddenOnlyVideo:self.configuration.hiddenGroupAllVideo]];
+        
     }
 }
 
