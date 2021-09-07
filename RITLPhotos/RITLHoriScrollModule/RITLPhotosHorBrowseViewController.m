@@ -9,6 +9,7 @@
 #import "RITLPhotosHorBrowseViewController.h"
 #import "RITLPhotosBrowseVideoCell.h"
 #import "RITLPhotosBrowseImageCell.h"
+#import "RITLGIFImageCollectionViewCell.h"
 #import "RITLPhotosBrowseLiveCell.h"
 #import "RITLPhotosBottomView.h"
 #import "NSBundle+RITLPhotos.h"
@@ -22,10 +23,10 @@
 #import "UICollectionViewCell+RITLPhotosAsset.h"
 #import "UICollectionView+RITLIndexPathsForElements.h"
 
-
 #define RITLPhotosHorBrowseCollectionSpace 3
 
 static NSString *const RITLBrowsePhotoKey = @"photo";
+static NSString *const RITLBrowseGifPhotoKey = @"gifphoto";
 static NSString *const RITLBrowseLivePhotoKey = @"livephoto";
 static NSString *const RITLBrowseVideoKey = @"video";
 
@@ -96,6 +97,7 @@ static RITLHorBrowseDifferencesKey *const RITLHorBrowseDifferencesKeyRemoved = @
     
     //进行注册
     [self.collectionView registerClass:RITLPhotosBrowseImageCell.class forCellWithReuseIdentifier:RITLBrowsePhotoKey];
+    [self.collectionView registerClass:RITLGIFImageCollectionViewCell.class forCellWithReuseIdentifier:RITLBrowseGifPhotoKey];
     [self.collectionView registerClass:RITLPhotosBrowseVideoCell.class forCellWithReuseIdentifier:RITLBrowseVideoKey];
     if (@available(iOS 9.1,*)) {
         

@@ -177,6 +177,11 @@
     
     else if(self.mediaType == PHAssetMediaTypeImage){
         
+        if (self.mediaSubtypes == 1UL<<6) {
+            //GIF图
+            return @"gifphoto";
+        }
+        
         if (@available(iOS 9.1,*)) {
             
             return self.mediaSubtypes == PHAssetMediaSubtypePhotoLive ? @"livephoto" : @"photo";

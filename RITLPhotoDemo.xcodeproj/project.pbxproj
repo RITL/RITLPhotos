@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		16A20F658605C74106DAC503 /* libPods-RITLPhotoDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0C1B984DF64B17C3BF117E /* libPods-RITLPhotoDemo.a */; };
+		86AF4F8B26E73A2F004D9230 /* RITLGIFImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AF4F8A26E73A2F004D9230 /* RITLGIFImageCollectionViewCell.m */; };
 		DB254E3621425FEC00D9E1A1 /* NSArray+RITLPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = DB254E3521425FEC00D9E1A1 /* NSArray+RITLPhotos.m */; };
 		DB51171220B30B6C00C54622 /* RITLPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB51170E20B30B6B00C54622 /* RITLPhotosViewController.m */; };
 		DB6BFFE420B2CD2B003C68AF /* RITLPhotosGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6BFFA720B2CD2B003C68AF /* RITLPhotosGroupTableViewController.m */; };
@@ -48,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		86AF4F8926E73A2F004D9230 /* RITLGIFImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RITLGIFImageCollectionViewCell.h; sourceTree = "<group>"; };
+		86AF4F8A26E73A2F004D9230 /* RITLGIFImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RITLGIFImageCollectionViewCell.m; sourceTree = "<group>"; };
 		8C9C49787206D8CED4C8EB1E /* Pods-RITLPhotoDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RITLPhotoDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RITLPhotoDemo/Pods-RITLPhotoDemo.release.xcconfig"; sourceTree = "<group>"; };
 		BF340BD6B80EBA5B4750AEF2 /* Pods-RITLPhotoDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RITLPhotoDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RITLPhotoDemo/Pods-RITLPhotoDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		CE0C1B984DF64B17C3BF117E /* libPods-RITLPhotoDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RITLPhotoDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -308,6 +311,8 @@
 		DB6BFFD720B2CD2B003C68AF /* RITLCollectionModule */ = {
 			isa = PBXGroup;
 			children = (
+				86AF4F8926E73A2F004D9230 /* RITLGIFImageCollectionViewCell.h */,
+				86AF4F8A26E73A2F004D9230 /* RITLGIFImageCollectionViewCell.m */,
 				DB6BFFD820B2CD2B003C68AF /* RITLPhotosPreviewController.h */,
 				DB6BFFDB20B2CD2B003C68AF /* RITLPhotosPreviewController.m */,
 				DB6BFFD920B2CD2B003C68AF /* RITLPhotosCollectionViewController.h */,
@@ -378,7 +383,7 @@
 				TargetAttributes = {
 					DB302F271D35E3C7007B42C3 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = HC59PF4HDN;
+						DevelopmentTeam = 6DT57K24F5;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -469,6 +474,7 @@
 				DB6BFFE720B2CD2B003C68AF /* RITLPhotosDataManager.m in Sources */,
 				DBD4081620E276110074205C /* NSBundle+RITLPhotos.m in Sources */,
 				DB6BFFF820B2CD2B003C68AF /* RITLPhotosBrowseImageCell.m in Sources */,
+				86AF4F8B26E73A2F004D9230 /* RITLGIFImageCollectionViewCell.m in Sources */,
 				DB6BFFE620B2CD2B003C68AF /* RITLPhotosMaker.m in Sources */,
 				DB6BFFE420B2CD2B003C68AF /* RITLPhotosGroupTableViewController.m in Sources */,
 				DB6BFFFA20B2CD2B003C68AF /* RITLPhotosPreviewController.m in Sources */,
@@ -614,14 +620,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HC59PF4HDN;
+				DEVELOPMENT_TEAM = 6DT57K24F5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = RITLPhotoDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -647,14 +653,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HC59PF4HDN;
+				DEVELOPMENT_TEAM = 6DT57K24F5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = RITLPhotoDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

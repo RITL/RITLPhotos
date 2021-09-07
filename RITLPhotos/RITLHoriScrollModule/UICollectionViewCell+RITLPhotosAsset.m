@@ -12,6 +12,7 @@
 #import "RITLPhotosBrowseVideoCell.h"
 #import <PhotosUI/PhotosUI.h>
 #import <Masonry/Masonry.h>
+#import "SDWebImage.h"
 #import <objc/runtime.h>
 #import <RITLKit/RITLKit.h>
 
@@ -50,14 +51,22 @@ NSNotificationName RITLHorBrowseTooBarChangedHiddenStateNotification = @"RITLHor
     PHImageRequestOptions *options = PHImageRequestOptions.new;
     options.networkAccessAllowed = true;
     
-    [cacheManager requestImageForAsset:asset targetSize:@[@(asset.pixelWidth),@(asset.pixelHeight)].ritl_size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-
-        //如果标志位一样
-        if ([self.representedAssetIdentifier isEqualToString:asset.localIdentifier]) {//进行赋值操作
+    if (asset.mediaSubtypes == 1UL<<6) {
+        //gif图
+        [cacheManager requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+            UIImage *gifImage = [UIImage sd_imageWithGIFData:imageData];
+            [self updateViews:gifImage info:info];
+        }];
+    } else {
+        [cacheManager requestImageForAsset:asset targetSize:@[@(asset.pixelWidth),@(asset.pixelHeight)].ritl_size contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
             
-            [self updateViews:result info:info];
-        }
-    }];
+            //如果标志位一样
+            if ([self.representedAssetIdentifier isEqualToString:asset.localIdentifier]) {//进行赋值操作
+                
+                [self updateViews:result info:info];
+            }
+        }];
+    }
 }
 
 - (void)playerAsset { }

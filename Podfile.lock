@@ -53,21 +53,27 @@ PODS:
     - RITLKit/Utility
     - RITLViewFrame
   - RITLViewFrame (0.0.1)
+  - SDWebImage (5.9.5):
+    - SDWebImage/Core (= 5.9.5)
+  - SDWebImage/Core (5.9.5)
 
 DEPENDENCIES:
   - RITLKit
+  - SDWebImage
 
 SPEC REPOS:
   trunk:
     - Masonry
     - RITLKit
     - RITLViewFrame
+    - SDWebImage
 
 SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   RITLKit: bcedeca4d6f8fc7d56d6f5b2b15ad1f57cc221b6
   RITLViewFrame: 4e38e6333e6b4691c1980c3fcda9ff4d08f0d2c8
+  SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
 
-PODFILE CHECKSUM: 122ea84f433be1e63d1f0af883664c4c8f25951e
+PODFILE CHECKSUM: dfae7487dfad2658a2488ce9273fa5a13573b24b
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1
