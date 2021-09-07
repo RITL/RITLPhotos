@@ -348,8 +348,8 @@ static NSString *const reuseIdentifier = @"photo";
     if (![cell isKindOfClass:RITLPhotosCell.class]) { return; }
     
     RITLPhotosCell *photoCell = (RITLPhotosCell *)cell;
-    
-    photoCell.messageView.hidden = (asset.mediaType == PHAssetMediaTypeImage);
+    //1UL<<6表示是动图
+    photoCell.messageView.hidden = (asset.mediaType == PHAssetMediaTypeImage && asset.mediaSubtypes != 1UL<<6);
 
     if(!RITLPhotosConfiguration.defaultConfiguration.containVideo){//是否允许选择视频-不允许选择视频，去掉选择符
         photoCell.chooseButton.hidden = (asset.mediaType == PHAssetMediaTypeVideo);
@@ -373,6 +373,10 @@ static NSString *const reuseIdentifier = @"photo";
     time = [NSString timeStringWithTimeDuration:asset.duration];
     photoCell.messageLabel.text = time;
     [self.timeCache addEntriesFromDictionary:@{@(asset.duration) : time}];//追加缓存
+    
+    if (asset.mediaSubtypes == 1UL<<6) {
+        photoCell.messageLabel.text = @"GIF";
+    }
 
     if (@available(iOS 9.1,*)) {//Live图片
         photoCell.liveBadgeImageView.hidden = !(asset.mediaSubtypes == PHAssetMediaSubtypePhotoLive);

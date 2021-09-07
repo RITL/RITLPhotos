@@ -4,6 +4,7 @@ inhibit_all_warnings!
 target 'RITLPhotoDemo' do
 
 pod 'RITLKit'
+pod 'SDWebImage'
 
 end
 
