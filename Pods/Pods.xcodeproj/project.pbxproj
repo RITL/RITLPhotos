@@ -7,278 +7,281 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0100DEC3D98A0132AF6A60A4E5A7D41D /* NSObject+RITLMutable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C572FCC4FDA7A1C1E69B3F6BAF8F61F /* NSObject+RITLMutable.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		0200347E63965E1CA5AA39A0B4F4980E /* RITLWebScriptMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E248E30DA4980D1536B282F5E6B929 /* RITLWebScriptMessageHandler.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		0349C8E7B6630173FF541D370EB2860D /* RITLArchiverManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0494A6132E4AB3683FE26144281C243D /* RITLArchiverManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		0768B14CC5E91B83AEA153FE7AD8F875 /* NSString+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B5D81A702E0C3312546B65FC06BD99 /* NSString+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		08C602AF50375D6A0B8BAED30EF3702F /* NSObject+RITLMutable.h in Headers */ = {isa = PBXBuildFile; fileRef = D302CBABC97F87BDDB1EEF3DE510A782 /* NSObject+RITLMutable.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0966CBE81555790DA3486529B22E9548 /* UIView+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = DA1EA51691BC49610755ADCA0A49C0EC /* UIView+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0E6D75FE7F4CC81F9CFE02E2F7BBB0CD /* RITLFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 974D7C9EAD824193DBA92A0C9A997706 /* RITLFilter.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		103F6EA061E4C726AD48CF502AA5CB76 /* UIView+RITLFrameChanged.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E96A0CF7EBE55228986FEB369725579 /* UIView+RITLFrameChanged.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		115ACCE253A886181B55773DDC70D6ED /* MASViewConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 11CCC42E74B81FC9BC82B6629B76FD46 /* MASViewConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		11DEF348B5555A8CC0CE30AD31B67B5A /* UIView+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0BD67A6ECA4ABD08FC1AD77A03056F /* UIView+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		12B9F7393A06779C379C73640C5395A2 /* RITLScriptMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A17465719DF874E215D36DB10039F5B6 /* RITLScriptMessageHandler.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		13AB46A4DE11B1E6A46674C3E9669713 /* UIViewController+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4D2415ADEAF765A1680AB1737B0642 /* UIViewController+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		146E5FC10205FC880E3308AA067E9237 /* UIView+RITLFrameChanged.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457290CD44F0DE79F9E75535D6571AC /* UIView+RITLFrameChanged.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		181B2691FF506F26F7F71F711C724B81 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D16767D8C7D3FC10696F8A86035C88 /* MASConstraintMaker.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		20E2F8001CC8A41A0E1B50694BE7875D /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50535DB01833801BC07A84759DC42539 /* NSArray+MASAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		28C233F54A85F06F1A3A77E419E115CE /* UILabel+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BD5EB64B59DDF46A5F6A67C49151C3 /* UILabel+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		290994CDC9D24B181A7E3C119C8F16AA /* UIButton+RITLKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FAD40A269CD34A6EA0CEC4EA687C1B /* UIButton+RITLKit.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		2B2435E31E8EE8F208AF04CCBE29F1CD /* RITLFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FFF4A975871220E329F242DDB81CCF /* RITLFilter.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		2CAA56DD49418ACBFD84684177C8BA87 /* RITLImagePickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B39207108024CD3BED1179EEBBA865A /* RITLImagePickerController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2CAEAE9637374EC70C4153D5FD25FEFC /* RITLItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC171402B942B967DB2E6B6E38EF077F /* RITLItemButton.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		2DCF87BB035AE386212DC9F7A928A9A0 /* RITLImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB46D8D0D671ABAED85594EBDE741CF9 /* RITLImagePickerController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		2E5F3B41BD51ACE4EE3B422BB67E51DF /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F55D7541B53A61443E4752B2B7D3A /* MASViewAttribute.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		31064475EC704EC31BC3E2DE0DAFC72C /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = A34CED9B3ED113DFE3993E837A004666 /* MASViewConstraint.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		31522A290CF5CB41ED945EB09E2989B6 /* LLSegmentBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D9157BEF781F1E069C2D098A7A667D8A /* LLSegmentBar.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		3430321D06CBCF49F5A7DF6A70D9BB91 /* Masonry-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AA6DF3672EF4167D699695BA178F0D /* Masonry-dummy.m */; };
-		390E8375B19FF12764C5AA730AF0F0F4 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5AA0334006092DCC1D320E70EA7C2F /* View+MASAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		3A76D0AE66125413D9AB35219A18EF1F /* RITLWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 435A2B65A9EEBCF5170FEF58036417C4 /* RITLWebViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3B833921E7163B43EE9CF9CB623B12E5 /* RITLSearchView.h in Headers */ = {isa = PBXBuildFile; fileRef = 984AB6CB8366049A9091983F3ECF4D59 /* RITLSearchView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3C1D0B404A6BA54FFA689AA76CC1B597 /* RITLUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = E5A450481A5099DFBBE454E71A4A4D03 /* RITLUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3D0227B7763206B0125B417269E20CAB /* RITLFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F01F11C295431E1CDF903946F1788DF /* RITLFileDownloader.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		42947699890A199B08A896144A878D80 /* MASViewAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = DE3F7AD13195249742783BBAF04F669E /* MASViewAttribute.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4433D09D300569E94899E1CFB9924297 /* LLSegmentBarConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = B80EDD6F23C384CE28967815537FD09C /* LLSegmentBarConfig.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		44A3B1A5D2C513F8FD238E3B64E4C6CF /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CA632C52F48E673B671BF4C86BC9BB /* NSLayoutConstraint+MASDebugAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		46692A2E77157B00827182C8DC686F72 /* View+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D9D493EFB434237FD52EE393609384C /* View+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4BA1696960CD8574809CD08E372A33F5 /* RITLRuntimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AB276AE9D97472EFF044C0B8644F3575 /* RITLRuntimeTool.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		4CE091F886EC6324673EFE0AEBBEA0FE /* MASConstraint+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 94406CE358A96C4541D08F43CE0B542B /* MASConstraint+Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4D768B91E5633AECAA9FCA5962591090 /* UIControl+RITLBlockButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AE163990CC8822E2F836F4BE7FDB89BB /* UIControl+RITLBlockButton.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		4EFE8609EBC39F39D7E09ADE1900869F /* RITLWebScriptMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 5415EDCD55D0CF4FC69BA9209C91E042 /* RITLWebScriptMessageHandler.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		50BB6F79A4C9863FCF1BFCF774A62E6F /* AppleReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 13533CC64AB1C644639A1F4F2FBA96D7 /* AppleReachability.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		5352949E9C495EAA24FC17C5FD3DFB34 /* UITableView+RITLCellRegister.h in Headers */ = {isa = PBXBuildFile; fileRef = 04E4D1FE5D216E193D761D467CEF38DF /* UITableView+RITLCellRegister.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		58623A8FDA5C66A9BFC414AD5B5AB692 /* LLSegmentBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 566AD85F641FB358AC20C95AE2043BDB /* LLSegmentBarConfig.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		58EB962489678C17A8EBEECD1516C8FC /* RITLViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C12F84410774B2E2D2A41F9EAECB741 /* RITLViewExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		5C5C77BBF83B793B82713296519751DA /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E022C0873526E4A954F432526B103F7 /* ViewController+MASAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		5E8090902159B6471659AD0703978F7E /* UINavigationController+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = D4AC3F97D7334363DDE4F0A8B07F649C /* UINavigationController+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		65E88072A2BDC576BFC85E67EF9FBBC6 /* MASUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B039E2C05476687693E837490EF77AB /* MASUtilities.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		68734B2FD4E55F9A95D5B416C075074A /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C187856A642F71CED4F077F0AB05F67 /* MASLayoutConstraint.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		6E5CEBF45A7FD3A93122A293A15AC75A /* NSDate+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = EF6173F2F87A0E3282C726F6A70F3495 /* NSDate+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6E620B80F744A84B46EAF7C4C3F5A9B8 /* CAGradientLayer+RITLGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 422F7BB95F5F5D7BA8E2799BE6A13FED /* CAGradientLayer+RITLGradientLayer.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		75E10A6E9B722D2CF410461333BFF9F0 /* RITLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8006122A550EDD9FF23844E190DCD2B7 /* RITLUtility.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		7AB189A61E09DFE449FCB2548475303B /* CAGradientLayer+RITLGradientLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BF07320A0C6EBD9174E446BE4E9F105 /* CAGradientLayer+RITLGradientLayer.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7CF2AC7A3B3ED03B30C1E4ED662B0551 /* MASLayoutConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = F209930698523BAB6929F016D2547475 /* MASLayoutConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7D20F87A8B02F61AF641ED176E2F41E9 /* UINavigationController+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 450A65851E066252F3BCC60769893EA0 /* UINavigationController+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		80AFFD8F27E29BA7A5622B217119017D /* RITLKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7CCCFDEBD9FCFFAE3587B3BCFF9FBA /* RITLKit-dummy.m */; };
-		81F811A56B6724F7E8E2D25364E595E3 /* NSArray+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = FA12428AA9CAB028C7ACF4C503BA99C8 /* NSArray+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		820DA2A5F84F34B65F74B85EC6B022D6 /* NSArray+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6CA0729A41A930819B81991002FC18 /* NSArray+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		83A5EC309D129D662B264FCBCABE1D3D /* NSDate+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EBBCC252F6B055420DE833CB34E3DE /* NSDate+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		873B11B264FD1324ACE8234C490EC252 /* NSString+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 488BE76AAC55AA9CB4A2237B9E548D14 /* NSString+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8C4F52CEB387D5E29104B8D138EB0AF9 /* LLSegmentBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7780833323F8FD515E1DE96D7A5E412D /* LLSegmentBarVC.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8E1C4DD3B062C1F7C03F83DB48AB2848 /* UIImage+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = EB39538B23D3FB3EDFCFA41910695D1F /* UIImage+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		8EADAD32D16CD99B3633EC4FE7AB6AEA /* NSArray+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 70860085E5EF90669D1C7B182070C63C /* NSArray+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8EC7D49C0F51EC6AA3731A5444E01B52 /* UIView+LLSegmentBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F0201100D1432487BC0929BC0AE46F /* UIView+LLSegmentBar.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		90CCDEECECD0C99B44EF663779E3B38B /* RITLSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A602185C01E526954126FFBD18F2534 /* RITLSearchView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		9194B58ACE900ED6BAE6AD92E24A2CFF /* MASConstraintMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = C20D875AF1B27CBA7FEB548FB777C049 /* MASConstraintMaker.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		920FB21562DF308AF7ECC448A90234CF /* UITableView+RITLCellRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 464F0EDE3BCDF201A2FFE56A9D0112C1 /* UITableView+RITLCellRegister.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		92BF70E9D3285561EB404A7C4A4A6DEE /* MASCompositeConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 738B7A0A6F5CDF62187FAF7716AD9D65 /* MASCompositeConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		95FB83696C44162B1D7FD59682D35610 /* RITLFileDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 94641AF13E1C58FE1727FCFCB6C46682 /* RITLFileDownloader.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9B369AAD43832AEDBBDA8A0DF0856B4C /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F597680745A6209D4D8646AC0FCDC /* MASCompositeConstraint.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		9FD997F516FDA34705DAAFD51ACE8B6F /* RITLRuntimeTool.h in Headers */ = {isa = PBXBuildFile; fileRef = A81815FCE5FF28359F867991168B0EE3 /* RITLRuntimeTool.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A3307B8FB6EE0A049DBAE3AA4D2C6DA0 /* View+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 58C66B22A22CF0A8A7E84B9D86F7C72B /* View+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A764B68B8E03476C4A7DB4CADE414F28 /* RITLArchiverManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 29CCCB8D259B9888B1349DCE7863B73F /* RITLArchiverManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A969BFFF20B11842F3D714819FA9F37D /* RITLItemButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 733395C0A476553996DF29F1ACC24F1D /* RITLItemButton.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		AACE9FE5DBEF4A485790829B52004E7B /* UITableView+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D50BAAE0F89D964D6D3F6FB9A72234AD /* UITableView+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		ABA5B55CB8407A6A99C4708DD3C31EDB /* NSDictionary+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E8A268B8FA3333F6E081F35F5205601 /* NSDictionary+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B20A0E5D8F9BCED1A82793C4BE9E7258 /* Masonry.h in Headers */ = {isa = PBXBuildFile; fileRef = C18CC2AB3BBB848BAB7135C515300A86 /* Masonry.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BA830E3E6BA7A2DA2832E7E8EB69D06B /* RITLViewExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = E89ADF296A692FD7F57C50AC678E8728 /* RITLViewExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BAC817F71C8EEE4B3C4E892488CF2AB4 /* LLSegmentBar.h in Headers */ = {isa = PBXBuildFile; fileRef = D99E44991A63E047BDF878841EF434F2 /* LLSegmentBar.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C28BD442AFF92D3DA2AD79C2969C04E4 /* UIControl+RITLBlockButton.h in Headers */ = {isa = PBXBuildFile; fileRef = DBC82BA02297402D6C28ADAC43F472FB /* UIControl+RITLBlockButton.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C34F21B009CF62BDA63AED3B0B384A07 /* RITLTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D505413C9EF92656BB95811D602EC0F /* RITLTimer.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		C74D2E856ADC8139CD00DBD184061B23 /* NSLayoutConstraint+MASDebugAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B7058EA6929CC9787364674BAD56E5 /* NSLayoutConstraint+MASDebugAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		CBA73AD6496802207F584BA20C6704AC /* UIButton+RITLKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E5CA94D8945027572D9451142845BE3 /* UIButton+RITLKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		CC6B97E3F4960C9A9C5126B7891D498E /* RITLViewFrame-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1A73C0B2730643CCFEC6B504B397B8 /* RITLViewFrame-dummy.m */; };
-		D18B07153527D1A7EC89AB4E6044AB1F /* RITLKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CC009FDBA7BCBB5692556F0B478BA446 /* RITLKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D2B1AE3524170AEC331B7B09FFA9C981 /* LLSegmentBarVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 823F46A4E15923BC6453467E5987F561 /* LLSegmentBarVC.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D5B190DCAC84658AEAC48EFE354BCD81 /* RITLScriptMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 904C8950192FFCFF0ED0B00EA3D4981A /* RITLScriptMessageHandler.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D64B90E81DCBA5DABECA05DA9F46659A /* RITLDownLoaderFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A5F0F43BD185020010F7EC79EA0AF8 /* RITLDownLoaderFileManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		D783A8A5A426DBF85162B92142651218 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E7DA24C723D98CDA45FAF5D9931A77 /* MASConstraint.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		D802C5D83FA2BB117B832CAB063F8147 /* Pods-RITLPhotoDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEF07BC14912B777104AC2079DE66EB /* Pods-RITLPhotoDemo-dummy.m */; };
-		D8AFFA02CF2575150B5BC6E3E764C263 /* RITLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AC945C29CC715EDEECCAC6E40A2B3D /* RITLWebViewController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		D97965AD5F0C5E0D4BCA771A9B9EBBE1 /* AppleReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = F110BD3B9818CEBDF89C7F5B34EC3804 /* AppleReachability.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		DA5FEF76DD5851D5886F26EA3624A7E0 /* UIColor+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C430E01C05997A6315A0CB40162FCD37 /* UIColor+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		DEF4CBA0E619DBF495E4F645481A2074 /* RITLDictionaryProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2FD37DC7FD670AE950422CF1D562D /* RITLDictionaryProxy.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		E697B7AE0A4732C099B496CD30428FF8 /* RITLScrollPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A57021D52CF7E0508A8269EF09C026BA /* RITLScrollPageViewController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		E76935CFF4AF327F8D9A7C1935F7D900 /* ViewController+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C51FABEEBACDCF8B84421125731BC484 /* ViewController+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EA1EDEFE92805397A5C6F830499E111A /* UIView+LLSegmentBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 3149713445589461B60B352609B7E92C /* UIView+LLSegmentBar.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EA6A4A98EF5BBB81BC4F4BC0D82194F1 /* UIColor+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = D4D446FFB92288243CE96956F751EC91 /* UIColor+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EB663E3E1EB4BB670DC29B77DB330135 /* MASConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B6DBCCE7A3CB03D3FF1F52D6D3325F /* MASConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EB8F560AC6DD5216EA356A2CECE966AA /* UILabel+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 974A3E925955D4F276A3C3655BE42594 /* UILabel+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EC09711B2BEBAACA26B4DF0DBDA9AE65 /* UIViewController+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B86B38C82FD0F45960652BE5059C84B /* UIViewController+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		ED020A7C6F2D9F51F1077E345F893FF5 /* RITLSearchTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = B386ED5570D41F53D409D71D077D83A0 /* RITLSearchTextField.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F1B75048874B8773E5568E6D3ACA12E4 /* NSArray+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5590AC85DEEF1A859F9DF39B96566898 /* NSArray+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F2C568BCC45212DCFD3ED4FD7ADE17E6 /* RITLDownLoaderFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 889B49C7B6734491281EFAE09EE24B49 /* RITLDownLoaderFileManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F4756C2F62DA84DBB25D92E4B13C2793 /* RITLSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A18D15697EE97ACBF51EC78CB6FD9DC /* RITLSearchTextField.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		F6109190259627CB1FC7668A02221C18 /* RITLDictionaryProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 23A3024722FF55BD76B8F9D9CB420EF0 /* RITLDictionaryProxy.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F6F519E2D8C9806FA9C488EB9B4CB11D /* RITLTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 91FB686F0A2DB3402474DD19409E7302 /* RITLTimer.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F818C8AFCA8E44F8D07CD9A3ECDAD707 /* UITableView+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C3E0997FDC2F0D8527B4F8B1C90BBE /* UITableView+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FA99658B2DADC4833E37BE32545C918D /* NSDictionary+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 35787F7493FC4161C488CD9D10B2E8C1 /* NSDictionary+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		FAC47BBF32958F0B0F0CBF4D572F73F6 /* RITLScrollPageViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 76DE856F6D1D3863F9A1E11CFD096D40 /* RITLScrollPageViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FD68C41236E66886AAF1DE912134F97B /* UIImage+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = F603C071953C887C370A30AE6A6D5DD4 /* UIImage+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		050E34BE82454878DEEFF9A54854F823 /* UIColor+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B45130A0D581221EF7DFB2866F747197 /* UIColor+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		085DB4A7BCA105D4C8172BFF808F4337 /* UILabel+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AD7058E768891BB63C01B10D113F93 /* UILabel+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		0CCF575322F841C42B92E65EE3A15D1B /* UIView+RITLFrameChanged.m in Sources */ = {isa = PBXBuildFile; fileRef = 147D97A7963749DF1850AFF2B226BAF2 /* UIView+RITLFrameChanged.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		115ACCE253A886181B55773DDC70D6ED /* MASViewConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = B1003415C87198C001A2DC12C7B0DB8E /* MASViewConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		11C9C3FF347C7B6D0AAD3520BCB0FEDB /* RITLViewFrame-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE9EAED699CE8156C02F16767370CF /* RITLViewFrame-dummy.m */; };
+		11F4D0FB9C1079F5A51A25EA917CD734 /* RITLWebScriptMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0462D25F9CC888EC1B2624FC2C7B1607 /* RITLWebScriptMessageHandler.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		12D88F5EAFA0790741769B07D12F302A /* UIColor+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9FCCB1A1CF82AF54F0349295A4F4AD /* UIColor+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		143EC47C5D4E5E61CAD99E0491F65D81 /* UIControl+RITLBlockButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F7175461DCF12184012DAC2BC609FF /* UIControl+RITLBlockButton.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		1704121CC8339939790AE03344E18DFD /* RITLItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7ECD4401E1B32F1144DA12FB54C469 /* RITLItemButton.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		181B2691FF506F26F7F71F711C724B81 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 97733A8BA5497B015A80551A8F2D1860 /* MASConstraintMaker.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		1A4C20BC6AFB1B76131E0878D3ABCFB5 /* RITLViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 702A4CDDA2ADE10ED649CEB2E217190C /* RITLViewExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		1AB59E23430E6110C320B0334DDF313A /* AppleReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 35BA4EEC77B0C92500100D05AC61973A /* AppleReachability.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		1F3E70E061918B77844FDDF24D30D182 /* CAGradientLayer+RITLGradientLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 44ECF5B4A1348112E9A43AF8A60B74E8 /* CAGradientLayer+RITLGradientLayer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		20E2F8001CC8A41A0E1B50694BE7875D /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B09E623EBFD707899E23122660C97F /* NSArray+MASAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2307B6211309D749125A6908FA956438 /* NSArray+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = A0D20DD81B0F973277495A1BFAE32FAB /* NSArray+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		24B01D33E7040E6089B00C95ABA32558 /* UITableView+RITLCellRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8464106707DD1C491209D9B500F473 /* UITableView+RITLCellRegister.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2A05B2F2BA8820639A7A6424CEBE6E9B /* UIViewController+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = F30FB83CE8E9E960319E4004437DDA94 /* UIViewController+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2D037254383BD68D4FAF0D482187E2E7 /* RITLArchiverManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B78DF774EA720F9A0F52AD27A93DC054 /* RITLArchiverManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2D54AEEBBF5E04771873E544044AA7DC /* RITLDownLoaderFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 972CB16C02EEDD5A0FFFCC58201E3D19 /* RITLDownLoaderFileManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		2E5F3B41BD51ACE4EE3B422BB67E51DF /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA932B88F6ABEF7308FB6BA895105A /* MASViewAttribute.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		30B03BDBBED952011793C6A167F85F29 /* NSDictionary+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C5799D0C25719B99CAB837AE05D6AEEE /* NSDictionary+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		31064475EC704EC31BC3E2DE0DAFC72C /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = C998C143FA6E8F415391FBF3A8DAB7A9 /* MASViewConstraint.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		3430321D06CBCF49F5A7DF6A70D9BB91 /* Masonry-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5504560BBD80E75C142BE4483E693 /* Masonry-dummy.m */; };
+		36255614CC956D910950FFA1D430FF98 /* LLSegmentBarConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = B242C0F2ABC6BC4A235BCC1C405847F6 /* LLSegmentBarConfig.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		390E8375B19FF12764C5AA730AF0F0F4 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E106B25B8256F48B6BDB5C2ACFCC794 /* View+MASAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		3B192D219C76B644A28C604BC99B252C /* UITableView+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BC4D855E40F4969F2C6CDC994F9D279 /* UITableView+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3C890B0AD5732B875ED4638A38346242 /* LLSegmentBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02AB839DEFDA7B87F8BE7705DF1DF7 /* LLSegmentBar.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3EB687B74BB890A69B5B4D7C94B9F02E /* UIView+LLSegmentBar.h in Headers */ = {isa = PBXBuildFile; fileRef = E357F38B889494043C54176D3523A923 /* UIView+LLSegmentBar.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3EF551DB9C3D2DB7CB3590FF5016EDE4 /* UINavigationController+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD41791BF3174329537D634E1307E5A /* UINavigationController+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		41B009CDDD637FD4C1E46D08A91BF47A /* RITLKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 50988E8C5CB2D79B072C6833192AFC61 /* RITLKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		42947699890A199B08A896144A878D80 /* MASViewAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 1380052ADAB0784C5EC2C9B1C5FE966C /* MASViewAttribute.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4391B4200E85600A302731AB6FA45847 /* UIImage+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B1D53EE16E447218E0C4EF18B0855D5 /* UIImage+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		44A3B1A5D2C513F8FD238E3B64E4C6CF /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4945246D69724288D35944BE539746 /* NSLayoutConstraint+MASDebugAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		46692A2E77157B00827182C8DC686F72 /* View+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 13FB44EAFD3203D5AF81278A140BC649 /* View+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4743F6029C0EC5557C1D5CBCC7D1E04A /* RITLFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BD51364723B1D05840C449913A8753 /* RITLFileDownloader.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4CE091F886EC6324673EFE0AEBBEA0FE /* MASConstraint+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = AFFB7CC726308BA04C713E1E65402013 /* MASConstraint+Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4E19014A523FA55858C27FB239014F21 /* AppleReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAF361EE89925CEF7FCD3F179906EEE /* AppleReachability.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4E5C31CBC40FA0B5FF4D2FACEF26E376 /* Pods-RITLPhotoDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEF07BC14912B777104AC2079DE66EB /* Pods-RITLPhotoDemo-dummy.m */; };
+		539B74056209EBCAA5526002C90BA2E6 /* RITLFileDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = E8B364B22C85E5F78BEA7E30CC066151 /* RITLFileDownloader.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5879231073DF9E20A0CD2137A684D131 /* UIView+LLSegmentBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 322410F484C87BD3F21DE848860B2E21 /* UIView+LLSegmentBar.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		589D6B03FD1E065AAE308AB9D9AA54E9 /* RITLRuntimeTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 477301AACBCF765B09BC4E029EDE5625 /* RITLRuntimeTool.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		589ECA78FD0381E195956147CDBD22D7 /* RITLDictionaryProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C5CA78B45FF6717945C472D8C14F36 /* RITLDictionaryProxy.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		5A6DDFCAA3122D1C30FC74A52DA794E1 /* NSString+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 72FA7E73B9AA47091A36E2C8B609909F /* NSString+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5A9BCD7AEC9217B01CE1AAE36E10BD72 /* RITLSearchView.h in Headers */ = {isa = PBXBuildFile; fileRef = D0E031AD30A44AAEA81129C8119BB542 /* RITLSearchView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5B0A9F1D3BFFB85B27FDFE9C7F456F22 /* RITLArchiverManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DF7F83F8D0C1533C8F0AAB785BEC195 /* RITLArchiverManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5BA81A61E8162F4EAE0869F45F83787E /* UIView+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C959FCE0DC2DBD319D6D3A990C4F8C6A /* UIView+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		5C5C77BBF83B793B82713296519751DA /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9A38294C71EDDC2F4684354D30E23C /* ViewController+MASAdditions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		5C9F7922E99A7B8C9A588FF0B24DAEC5 /* LLSegmentBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1EC5BE9E538B694679EA89887281C27 /* LLSegmentBarVC.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		601980F99B8B2275AE6B3AE3A2670E99 /* RITLWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = AD6D0A96DBBA17BD2D70736885DAEECE /* RITLWebViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		65E88072A2BDC576BFC85E67EF9FBBC6 /* MASUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 30030CB45C49083F1DEC7E576D96E9F4 /* MASUtilities.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		68734B2FD4E55F9A95D5B416C075074A /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 932F5D74C0E88A6E6DA2230C543771F2 /* MASLayoutConstraint.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		6E981D73A7501307AF2B6A69A27CFEF5 /* RITLTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 57CC1F4056A194D00290DB550391B6FD /* RITLTimer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6F746DFE2ACF55669BC5B1C307898A21 /* CAGradientLayer+RITLGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B03D1339E83E0EEBFFF1FAAAFBEE9359 /* CAGradientLayer+RITLGradientLayer.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		7143CF9EDD7EDED9CCAC8D4CC447BCAE /* RITLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0297165417A281B761674B7E66BA4676 /* RITLWebViewController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		755CE1F842445201CE1EFE286219C68A /* RITLRuntimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6D0B600C97F0DBE1C1CC0244BA842 /* RITLRuntimeTool.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		7CF2AC7A3B3ED03B30C1E4ED662B0551 /* MASLayoutConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = E035F0F8EA22A324169B21E16AF5A6FA /* MASLayoutConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7D224BEF6DA955FC55E572C0BBCC5F85 /* RITLKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AE62C23CAAE61231A43E623D7837FEC5 /* RITLKit-dummy.m */; };
+		7E355B21094478E21E64B8D0CF67DE61 /* RITLScriptMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 213BA78E9A92061B87DE0687315099EB /* RITLScriptMessageHandler.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7E93962BB383CD23C7AAA54AE8A58863 /* UILabel+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = D6A66067C392E18953A95AF8EE60A7C7 /* UILabel+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7FAED5A6971A69D20C7A6EF99353F4F6 /* RITLSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CBDDC7F2A3737C5B5456FB8CEFF41B40 /* RITLSearchView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		8019CBB1187AB1AAE61CAB5BB5C20AEB /* UIButton+RITLKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 71548E403768D2E42F29C6DD696D7E2F /* UIButton+RITLKit.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		81F811A56B6724F7E8E2D25364E595E3 /* NSArray+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = FBC175D0C0C4B68342DCCBF9FB13C05F /* NSArray+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		84560482132A08CE98F9C9284DE0E1E0 /* RITLViewExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 39F1A81EA4546E200F30A184123F9A7F /* RITLViewExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		847D5845C46A14A66C32C19C2BAACFBA /* RITLDownLoaderFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 51B3E4B5243075C47E85F34AF0D043CD /* RITLDownLoaderFileManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		84D02AC98A2CC207740C059B8217B7DE /* NSDictionary+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = F078A2C19CCD72053E433DB66AE7692C /* NSDictionary+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8C58BDA8BC082CFFD1CAFABC65467DCC /* UINavigationController+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = E20DC934429A167A52E0B5C9B1E786FD /* UINavigationController+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8D96D227033EDAFE3E96AD74D6C38B3A /* RITLScrollPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE91E433372552CEC69E96EF8C74A555 /* RITLScrollPageViewController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		8E86D355BFF963BFAA2CA1AEC7D15CE1 /* LLSegmentBarVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AB4C52D99767EDCB35B27ADB001E59B /* LLSegmentBarVC.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8FA7F5A05C21AEE31D1BDABFC24D263A /* UITableView+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A4E3DC59DEE7E5144F6591EEFA694 /* UITableView+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		9194B58ACE900ED6BAE6AD92E24A2CFF /* MASConstraintMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = CFD73ECE0B58D625BE6326E3381720D5 /* MASConstraintMaker.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		92BF70E9D3285561EB404A7C4A4A6DEE /* MASCompositeConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 306C1A9830DDF40D6F6529E110CC7D49 /* MASCompositeConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		956E5AA298286659875056407258D7F2 /* RITLImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878EC35AF06565F749C633254B2048E8 /* RITLImagePickerController.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		9B369AAD43832AEDBBDA8A0DF0856B4C /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D56E7567E56AB0CB57B0D5188D7630 /* MASCompositeConstraint.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		A183C8D342A3F97D7A3FEFAC301B1E17 /* RITLTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E73E42025D990CCDCB0C43FF94F54A /* RITLTimer.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		A3307B8FB6EE0A049DBAE3AA4D2C6DA0 /* View+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = FE2E0D195AD94A8C1ED2ADBBAF6991F8 /* View+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		ACA7AEDE6CAB3AA5D2E8D1EC64D81270 /* UITableView+RITLCellRegister.h in Headers */ = {isa = PBXBuildFile; fileRef = 8539E8DFB72E723A0E5EF47EB78E9F7B /* UITableView+RITLCellRegister.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		ACBEEEAC4FBA2BDAC155E2B8F35E3DE9 /* RITLScriptMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E0698F958903AF79321CC6281D3A5A01 /* RITLScriptMessageHandler.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		B20A0E5D8F9BCED1A82793C4BE9E7258 /* Masonry.h in Headers */ = {isa = PBXBuildFile; fileRef = A8288644756B7A72FB11824BAC94246D /* Masonry.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B326A08448BE584170BC56F4E249153E /* RITLItemButton.h in Headers */ = {isa = PBXBuildFile; fileRef = DAC9F27BFE68EEDB73F05000BAC8263E /* RITLItemButton.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B4D921215239D9803369168C68652F41 /* LLSegmentBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 09203CE2266B5329CE3126B3D09235ED /* LLSegmentBar.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		B59FB93A6E0173E7A6435CFBE75806BA /* RITLSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2095DFD708BEA4170ADA609F46DCA5 /* RITLSearchTextField.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		C034C0F2795586A868E427C0FEF9B4E4 /* NSDate+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 580289FCC84BC08BAA0DAD24EA0787AB /* NSDate+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C3B1C4C8D5E965EF71ECB6CE3CC6DCF0 /* UIControl+RITLBlockButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 65B8C191673810B21E4151D936231AAE /* UIControl+RITLBlockButton.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C3D41B97F12ACC7D9E064BA937AAE764 /* RITLScrollPageViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1463140EA36F92BF662C38EB29ADA9A4 /* RITLScrollPageViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C680634DF40F9F6EAF38BC655BD5CA52 /* UIImage+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 210FD04A6DB151921F6E5DCE7B21E1A9 /* UIImage+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		C74D2E856ADC8139CD00DBD184061B23 /* NSLayoutConstraint+MASDebugAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = BADD0C60E930A789FE2B662F1DFF2BFF /* NSLayoutConstraint+MASDebugAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C8CB000C92FB23016E1AA64A71CE5643 /* RITLDictionaryProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C41500304D3BA0A72792C68214853B1 /* RITLDictionaryProxy.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C9BAAE856CCBEABED6098268D60BADF1 /* LLSegmentBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BD77157F54DE2C3F927BECFC2BC254 /* LLSegmentBarConfig.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		D22005375F75A3B8354E73106828F0EB /* NSString+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 898C76BE3FDABAAD0C8FDDA079ED3BBD /* NSString+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		D5296E98D345253EE5395C0E2FA6CEB0 /* UIView+RITLFrameChanged.h in Headers */ = {isa = PBXBuildFile; fileRef = FFF0229B18C57AE20B54E7076386A4CC /* UIView+RITLFrameChanged.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D56D4A00717D2D465A7D3203BA344388 /* RITLWebScriptMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = A49DCE7EB511BA883ECC61863BF62445 /* RITLWebScriptMessageHandler.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D6730DE6872D5EED2FE4EC0E43EC90DD /* NSObject+RITLMutable.h in Headers */ = {isa = PBXBuildFile; fileRef = 956574436BA2F7A9DFE86198B5AA3CE4 /* NSObject+RITLMutable.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D72150E79E64149A50F5BD4B541C2B7D /* RITLImagePickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 80C916BF48C5C761A5A9E7411D10A197 /* RITLImagePickerController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D783A8A5A426DBF85162B92142651218 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 981428A2624071EA9269B9A29D1B4E49 /* MASConstraint.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		D9E9602AF507B1D3903671A8FA22FB06 /* NSDate+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 945CE39C2A89AC03EA08E36DBDF9202B /* NSDate+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		DBB717D71CA16577C7F0073F2BCB9000 /* RITLUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E5CB1232B199A42EC138EBF78268FF /* RITLUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DE53D33161910C4E6ED5632A84F03613 /* UIViewController+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5A898AE15CDF5E10FC0EFCD4326DB1 /* UIViewController+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		DEC0B6FB2D7154E818F774CFAD010214 /* RITLFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = E085101E59E636D9A47850F24300525D /* RITLFilter.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		DEE820F597255D8E720C8EA6BE2617CC /* RITLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A3728E930C964DAEF016A36742B268BC /* RITLUtility.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		DFA55A3D3C271BF4545D8D5B05F5BC47 /* UIButton+RITLKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DFEF575CDC45893A006887B264ED391 /* UIButton+RITLKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E1161B5978A58558E894862023B1ADA9 /* RITLSearchTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F4E96F58CB0F3E21C0C759BA965E153 /* RITLSearchTextField.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E29915C6B568933B000F19FB6751B157 /* NSObject+RITLMutable.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FE1C0563AE010D50C8350C4B3CAC4C /* NSObject+RITLMutable.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E76935CFF4AF327F8D9A7C1935F7D900 /* ViewController+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 806577ED55377B95391B3699C76F68B1 /* ViewController+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EB663E3E1EB4BB670DC29B77DB330135 /* MASConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 948518F854B48FAC55B26BD6291646D5 /* MASConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EC93F522E00F1B5E39C4B336BBB3894B /* UIView+RITLExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E6DA69A480F81B210D5760C8B48A15D /* UIView+RITLExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F1B75048874B8773E5568E6D3ACA12E4 /* NSArray+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C4A4EBC29CABBBAD4626B4BC5BC6DF0 /* NSArray+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F38E50BD2510E0955751514CDB7EC2A7 /* NSArray+RITLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 251896757A64670F96A2B7E8A8DD20C3 /* NSArray+RITLExtension.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		F9B5F8CC21FCC860611478EC3DAEB7FF /* RITLFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BEB7DA0D21D54F15C41EE4D43579A6 /* RITLFilter.h */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3FAEF83FF0C157CA9FA225F151F7BEE9 /* PBXContainerItemProxy */ = {
+		4460C636F9E157F12EE5A06CDEABCDFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7EE18B3869F3DDCFD2CE02D6C9EC12F7;
 			remoteInfo = RITLViewFrame;
 		};
-		870790251AD1D24A6A2044034F55EF6F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7EE18B3869F3DDCFD2CE02D6C9EC12F7;
-			remoteInfo = RITLViewFrame;
-		};
-		9A8C9E4DB15478AEA3898604EB7AAA98 /* PBXContainerItemProxy */ = {
+		748EF37874C81C6E814BB670789DB206 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 55AF53E6C77A10ED4985E04D74A8878E;
 			remoteInfo = Masonry;
 		};
-		AEF14E1A5D6EB8A4528D8F3EFE0BA14B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 55AF53E6C77A10ED4985E04D74A8878E;
-			remoteInfo = Masonry;
-		};
-		F477FC43762A3C01943656D1378E8CCF /* PBXContainerItemProxy */ = {
+		7F6E2F09A4E0708D0488289161E5E7BA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 0E17A295B3F13DFCD5CE954140CDA087;
 			remoteInfo = RITLKit;
 		};
+		BE35F4E118CDCA5E9E71338732FAEB26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7EE18B3869F3DDCFD2CE02D6C9EC12F7;
+			remoteInfo = RITLViewFrame;
+		};
+		C30D9DB295C11601FCDF8497DB6605A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55AF53E6C77A10ED4985E04D74A8878E;
+			remoteInfo = Masonry;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		019A57D0D04F9AA02624FA362171B49F /* RITLViewFrame-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RITLViewFrame-prefix.pch"; sourceTree = "<group>"; };
-		0494A6132E4AB3683FE26144281C243D /* RITLArchiverManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLArchiverManager.m; path = RITLKit/Utility/Utility/RITLArchiverManager.m; sourceTree = "<group>"; };
-		04E4D1FE5D216E193D761D467CEF38DF /* UITableView+RITLCellRegister.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableView+RITLCellRegister.h"; path = "RITLKit/Category/UITableView/UITableView+RITLCellRegister.h"; sourceTree = "<group>"; };
-		0A602185C01E526954126FFBD18F2534 /* RITLSearchView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLSearchView.m; path = RITLKit/View/SearchBar/RITLSearchView.m; sourceTree = "<group>"; };
+		015A4E3DC59DEE7E5144F6591EEFA694 /* UITableView+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableView+RITLExtension.m"; path = "RITLKit/Category/UITableView/UITableView+RITLExtension.m"; sourceTree = "<group>"; };
+		0297165417A281B761674B7E66BA4676 /* RITLWebViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLWebViewController.m; path = RITLKit/Web/RITLWebViewController.m; sourceTree = "<group>"; };
+		0462D25F9CC888EC1B2624FC2C7B1607 /* RITLWebScriptMessageHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLWebScriptMessageHandler.m; path = RITLKit/Web/RITLWebScriptMessageHandler.m; sourceTree = "<group>"; };
+		09203CE2266B5329CE3126B3D09235ED /* LLSegmentBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLSegmentBar.m; path = RITLKit/ScrollPageController/LLSegmentBar/Classes/LLSegmentBar.m; sourceTree = "<group>"; };
+		0C4A4EBC29CABBBAD4626B4BC5BC6DF0 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASAdditions.h"; path = "Masonry/NSArray+MASAdditions.h"; sourceTree = "<group>"; };
+		0ECA932B88F6ABEF7308FB6BA895105A /* MASViewAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewAttribute.m; path = Masonry/MASViewAttribute.m; sourceTree = "<group>"; };
 		10712606AC5BCBDF6E93127EA75155ED /* Pods-RITLPhotoDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RITLPhotoDemo.release.xcconfig"; sourceTree = "<group>"; };
-		11CCC42E74B81FC9BC82B6629B76FD46 /* MASViewConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewConstraint.h; path = Masonry/MASViewConstraint.h; sourceTree = "<group>"; };
-		13533CC64AB1C644639A1F4F2FBA96D7 /* AppleReachability.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AppleReachability.m; path = RITLKit/Utility/Reachability/AppleReachability.m; sourceTree = "<group>"; };
-		14C3E0997FDC2F0D8527B4F8B1C90BBE /* UITableView+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableView+RITLExtension.h"; path = "RITLKit/Category/UITableView/UITableView+RITLExtension.h"; sourceTree = "<group>"; };
+		1380052ADAB0784C5EC2C9B1C5FE966C /* MASViewAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewAttribute.h; path = Masonry/MASViewAttribute.h; sourceTree = "<group>"; };
+		13FB44EAFD3203D5AF81278A140BC649 /* View+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASAdditions.h"; path = "Masonry/View+MASAdditions.h"; sourceTree = "<group>"; };
+		1463140EA36F92BF662C38EB29ADA9A4 /* RITLScrollPageViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLScrollPageViewController.h; path = RITLKit/ScrollPageController/RITLScrollPageViewController.h; sourceTree = "<group>"; };
+		147D97A7963749DF1850AFF2B226BAF2 /* UIView+RITLFrameChanged.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+RITLFrameChanged.m"; path = "RITLViewFrame/UIView+RITLFrameChanged.m"; sourceTree = "<group>"; };
+		1A02AB839DEFDA7B87F8BE7705DF1DF7 /* LLSegmentBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LLSegmentBar.h; path = RITLKit/ScrollPageController/LLSegmentBar/Classes/LLSegmentBar.h; sourceTree = "<group>"; };
+		1B2095DFD708BEA4170ADA609F46DCA5 /* RITLSearchTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLSearchTextField.m; path = RITLKit/View/SearchBar/RITLSearchTextField.m; sourceTree = "<group>"; };
+		1C41500304D3BA0A72792C68214853B1 /* RITLDictionaryProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLDictionaryProxy.h; path = RITLKit/Utility/Utility/RITLDictionaryProxy.h; sourceTree = "<group>"; };
+		1DF7F83F8D0C1533C8F0AAB785BEC195 /* RITLArchiverManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLArchiverManager.h; path = RITLKit/Utility/Utility/RITLArchiverManager.h; sourceTree = "<group>"; };
+		1E5A898AE15CDF5E10FC0EFCD4326DB1 /* UIViewController+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+RITLExtension.m"; path = "RITLKit/Category/UIViewController+RITLExtension.m"; sourceTree = "<group>"; };
 		1FFED36A657123030ABB700256D73F15 /* libMasonry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMasonry.a; path = libMasonry.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		21B6DBCCE7A3CB03D3FF1F52D6D3325F /* MASConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraint.h; path = Masonry/MASConstraint.h; sourceTree = "<group>"; };
-		23A3024722FF55BD76B8F9D9CB420EF0 /* RITLDictionaryProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLDictionaryProxy.h; path = RITLKit/Utility/Utility/RITLDictionaryProxy.h; sourceTree = "<group>"; };
-		29CCCB8D259B9888B1349DCE7863B73F /* RITLArchiverManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLArchiverManager.h; path = RITLKit/Utility/Utility/RITLArchiverManager.h; sourceTree = "<group>"; };
+		20BD77157F54DE2C3F927BECFC2BC254 /* LLSegmentBarConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLSegmentBarConfig.m; path = RITLKit/ScrollPageController/LLSegmentBar/Classes/LLSegmentBarConfig.m; sourceTree = "<group>"; };
+		210FD04A6DB151921F6E5DCE7B21E1A9 /* UIImage+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RITLExtension.m"; path = "RITLKit/Category/UIImage+RITLExtension.m"; sourceTree = "<group>"; };
+		213BA78E9A92061B87DE0687315099EB /* RITLScriptMessageHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLScriptMessageHandler.h; path = RITLKit/Web/RITLScriptMessageHandler.h; sourceTree = "<group>"; };
+		21F7175461DCF12184012DAC2BC609FF /* UIControl+RITLBlockButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIControl+RITLBlockButton.m"; path = "RITLKit/Category/UIControl+RITLBlockButton.m"; sourceTree = "<group>"; };
+		251896757A64670F96A2B7E8A8DD20C3 /* NSArray+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+RITLExtension.m"; path = "RITLKit/Category/NSArray+RITLExtension.m"; sourceTree = "<group>"; };
+		25B09E623EBFD707899E23122660C97F /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+MASAdditions.m"; path = "Masonry/NSArray+MASAdditions.m"; sourceTree = "<group>"; };
+		28FE1C0563AE010D50C8350C4B3CAC4C /* NSObject+RITLMutable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+RITLMutable.m"; path = "RITLKit/Category/NSObject+RITLMutable.m"; sourceTree = "<group>"; };
 		2A6521083173BD52CE5AB2D31EDEAA2C /* libRITLViewFrame.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRITLViewFrame.a; path = libRITLViewFrame.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D9F597680745A6209D4D8646AC0FCDC /* MASCompositeConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASCompositeConstraint.m; path = Masonry/MASCompositeConstraint.m; sourceTree = "<group>"; };
-		2E96A0CF7EBE55228986FEB369725579 /* UIView+RITLFrameChanged.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+RITLFrameChanged.h"; path = "RITLViewFrame/UIView+RITLFrameChanged.h"; sourceTree = "<group>"; };
+		2CBBBDCB8A816655ADE715BADBD6BDE4 /* RITLViewFrame-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RITLViewFrame-prefix.pch"; sourceTree = "<group>"; };
+		2E106B25B8256F48B6BDB5C2ACFCC794 /* View+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "View+MASAdditions.m"; path = "Masonry/View+MASAdditions.m"; sourceTree = "<group>"; };
 		2F18B5D392A55D084FDB534F6FE635F7 /* libPods-RITLPhotoDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-RITLPhotoDemo.a"; path = "libPods-RITLPhotoDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3149713445589461B60B352609B7E92C /* UIView+LLSegmentBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+LLSegmentBar.h"; path = "RITLKit/ScrollPageController/LLSegmentBar/Classes/UIView+LLSegmentBar.h"; sourceTree = "<group>"; };
-		35787F7493FC4161C488CD9D10B2E8C1 /* NSDictionary+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+RITLExtension.m"; path = "RITLKit/Category/NSDictionary+RITLExtension.m"; sourceTree = "<group>"; };
-		38EBBCC252F6B055420DE833CB34E3DE /* NSDate+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+RITLExtension.m"; path = "RITLKit/Category/NSDate+RITLExtension.m"; sourceTree = "<group>"; };
-		39782B650DDA015108C005550E015C6A /* RITLViewFrame.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RITLViewFrame.xcconfig; sourceTree = "<group>"; };
-		3C187856A642F71CED4F077F0AB05F67 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASLayoutConstraint.m; path = Masonry/MASLayoutConstraint.m; sourceTree = "<group>"; };
-		3D505413C9EF92656BB95811D602EC0F /* RITLTimer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLTimer.m; path = RITLKit/Utility/Utility/RITLTimer.m; sourceTree = "<group>"; };
-		3E5CA94D8945027572D9451142845BE3 /* UIButton+RITLKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+RITLKit.h"; path = "RITLKit/Category/UIButton+RITLKit.h"; sourceTree = "<group>"; };
-		422F7BB95F5F5D7BA8E2799BE6A13FED /* CAGradientLayer+RITLGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CAGradientLayer+RITLGradientLayer.m"; path = "RITLKit/Category/CAGradientLayer+RITLGradientLayer.m"; sourceTree = "<group>"; };
-		42A5F0F43BD185020010F7EC79EA0AF8 /* RITLDownLoaderFileManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLDownLoaderFileManager.m; path = RITLKit/Utility/DownLoader/RITLDownLoaderFileManager.m; sourceTree = "<group>"; };
-		435A2B65A9EEBCF5170FEF58036417C4 /* RITLWebViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLWebViewController.h; path = RITLKit/Web/RITLWebViewController.h; sourceTree = "<group>"; };
-		450A65851E066252F3BCC60769893EA0 /* UINavigationController+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+RITLExtension.m"; path = "RITLKit/Category/UINavigationController+RITLExtension.m"; sourceTree = "<group>"; };
-		464F0EDE3BCDF201A2FFE56A9D0112C1 /* UITableView+RITLCellRegister.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableView+RITLCellRegister.m"; path = "RITLKit/Category/UITableView/UITableView+RITLCellRegister.m"; sourceTree = "<group>"; };
-		488BE76AAC55AA9CB4A2237B9E548D14 /* NSString+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+RITLExtension.h"; path = "RITLKit/Category/NSString+RITLExtension.h"; sourceTree = "<group>"; };
-		4B039E2C05476687693E837490EF77AB /* MASUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASUtilities.h; path = Masonry/MASUtilities.h; sourceTree = "<group>"; };
-		4C572FCC4FDA7A1C1E69B3F6BAF8F61F /* NSObject+RITLMutable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+RITLMutable.m"; path = "RITLKit/Category/NSObject+RITLMutable.m"; sourceTree = "<group>"; };
-		4D9D493EFB434237FD52EE393609384C /* View+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASAdditions.h"; path = "Masonry/View+MASAdditions.h"; sourceTree = "<group>"; };
-		4F01F11C295431E1CDF903946F1788DF /* RITLFileDownloader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLFileDownloader.m; path = RITLKit/Utility/DownLoader/RITLFileDownloader.m; sourceTree = "<group>"; };
-		50535DB01833801BC07A84759DC42539 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+MASAdditions.m"; path = "Masonry/NSArray+MASAdditions.m"; sourceTree = "<group>"; };
-		52D16767D8C7D3FC10696F8A86035C88 /* MASConstraintMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraintMaker.m; path = Masonry/MASConstraintMaker.m; sourceTree = "<group>"; };
-		539CDAC175FF251E0FCE989E4726DC45 /* Masonry.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.xcconfig; sourceTree = "<group>"; };
-		5415EDCD55D0CF4FC69BA9209C91E042 /* RITLWebScriptMessageHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLWebScriptMessageHandler.h; path = RITLKit/Web/RITLWebScriptMessageHandler.h; sourceTree = "<group>"; };
-		5590AC85DEEF1A859F9DF39B96566898 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASAdditions.h"; path = "Masonry/NSArray+MASAdditions.h"; sourceTree = "<group>"; };
-		566AD85F641FB358AC20C95AE2043BDB /* LLSegmentBarConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLSegmentBarConfig.m; path = RITLKit/ScrollPageController/LLSegmentBar/Classes/LLSegmentBarConfig.m; sourceTree = "<group>"; };
-		58C66B22A22CF0A8A7E84B9D86F7C72B /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASShorthandAdditions.h"; path = "Masonry/View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
-		5B39207108024CD3BED1179EEBBA865A /* RITLImagePickerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLImagePickerController.h; path = RITLKit/ImagePicker/RITLImagePickerController.h; sourceTree = "<group>"; };
-		5E8A268B8FA3333F6E081F35F5205601 /* NSDictionary+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+RITLExtension.h"; path = "RITLKit/Category/NSDictionary+RITLExtension.h"; sourceTree = "<group>"; };
-		61F0201100D1432487BC0929BC0AE46F /* UIView+LLSegmentBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+LLSegmentBar.m"; path = "RITLKit/ScrollPageController/LLSegmentBar/Classes/UIView+LLSegmentBar.m"; sourceTree = "<group>"; };
-		68FAD40A269CD34A6EA0CEC4EA687C1B /* UIButton+RITLKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+RITLKit.m"; path = "RITLKit/Category/UIButton+RITLKit.m"; sourceTree = "<group>"; };
-		6A18D15697EE97ACBF51EC78CB6FD9DC /* RITLSearchTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLSearchTextField.m; path = RITLKit/View/SearchBar/RITLSearchTextField.m; sourceTree = "<group>"; };
-		6B86B38C82FD0F45960652BE5059C84B /* UIViewController+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+RITLExtension.h"; path = "RITLKit/Category/UIViewController+RITLExtension.h"; sourceTree = "<group>"; };
-		6E022C0873526E4A954F432526B103F7 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ViewController+MASAdditions.m"; path = "Masonry/ViewController+MASAdditions.m"; sourceTree = "<group>"; };
-		70860085E5EF90669D1C7B182070C63C /* NSArray+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+RITLExtension.h"; path = "RITLKit/Category/NSArray+RITLExtension.h"; sourceTree = "<group>"; };
-		733395C0A476553996DF29F1ACC24F1D /* RITLItemButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLItemButton.h; path = RITLKit/View/Button/RITLItemButton.h; sourceTree = "<group>"; };
-		738B7A0A6F5CDF62187FAF7716AD9D65 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASCompositeConstraint.h; path = Masonry/MASCompositeConstraint.h; sourceTree = "<group>"; };
-		73AC945C29CC715EDEECCAC6E40A2B3D /* RITLWebViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLWebViewController.m; path = RITLKit/Web/RITLWebViewController.m; sourceTree = "<group>"; };
-		7457290CD44F0DE79F9E75535D6571AC /* UIView+RITLFrameChanged.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+RITLFrameChanged.m"; path = "RITLViewFrame/UIView+RITLFrameChanged.m"; sourceTree = "<group>"; };
-		76DE856F6D1D3863F9A1E11CFD096D40 /* RITLScrollPageViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLScrollPageViewController.h; path = RITLKit/ScrollPageController/RITLScrollPageViewController.h; sourceTree = "<group>"; };
-		7780833323F8FD515E1DE96D7A5E412D /* LLSegmentBarVC.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLSegmentBarVC.m; path = RITLKit/ScrollPageController/LLSegmentBar/Classes/LLSegmentBarVC.m; sourceTree = "<group>"; };
-		79AA6DF3672EF4167D699695BA178F0D /* Masonry-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Masonry-dummy.m"; sourceTree = "<group>"; };
-		7BF07320A0C6EBD9174E446BE4E9F105 /* CAGradientLayer+RITLGradientLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CAGradientLayer+RITLGradientLayer.h"; path = "RITLKit/Category/CAGradientLayer+RITLGradientLayer.h"; sourceTree = "<group>"; };
-		7FF2FD37DC7FD670AE950422CF1D562D /* RITLDictionaryProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLDictionaryProxy.m; path = RITLKit/Utility/Utility/RITLDictionaryProxy.m; sourceTree = "<group>"; };
-		8006122A550EDD9FF23844E190DCD2B7 /* RITLUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLUtility.m; path = RITLKit/Utility/Utility/RITLUtility.m; sourceTree = "<group>"; };
-		823F46A4E15923BC6453467E5987F561 /* LLSegmentBarVC.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LLSegmentBarVC.h; path = RITLKit/ScrollPageController/LLSegmentBar/Classes/LLSegmentBarVC.h; sourceTree = "<group>"; };
-		84B7058EA6929CC9787364674BAD56E5 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+MASDebugAdditions.h"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
-		889B49C7B6734491281EFAE09EE24B49 /* RITLDownLoaderFileManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLDownLoaderFileManager.h; path = RITLKit/Utility/DownLoader/RITLDownLoaderFileManager.h; sourceTree = "<group>"; };
-		8C12F84410774B2E2D2A41F9EAECB741 /* RITLViewExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLViewExtension.m; path = RITLKit/Utility/Utility/RITLViewExtension.m; sourceTree = "<group>"; };
-		904C8950192FFCFF0ED0B00EA3D4981A /* RITLScriptMessageHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLScriptMessageHandler.h; path = RITLKit/Web/RITLScriptMessageHandler.h; sourceTree = "<group>"; };
-		91FB686F0A2DB3402474DD19409E7302 /* RITLTimer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLTimer.h; path = RITLKit/Utility/Utility/RITLTimer.h; sourceTree = "<group>"; };
-		94406CE358A96C4541D08F43CE0B542B /* MASConstraint+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MASConstraint+Private.h"; path = "Masonry/MASConstraint+Private.h"; sourceTree = "<group>"; };
-		94641AF13E1C58FE1727FCFCB6C46682 /* RITLFileDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLFileDownloader.h; path = RITLKit/Utility/DownLoader/RITLFileDownloader.h; sourceTree = "<group>"; };
-		94CA632C52F48E673B671BF4C86BC9BB /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+MASDebugAdditions.m"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
+		30030CB45C49083F1DEC7E576D96E9F4 /* MASUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASUtilities.h; path = Masonry/MASUtilities.h; sourceTree = "<group>"; };
+		306C1A9830DDF40D6F6529E110CC7D49 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASCompositeConstraint.h; path = Masonry/MASCompositeConstraint.h; sourceTree = "<group>"; };
+		322410F484C87BD3F21DE848860B2E21 /* UIView+LLSegmentBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+LLSegmentBar.m"; path = "RITLKit/ScrollPageController/LLSegmentBar/Classes/UIView+LLSegmentBar.m"; sourceTree = "<group>"; };
+		35BA4EEC77B0C92500100D05AC61973A /* AppleReachability.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AppleReachability.m; path = RITLKit/Utility/Reachability/AppleReachability.m; sourceTree = "<group>"; };
+		39F1A81EA4546E200F30A184123F9A7F /* RITLViewExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLViewExtension.h; path = RITLKit/Utility/Utility/RITLViewExtension.h; sourceTree = "<group>"; };
+		3AD41791BF3174329537D634E1307E5A /* UINavigationController+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+RITLExtension.m"; path = "RITLKit/Category/UINavigationController+RITLExtension.m"; sourceTree = "<group>"; };
+		3BAF361EE89925CEF7FCD3F179906EEE /* AppleReachability.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AppleReachability.h; path = RITLKit/Utility/Reachability/AppleReachability.h; sourceTree = "<group>"; };
+		3DFEF575CDC45893A006887B264ED391 /* UIButton+RITLKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+RITLKit.h"; path = "RITLKit/Category/UIButton+RITLKit.h"; sourceTree = "<group>"; };
+		44ECF5B4A1348112E9A43AF8A60B74E8 /* CAGradientLayer+RITLGradientLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CAGradientLayer+RITLGradientLayer.h"; path = "RITLKit/Category/CAGradientLayer+RITLGradientLayer.h"; sourceTree = "<group>"; };
+		477301AACBCF765B09BC4E029EDE5625 /* RITLRuntimeTool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLRuntimeTool.h; path = RITLKit/Utility/Utility/RITLRuntimeTool.h; sourceTree = "<group>"; };
+		4AB4C52D99767EDCB35B27ADB001E59B /* LLSegmentBarVC.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LLSegmentBarVC.h; path = RITLKit/ScrollPageController/LLSegmentBar/Classes/LLSegmentBarVC.h; sourceTree = "<group>"; };
+		4B8464106707DD1C491209D9B500F473 /* UITableView+RITLCellRegister.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableView+RITLCellRegister.m"; path = "RITLKit/Category/UITableView/UITableView+RITLCellRegister.m"; sourceTree = "<group>"; };
+		4C7FCEEC9F1DAB1AEA6A05638D025512 /* Masonry-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Masonry-prefix.pch"; sourceTree = "<group>"; };
+		4E6DA69A480F81B210D5760C8B48A15D /* UIView+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+RITLExtension.h"; path = "RITLKit/Category/UIView/UIView+RITLExtension.h"; sourceTree = "<group>"; };
+		4E7ECD4401E1B32F1144DA12FB54C469 /* RITLItemButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLItemButton.m; path = RITLKit/View/Button/RITLItemButton.m; sourceTree = "<group>"; };
+		50988E8C5CB2D79B072C6833192AFC61 /* RITLKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLKit.h; path = RITLKit/RITLKit.h; sourceTree = "<group>"; };
+		51B3E4B5243075C47E85F34AF0D043CD /* RITLDownLoaderFileManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLDownLoaderFileManager.h; path = RITLKit/Utility/DownLoader/RITLDownLoaderFileManager.h; sourceTree = "<group>"; };
+		55D56E7567E56AB0CB57B0D5188D7630 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASCompositeConstraint.m; path = Masonry/MASCompositeConstraint.m; sourceTree = "<group>"; };
+		57CC1F4056A194D00290DB550391B6FD /* RITLTimer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLTimer.h; path = RITLKit/Utility/Utility/RITLTimer.h; sourceTree = "<group>"; };
+		580289FCC84BC08BAA0DAD24EA0787AB /* NSDate+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+RITLExtension.h"; path = "RITLKit/Category/NSDate+RITLExtension.h"; sourceTree = "<group>"; };
+		58C9D176023550B32CAAD8EC2BBB4552 /* RITLKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RITLKit.debug.xcconfig; sourceTree = "<group>"; };
+		62885A597DDC37A29D579B7D0D26106D /* Masonry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.release.xcconfig; sourceTree = "<group>"; };
+		65B8C191673810B21E4151D936231AAE /* UIControl+RITLBlockButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIControl+RITLBlockButton.h"; path = "RITLKit/Category/UIControl+RITLBlockButton.h"; sourceTree = "<group>"; };
+		67BD51364723B1D05840C449913A8753 /* RITLFileDownloader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLFileDownloader.m; path = RITLKit/Utility/DownLoader/RITLFileDownloader.m; sourceTree = "<group>"; };
+		702A4CDDA2ADE10ED649CEB2E217190C /* RITLViewExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLViewExtension.m; path = RITLKit/Utility/Utility/RITLViewExtension.m; sourceTree = "<group>"; };
+		71548E403768D2E42F29C6DD696D7E2F /* UIButton+RITLKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+RITLKit.m"; path = "RITLKit/Category/UIButton+RITLKit.m"; sourceTree = "<group>"; };
+		72FA7E73B9AA47091A36E2C8B609909F /* NSString+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+RITLExtension.h"; path = "RITLKit/Category/NSString+RITLExtension.h"; sourceTree = "<group>"; };
+		7E4945246D69724288D35944BE539746 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+MASDebugAdditions.m"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
+		7F4E96F58CB0F3E21C0C759BA965E153 /* RITLSearchTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLSearchTextField.h; path = RITLKit/View/SearchBar/RITLSearchTextField.h; sourceTree = "<group>"; };
+		806577ED55377B95391B3699C76F68B1 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ViewController+MASAdditions.h"; path = "Masonry/ViewController+MASAdditions.h"; sourceTree = "<group>"; };
+		80C916BF48C5C761A5A9E7411D10A197 /* RITLImagePickerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLImagePickerController.h; path = RITLKit/ImagePicker/RITLImagePickerController.h; sourceTree = "<group>"; };
+		82C5CA78B45FF6717945C472D8C14F36 /* RITLDictionaryProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLDictionaryProxy.m; path = RITLKit/Utility/Utility/RITLDictionaryProxy.m; sourceTree = "<group>"; };
+		8539E8DFB72E723A0E5EF47EB78E9F7B /* UITableView+RITLCellRegister.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableView+RITLCellRegister.h"; path = "RITLKit/Category/UITableView/UITableView+RITLCellRegister.h"; sourceTree = "<group>"; };
+		878EC35AF06565F749C633254B2048E8 /* RITLImagePickerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLImagePickerController.m; path = RITLKit/ImagePicker/RITLImagePickerController.m; sourceTree = "<group>"; };
+		898C76BE3FDABAAD0C8FDDA079ED3BBD /* NSString+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+RITLExtension.m"; path = "RITLKit/Category/NSString+RITLExtension.m"; sourceTree = "<group>"; };
+		8BC4D855E40F4969F2C6CDC994F9D279 /* UITableView+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableView+RITLExtension.h"; path = "RITLKit/Category/UITableView/UITableView+RITLExtension.h"; sourceTree = "<group>"; };
+		8E9FCCB1A1CF82AF54F0349295A4F4AD /* UIColor+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+RITLExtension.h"; path = "RITLKit/Category/UIColor+RITLExtension.h"; sourceTree = "<group>"; };
+		932F5D74C0E88A6E6DA2230C543771F2 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASLayoutConstraint.m; path = Masonry/MASLayoutConstraint.m; sourceTree = "<group>"; };
+		945CE39C2A89AC03EA08E36DBDF9202B /* NSDate+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+RITLExtension.m"; path = "RITLKit/Category/NSDate+RITLExtension.m"; sourceTree = "<group>"; };
+		948518F854B48FAC55B26BD6291646D5 /* MASConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraint.h; path = Masonry/MASConstraint.h; sourceTree = "<group>"; };
 		955DE17B1306B733B33717B193687CFF /* Pods-RITLPhotoDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RITLPhotoDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		95E248E30DA4980D1536B282F5E6B929 /* RITLWebScriptMessageHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLWebScriptMessageHandler.m; path = RITLKit/Web/RITLWebScriptMessageHandler.m; sourceTree = "<group>"; };
-		9640BC13BBC2513927899C792599466D /* RITLKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RITLKit-prefix.pch"; sourceTree = "<group>"; };
-		974A3E925955D4F276A3C3655BE42594 /* UILabel+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UILabel+RITLExtension.h"; path = "RITLKit/Category/UILabel+RITLExtension.h"; sourceTree = "<group>"; };
-		974D7C9EAD824193DBA92A0C9A997706 /* RITLFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLFilter.h; path = RITLKit/Utility/Filter/RITLFilter.h; sourceTree = "<group>"; };
+		956574436BA2F7A9DFE86198B5AA3CE4 /* NSObject+RITLMutable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RITLMutable.h"; path = "RITLKit/Category/NSObject+RITLMutable.h"; sourceTree = "<group>"; };
+		972CB16C02EEDD5A0FFFCC58201E3D19 /* RITLDownLoaderFileManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLDownLoaderFileManager.m; path = RITLKit/Utility/DownLoader/RITLDownLoaderFileManager.m; sourceTree = "<group>"; };
+		97733A8BA5497B015A80551A8F2D1860 /* MASConstraintMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraintMaker.m; path = Masonry/MASConstraintMaker.m; sourceTree = "<group>"; };
 		977B2702B73C31BB1ACD6E74AD0E9599 /* libRITLKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRITLKit.a; path = libRITLKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		984AB6CB8366049A9091983F3ECF4D59 /* RITLSearchView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLSearchView.h; path = RITLKit/View/SearchBar/RITLSearchView.h; sourceTree = "<group>"; };
+		981428A2624071EA9269B9A29D1B4E49 /* MASConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraint.m; path = Masonry/MASConstraint.m; sourceTree = "<group>"; };
+		9B1D53EE16E447218E0C4EF18B0855D5 /* UIImage+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+RITLExtension.h"; path = "RITLKit/Category/UIImage+RITLExtension.h"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A17465719DF874E215D36DB10039F5B6 /* RITLScriptMessageHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLScriptMessageHandler.m; path = RITLKit/Web/RITLScriptMessageHandler.m; sourceTree = "<group>"; };
+		A0D20DD81B0F973277495A1BFAE32FAB /* NSArray+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+RITLExtension.h"; path = "RITLKit/Category/NSArray+RITLExtension.h"; sourceTree = "<group>"; };
+		A13F1E9E44B3467B12436BF2B7505F48 /* RITLKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RITLKit.release.xcconfig; sourceTree = "<group>"; };
 		A317064FDA3C2CD5B7110AAC96419E4E /* Pods-RITLPhotoDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RITLPhotoDemo-acknowledgements.plist"; sourceTree = "<group>"; };
-		A34CED9B3ED113DFE3993E837A004666 /* MASViewConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewConstraint.m; path = Masonry/MASViewConstraint.m; sourceTree = "<group>"; };
-		A38F55D7541B53A61443E4752B2B7D3A /* MASViewAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewAttribute.m; path = Masonry/MASViewAttribute.m; sourceTree = "<group>"; };
-		A57021D52CF7E0508A8269EF09C026BA /* RITLScrollPageViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLScrollPageViewController.m; path = RITLKit/ScrollPageController/RITLScrollPageViewController.m; sourceTree = "<group>"; };
-		A81815FCE5FF28359F867991168B0EE3 /* RITLRuntimeTool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLRuntimeTool.h; path = RITLKit/Utility/Utility/RITLRuntimeTool.h; sourceTree = "<group>"; };
-		AB276AE9D97472EFF044C0B8644F3575 /* RITLRuntimeTool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLRuntimeTool.m; path = RITLKit/Utility/Utility/RITLRuntimeTool.m; sourceTree = "<group>"; };
-		AC171402B942B967DB2E6B6E38EF077F /* RITLItemButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLItemButton.m; path = RITLKit/View/Button/RITLItemButton.m; sourceTree = "<group>"; };
-		AE163990CC8822E2F836F4BE7FDB89BB /* UIControl+RITLBlockButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIControl+RITLBlockButton.m"; path = "RITLKit/Category/UIControl+RITLBlockButton.m"; sourceTree = "<group>"; };
-		AE745175EDAF519EA39CBA8BE04D1752 /* Masonry-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Masonry-prefix.pch"; sourceTree = "<group>"; };
+		A3728E930C964DAEF016A36742B268BC /* RITLUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLUtility.m; path = RITLKit/Utility/Utility/RITLUtility.m; sourceTree = "<group>"; };
+		A49DCE7EB511BA883ECC61863BF62445 /* RITLWebScriptMessageHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLWebScriptMessageHandler.h; path = RITLKit/Web/RITLWebScriptMessageHandler.h; sourceTree = "<group>"; };
+		A8288644756B7A72FB11824BAC94246D /* Masonry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Masonry.h; path = Masonry/Masonry.h; sourceTree = "<group>"; };
+		AD6D0A96DBBA17BD2D70736885DAEECE /* RITLWebViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLWebViewController.h; path = RITLKit/Web/RITLWebViewController.h; sourceTree = "<group>"; };
+		AD6F17B0CB2C77EE40C7A6E91A933063 /* RITLViewFrame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RITLViewFrame.debug.xcconfig; sourceTree = "<group>"; };
+		ADC6D0B600C97F0DBE1C1CC0244BA842 /* RITLRuntimeTool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLRuntimeTool.m; path = RITLKit/Utility/Utility/RITLRuntimeTool.m; sourceTree = "<group>"; };
+		AE62C23CAAE61231A43E623D7837FEC5 /* RITLKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RITLKit-dummy.m"; sourceTree = "<group>"; };
+		AEA8F504164AC94E06160FEE67E972F0 /* RITLKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RITLKit-prefix.pch"; sourceTree = "<group>"; };
 		AF522FC5B3A237C9D539462AB1DC1AB8 /* Pods-RITLPhotoDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RITLPhotoDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		AFEF07BC14912B777104AC2079DE66EB /* Pods-RITLPhotoDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RITLPhotoDemo-dummy.m"; sourceTree = "<group>"; };
-		B386ED5570D41F53D409D71D077D83A0 /* RITLSearchTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLSearchTextField.h; path = RITLKit/View/SearchBar/RITLSearchTextField.h; sourceTree = "<group>"; };
-		B80EDD6F23C384CE28967815537FD09C /* LLSegmentBarConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LLSegmentBarConfig.h; path = RITLKit/ScrollPageController/LLSegmentBar/Classes/LLSegmentBarConfig.h; sourceTree = "<group>"; };
-		BC1A73C0B2730643CCFEC6B504B397B8 /* RITLViewFrame-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RITLViewFrame-dummy.m"; sourceTree = "<group>"; };
-		C18CC2AB3BBB848BAB7135C515300A86 /* Masonry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Masonry.h; path = Masonry/Masonry.h; sourceTree = "<group>"; };
-		C20D875AF1B27CBA7FEB548FB777C049 /* MASConstraintMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraintMaker.h; path = Masonry/MASConstraintMaker.h; sourceTree = "<group>"; };
-		C430E01C05997A6315A0CB40162FCD37 /* UIColor+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+RITLExtension.m"; path = "RITLKit/Category/UIColor+RITLExtension.m"; sourceTree = "<group>"; };
-		C4B5D81A702E0C3312546B65FC06BD99 /* NSString+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+RITLExtension.m"; path = "RITLKit/Category/NSString+RITLExtension.m"; sourceTree = "<group>"; };
-		C4E7DA24C723D98CDA45FAF5D9931A77 /* MASConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraint.m; path = Masonry/MASConstraint.m; sourceTree = "<group>"; };
-		C51FABEEBACDCF8B84421125731BC484 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ViewController+MASAdditions.h"; path = "Masonry/ViewController+MASAdditions.h"; sourceTree = "<group>"; };
-		C5FFF4A975871220E329F242DDB81CCF /* RITLFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLFilter.m; path = RITLKit/Utility/Filter/RITLFilter.m; sourceTree = "<group>"; };
-		CC009FDBA7BCBB5692556F0B478BA446 /* RITLKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLKit.h; path = RITLKit/RITLKit.h; sourceTree = "<group>"; };
-		CE0BD67A6ECA4ABD08FC1AD77A03056F /* UIView+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+RITLExtension.m"; path = "RITLKit/Category/UIView/UIView+RITLExtension.m"; sourceTree = "<group>"; };
-		D302CBABC97F87BDDB1EEF3DE510A782 /* NSObject+RITLMutable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RITLMutable.h"; path = "RITLKit/Category/NSObject+RITLMutable.h"; sourceTree = "<group>"; };
-		D36CA5DCB048B383E4B376EE49F626F9 /* RITLKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RITLKit.xcconfig; sourceTree = "<group>"; };
-		D4AC3F97D7334363DDE4F0A8B07F649C /* UINavigationController+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+RITLExtension.h"; path = "RITLKit/Category/UINavigationController+RITLExtension.h"; sourceTree = "<group>"; };
-		D4D446FFB92288243CE96956F751EC91 /* UIColor+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+RITLExtension.h"; path = "RITLKit/Category/UIColor+RITLExtension.h"; sourceTree = "<group>"; };
-		D50BAAE0F89D964D6D3F6FB9A72234AD /* UITableView+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableView+RITLExtension.m"; path = "RITLKit/Category/UITableView/UITableView+RITLExtension.m"; sourceTree = "<group>"; };
-		D9157BEF781F1E069C2D098A7A667D8A /* LLSegmentBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLSegmentBar.m; path = RITLKit/ScrollPageController/LLSegmentBar/Classes/LLSegmentBar.m; sourceTree = "<group>"; };
-		D99E44991A63E047BDF878841EF434F2 /* LLSegmentBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LLSegmentBar.h; path = RITLKit/ScrollPageController/LLSegmentBar/Classes/LLSegmentBar.h; sourceTree = "<group>"; };
-		DA1EA51691BC49610755ADCA0A49C0EC /* UIView+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+RITLExtension.h"; path = "RITLKit/Category/UIView/UIView+RITLExtension.h"; sourceTree = "<group>"; };
-		DB46D8D0D671ABAED85594EBDE741CF9 /* RITLImagePickerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLImagePickerController.m; path = RITLKit/ImagePicker/RITLImagePickerController.m; sourceTree = "<group>"; };
-		DB7CCCFDEBD9FCFFAE3587B3BCFF9FBA /* RITLKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RITLKit-dummy.m"; sourceTree = "<group>"; };
-		DBC82BA02297402D6C28ADAC43F472FB /* UIControl+RITLBlockButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIControl+RITLBlockButton.h"; path = "RITLKit/Category/UIControl+RITLBlockButton.h"; sourceTree = "<group>"; };
-		DC6CA0729A41A930819B81991002FC18 /* NSArray+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+RITLExtension.m"; path = "RITLKit/Category/NSArray+RITLExtension.m"; sourceTree = "<group>"; };
-		DE3F7AD13195249742783BBAF04F669E /* MASViewAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewAttribute.h; path = Masonry/MASViewAttribute.h; sourceTree = "<group>"; };
-		DF5AA0334006092DCC1D320E70EA7C2F /* View+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "View+MASAdditions.m"; path = "Masonry/View+MASAdditions.m"; sourceTree = "<group>"; };
-		E5A450481A5099DFBBE454E71A4A4D03 /* RITLUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLUtility.h; path = RITLKit/Utility/Utility/RITLUtility.h; sourceTree = "<group>"; };
-		E5BD5EB64B59DDF46A5F6A67C49151C3 /* UILabel+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UILabel+RITLExtension.m"; path = "RITLKit/Category/UILabel+RITLExtension.m"; sourceTree = "<group>"; };
-		E89ADF296A692FD7F57C50AC678E8728 /* RITLViewExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLViewExtension.h; path = RITLKit/Utility/Utility/RITLViewExtension.h; sourceTree = "<group>"; };
-		EB39538B23D3FB3EDFCFA41910695D1F /* UIImage+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RITLExtension.m"; path = "RITLKit/Category/UIImage+RITLExtension.m"; sourceTree = "<group>"; };
-		EE4D2415ADEAF765A1680AB1737B0642 /* UIViewController+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+RITLExtension.m"; path = "RITLKit/Category/UIViewController+RITLExtension.m"; sourceTree = "<group>"; };
-		EF6173F2F87A0E3282C726F6A70F3495 /* NSDate+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+RITLExtension.h"; path = "RITLKit/Category/NSDate+RITLExtension.h"; sourceTree = "<group>"; };
-		F110BD3B9818CEBDF89C7F5B34EC3804 /* AppleReachability.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AppleReachability.h; path = RITLKit/Utility/Reachability/AppleReachability.h; sourceTree = "<group>"; };
-		F209930698523BAB6929F016D2547475 /* MASLayoutConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASLayoutConstraint.h; path = Masonry/MASLayoutConstraint.h; sourceTree = "<group>"; };
-		F603C071953C887C370A30AE6A6D5DD4 /* UIImage+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+RITLExtension.h"; path = "RITLKit/Category/UIImage+RITLExtension.h"; sourceTree = "<group>"; };
-		FA12428AA9CAB028C7ACF4C503BA99C8 /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASShorthandAdditions.h"; path = "Masonry/NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		AFFB7CC726308BA04C713E1E65402013 /* MASConstraint+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MASConstraint+Private.h"; path = "Masonry/MASConstraint+Private.h"; sourceTree = "<group>"; };
+		B03D1339E83E0EEBFFF1FAAAFBEE9359 /* CAGradientLayer+RITLGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CAGradientLayer+RITLGradientLayer.m"; path = "RITLKit/Category/CAGradientLayer+RITLGradientLayer.m"; sourceTree = "<group>"; };
+		B1003415C87198C001A2DC12C7B0DB8E /* MASViewConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewConstraint.h; path = Masonry/MASViewConstraint.h; sourceTree = "<group>"; };
+		B1EC5BE9E538B694679EA89887281C27 /* LLSegmentBarVC.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LLSegmentBarVC.m; path = RITLKit/ScrollPageController/LLSegmentBar/Classes/LLSegmentBarVC.m; sourceTree = "<group>"; };
+		B242C0F2ABC6BC4A235BCC1C405847F6 /* LLSegmentBarConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LLSegmentBarConfig.h; path = RITLKit/ScrollPageController/LLSegmentBar/Classes/LLSegmentBarConfig.h; sourceTree = "<group>"; };
+		B45130A0D581221EF7DFB2866F747197 /* UIColor+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+RITLExtension.m"; path = "RITLKit/Category/UIColor+RITLExtension.m"; sourceTree = "<group>"; };
+		B78DF774EA720F9A0F52AD27A93DC054 /* RITLArchiverManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLArchiverManager.m; path = RITLKit/Utility/Utility/RITLArchiverManager.m; sourceTree = "<group>"; };
+		B8719E6C160E8C79E0B7D0D0741A284C /* Masonry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.debug.xcconfig; sourceTree = "<group>"; };
+		BADD0C60E930A789FE2B662F1DFF2BFF /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+MASDebugAdditions.h"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
+		C5799D0C25719B99CAB837AE05D6AEEE /* NSDictionary+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+RITLExtension.m"; path = "RITLKit/Category/NSDictionary+RITLExtension.m"; sourceTree = "<group>"; };
+		C959FCE0DC2DBD319D6D3A990C4F8C6A /* UIView+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+RITLExtension.m"; path = "RITLKit/Category/UIView/UIView+RITLExtension.m"; sourceTree = "<group>"; };
+		C998C143FA6E8F415391FBF3A8DAB7A9 /* MASViewConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewConstraint.m; path = Masonry/MASViewConstraint.m; sourceTree = "<group>"; };
+		C9BEB7DA0D21D54F15C41EE4D43579A6 /* RITLFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLFilter.h; path = RITLKit/Utility/Filter/RITLFilter.h; sourceTree = "<group>"; };
+		CBDDC7F2A3737C5B5456FB8CEFF41B40 /* RITLSearchView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLSearchView.m; path = RITLKit/View/SearchBar/RITLSearchView.m; sourceTree = "<group>"; };
+		CE91E433372552CEC69E96EF8C74A555 /* RITLScrollPageViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLScrollPageViewController.m; path = RITLKit/ScrollPageController/RITLScrollPageViewController.m; sourceTree = "<group>"; };
+		CFD73ECE0B58D625BE6326E3381720D5 /* MASConstraintMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraintMaker.h; path = Masonry/MASConstraintMaker.h; sourceTree = "<group>"; };
+		D0AD7058E768891BB63C01B10D113F93 /* UILabel+RITLExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UILabel+RITLExtension.m"; path = "RITLKit/Category/UILabel+RITLExtension.m"; sourceTree = "<group>"; };
+		D0E031AD30A44AAEA81129C8119BB542 /* RITLSearchView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLSearchView.h; path = RITLKit/View/SearchBar/RITLSearchView.h; sourceTree = "<group>"; };
+		D6A66067C392E18953A95AF8EE60A7C7 /* UILabel+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UILabel+RITLExtension.h"; path = "RITLKit/Category/UILabel+RITLExtension.h"; sourceTree = "<group>"; };
+		DAC9F27BFE68EEDB73F05000BAC8263E /* RITLItemButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLItemButton.h; path = RITLKit/View/Button/RITLItemButton.h; sourceTree = "<group>"; };
+		E035F0F8EA22A324169B21E16AF5A6FA /* MASLayoutConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASLayoutConstraint.h; path = Masonry/MASLayoutConstraint.h; sourceTree = "<group>"; };
+		E0698F958903AF79321CC6281D3A5A01 /* RITLScriptMessageHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLScriptMessageHandler.m; path = RITLKit/Web/RITLScriptMessageHandler.m; sourceTree = "<group>"; };
+		E085101E59E636D9A47850F24300525D /* RITLFilter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLFilter.m; path = RITLKit/Utility/Filter/RITLFilter.m; sourceTree = "<group>"; };
+		E20DC934429A167A52E0B5C9B1E786FD /* UINavigationController+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+RITLExtension.h"; path = "RITLKit/Category/UINavigationController+RITLExtension.h"; sourceTree = "<group>"; };
+		E2A5504560BBD80E75C142BE4483E693 /* Masonry-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Masonry-dummy.m"; sourceTree = "<group>"; };
+		E357F38B889494043C54176D3523A923 /* UIView+LLSegmentBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+LLSegmentBar.h"; path = "RITLKit/ScrollPageController/LLSegmentBar/Classes/UIView+LLSegmentBar.h"; sourceTree = "<group>"; };
+		E7E5CB1232B199A42EC138EBF78268FF /* RITLUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLUtility.h; path = RITLKit/Utility/Utility/RITLUtility.h; sourceTree = "<group>"; };
+		E8B364B22C85E5F78BEA7E30CC066151 /* RITLFileDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RITLFileDownloader.h; path = RITLKit/Utility/DownLoader/RITLFileDownloader.h; sourceTree = "<group>"; };
+		EB11A225229278F702319E2E37BD9382 /* RITLViewFrame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RITLViewFrame.release.xcconfig; sourceTree = "<group>"; };
+		ED9A38294C71EDDC2F4684354D30E23C /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ViewController+MASAdditions.m"; path = "Masonry/ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		F078A2C19CCD72053E433DB66AE7692C /* NSDictionary+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+RITLExtension.h"; path = "RITLKit/Category/NSDictionary+RITLExtension.h"; sourceTree = "<group>"; };
+		F30FB83CE8E9E960319E4004437DDA94 /* UIViewController+RITLExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+RITLExtension.h"; path = "RITLKit/Category/UIViewController+RITLExtension.h"; sourceTree = "<group>"; };
+		F3AE9EAED699CE8156C02F16767370CF /* RITLViewFrame-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RITLViewFrame-dummy.m"; sourceTree = "<group>"; };
+		F7E73E42025D990CCDCB0C43FF94F54A /* RITLTimer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RITLTimer.m; path = RITLKit/Utility/Utility/RITLTimer.m; sourceTree = "<group>"; };
+		FBC175D0C0C4B68342DCCBF9FB13C05F /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASShorthandAdditions.h"; path = "Masonry/NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		FE2E0D195AD94A8C1ED2ADBBAF6991F8 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASShorthandAdditions.h"; path = "Masonry/View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		FFF0229B18C57AE20B54E7076386A4CC /* UIView+RITLFrameChanged.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+RITLFrameChanged.h"; path = "RITLViewFrame/UIView+RITLFrameChanged.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,21 +292,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		29BD1A7946B8E24276E994448DEEA664 /* Frameworks */ = {
+		0818E16545E7AB424B74A2F9E7787B15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		497FFB1DB2D34DB89DBF77849D9D3B73 /* Frameworks */ = {
+		7BFC7A80F613412FD03F67CC4B49339A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D8C4EB8B98BCCB7397EACFC0629F6218 /* Frameworks */ = {
+		CE4DAF4A9AADCDC60522A2F6F2CF29D6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -316,107 +319,41 @@
 		053B350D1B89B5EF66C0E3E7CB24DF57 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				75B851CD55A380778C1178A43D541B76 /* Masonry */,
-				540A88D4F96B5D76A4F36CAC4B397EDC /* RITLKit */,
-				3D48F48E0E6934AB043FD2288603B4C2 /* RITLViewFrame */,
+				F3DB6EE3CE4FED8370EEE8246FF4C210 /* Masonry */,
+				F62203E3068A4933D8535E5D59ABB68F /* RITLKit */,
+				FD046CA901B8C9346F03EE54524C9ABB /* RITLViewFrame */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		0D211060082122F6C8A6E28E398E1D0D /* Utility */ = {
+		13C18939C90ACFE4207192B9C1E5D8AE /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				29CCCB8D259B9888B1349DCE7863B73F /* RITLArchiverManager.h */,
-				0494A6132E4AB3683FE26144281C243D /* RITLArchiverManager.m */,
-				23A3024722FF55BD76B8F9D9CB420EF0 /* RITLDictionaryProxy.h */,
-				7FF2FD37DC7FD670AE950422CF1D562D /* RITLDictionaryProxy.m */,
-				A81815FCE5FF28359F867991168B0EE3 /* RITLRuntimeTool.h */,
-				AB276AE9D97472EFF044C0B8644F3575 /* RITLRuntimeTool.m */,
-				91FB686F0A2DB3402474DD19409E7302 /* RITLTimer.h */,
-				3D505413C9EF92656BB95811D602EC0F /* RITLTimer.m */,
-				E5A450481A5099DFBBE454E71A4A4D03 /* RITLUtility.h */,
-				8006122A550EDD9FF23844E190DCD2B7 /* RITLUtility.m */,
-				E89ADF296A692FD7F57C50AC678E8728 /* RITLViewExtension.h */,
-				8C12F84410774B2E2D2A41F9EAECB741 /* RITLViewExtension.m */,
-				3E83F4CD36A59A2B40881E6096FEDC3F /* DownLoader */,
-				D2FBC2CEACE828F54C797624818C62A4 /* Filter */,
-				63438D909D23B22883F3A4636C5DC05C /* Reachability */,
+				80C916BF48C5C761A5A9E7411D10A197 /* RITLImagePickerController.h */,
+				878EC35AF06565F749C633254B2048E8 /* RITLImagePickerController.m */,
 			);
-			name = Utility;
+			name = ImagePicker;
 			sourceTree = "<group>";
 		};
-		30320590B89FAF00409006FAF0DD8910 /* Web */ = {
+		2B580B80C9CB4F2E7B71141A58D42150 /* DownLoader */ = {
 			isa = PBXGroup;
 			children = (
-				904C8950192FFCFF0ED0B00EA3D4981A /* RITLScriptMessageHandler.h */,
-				A17465719DF874E215D36DB10039F5B6 /* RITLScriptMessageHandler.m */,
-				5415EDCD55D0CF4FC69BA9209C91E042 /* RITLWebScriptMessageHandler.h */,
-				95E248E30DA4980D1536B282F5E6B929 /* RITLWebScriptMessageHandler.m */,
-				435A2B65A9EEBCF5170FEF58036417C4 /* RITLWebViewController.h */,
-				73AC945C29CC715EDEECCAC6E40A2B3D /* RITLWebViewController.m */,
-			);
-			name = Web;
-			sourceTree = "<group>";
-		};
-		3CBD77A612CDE8687011AB8AD921679D /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				7BF07320A0C6EBD9174E446BE4E9F105 /* CAGradientLayer+RITLGradientLayer.h */,
-				422F7BB95F5F5D7BA8E2799BE6A13FED /* CAGradientLayer+RITLGradientLayer.m */,
-				70860085E5EF90669D1C7B182070C63C /* NSArray+RITLExtension.h */,
-				DC6CA0729A41A930819B81991002FC18 /* NSArray+RITLExtension.m */,
-				EF6173F2F87A0E3282C726F6A70F3495 /* NSDate+RITLExtension.h */,
-				38EBBCC252F6B055420DE833CB34E3DE /* NSDate+RITLExtension.m */,
-				5E8A268B8FA3333F6E081F35F5205601 /* NSDictionary+RITLExtension.h */,
-				35787F7493FC4161C488CD9D10B2E8C1 /* NSDictionary+RITLExtension.m */,
-				D302CBABC97F87BDDB1EEF3DE510A782 /* NSObject+RITLMutable.h */,
-				4C572FCC4FDA7A1C1E69B3F6BAF8F61F /* NSObject+RITLMutable.m */,
-				488BE76AAC55AA9CB4A2237B9E548D14 /* NSString+RITLExtension.h */,
-				C4B5D81A702E0C3312546B65FC06BD99 /* NSString+RITLExtension.m */,
-				3E5CA94D8945027572D9451142845BE3 /* UIButton+RITLKit.h */,
-				68FAD40A269CD34A6EA0CEC4EA687C1B /* UIButton+RITLKit.m */,
-				D4D446FFB92288243CE96956F751EC91 /* UIColor+RITLExtension.h */,
-				C430E01C05997A6315A0CB40162FCD37 /* UIColor+RITLExtension.m */,
-				DBC82BA02297402D6C28ADAC43F472FB /* UIControl+RITLBlockButton.h */,
-				AE163990CC8822E2F836F4BE7FDB89BB /* UIControl+RITLBlockButton.m */,
-				F603C071953C887C370A30AE6A6D5DD4 /* UIImage+RITLExtension.h */,
-				EB39538B23D3FB3EDFCFA41910695D1F /* UIImage+RITLExtension.m */,
-				974A3E925955D4F276A3C3655BE42594 /* UILabel+RITLExtension.h */,
-				E5BD5EB64B59DDF46A5F6A67C49151C3 /* UILabel+RITLExtension.m */,
-				D4AC3F97D7334363DDE4F0A8B07F649C /* UINavigationController+RITLExtension.h */,
-				450A65851E066252F3BCC60769893EA0 /* UINavigationController+RITLExtension.m */,
-				04E4D1FE5D216E193D761D467CEF38DF /* UITableView+RITLCellRegister.h */,
-				464F0EDE3BCDF201A2FFE56A9D0112C1 /* UITableView+RITLCellRegister.m */,
-				14C3E0997FDC2F0D8527B4F8B1C90BBE /* UITableView+RITLExtension.h */,
-				D50BAAE0F89D964D6D3F6FB9A72234AD /* UITableView+RITLExtension.m */,
-				DA1EA51691BC49610755ADCA0A49C0EC /* UIView+RITLExtension.h */,
-				CE0BD67A6ECA4ABD08FC1AD77A03056F /* UIView+RITLExtension.m */,
-				6B86B38C82FD0F45960652BE5059C84B /* UIViewController+RITLExtension.h */,
-				EE4D2415ADEAF765A1680AB1737B0642 /* UIViewController+RITLExtension.m */,
-			);
-			name = Category;
-			sourceTree = "<group>";
-		};
-		3D48F48E0E6934AB043FD2288603B4C2 /* RITLViewFrame */ = {
-			isa = PBXGroup;
-			children = (
-				2E96A0CF7EBE55228986FEB369725579 /* UIView+RITLFrameChanged.h */,
-				7457290CD44F0DE79F9E75535D6571AC /* UIView+RITLFrameChanged.m */,
-				A16FBC1D62D9348F52D33D8C57B860C2 /* Support Files */,
-			);
-			name = RITLViewFrame;
-			path = RITLViewFrame;
-			sourceTree = "<group>";
-		};
-		3E83F4CD36A59A2B40881E6096FEDC3F /* DownLoader */ = {
-			isa = PBXGroup;
-			children = (
-				889B49C7B6734491281EFAE09EE24B49 /* RITLDownLoaderFileManager.h */,
-				42A5F0F43BD185020010F7EC79EA0AF8 /* RITLDownLoaderFileManager.m */,
-				94641AF13E1C58FE1727FCFCB6C46682 /* RITLFileDownloader.h */,
-				4F01F11C295431E1CDF903946F1788DF /* RITLFileDownloader.m */,
+				51B3E4B5243075C47E85F34AF0D043CD /* RITLDownLoaderFileManager.h */,
+				972CB16C02EEDD5A0FFFCC58201E3D19 /* RITLDownLoaderFileManager.m */,
+				E8B364B22C85E5F78BEA7E30CC066151 /* RITLFileDownloader.h */,
+				67BD51364723B1D05840C449913A8753 /* RITLFileDownloader.m */,
 			);
 			name = DownLoader;
+			sourceTree = "<group>";
+		};
+		3D68A1EDB1A36AAB78AA1A6B5C777237 /* ScrollPageController */ = {
+			isa = PBXGroup;
+			children = (
+				1463140EA36F92BF662C38EB29ADA9A4 /* RITLScrollPageViewController.h */,
+				CE91E433372552CEC69E96EF8C74A555 /* RITLScrollPageViewController.m */,
+				C32C7ED5D8FDF939FA7BA6E5EEBC41A6 /* LLSegmentBar */,
+			);
+			name = ScrollPageController;
 			sourceTree = "<group>";
 		};
 		40ECD010EA13FCAEC7B4C7A0DBF8484D /* Pods-RITLPhotoDemo */ = {
@@ -440,119 +377,89 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		540A88D4F96B5D76A4F36CAC4B397EDC /* RITLKit */ = {
+		45002C37AEE23631F0FB2F6F781DA174 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				CC009FDBA7BCBB5692556F0B478BA446 /* RITLKit.h */,
-				3CBD77A612CDE8687011AB8AD921679D /* Category */,
-				70AE3F0DFEFB18849DD160BA87326671 /* ImagePicker */,
-				9AE009B34507C74758705CB31EFAB110 /* ScrollPageController */,
-				E98D001A493F26963DC7AA3F66209FE8 /* Support Files */,
-				0D211060082122F6C8A6E28E398E1D0D /* Utility */,
-				D5944C893CCA21CEBBBD1A415D69E593 /* View */,
-				30320590B89FAF00409006FAF0DD8910 /* Web */,
+				44ECF5B4A1348112E9A43AF8A60B74E8 /* CAGradientLayer+RITLGradientLayer.h */,
+				B03D1339E83E0EEBFFF1FAAAFBEE9359 /* CAGradientLayer+RITLGradientLayer.m */,
+				A0D20DD81B0F973277495A1BFAE32FAB /* NSArray+RITLExtension.h */,
+				251896757A64670F96A2B7E8A8DD20C3 /* NSArray+RITLExtension.m */,
+				580289FCC84BC08BAA0DAD24EA0787AB /* NSDate+RITLExtension.h */,
+				945CE39C2A89AC03EA08E36DBDF9202B /* NSDate+RITLExtension.m */,
+				F078A2C19CCD72053E433DB66AE7692C /* NSDictionary+RITLExtension.h */,
+				C5799D0C25719B99CAB837AE05D6AEEE /* NSDictionary+RITLExtension.m */,
+				956574436BA2F7A9DFE86198B5AA3CE4 /* NSObject+RITLMutable.h */,
+				28FE1C0563AE010D50C8350C4B3CAC4C /* NSObject+RITLMutable.m */,
+				72FA7E73B9AA47091A36E2C8B609909F /* NSString+RITLExtension.h */,
+				898C76BE3FDABAAD0C8FDDA079ED3BBD /* NSString+RITLExtension.m */,
+				3DFEF575CDC45893A006887B264ED391 /* UIButton+RITLKit.h */,
+				71548E403768D2E42F29C6DD696D7E2F /* UIButton+RITLKit.m */,
+				8E9FCCB1A1CF82AF54F0349295A4F4AD /* UIColor+RITLExtension.h */,
+				B45130A0D581221EF7DFB2866F747197 /* UIColor+RITLExtension.m */,
+				65B8C191673810B21E4151D936231AAE /* UIControl+RITLBlockButton.h */,
+				21F7175461DCF12184012DAC2BC609FF /* UIControl+RITLBlockButton.m */,
+				9B1D53EE16E447218E0C4EF18B0855D5 /* UIImage+RITLExtension.h */,
+				210FD04A6DB151921F6E5DCE7B21E1A9 /* UIImage+RITLExtension.m */,
+				D6A66067C392E18953A95AF8EE60A7C7 /* UILabel+RITLExtension.h */,
+				D0AD7058E768891BB63C01B10D113F93 /* UILabel+RITLExtension.m */,
+				E20DC934429A167A52E0B5C9B1E786FD /* UINavigationController+RITLExtension.h */,
+				3AD41791BF3174329537D634E1307E5A /* UINavigationController+RITLExtension.m */,
+				8539E8DFB72E723A0E5EF47EB78E9F7B /* UITableView+RITLCellRegister.h */,
+				4B8464106707DD1C491209D9B500F473 /* UITableView+RITLCellRegister.m */,
+				8BC4D855E40F4969F2C6CDC994F9D279 /* UITableView+RITLExtension.h */,
+				015A4E3DC59DEE7E5144F6591EEFA694 /* UITableView+RITLExtension.m */,
+				4E6DA69A480F81B210D5760C8B48A15D /* UIView+RITLExtension.h */,
+				C959FCE0DC2DBD319D6D3A990C4F8C6A /* UIView+RITLExtension.m */,
+				F30FB83CE8E9E960319E4004437DDA94 /* UIViewController+RITLExtension.h */,
+				1E5A898AE15CDF5E10FC0EFCD4326DB1 /* UIViewController+RITLExtension.m */,
 			);
-			name = RITLKit;
-			path = RITLKit;
+			name = Category;
 			sourceTree = "<group>";
 		};
-		63438D909D23B22883F3A4636C5DC05C /* Reachability */ = {
+		65155B1F907B25BB32EC204903AB9552 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				F110BD3B9818CEBDF89C7F5B34EC3804 /* AppleReachability.h */,
-				13533CC64AB1C644639A1F4F2FBA96D7 /* AppleReachability.m */,
+				F3AE9EAED699CE8156C02F16767370CF /* RITLViewFrame-dummy.m */,
+				2CBBBDCB8A816655ADE715BADBD6BDE4 /* RITLViewFrame-prefix.pch */,
+				AD6F17B0CB2C77EE40C7A6E91A933063 /* RITLViewFrame.debug.xcconfig */,
+				EB11A225229278F702319E2E37BD9382 /* RITLViewFrame.release.xcconfig */,
 			);
-			name = Reachability;
+			name = "Support Files";
+			path = "../Target Support Files/RITLViewFrame";
 			sourceTree = "<group>";
 		};
-		6AE38F7FCF087281CA3D07B0B4548FFE /* Support Files */ = {
+		685F33938223A96BDA5FFC75E4F7BF10 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				539CDAC175FF251E0FCE989E4726DC45 /* Masonry.xcconfig */,
-				79AA6DF3672EF4167D699695BA178F0D /* Masonry-dummy.m */,
-				AE745175EDAF519EA39CBA8BE04D1752 /* Masonry-prefix.pch */,
+				E2A5504560BBD80E75C142BE4483E693 /* Masonry-dummy.m */,
+				4C7FCEEC9F1DAB1AEA6A05638D025512 /* Masonry-prefix.pch */,
+				B8719E6C160E8C79E0B7D0D0741A284C /* Masonry.debug.xcconfig */,
+				62885A597DDC37A29D579B7D0D26106D /* Masonry.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Masonry";
 			sourceTree = "<group>";
 		};
-		70AE3F0DFEFB18849DD160BA87326671 /* ImagePicker */ = {
+		72CA990A347CEA59D021DAB23BB3A3C5 /* Web */ = {
 			isa = PBXGroup;
 			children = (
-				5B39207108024CD3BED1179EEBBA865A /* RITLImagePickerController.h */,
-				DB46D8D0D671ABAED85594EBDE741CF9 /* RITLImagePickerController.m */,
+				213BA78E9A92061B87DE0687315099EB /* RITLScriptMessageHandler.h */,
+				E0698F958903AF79321CC6281D3A5A01 /* RITLScriptMessageHandler.m */,
+				A49DCE7EB511BA883ECC61863BF62445 /* RITLWebScriptMessageHandler.h */,
+				0462D25F9CC888EC1B2624FC2C7B1607 /* RITLWebScriptMessageHandler.m */,
+				AD6D0A96DBBA17BD2D70736885DAEECE /* RITLWebViewController.h */,
+				0297165417A281B761674B7E66BA4676 /* RITLWebViewController.m */,
 			);
-			name = ImagePicker;
+			name = Web;
 			sourceTree = "<group>";
 		};
-		75B851CD55A380778C1178A43D541B76 /* Masonry */ = {
+		86FDE143E29B0042895FFBFAAC6AA9B7 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				738B7A0A6F5CDF62187FAF7716AD9D65 /* MASCompositeConstraint.h */,
-				2D9F597680745A6209D4D8646AC0FCDC /* MASCompositeConstraint.m */,
-				21B6DBCCE7A3CB03D3FF1F52D6D3325F /* MASConstraint.h */,
-				C4E7DA24C723D98CDA45FAF5D9931A77 /* MASConstraint.m */,
-				94406CE358A96C4541D08F43CE0B542B /* MASConstraint+Private.h */,
-				C20D875AF1B27CBA7FEB548FB777C049 /* MASConstraintMaker.h */,
-				52D16767D8C7D3FC10696F8A86035C88 /* MASConstraintMaker.m */,
-				F209930698523BAB6929F016D2547475 /* MASLayoutConstraint.h */,
-				3C187856A642F71CED4F077F0AB05F67 /* MASLayoutConstraint.m */,
-				C18CC2AB3BBB848BAB7135C515300A86 /* Masonry.h */,
-				4B039E2C05476687693E837490EF77AB /* MASUtilities.h */,
-				DE3F7AD13195249742783BBAF04F669E /* MASViewAttribute.h */,
-				A38F55D7541B53A61443E4752B2B7D3A /* MASViewAttribute.m */,
-				11CCC42E74B81FC9BC82B6629B76FD46 /* MASViewConstraint.h */,
-				A34CED9B3ED113DFE3993E837A004666 /* MASViewConstraint.m */,
-				5590AC85DEEF1A859F9DF39B96566898 /* NSArray+MASAdditions.h */,
-				50535DB01833801BC07A84759DC42539 /* NSArray+MASAdditions.m */,
-				FA12428AA9CAB028C7ACF4C503BA99C8 /* NSArray+MASShorthandAdditions.h */,
-				84B7058EA6929CC9787364674BAD56E5 /* NSLayoutConstraint+MASDebugAdditions.h */,
-				94CA632C52F48E673B671BF4C86BC9BB /* NSLayoutConstraint+MASDebugAdditions.m */,
-				4D9D493EFB434237FD52EE393609384C /* View+MASAdditions.h */,
-				DF5AA0334006092DCC1D320E70EA7C2F /* View+MASAdditions.m */,
-				58C66B22A22CF0A8A7E84B9D86F7C72B /* View+MASShorthandAdditions.h */,
-				C51FABEEBACDCF8B84421125731BC484 /* ViewController+MASAdditions.h */,
-				6E022C0873526E4A954F432526B103F7 /* ViewController+MASAdditions.m */,
-				6AE38F7FCF087281CA3D07B0B4548FFE /* Support Files */,
+				C9BEB7DA0D21D54F15C41EE4D43579A6 /* RITLFilter.h */,
+				E085101E59E636D9A47850F24300525D /* RITLFilter.m */,
 			);
-			name = Masonry;
-			path = Masonry;
-			sourceTree = "<group>";
-		};
-		8C36BE78FC125AEC3CB5E9034A928259 /* LLSegmentBar */ = {
-			isa = PBXGroup;
-			children = (
-				D99E44991A63E047BDF878841EF434F2 /* LLSegmentBar.h */,
-				D9157BEF781F1E069C2D098A7A667D8A /* LLSegmentBar.m */,
-				B80EDD6F23C384CE28967815537FD09C /* LLSegmentBarConfig.h */,
-				566AD85F641FB358AC20C95AE2043BDB /* LLSegmentBarConfig.m */,
-				823F46A4E15923BC6453467E5987F561 /* LLSegmentBarVC.h */,
-				7780833323F8FD515E1DE96D7A5E412D /* LLSegmentBarVC.m */,
-				3149713445589461B60B352609B7E92C /* UIView+LLSegmentBar.h */,
-				61F0201100D1432487BC0929BC0AE46F /* UIView+LLSegmentBar.m */,
-			);
-			name = LLSegmentBar;
-			sourceTree = "<group>";
-		};
-		9AE009B34507C74758705CB31EFAB110 /* ScrollPageController */ = {
-			isa = PBXGroup;
-			children = (
-				76DE856F6D1D3863F9A1E11CFD096D40 /* RITLScrollPageViewController.h */,
-				A57021D52CF7E0508A8269EF09C026BA /* RITLScrollPageViewController.m */,
-				8C36BE78FC125AEC3CB5E9034A928259 /* LLSegmentBar */,
-			);
-			name = ScrollPageController;
-			sourceTree = "<group>";
-		};
-		A16FBC1D62D9348F52D33D8C57B860C2 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				39782B650DDA015108C005550E015C6A /* RITLViewFrame.xcconfig */,
-				BC1A73C0B2730643CCFEC6B504B397B8 /* RITLViewFrame-dummy.m */,
-				019A57D0D04F9AA02624FA362171B49F /* RITLViewFrame-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/RITLViewFrame";
+			name = Filter;
 			sourceTree = "<group>";
 		};
 		B50B78F7868210C9AF39D40013A9156A /* Products */ = {
@@ -566,6 +473,33 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C32C7ED5D8FDF939FA7BA6E5EEBC41A6 /* LLSegmentBar */ = {
+			isa = PBXGroup;
+			children = (
+				1A02AB839DEFDA7B87F8BE7705DF1DF7 /* LLSegmentBar.h */,
+				09203CE2266B5329CE3126B3D09235ED /* LLSegmentBar.m */,
+				B242C0F2ABC6BC4A235BCC1C405847F6 /* LLSegmentBarConfig.h */,
+				20BD77157F54DE2C3F927BECFC2BC254 /* LLSegmentBarConfig.m */,
+				4AB4C52D99767EDCB35B27ADB001E59B /* LLSegmentBarVC.h */,
+				B1EC5BE9E538B694679EA89887281C27 /* LLSegmentBarVC.m */,
+				E357F38B889494043C54176D3523A923 /* UIView+LLSegmentBar.h */,
+				322410F484C87BD3F21DE848860B2E21 /* UIView+LLSegmentBar.m */,
+			);
+			name = LLSegmentBar;
+			sourceTree = "<group>";
+		};
+		C3D2772685DCB17B648D278A9058EC28 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AE62C23CAAE61231A43E623D7837FEC5 /* RITLKit-dummy.m */,
+				AEA8F504164AC94E06160FEE67E972F0 /* RITLKit-prefix.pch */,
+				58C9D176023550B32CAAD8EC2BBB4552 /* RITLKit.debug.xcconfig */,
+				A13F1E9E44B3467B12436BF2B7505F48 /* RITLKit.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/RITLKit";
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
@@ -577,24 +511,15 @@
 			);
 			sourceTree = "<group>";
 		};
-		D2FBC2CEACE828F54C797624818C62A4 /* Filter */ = {
+		CFF1AC5ADA40BBE67C5C970ACD37469A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				974D7C9EAD824193DBA92A0C9A997706 /* RITLFilter.h */,
-				C5FFF4A975871220E329F242DDB81CCF /* RITLFilter.m */,
-			);
-			name = Filter;
-			sourceTree = "<group>";
-		};
-		D5944C893CCA21CEBBBD1A415D69E593 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				733395C0A476553996DF29F1ACC24F1D /* RITLItemButton.h */,
-				AC171402B942B967DB2E6B6E38EF077F /* RITLItemButton.m */,
-				B386ED5570D41F53D409D71D077D83A0 /* RITLSearchTextField.h */,
-				6A18D15697EE97ACBF51EC78CB6FD9DC /* RITLSearchTextField.m */,
-				984AB6CB8366049A9091983F3ECF4D59 /* RITLSearchView.h */,
-				0A602185C01E526954126FFBD18F2534 /* RITLSearchView.m */,
+				DAC9F27BFE68EEDB73F05000BAC8263E /* RITLItemButton.h */,
+				4E7ECD4401E1B32F1144DA12FB54C469 /* RITLItemButton.m */,
+				7F4E96F58CB0F3E21C0C759BA965E153 /* RITLSearchTextField.h */,
+				1B2095DFD708BEA4170ADA609F46DCA5 /* RITLSearchTextField.m */,
+				D0E031AD30A44AAEA81129C8119BB542 /* RITLSearchView.h */,
+				CBDDC7F2A3737C5B5456FB8CEFF41B40 /* RITLSearchView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -606,15 +531,96 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E98D001A493F26963DC7AA3F66209FE8 /* Support Files */ = {
+		E4CE8E41CA8FAE51A98233CE2B7AC050 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				D36CA5DCB048B383E4B376EE49F626F9 /* RITLKit.xcconfig */,
-				DB7CCCFDEBD9FCFFAE3587B3BCFF9FBA /* RITLKit-dummy.m */,
-				9640BC13BBC2513927899C792599466D /* RITLKit-prefix.pch */,
+				3BAF361EE89925CEF7FCD3F179906EEE /* AppleReachability.h */,
+				35BA4EEC77B0C92500100D05AC61973A /* AppleReachability.m */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/RITLKit";
+			name = Reachability;
+			sourceTree = "<group>";
+		};
+		E4D0A1201570E60CDF3EB9EF1B519A92 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				1DF7F83F8D0C1533C8F0AAB785BEC195 /* RITLArchiverManager.h */,
+				B78DF774EA720F9A0F52AD27A93DC054 /* RITLArchiverManager.m */,
+				1C41500304D3BA0A72792C68214853B1 /* RITLDictionaryProxy.h */,
+				82C5CA78B45FF6717945C472D8C14F36 /* RITLDictionaryProxy.m */,
+				477301AACBCF765B09BC4E029EDE5625 /* RITLRuntimeTool.h */,
+				ADC6D0B600C97F0DBE1C1CC0244BA842 /* RITLRuntimeTool.m */,
+				57CC1F4056A194D00290DB550391B6FD /* RITLTimer.h */,
+				F7E73E42025D990CCDCB0C43FF94F54A /* RITLTimer.m */,
+				E7E5CB1232B199A42EC138EBF78268FF /* RITLUtility.h */,
+				A3728E930C964DAEF016A36742B268BC /* RITLUtility.m */,
+				39F1A81EA4546E200F30A184123F9A7F /* RITLViewExtension.h */,
+				702A4CDDA2ADE10ED649CEB2E217190C /* RITLViewExtension.m */,
+				2B580B80C9CB4F2E7B71141A58D42150 /* DownLoader */,
+				86FDE143E29B0042895FFBFAAC6AA9B7 /* Filter */,
+				E4CE8E41CA8FAE51A98233CE2B7AC050 /* Reachability */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		F3DB6EE3CE4FED8370EEE8246FF4C210 /* Masonry */ = {
+			isa = PBXGroup;
+			children = (
+				306C1A9830DDF40D6F6529E110CC7D49 /* MASCompositeConstraint.h */,
+				55D56E7567E56AB0CB57B0D5188D7630 /* MASCompositeConstraint.m */,
+				948518F854B48FAC55B26BD6291646D5 /* MASConstraint.h */,
+				981428A2624071EA9269B9A29D1B4E49 /* MASConstraint.m */,
+				AFFB7CC726308BA04C713E1E65402013 /* MASConstraint+Private.h */,
+				CFD73ECE0B58D625BE6326E3381720D5 /* MASConstraintMaker.h */,
+				97733A8BA5497B015A80551A8F2D1860 /* MASConstraintMaker.m */,
+				E035F0F8EA22A324169B21E16AF5A6FA /* MASLayoutConstraint.h */,
+				932F5D74C0E88A6E6DA2230C543771F2 /* MASLayoutConstraint.m */,
+				A8288644756B7A72FB11824BAC94246D /* Masonry.h */,
+				30030CB45C49083F1DEC7E576D96E9F4 /* MASUtilities.h */,
+				1380052ADAB0784C5EC2C9B1C5FE966C /* MASViewAttribute.h */,
+				0ECA932B88F6ABEF7308FB6BA895105A /* MASViewAttribute.m */,
+				B1003415C87198C001A2DC12C7B0DB8E /* MASViewConstraint.h */,
+				C998C143FA6E8F415391FBF3A8DAB7A9 /* MASViewConstraint.m */,
+				0C4A4EBC29CABBBAD4626B4BC5BC6DF0 /* NSArray+MASAdditions.h */,
+				25B09E623EBFD707899E23122660C97F /* NSArray+MASAdditions.m */,
+				FBC175D0C0C4B68342DCCBF9FB13C05F /* NSArray+MASShorthandAdditions.h */,
+				BADD0C60E930A789FE2B662F1DFF2BFF /* NSLayoutConstraint+MASDebugAdditions.h */,
+				7E4945246D69724288D35944BE539746 /* NSLayoutConstraint+MASDebugAdditions.m */,
+				13FB44EAFD3203D5AF81278A140BC649 /* View+MASAdditions.h */,
+				2E106B25B8256F48B6BDB5C2ACFCC794 /* View+MASAdditions.m */,
+				FE2E0D195AD94A8C1ED2ADBBAF6991F8 /* View+MASShorthandAdditions.h */,
+				806577ED55377B95391B3699C76F68B1 /* ViewController+MASAdditions.h */,
+				ED9A38294C71EDDC2F4684354D30E23C /* ViewController+MASAdditions.m */,
+				685F33938223A96BDA5FFC75E4F7BF10 /* Support Files */,
+			);
+			name = Masonry;
+			path = Masonry;
+			sourceTree = "<group>";
+		};
+		F62203E3068A4933D8535E5D59ABB68F /* RITLKit */ = {
+			isa = PBXGroup;
+			children = (
+				50988E8C5CB2D79B072C6833192AFC61 /* RITLKit.h */,
+				45002C37AEE23631F0FB2F6F781DA174 /* Category */,
+				13C18939C90ACFE4207192B9C1E5D8AE /* ImagePicker */,
+				3D68A1EDB1A36AAB78AA1A6B5C777237 /* ScrollPageController */,
+				C3D2772685DCB17B648D278A9058EC28 /* Support Files */,
+				E4D0A1201570E60CDF3EB9EF1B519A92 /* Utility */,
+				CFF1AC5ADA40BBE67C5C970ACD37469A /* View */,
+				72CA990A347CEA59D021DAB23BB3A3C5 /* Web */,
+			);
+			name = RITLKit;
+			path = RITLKit;
+			sourceTree = "<group>";
+		};
+		FD046CA901B8C9346F03EE54524C9ABB /* RITLViewFrame */ = {
+			isa = PBXGroup;
+			children = (
+				FFF0229B18C57AE20B54E7076386A4CC /* UIView+RITLFrameChanged.h */,
+				147D97A7963749DF1850AFF2B226BAF2 /* UIView+RITLFrameChanged.m */,
+				65155B1F907B25BB32EC204903AB9552 /* Support Files */,
+			);
+			name = RITLViewFrame;
+			path = RITLViewFrame;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -625,8 +631,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				92BF70E9D3285561EB404A7C4A4A6DEE /* MASCompositeConstraint.h in Headers */,
-				4CE091F886EC6324673EFE0AEBBEA0FE /* MASConstraint+Private.h in Headers */,
 				EB663E3E1EB4BB670DC29B77DB330135 /* MASConstraint.h in Headers */,
+				4CE091F886EC6324673EFE0AEBBEA0FE /* MASConstraint+Private.h in Headers */,
 				9194B58ACE900ED6BAE6AD92E24A2CFF /* MASConstraintMaker.h in Headers */,
 				7CF2AC7A3B3ED03B30C1E4ED662B0551 /* MASLayoutConstraint.h in Headers */,
 				B20A0E5D8F9BCED1A82793C4BE9E7258 /* Masonry.h in Headers */,
@@ -642,64 +648,64 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2B709CFA11E7526CFE5F43094597F51E /* Headers */ = {
+		4079C0D2C974720189281D76C0D662B7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D97965AD5F0C5E0D4BCA771A9B9EBBE1 /* AppleReachability.h in Headers */,
-				7AB189A61E09DFE449FCB2548475303B /* CAGradientLayer+RITLGradientLayer.h in Headers */,
-				BAC817F71C8EEE4B3C4E892488CF2AB4 /* LLSegmentBar.h in Headers */,
-				4433D09D300569E94899E1CFB9924297 /* LLSegmentBarConfig.h in Headers */,
-				D2B1AE3524170AEC331B7B09FFA9C981 /* LLSegmentBarVC.h in Headers */,
-				8EADAD32D16CD99B3633EC4FE7AB6AEA /* NSArray+RITLExtension.h in Headers */,
-				6E5CEBF45A7FD3A93122A293A15AC75A /* NSDate+RITLExtension.h in Headers */,
-				ABA5B55CB8407A6A99C4708DD3C31EDB /* NSDictionary+RITLExtension.h in Headers */,
-				08C602AF50375D6A0B8BAED30EF3702F /* NSObject+RITLMutable.h in Headers */,
-				873B11B264FD1324ACE8234C490EC252 /* NSString+RITLExtension.h in Headers */,
-				A764B68B8E03476C4A7DB4CADE414F28 /* RITLArchiverManager.h in Headers */,
-				F6109190259627CB1FC7668A02221C18 /* RITLDictionaryProxy.h in Headers */,
-				F2C568BCC45212DCFD3ED4FD7ADE17E6 /* RITLDownLoaderFileManager.h in Headers */,
-				95FB83696C44162B1D7FD59682D35610 /* RITLFileDownloader.h in Headers */,
-				0E6D75FE7F4CC81F9CFE02E2F7BBB0CD /* RITLFilter.h in Headers */,
-				2CAA56DD49418ACBFD84684177C8BA87 /* RITLImagePickerController.h in Headers */,
-				A969BFFF20B11842F3D714819FA9F37D /* RITLItemButton.h in Headers */,
-				D18B07153527D1A7EC89AB4E6044AB1F /* RITLKit.h in Headers */,
-				9FD997F516FDA34705DAAFD51ACE8B6F /* RITLRuntimeTool.h in Headers */,
-				D5B190DCAC84658AEAC48EFE354BCD81 /* RITLScriptMessageHandler.h in Headers */,
-				FAC47BBF32958F0B0F0CBF4D572F73F6 /* RITLScrollPageViewController.h in Headers */,
-				ED020A7C6F2D9F51F1077E345F893FF5 /* RITLSearchTextField.h in Headers */,
-				3B833921E7163B43EE9CF9CB623B12E5 /* RITLSearchView.h in Headers */,
-				F6F519E2D8C9806FA9C488EB9B4CB11D /* RITLTimer.h in Headers */,
-				3C1D0B404A6BA54FFA689AA76CC1B597 /* RITLUtility.h in Headers */,
-				BA830E3E6BA7A2DA2832E7E8EB69D06B /* RITLViewExtension.h in Headers */,
-				4EFE8609EBC39F39D7E09ADE1900869F /* RITLWebScriptMessageHandler.h in Headers */,
-				3A76D0AE66125413D9AB35219A18EF1F /* RITLWebViewController.h in Headers */,
-				CBA73AD6496802207F584BA20C6704AC /* UIButton+RITLKit.h in Headers */,
-				EA6A4A98EF5BBB81BC4F4BC0D82194F1 /* UIColor+RITLExtension.h in Headers */,
-				C28BD442AFF92D3DA2AD79C2969C04E4 /* UIControl+RITLBlockButton.h in Headers */,
-				FD68C41236E66886AAF1DE912134F97B /* UIImage+RITLExtension.h in Headers */,
-				EB8F560AC6DD5216EA356A2CECE966AA /* UILabel+RITLExtension.h in Headers */,
-				5E8090902159B6471659AD0703978F7E /* UINavigationController+RITLExtension.h in Headers */,
-				5352949E9C495EAA24FC17C5FD3DFB34 /* UITableView+RITLCellRegister.h in Headers */,
-				F818C8AFCA8E44F8D07CD9A3ECDAD707 /* UITableView+RITLExtension.h in Headers */,
-				EA1EDEFE92805397A5C6F830499E111A /* UIView+LLSegmentBar.h in Headers */,
-				0966CBE81555790DA3486529B22E9548 /* UIView+RITLExtension.h in Headers */,
-				EC09711B2BEBAACA26B4DF0DBDA9AE65 /* UIViewController+RITLExtension.h in Headers */,
+				4E19014A523FA55858C27FB239014F21 /* AppleReachability.h in Headers */,
+				1F3E70E061918B77844FDDF24D30D182 /* CAGradientLayer+RITLGradientLayer.h in Headers */,
+				3C890B0AD5732B875ED4638A38346242 /* LLSegmentBar.h in Headers */,
+				36255614CC956D910950FFA1D430FF98 /* LLSegmentBarConfig.h in Headers */,
+				8E86D355BFF963BFAA2CA1AEC7D15CE1 /* LLSegmentBarVC.h in Headers */,
+				2307B6211309D749125A6908FA956438 /* NSArray+RITLExtension.h in Headers */,
+				C034C0F2795586A868E427C0FEF9B4E4 /* NSDate+RITLExtension.h in Headers */,
+				84D02AC98A2CC207740C059B8217B7DE /* NSDictionary+RITLExtension.h in Headers */,
+				D6730DE6872D5EED2FE4EC0E43EC90DD /* NSObject+RITLMutable.h in Headers */,
+				5A6DDFCAA3122D1C30FC74A52DA794E1 /* NSString+RITLExtension.h in Headers */,
+				5B0A9F1D3BFFB85B27FDFE9C7F456F22 /* RITLArchiverManager.h in Headers */,
+				C8CB000C92FB23016E1AA64A71CE5643 /* RITLDictionaryProxy.h in Headers */,
+				847D5845C46A14A66C32C19C2BAACFBA /* RITLDownLoaderFileManager.h in Headers */,
+				539B74056209EBCAA5526002C90BA2E6 /* RITLFileDownloader.h in Headers */,
+				F9B5F8CC21FCC860611478EC3DAEB7FF /* RITLFilter.h in Headers */,
+				D72150E79E64149A50F5BD4B541C2B7D /* RITLImagePickerController.h in Headers */,
+				B326A08448BE584170BC56F4E249153E /* RITLItemButton.h in Headers */,
+				41B009CDDD637FD4C1E46D08A91BF47A /* RITLKit.h in Headers */,
+				589D6B03FD1E065AAE308AB9D9AA54E9 /* RITLRuntimeTool.h in Headers */,
+				7E355B21094478E21E64B8D0CF67DE61 /* RITLScriptMessageHandler.h in Headers */,
+				C3D41B97F12ACC7D9E064BA937AAE764 /* RITLScrollPageViewController.h in Headers */,
+				E1161B5978A58558E894862023B1ADA9 /* RITLSearchTextField.h in Headers */,
+				5A9BCD7AEC9217B01CE1AAE36E10BD72 /* RITLSearchView.h in Headers */,
+				6E981D73A7501307AF2B6A69A27CFEF5 /* RITLTimer.h in Headers */,
+				DBB717D71CA16577C7F0073F2BCB9000 /* RITLUtility.h in Headers */,
+				84560482132A08CE98F9C9284DE0E1E0 /* RITLViewExtension.h in Headers */,
+				D56D4A00717D2D465A7D3203BA344388 /* RITLWebScriptMessageHandler.h in Headers */,
+				601980F99B8B2275AE6B3AE3A2670E99 /* RITLWebViewController.h in Headers */,
+				DFA55A3D3C271BF4545D8D5B05F5BC47 /* UIButton+RITLKit.h in Headers */,
+				12D88F5EAFA0790741769B07D12F302A /* UIColor+RITLExtension.h in Headers */,
+				C3B1C4C8D5E965EF71ECB6CE3CC6DCF0 /* UIControl+RITLBlockButton.h in Headers */,
+				4391B4200E85600A302731AB6FA45847 /* UIImage+RITLExtension.h in Headers */,
+				7E93962BB383CD23C7AAA54AE8A58863 /* UILabel+RITLExtension.h in Headers */,
+				8C58BDA8BC082CFFD1CAFABC65467DCC /* UINavigationController+RITLExtension.h in Headers */,
+				ACA7AEDE6CAB3AA5D2E8D1EC64D81270 /* UITableView+RITLCellRegister.h in Headers */,
+				3B192D219C76B644A28C604BC99B252C /* UITableView+RITLExtension.h in Headers */,
+				3EB687B74BB890A69B5B4D7C94B9F02E /* UIView+LLSegmentBar.h in Headers */,
+				EC93F522E00F1B5E39C4B336BBB3894B /* UIView+RITLExtension.h in Headers */,
+				2A05B2F2BA8820639A7A6424CEBE6E9B /* UIViewController+RITLExtension.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8C056FC1160B32953282A77079BC6A14 /* Headers */ = {
+		96F35D7607CAB4BEA1E4144855E1B73B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				103F6EA061E4C726AD48CF502AA5CB76 /* UIView+RITLFrameChanged.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D7D79E91D7AEB19173E37CB1B3A5E445 /* Headers */ = {
+		DA98C641E7E3F9DF38588FD6419D3E43 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5296E98D345253EE5395C0E2FA6CEB0 /* UIView+RITLFrameChanged.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,17 +714,17 @@
 /* Begin PBXNativeTarget section */
 		0E17A295B3F13DFCD5CE954140CDA087 /* RITLKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EF801F126B45B7A7B6A7BC90B2515DD8 /* Build configuration list for PBXNativeTarget "RITLKit" */;
+			buildConfigurationList = 6F18503FC2C6F7B06EB453B8343ACA6F /* Build configuration list for PBXNativeTarget "RITLKit" */;
 			buildPhases = (
-				2B709CFA11E7526CFE5F43094597F51E /* Headers */,
-				9D4F850CB6E59F24F0BF139343D31753 /* Sources */,
-				29BD1A7946B8E24276E994448DEEA664 /* Frameworks */,
+				4079C0D2C974720189281D76C0D662B7 /* Headers */,
+				8072030E9C686785BA8734247C4A5F64 /* Sources */,
+				7BFC7A80F613412FD03F67CC4B49339A /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7B3B757F009522203CA5497FED6E0D9D /* PBXTargetDependency */,
-				D24EC9EE3E2A14FEF725E203821B9562 /* PBXTargetDependency */,
+				D0A36942A3D3F62C05E3F16056704F15 /* PBXTargetDependency */,
+				8861D5BAC1CDF58B0B2CDBB13A1EF198 /* PBXTargetDependency */,
 			);
 			name = RITLKit;
 			productName = RITLKit;
@@ -744,11 +750,11 @@
 		};
 		7EE18B3869F3DDCFD2CE02D6C9EC12F7 /* RITLViewFrame */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 842DAA2F8273F350EA562F027EF6D6DF /* Build configuration list for PBXNativeTarget "RITLViewFrame" */;
+			buildConfigurationList = 4B9562AE5BE632D44F59917F447282AE /* Build configuration list for PBXNativeTarget "RITLViewFrame" */;
 			buildPhases = (
-				8C056FC1160B32953282A77079BC6A14 /* Headers */,
-				679C17184C3187CB1D457E58FD6AD26A /* Sources */,
-				D8C4EB8B98BCCB7397EACFC0629F6218 /* Frameworks */,
+				DA98C641E7E3F9DF38588FD6419D3E43 /* Headers */,
+				9CFE5EB78B08B2768A90172F971D71FF /* Sources */,
+				CE4DAF4A9AADCDC60522A2F6F2CF29D6 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -761,18 +767,18 @@
 		};
 		AE8F94D3FE386E748575A7599ED960CD /* Pods-RITLPhotoDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA632E568EFCB8E7793592B411918ACA /* Build configuration list for PBXNativeTarget "Pods-RITLPhotoDemo" */;
+			buildConfigurationList = 68BF1D72B5D27802CF72316CE0CBBA33 /* Build configuration list for PBXNativeTarget "Pods-RITLPhotoDemo" */;
 			buildPhases = (
-				D7D79E91D7AEB19173E37CB1B3A5E445 /* Headers */,
-				7967104365278F92F7F7DD23E68327F5 /* Sources */,
-				497FFB1DB2D34DB89DBF77849D9D3B73 /* Frameworks */,
+				96F35D7607CAB4BEA1E4144855E1B73B /* Headers */,
+				BD29E31D278FCBAB2B17E5F6D8C4FA2A /* Sources */,
+				0818E16545E7AB424B74A2F9E7787B15 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FEA1BC7FA28E870AFD1F037226B97D24 /* PBXTargetDependency */,
-				302CFD6968F693DA579F460CC0DF675A /* PBXTargetDependency */,
-				81EC576BDFB30235AEF6314D6175E5DA /* PBXTargetDependency */,
+				AE47D9C39D226A425D004CBDBB60519F /* PBXTargetDependency */,
+				2C8FDB57770FE585421EA3A23E3D64D6 /* PBXTargetDependency */,
+				6A797DC904A3426E17C24E65AE6F087D /* PBXTargetDependency */,
 			);
 			name = "Pods-RITLPhotoDemo";
 			productName = "Pods-RITLPhotoDemo";
@@ -785,8 +791,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -828,110 +834,109 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		679C17184C3187CB1D457E58FD6AD26A /* Sources */ = {
+		8072030E9C686785BA8734247C4A5F64 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC6B97E3F4960C9A9C5126B7891D498E /* RITLViewFrame-dummy.m in Sources */,
-				146E5FC10205FC880E3308AA067E9237 /* UIView+RITLFrameChanged.m in Sources */,
+				1AB59E23430E6110C320B0334DDF313A /* AppleReachability.m in Sources */,
+				6F746DFE2ACF55669BC5B1C307898A21 /* CAGradientLayer+RITLGradientLayer.m in Sources */,
+				B4D921215239D9803369168C68652F41 /* LLSegmentBar.m in Sources */,
+				C9BAAE856CCBEABED6098268D60BADF1 /* LLSegmentBarConfig.m in Sources */,
+				5C9F7922E99A7B8C9A588FF0B24DAEC5 /* LLSegmentBarVC.m in Sources */,
+				F38E50BD2510E0955751514CDB7EC2A7 /* NSArray+RITLExtension.m in Sources */,
+				D9E9602AF507B1D3903671A8FA22FB06 /* NSDate+RITLExtension.m in Sources */,
+				30B03BDBBED952011793C6A167F85F29 /* NSDictionary+RITLExtension.m in Sources */,
+				E29915C6B568933B000F19FB6751B157 /* NSObject+RITLMutable.m in Sources */,
+				D22005375F75A3B8354E73106828F0EB /* NSString+RITLExtension.m in Sources */,
+				2D037254383BD68D4FAF0D482187E2E7 /* RITLArchiverManager.m in Sources */,
+				589ECA78FD0381E195956147CDBD22D7 /* RITLDictionaryProxy.m in Sources */,
+				2D54AEEBBF5E04771873E544044AA7DC /* RITLDownLoaderFileManager.m in Sources */,
+				4743F6029C0EC5557C1D5CBCC7D1E04A /* RITLFileDownloader.m in Sources */,
+				DEC0B6FB2D7154E818F774CFAD010214 /* RITLFilter.m in Sources */,
+				956E5AA298286659875056407258D7F2 /* RITLImagePickerController.m in Sources */,
+				1704121CC8339939790AE03344E18DFD /* RITLItemButton.m in Sources */,
+				7D224BEF6DA955FC55E572C0BBCC5F85 /* RITLKit-dummy.m in Sources */,
+				755CE1F842445201CE1EFE286219C68A /* RITLRuntimeTool.m in Sources */,
+				ACBEEEAC4FBA2BDAC155E2B8F35E3DE9 /* RITLScriptMessageHandler.m in Sources */,
+				8D96D227033EDAFE3E96AD74D6C38B3A /* RITLScrollPageViewController.m in Sources */,
+				B59FB93A6E0173E7A6435CFBE75806BA /* RITLSearchTextField.m in Sources */,
+				7FAED5A6971A69D20C7A6EF99353F4F6 /* RITLSearchView.m in Sources */,
+				A183C8D342A3F97D7A3FEFAC301B1E17 /* RITLTimer.m in Sources */,
+				DEE820F597255D8E720C8EA6BE2617CC /* RITLUtility.m in Sources */,
+				1A4C20BC6AFB1B76131E0878D3ABCFB5 /* RITLViewExtension.m in Sources */,
+				11F4D0FB9C1079F5A51A25EA917CD734 /* RITLWebScriptMessageHandler.m in Sources */,
+				7143CF9EDD7EDED9CCAC8D4CC447BCAE /* RITLWebViewController.m in Sources */,
+				8019CBB1187AB1AAE61CAB5BB5C20AEB /* UIButton+RITLKit.m in Sources */,
+				050E34BE82454878DEEFF9A54854F823 /* UIColor+RITLExtension.m in Sources */,
+				143EC47C5D4E5E61CAD99E0491F65D81 /* UIControl+RITLBlockButton.m in Sources */,
+				C680634DF40F9F6EAF38BC655BD5CA52 /* UIImage+RITLExtension.m in Sources */,
+				085DB4A7BCA105D4C8172BFF808F4337 /* UILabel+RITLExtension.m in Sources */,
+				3EF551DB9C3D2DB7CB3590FF5016EDE4 /* UINavigationController+RITLExtension.m in Sources */,
+				24B01D33E7040E6089B00C95ABA32558 /* UITableView+RITLCellRegister.m in Sources */,
+				8FA7F5A05C21AEE31D1BDABFC24D263A /* UITableView+RITLExtension.m in Sources */,
+				5879231073DF9E20A0CD2137A684D131 /* UIView+LLSegmentBar.m in Sources */,
+				5BA81A61E8162F4EAE0869F45F83787E /* UIView+RITLExtension.m in Sources */,
+				DE53D33161910C4E6ED5632A84F03613 /* UIViewController+RITLExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7967104365278F92F7F7DD23E68327F5 /* Sources */ = {
+		9CFE5EB78B08B2768A90172F971D71FF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D802C5D83FA2BB117B832CAB063F8147 /* Pods-RITLPhotoDemo-dummy.m in Sources */,
+				11C9C3FF347C7B6D0AAD3520BCB0FEDB /* RITLViewFrame-dummy.m in Sources */,
+				0CCF575322F841C42B92E65EE3A15D1B /* UIView+RITLFrameChanged.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9D4F850CB6E59F24F0BF139343D31753 /* Sources */ = {
+		BD29E31D278FCBAB2B17E5F6D8C4FA2A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50BB6F79A4C9863FCF1BFCF774A62E6F /* AppleReachability.m in Sources */,
-				6E620B80F744A84B46EAF7C4C3F5A9B8 /* CAGradientLayer+RITLGradientLayer.m in Sources */,
-				31522A290CF5CB41ED945EB09E2989B6 /* LLSegmentBar.m in Sources */,
-				58623A8FDA5C66A9BFC414AD5B5AB692 /* LLSegmentBarConfig.m in Sources */,
-				8C4F52CEB387D5E29104B8D138EB0AF9 /* LLSegmentBarVC.m in Sources */,
-				820DA2A5F84F34B65F74B85EC6B022D6 /* NSArray+RITLExtension.m in Sources */,
-				83A5EC309D129D662B264FCBCABE1D3D /* NSDate+RITLExtension.m in Sources */,
-				FA99658B2DADC4833E37BE32545C918D /* NSDictionary+RITLExtension.m in Sources */,
-				0100DEC3D98A0132AF6A60A4E5A7D41D /* NSObject+RITLMutable.m in Sources */,
-				0768B14CC5E91B83AEA153FE7AD8F875 /* NSString+RITLExtension.m in Sources */,
-				0349C8E7B6630173FF541D370EB2860D /* RITLArchiverManager.m in Sources */,
-				DEF4CBA0E619DBF495E4F645481A2074 /* RITLDictionaryProxy.m in Sources */,
-				D64B90E81DCBA5DABECA05DA9F46659A /* RITLDownLoaderFileManager.m in Sources */,
-				3D0227B7763206B0125B417269E20CAB /* RITLFileDownloader.m in Sources */,
-				2B2435E31E8EE8F208AF04CCBE29F1CD /* RITLFilter.m in Sources */,
-				2DCF87BB035AE386212DC9F7A928A9A0 /* RITLImagePickerController.m in Sources */,
-				2CAEAE9637374EC70C4153D5FD25FEFC /* RITLItemButton.m in Sources */,
-				80AFFD8F27E29BA7A5622B217119017D /* RITLKit-dummy.m in Sources */,
-				4BA1696960CD8574809CD08E372A33F5 /* RITLRuntimeTool.m in Sources */,
-				12B9F7393A06779C379C73640C5395A2 /* RITLScriptMessageHandler.m in Sources */,
-				E697B7AE0A4732C099B496CD30428FF8 /* RITLScrollPageViewController.m in Sources */,
-				F4756C2F62DA84DBB25D92E4B13C2793 /* RITLSearchTextField.m in Sources */,
-				90CCDEECECD0C99B44EF663779E3B38B /* RITLSearchView.m in Sources */,
-				C34F21B009CF62BDA63AED3B0B384A07 /* RITLTimer.m in Sources */,
-				75E10A6E9B722D2CF410461333BFF9F0 /* RITLUtility.m in Sources */,
-				58EB962489678C17A8EBEECD1516C8FC /* RITLViewExtension.m in Sources */,
-				0200347E63965E1CA5AA39A0B4F4980E /* RITLWebScriptMessageHandler.m in Sources */,
-				D8AFFA02CF2575150B5BC6E3E764C263 /* RITLWebViewController.m in Sources */,
-				290994CDC9D24B181A7E3C119C8F16AA /* UIButton+RITLKit.m in Sources */,
-				DA5FEF76DD5851D5886F26EA3624A7E0 /* UIColor+RITLExtension.m in Sources */,
-				4D768B91E5633AECAA9FCA5962591090 /* UIControl+RITLBlockButton.m in Sources */,
-				8E1C4DD3B062C1F7C03F83DB48AB2848 /* UIImage+RITLExtension.m in Sources */,
-				28C233F54A85F06F1A3A77E419E115CE /* UILabel+RITLExtension.m in Sources */,
-				7D20F87A8B02F61AF641ED176E2F41E9 /* UINavigationController+RITLExtension.m in Sources */,
-				920FB21562DF308AF7ECC448A90234CF /* UITableView+RITLCellRegister.m in Sources */,
-				AACE9FE5DBEF4A485790829B52004E7B /* UITableView+RITLExtension.m in Sources */,
-				8EC7D49C0F51EC6AA3731A5444E01B52 /* UIView+LLSegmentBar.m in Sources */,
-				11DEF348B5555A8CC0CE30AD31B67B5A /* UIView+RITLExtension.m in Sources */,
-				13AB46A4DE11B1E6A46674C3E9669713 /* UIViewController+RITLExtension.m in Sources */,
+				4E5C31CBC40FA0B5FF4D2FACEF26E376 /* Pods-RITLPhotoDemo-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		302CFD6968F693DA579F460CC0DF675A /* PBXTargetDependency */ = {
+		2C8FDB57770FE585421EA3A23E3D64D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RITLKit;
 			target = 0E17A295B3F13DFCD5CE954140CDA087 /* RITLKit */;
-			targetProxy = F477FC43762A3C01943656D1378E8CCF /* PBXContainerItemProxy */;
+			targetProxy = 7F6E2F09A4E0708D0488289161E5E7BA /* PBXContainerItemProxy */;
 		};
-		7B3B757F009522203CA5497FED6E0D9D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Masonry;
-			target = 55AF53E6C77A10ED4985E04D74A8878E /* Masonry */;
-			targetProxy = AEF14E1A5D6EB8A4528D8F3EFE0BA14B /* PBXContainerItemProxy */;
-		};
-		81EC576BDFB30235AEF6314D6175E5DA /* PBXTargetDependency */ = {
+		6A797DC904A3426E17C24E65AE6F087D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RITLViewFrame;
 			target = 7EE18B3869F3DDCFD2CE02D6C9EC12F7 /* RITLViewFrame */;
-			targetProxy = 870790251AD1D24A6A2044034F55EF6F /* PBXContainerItemProxy */;
+			targetProxy = BE35F4E118CDCA5E9E71338732FAEB26 /* PBXContainerItemProxy */;
 		};
-		D24EC9EE3E2A14FEF725E203821B9562 /* PBXTargetDependency */ = {
+		8861D5BAC1CDF58B0B2CDBB13A1EF198 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RITLViewFrame;
 			target = 7EE18B3869F3DDCFD2CE02D6C9EC12F7 /* RITLViewFrame */;
-			targetProxy = 3FAEF83FF0C157CA9FA225F151F7BEE9 /* PBXContainerItemProxy */;
+			targetProxy = 4460C636F9E157F12EE5A06CDEABCDFA /* PBXContainerItemProxy */;
 		};
-		FEA1BC7FA28E870AFD1F037226B97D24 /* PBXTargetDependency */ = {
+		AE47D9C39D226A425D004CBDBB60519F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Masonry;
 			target = 55AF53E6C77A10ED4985E04D74A8878E /* Masonry */;
-			targetProxy = 9A8C9E4DB15478AEA3898604EB7AAA98 /* PBXContainerItemProxy */;
+			targetProxy = C30D9DB295C11601FCDF8497DB6605A2 /* PBXContainerItemProxy */;
+		};
+		D0A36942A3D3F62C05E3F16056704F15 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Masonry;
+			target = 55AF53E6C77A10ED4985E04D74A8878E /* Masonry */;
+			targetProxy = 748EF37874C81C6E814BB670789DB206 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0D631E8DE7ECC3523AE9CB793F49988F /* Debug */ = {
+		1C509E766BFB5590985E14E1A8440864 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D36CA5DCB048B383E4B376EE49F626F9 /* RITLKit.xcconfig */;
+			baseConfigurationReference = A13F1E9E44B3467B12436BF2B7505F48 /* RITLKit.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -947,14 +952,36 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		38157752B0C08F9285B88B5D1BD95926 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8719E6C160E8C79E0B7D0D0741A284C /* Masonry.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = Masonry;
+				PRODUCT_NAME = Masonry;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		2864B8151371217E5A22C6412F492423 /* Release */ = {
+		5CE6F49CA900338CD15302FAC4F398B9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 539CDAC175FF251E0FCE989E4726DC45 /* Masonry.xcconfig */;
+			baseConfigurationReference = 62885A597DDC37A29D579B7D0D26106D /* Masonry.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -974,34 +1001,33 @@
 			};
 			name = Release;
 		};
-		2ECA8E30DF5A4D5DC68CC89327D39CB9 /* Release */ = {
+		5E48226ACC267714531900FEA692E784 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D36CA5DCB048B383E4B376EE49F626F9 /* RITLKit.xcconfig */;
+			baseConfigurationReference = AD6F17B0CB2C77EE40C7A6E91A933063 /* RITLViewFrame.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/RITLKit/RITLKit-prefix.pch";
+				GCC_PREFIX_HEADER = "Target Support Files/RITLViewFrame/RITLViewFrame-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = RITLKit;
-				PRODUCT_NAME = RITLKit;
+				PRODUCT_MODULE_NAME = RITLViewFrame;
+				PRODUCT_NAME = RITLViewFrame;
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = Debug;
 		};
-		4BE66A09A74FD25164AAB3C2645B9B93 /* Release */ = {
+		6D42DC62C4F2E194221DF89C48496C98 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1024,6 +1050,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1058,79 +1085,11 @@
 			};
 			name = Release;
 		};
-		5D61DC43C7DC2F90C295C51D66EEE358 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 539CDAC175FF251E0FCE989E4726DC45 /* Masonry.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = Masonry;
-				PRODUCT_NAME = Masonry;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		60398990EC71AFD81E1AD508AED8A282 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39782B650DDA015108C005550E015C6A /* RITLViewFrame.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/RITLViewFrame/RITLViewFrame-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = RITLViewFrame;
-				PRODUCT_NAME = RITLViewFrame;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		667EE3ABCA4E537A826EE02B9DB0615A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF522FC5B3A237C9D539462AB1DC1AB8 /* Pods-RITLPhotoDemo.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		66EE5B38BF12055ECD02BE05C2435E72 /* Release */ = {
+		70FA7A481803BE2E1FE80CBF24336776 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 10712606AC5BCBDF6E93127EA75155ED /* Pods-RITLPhotoDemo.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1147,10 +1106,31 @@
 			};
 			name = Release;
 		};
-		7EF7227D9B20A1D549000096ACCB23D7 /* Debug */ = {
+		B922EC4539F41AA624D396E0543F4353 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF522FC5B3A237C9D539462AB1DC1AB8 /* Pods-RITLPhotoDemo.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E4D0D44B090D4284607EBBC4E71A96C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1173,6 +1153,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1211,11 +1192,32 @@
 			};
 			name = Debug;
 		};
-		AE0AE5BEEC0F7B7EF85EE87C0ED266F8 /* Release */ = {
+		F3656D541B76EA27F1757E1A3B5A8500 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39782B650DDA015108C005550E015C6A /* RITLViewFrame.xcconfig */;
+			baseConfigurationReference = 58C9D176023550B32CAAD8EC2BBB4552 /* RITLKit.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/RITLKit/RITLKit-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = RITLKit;
+				PRODUCT_NAME = RITLKit;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FF9F26305AD2E173B9F9BFE0B0002629 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB11A225229278F702319E2E37BD9382 /* RITLViewFrame.release.xcconfig */;
+			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1241,8 +1243,8 @@
 		0B9F7EAACDDA564EC328F53A4AB8CF85 /* Build configuration list for PBXNativeTarget "Masonry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5D61DC43C7DC2F90C295C51D66EEE358 /* Debug */,
-				2864B8151371217E5A22C6412F492423 /* Release */,
+				38157752B0C08F9285B88B5D1BD95926 /* Debug */,
+				5CE6F49CA900338CD15302FAC4F398B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1250,35 +1252,35 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7EF7227D9B20A1D549000096ACCB23D7 /* Debug */,
-				4BE66A09A74FD25164AAB3C2645B9B93 /* Release */,
+				E4D0D44B090D4284607EBBC4E71A96C1 /* Debug */,
+				6D42DC62C4F2E194221DF89C48496C98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		842DAA2F8273F350EA562F027EF6D6DF /* Build configuration list for PBXNativeTarget "RITLViewFrame" */ = {
+		4B9562AE5BE632D44F59917F447282AE /* Build configuration list for PBXNativeTarget "RITLViewFrame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				60398990EC71AFD81E1AD508AED8A282 /* Debug */,
-				AE0AE5BEEC0F7B7EF85EE87C0ED266F8 /* Release */,
+				5E48226ACC267714531900FEA692E784 /* Debug */,
+				FF9F26305AD2E173B9F9BFE0B0002629 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA632E568EFCB8E7793592B411918ACA /* Build configuration list for PBXNativeTarget "Pods-RITLPhotoDemo" */ = {
+		68BF1D72B5D27802CF72316CE0CBBA33 /* Build configuration list for PBXNativeTarget "Pods-RITLPhotoDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				667EE3ABCA4E537A826EE02B9DB0615A /* Debug */,
-				66EE5B38BF12055ECD02BE05C2435E72 /* Release */,
+				B922EC4539F41AA624D396E0543F4353 /* Debug */,
+				70FA7A481803BE2E1FE80CBF24336776 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EF801F126B45B7A7B6A7BC90B2515DD8 /* Build configuration list for PBXNativeTarget "RITLKit" */ = {
+		6F18503FC2C6F7B06EB453B8343ACA6F /* Build configuration list for PBXNativeTarget "RITLKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0D631E8DE7ECC3523AE9CB793F49988F /* Debug */,
-				2ECA8E30DF5A4D5DC68CC89327D39CB9 /* Release */,
+				F3656D541B76EA27F1757E1A3B5A8500 /* Debug */,
+				1C509E766BFB5590985E14E1A8440864 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

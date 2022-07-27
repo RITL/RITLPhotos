@@ -375,7 +375,9 @@ static NSString *const reuseIdentifier = @"photo";
     [self.timeCache addEntriesFromDictionary:@{@(asset.duration) : time}];//追加缓存
 
     if (@available(iOS 9.1,*)) {//Live图片
-        photoCell.liveBadgeImageView.hidden = !(asset.mediaSubtypes == PHAssetMediaSubtypePhotoLive);
+        //Fix: #21 无法适配iPhone11 PRO 以上的livephoto，不能直接写asset.mediaSubtypes==PHAssetMediaSubtypePhotoLive来判断
+//        photoCell.liveBadgeImageView.hidden = !(asset.mediaSubtypes == PHAssetMediaSubtypePhotoLive);
+        photoCell.liveBadgeImageView.hidden = !(asset.mediaSubtypes & PHAssetMediaSubtypePhotoLive);
     }
 }
 
